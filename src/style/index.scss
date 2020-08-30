@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Roboto&display=swap');
+
+$color-highlight: #2196f3;
+
+.theme-light {
+  --color-bg: #e8eaf6;
+  --color-medium: #c5cae9;
+  --color-text: #290e42;
+}
+
+.theme-dark {
+  --color-bg: #290e42;
+  --color-medium: #3b2254;
+  --color-text: #e8eaf6;
+}
+
+.theme-light2 {
+  --color-bg: #f1f8e9;
+  --color-medium: #dcedc8;
+  --color-text: #002f6c;
+}
+
+.theme-dark2 {
+  --color-bg: #002f6c;
+  --color-medium: #01579b;
+  --color-text: #dcedc8;
+}
+
+body {
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  transition: all 0.25s linear;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+#banner {
+  #banner-content {
+    position: relative;
+    top: 20vh;
+  }
+
+  span{
+    font-size: 60px;
+    padding: 0px 5px;
+    box-shadow: inset 0 -20px 0 0 $color-highlight;
+  }
+}
+
+nav {
+  @extend .gradient-animation;
+}
+
+h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 48px;
+  padding: 0px 3px;
+  box-shadow: inset 0 -18px 0 0 $color-highlight;
+  width: fit-content;
+}
+
+.section-title {
+  margin: 0px auto 20px;
+  span {
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    line-height: 1.2;
+    @extend h1;
+  }
+}
+
+section {
+  max-height: fit-content;
+  min-height: 100vh;
+  padding: 10vh 0px 30px 0px;
+  position: relative;
+
+  .section-content {
+    text-align: center;
+  }
+
+  svg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10vh;
+
+    &.right-slant {
+      fill: var(--color-bg);
+      background-color: var(--color-medium);
+    }
+
+    &.left-slant {
+      fill: var(--color-medium);
+      background-color: var(--color-bg);
+    }
+  }
+
+  &.-even-section {
+    background-color: var(--color-medium);
+  }
+
+  &.-odd-section {
+    background-color: var(--color-bg);
+  }
+}
+
+.react-switch-bg {
+  background: var(--color-bg) !important;
+}
+
+.gradient-animation {
+  background: linear-gradient(139deg, #22b390, #b463cc, #2da3e6);
+  background-size: 300% 300%;
+
+  -webkit-animation: GradientAnimation 9s ease infinite;
+  -moz-animation: GradientAnimation 9s ease infinite;
+  animation: GradientAnimation 9s ease infinite;
+}
+
+@-webkit-keyframes GradientAnimation {
+  0%{background-position:0% 2%}
+  50%{background-position:100% 99%}
+  100%{background-position:0% 2%}
+}
+@-moz-keyframes GradientAnimation {
+  0%{background-position:0% 2%}
+  50%{background-position:100% 99%}
+  100%{background-position:0% 2%}
+}
+@keyframes GradientAnimation {
+  0%{background-position:0% 2%}
+  50%{background-position:100% 99%}
+  100%{background-position:0% 2%}
+}
