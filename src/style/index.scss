@@ -109,6 +109,14 @@ section {
   }
 }
 
+#error-404 {
+  position: relative;
+  top: 20vh;
+  img {
+    border-radius: 50px;
+  }
+}
+
 .react-switch-bg {
   background: var(--color-bg) !important;
 }
