@@ -1,17 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Roboto&display=swap');
 
-$color-highlight: #2196f3;
+$color-highlight: #26a69a;
 
 .theme-light {
-  --color-bg: #e8eaf6;
+  --color-bg: #eff0fa;
   --color-medium: #c5cae9;
   --color-text: #290e42;
+  --color-highlight: #26a69a;
+  --color-highlight-light: #64d8cb;
 }
 
 .theme-dark {
-  --color-bg: #290e42;
+  --color-bg: #1a092b;
   --color-medium: #3b2254;
-  --color-text: #e8eaf6;
+  --color-text: #eff0fa;
+  --color-highlight: #64d8cb;
+  --color-highlight-light: #26a69a;
 }
 
 .theme-light2 {
@@ -63,6 +67,15 @@ h1 {
   width: fit-content;
 }
 
+a:not(.nav-link) {
+  color: var(--color-highlight);
+}
+
+a:hover:not(.nav-link) {
+  color: var(--color-highlight-light);
+  text-decoration: none;
+}
+
 .section-title {
   margin: 0px auto 20px;
   span {
@@ -81,31 +94,36 @@ section {
 
   .section-content {
     text-align: center;
+    padding-bottom: 5vh;
   }
 
   svg {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 10vh;
-
-    &.right-slant {
-      fill: var(--color-bg);
-      background-color: var(--color-medium);
-    }
-
-    &.left-slant {
-      fill: var(--color-medium);
-      background-color: var(--color-bg);
-    }
+    height: 10vw;
   }
 
   &.-even-section {
     background-color: var(--color-medium);
+    svg {
+      fill: var(--color-bg);
+      background-color: var(--color-medium);
+    }
   }
 
   &.-odd-section {
     background-color: var(--color-bg);
+    svg {
+      fill: var(--color-medium);
+      background-color: var(--color-bg);
+    }
+  }
+}
+
+    background-color: var(--color-medium);
+  }
+
   }
 }
 
