@@ -3,7 +3,7 @@ import Layout from "../components/layout"
 import Section from "../components/section"
 
 import BannerContent from "./banner"
-import AboutSection from "./about"
+import About from "./about"
 import PortfolioSection from "./portfolio"
 
 import { setDarkMode } from "../scripts/theme.js"
@@ -12,7 +12,7 @@ export default function Home() {
 
   const sectionContents = [
     [<BannerContent />, 'banner'],
-    [<AboutSection />, 'about'],
+    [<About />, 'about'],
     [<PortfolioSection />, 'portfolio']
   ];
 

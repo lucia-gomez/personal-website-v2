@@ -121,10 +121,42 @@ section {
   }
 }
 
+#about-content {
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: row;
+  h4 {
+    height: min-content;
+    width: fit-content;
+  }
+  p {
+    text-align: left;
+  }
+  span {
+    font-weight: 700;
     background-color: var(--color-medium);
+    border-radius: 5px;
+    padding: 0px 2px;
   }
+}
 
+@media only screen and (max-width: 600px) {
+  #about-content {
+    display: flex;
+    flex-direction: column;
   }
+}
+
+.about-section {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+#profile-pic {
+  height: 30vh;
+  width: 30vh;
+  margin: auto;
 }
 
 #error-404 {
