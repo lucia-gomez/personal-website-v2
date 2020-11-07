@@ -5,6 +5,7 @@ import Section from "../components/section"
 import BannerContent from "./banner"
 import About from "./about"
 import PortfolioSection from "./portfolio"
+import ExperienceSection from "./experience"
 
 import { setDarkMode } from "../scripts/theme.js"
 
@@ -13,7 +14,8 @@ export default function Home() {
   const sectionContents = [
     [<BannerContent />, 'banner'],
     [<About />, 'about'],
-    [<PortfolioSection />, 'portfolio']
+    [<PortfolioSection />, 'portfolio'],
+    [<ExperienceSection />, 'experience']
   ];
 
   return (

@@ -1,5 +1,6 @@
 import React from "react"
 import SectionTitle from "../components/sectionTitle"
+import Subsection from "../components/subsection"
 
 import ProfileImage from "../assets/images/profile-circle.png"
 import LangBars from "../components/langBars"
@@ -33,16 +34,16 @@ export default function About() {
           </div>
         </div>
         <div>
-          <AboutSection title='Hello World!'>
+          <Subsection title='Hello World!'>
             <p>I'm a senior at <span>Cornell University</span> majoring in Computer Science and Linguistics (graduating in May, 2021).
             I'm passionate about the <span>intersection of language and technology</span>, as well as augmented and virtual reality.
             I enjoy learning new languages, both human and programming, because doing so lets me see the world in new ways.
             For the past few years, I've been interested in <span>American Sign Language</span> and the challenges associated with machine translation-
-            I was featured <a href='https://www.leadwithlanguages.org/2019/03/14/ask-away-5-questions-cornell-computer-science-linguistics-major-mixing-asl-innovation/'>here</a>.
+            I was featured <a href='https://www.leadwithlanguages.org/2019/03/14/ask-away-5-questions-cornell-computer-science-linguistics-major-mixing-asl-innovation/' target='_blank' rel='noopener noreferrer'>here</a>.
             Getting others excited about Computer Science is also important to me- I'm a Teaching Assistant at Cornell, and I tutor kids through Juni Learning.
             I have at least one ABBA song stuck in my head at any given time.</p>
-          </AboutSection>
-          <AboutSection title='Languages & Tools'>
+          </Subsection>
+          <Subsection title='Languages & Tools'>
             <p>I fell in love with programming when I was 10 years old, thanks
               to <a href='https://scratch.mit.edu/' target='_blank' rel='noopener noreferrer'>Scratch* </a>
               and <a href='https://www.codecademy.com/' target='_blank' rel='noopener noreferrer'>Codecademy</a>.
@@ -53,8 +54,8 @@ export default function About() {
             </p>
             <LangBars />
             <p id='scratch-note'>* My Scratch experience surpasses this scale</p>
-          </AboutSection>
-          <AboutSection title='Numbers'>
+          </Subsection>
+          <Subsection title='Numbers'>
             <NumberRow number={3}>
               <p>Versions of this website, because I'm indecisive and web dev is fun</p>
             </NumberRow>
@@ -64,7 +65,7 @@ export default function About() {
             <NumberRow number={0}>
               <p>Times I've baked bread in quarantine</p>
             </NumberRow>
-          </AboutSection>
+          </Subsection>
         </div>
       </div>
     </>
@@ -76,17 +77,6 @@ class NumberRow extends React.Component {
     return (
       <div className='about-number-row flex-row'>
         <h3>{this.props.number}</h3>
-        {this.props.children}
-      </div>
-    )
-  }
-}
-
-class AboutSection extends React.Component {
-  render() {
-    return (
-      <div className='about-section'>
-        <h4>{this.props.title}</h4>
         {this.props.children}
       </div>
     )
