@@ -24,11 +24,11 @@ export function makePortfolioCard(project, key) {
       title={project.title}
       tools={project.tools}
       image={project.image}
-      link={project.link}
+      git={project.link}
+      link={project.extra ?? null}
       key={key}
     >
       <p>{project.text}</p>
-      {project.extra ?? null}
     </PortfolioCard>
   );
 }
@@ -37,7 +37,7 @@ class PortfolioCard extends React.Component {
   render() {
     const imgStyle = { backgroundImage: `url(${this.props.image})` };
     const githubIcon = (
-      <Link href={this.props.link ?? ''} className={'gitLink'}>
+      <Link href={this.props.git ?? ''} className={'git-link icon-link'}>
         <div className='material-icons'>
           <i className="fa fa-github"></i>
         </div>
@@ -48,14 +48,15 @@ class PortfolioCard extends React.Component {
       <div className='portfolio-card'>
         <div className="portfolio-card-image" style={imgStyle}></div>
         <div className='portfolio-card-body'>
-          <div>
-            <div className='flex-row'>
-              <h4>{this.props.title}</h4>
+          <div className='flex-row'>
+            <h4>{this.props.title}</h4>
+            <div className='portfolio-card-buttons flex-row'>
               {githubIcon}
+              {this.props.link}
             </div>
-            <span className='portfolio-card-divider'></span>
-            {this.props.children}
           </div>
+          <span className='portfolio-card-divider'></span>
+          {this.props.children}
         </div>
         <div className='portfolio-card-tags'>
           {this.props.tools.map((tool, index) => (

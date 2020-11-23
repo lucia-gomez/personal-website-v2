@@ -1,16 +1,17 @@
-import Button from "../components/button"
 import React from "react"
+import Link from '../components/link'
 
 import ImageSignSearch from "../assets/images/portfolio/signSearch.png"
 import ImageWebsite from "../assets/images/portfolio/website.jpg"
 import ImageSubreddit from "../assets/images/portfolio/subreddit.png"
 
-const signSearchInstallBtn = (
-  <Button
-    href="https://chrome.google.com/webstore/detail/sign-search/gniinlnnpjdbeleojkghgdccpapkapma">
-    {'Install'}
-  </Button>
-);
+function externalBtn(link) {
+  return (
+    <Link href={link ?? ''} className={'external-link icon-link'}>
+      <i className="material-icons">launch</i>
+    </Link >
+  );
+}
 
 const projects = [
   {
@@ -19,7 +20,7 @@ const projects = [
     image: ImageSignSearch,
     link: "https://github.com/lucia-gomez/Sign-Search",
     text: "A Chrome extension for providing a convenient way to lookup words in American Sign Language. Highlight a word on a page or enter a search directly into the extension to see multiple ways of signing the word.",
-    extra: signSearchInstallBtn
+    extra: externalBtn("https://chrome.google.com/webstore/detail/sign-search/gniinlnnpjdbeleojkghgdccpapkapma")
   },
   {
     title: "Personal Website",
@@ -37,8 +38,13 @@ const projects = [
   }
 ];
 
+function findProject(name) {
+  return projects.filter(project => project.title === name)[0];
+}
+
 export function featuredProjects(names) {
-  return projects.filter((project) => names.includes(project.title))
+  // could just use filter, but want to maintain order given in [names]
+  return names.map(findProject);
 }
 
 export default projects

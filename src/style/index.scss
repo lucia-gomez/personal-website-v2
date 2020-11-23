@@ -71,7 +71,7 @@ h1 {
   width: fit-content;
 }
 
-a:not(.nav-link):not(.btn):not(.gitLink) {
+a:not(.nav-link):not(.btn):not(.icon-link) {
   color: var(--color-highlight);
 }
 
@@ -130,6 +130,7 @@ section {
 .flex-row {
   display: flex;
   flex-direction: row;
+  position: relative;
 }
 
 .profile-icon-rows{
@@ -239,6 +240,9 @@ section {
   max-width: 660px;
   text-align: left;
   padding-bottom: 25px;
+  h4 {
+    max-width: 80%;
+  }
 }
 
 span.portfolio-card-divider {
@@ -260,11 +264,25 @@ span.portfolio-card-tag {
   margin-right: 5px;
 }
 
-.gitLink{
+.portfolio-card-buttons {
+  position: absolute;
+  right: 0px;
+}
+
+.icon-link {
   color: var(--color-text);
   padding-left: 8px;
+}
+
+.git-link {
   margin-bottom: 0.5rem;
   margin-top: -2px;
+}
+
+.external-link {
+  i {
+    font-size: 26px;
+  }
 }
 
 .btn-primary {
