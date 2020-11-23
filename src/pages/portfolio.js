@@ -2,30 +2,35 @@ import React from "react"
 import SectionTitle from "../components/sectionTitle"
 import Subsection from "../components/subsection"
 import Link from '../components/link'
-import projects from "../scripts/projectList"
+import { featuredProjects } from "../scripts/projectList"
 
 export default function PortfolioSection() {
+  const projects = featuredProjects(["Sign Search", "Personal Website", "Subreddit Recommender"]);
   return (
     <>
       {SectionTitle("Things I've Made")}
       <Subsection title="Featured">
         <div className='portfolio-card-deck'>
-          {projects.map((project, i) => (
-            <PortfolioCard
-              title={project.title}
-              tools={project.tools}
-              image={project.image}
-              link={project.link}
-              key={i}
-            >
-              <p>{project.text}</p>
-              {project.extra ?? null}
-            </PortfolioCard>
-          ))}
+          {projects.map(makePortfolioCard)}
         </div>
       </Subsection>
     </>
   )
+}
+
+export function makePortfolioCard(project, key) {
+  return (
+    <PortfolioCard
+      title={project.title}
+      tools={project.tools}
+      image={project.image}
+      link={project.link}
+      key={key}
+    >
+      <p>{project.text}</p>
+      {project.extra ?? null}
+    </PortfolioCard>
+  );
 }
 
 class PortfolioCard extends React.Component {

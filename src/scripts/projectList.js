@@ -37,4 +37,8 @@ const projects = [
   }
 ];
 
+export function featuredProjects(names) {
+  return projects.filter((project) => names.includes(project.title))
+}
+
 export default projects
