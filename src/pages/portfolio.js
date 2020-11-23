@@ -5,7 +5,7 @@ import Link from '../components/link'
 import { featuredProjects } from "../scripts/projectList"
 
 export default function PortfolioSection() {
-  const projects = featuredProjects(["Sign Search", "Personal Website", "Subreddit Recommender"]);
+  const projects = featuredProjects(["Sign Search", "How Many Hollaback Girls", "Personal Website"]);
   return (
     <>
       {SectionTitle("Things I've Made")}
@@ -24,7 +24,7 @@ export function makePortfolioCard(project, key) {
       title={project.title}
       tools={project.tools}
       image={project.image}
-      git={project.link}
+      git={project.link ?? null}
       link={project.extra ?? null}
       key={key}
     >
@@ -36,13 +36,13 @@ export function makePortfolioCard(project, key) {
 class PortfolioCard extends React.Component {
   render() {
     const imgStyle = { backgroundImage: `url(${this.props.image})` };
-    const githubIcon = (
+    const githubIcon = (this.props.git ?
       <Link href={this.props.git ?? ''} className={'git-link icon-link'}>
         <div className='material-icons'>
           <i className="fa fa-github"></i>
         </div>
       </Link >
-    );
+      : null);
 
     return (
       <div className='portfolio-card'>
