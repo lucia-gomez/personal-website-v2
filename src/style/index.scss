@@ -171,13 +171,16 @@ section {
   }
 }
 
-.subsection {
+.subsection{
   display: flex;
   flex-direction: column;
   padding: 30px 30px 5px 30px;
   p {
     text-align: left;
   }
+}
+
+.subsection, .portfolio-card {
   span {
     font-weight: 700;
     background-color: var(--color-medium);
