@@ -256,12 +256,16 @@ span.portfolio-card-divider {
 .portfolio-card-tags {
   padding-top: 20px;
   position: absolute;
-  bottom: 10px;
+  bottom: 5px;
   margin: 0px 30px;
+  text-align: left;
 }
 
 span.portfolio-card-tag {
+  margin-bottom: 5px;
   margin-right: 5px;
+  display: inline-block;
+  width: max-content;
 }
 
 .portfolio-card-buttons {
@@ -285,11 +289,17 @@ span.portfolio-card-tag {
   }
 }
 
+#archiveBtn {
+  margin: auto;
+  margin-top: 20px;
+}
+
 .btn-primary {
   background-color: var(--color-highlight);
   border: none;
   color: var(--color-text-inv);
   margin-right: 5px;
+  width: fit-content;
 }
 
 .btn-primary:hover, .btn-primary:focus, 

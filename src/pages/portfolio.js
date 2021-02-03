@@ -2,10 +2,11 @@ import React from "react"
 import SectionTitle from "../components/sectionTitle"
 import Subsection from "../components/subsection"
 import Link from '../components/link'
+import Button from "../components/button"
 import { featuredProjects } from "../scripts/projectList"
 
 export default function PortfolioSection() {
-  const projects = featuredProjects(["Sign Search", "How Many Hollaback Girls", "Personal Website"]);
+  const projects = featuredProjects(["Spotify Vibe Check", "Sign Search", "Personal Website"]);
   return (
     <>
       {SectionTitle("Things I've Made")}
@@ -13,6 +14,7 @@ export default function PortfolioSection() {
         <div className='portfolio-card-deck'>
           {projects.map(makePortfolioCard)}
         </div>
+        <Button href="/archive" sameTab={true} id='archiveBtn'>Explore the Archive</Button>
       </Subsection>
     </>
   )
@@ -22,13 +24,14 @@ export function makePortfolioCard(project, key) {
   return (
     <PortfolioCard
       title={project.title}
+      date={project.date}
       tools={project.tools}
       image={project.image}
       git={project.link ?? null}
       link={project.extra ?? null}
       key={key}
     >
-      <p>{project.text}</p>
+      {project.text}
     </PortfolioCard>
   );
 }
@@ -55,6 +58,7 @@ class PortfolioCard extends React.Component {
               {this.props.link}
             </div>
           </div>
+          <p className='portfolio-card-date'>{this.props.date}</p>
           <span className='portfolio-card-divider'></span>
           {this.props.children}
         </div>

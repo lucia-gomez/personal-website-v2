@@ -8,10 +8,12 @@ import ImageCAC from "../assets/images/portfolio/cac.png"
 import ImageHollabackGirls from "../assets/images/portfolio/hollabackgirls.png"
 import ImageSpillTheTea from "../assets/images/portfolio/spillTheTea.png"
 import ImageSpaceBears from "../assets/images/portfolio/spaceBears.png"
+import ImageWelcomePreemie from "../assets/images/portfolio/welcomePreemie.png"
+import ImageSpotifyVibeCheck from "../assets/images/portfolio/spotifyVibeCheck.png"
 
 function externalBtn(link) {
   return (
-    <Link href={link ?? ''} className={'external-link icon-link'}>
+    <Link href={link ?? ''} className={'external-link icon-link'} key={link}>
       <i className="material-icons">launch</i>
     </Link >
   );
@@ -19,58 +21,82 @@ function externalBtn(link) {
 
 const projects = [
   {
-    title: "How Many Hollaback Girls",
-    tools: ["Javascript", "HTML/CSS", "AWS"],
-    image: ImageHollabackGirls,
-    link: "https://github.com/lucia-gomez/how-many-hollaback-girls",
-    text: "One day, on my walk to campus, I accidentally listened to Hollaback Girl on repeat. For the rest of the day, I measured time in units of Hollaback Girls, because why not? This converter made things easier.",
-    extra: externalBtn("https://howmanyhollabackgirls.com"),
-  },
-  {
     title: "Sign Search",
+    date: "May 2020",
     tools: ["Javascript", "React"],
     image: ImageSignSearch,
     link: "https://github.com/lucia-gomez/Sign-Search",
-    text: "A Chrome extension for providing a convenient way to lookup words in American Sign Language. Highlight a word on a page or enter a search directly into the extension to see multiple ways of signing the word.",
+    text: <p>A Chrome extension for providing a convenient way to lookup words in American Sign Language. Highlight a word on a page or enter a search directly into the extension to see multiple ways of signing the word.</p>,
     extra: externalBtn("https://chrome.google.com/webstore/detail/sign-search/gniinlnnpjdbeleojkghgdccpapkapma")
   },
   {
+    title: "Spotify Vibe Check",
+    date: "Dec 2020-present",
+    tools: ["React", "Spotify API", "Reach Router", "Express", "Materialize", "Heroku"],
+    image: ImageSpotifyVibeCheck,
+    link: "https://github.com/lucia-gomez/spotify-vibe-check",
+    text: <p>A web app to analyze the vibe of your Spotify playlists. (Work in progress)</p>,
+    extra: externalBtn("https://spotify-vibe-check.herokuapp.com/"),
+  },
+  {
     title: "Personal Website",
-    tools: ["React", "Gatsby", "Sass"],
+    date: "Sept 2020-present",
+    tools: ["React", "Gatsby", "Sass", "Netlify"],
     image: ImageWebsite,
     link: "https://github.com/lucia-gomez/personal-website-v2",
-    text: "You're looking at it! This is V3, I tend to start from scratch when I'm bored or when I've learned something new.",
+    text: <p>You're looking at it! This is V2, I tend to start from scratch when I'm bored or when I've learned something new.</p>,
+  },
+  {
+    title: "How Many Hollaback Girls",
+    date: "Sept 2020",
+    tools: ["Javascript", "HTML/CSS", "AWS"],
+    image: ImageHollabackGirls,
+    link: "https://github.com/lucia-gomez/how-many-hollaback-girls",
+    text: <p>One day, on my walk to campus, I accidentally listened to <i>Hollaback Girl</i> on repeat. For the rest of the day, I measured time in units of Hollaback Girls, because why not? This time converter made things easier.</p>,
+    extra: externalBtn("https://howmanyhollabackgirls.com"),
+  },
+  {
+    title: "Welcome Preemie",
+    date: "Aug-Oct 2020",
+    tools: ["Squarespace", "CSS"],
+    image: ImageWelcomePreemie,
+    text: <p>Redesigned a client's e-commerce website using Squarespace, and added additional features to increase community engagement. Volunteer project with <Link href='http://levareorg.com/'>Levare</Link>.</p>,
+    extra: externalBtn("http://welcomepreemie.com")
   },
   {
     title: "Subreddit Recommender",
+    date: "March-May 2020",
     tools: ["Python", "Flask", "NLTK", "Bootstrap"],
     image: ImageSubreddit,
     link: "https://github.com/lucia-gomez/cs4300sp2020-ael226-ilg7-nr292-vmw9-zjs28",
-    text: "A search engine to help navigate Reddit's thousands of subreddits. Draft a Reddit post, and get suggestions for which subreddits are suitable to post in. Group project for Cornell's CS4300: Language and Information"
-  },
-  {
-    title: "Cards Against Cornellians",
-    tools: ["Python"],
-    image: ImageCAC,
-    link: "https://github.com/lucia-gomez/Cards-Against-Humanity-Engine",
-    text: "A commandline game engine for Cards Against Humanity, featuring custom ASCII graphics, networked gameplay, and customizeable card decks. Originally implemented in OCaml for a class project."
-  },
-  {
-    title: "Space Bears",
-    tools: ["Unreal Engine 4"],
-    image: ImageSpaceBears,
-    text: "My first experience working with virtual reality. Explore a space station manned by teddy bears! Group project for Cornell's CS1620: Visual Imaging"
+    text: <p>A search engine to help navigate Reddit's thousands of subreddits. Draft a Reddit post, and get suggestions for which subreddits are suitable to post in. Group project for Cornell's CS4300: Language and Information</p>
   },
   {
     title: "Spill the Tea",
+    date: "May 2020",
     tools: ["Tableau"],
     image: ImageSpillTheTea,
-    text: "Interactive data visualizations for socio-linguistic research on 'bubble tea' vs 'boba' word choice. A friend and I surveyed 200+ participants on their background and preferred term for this drink",
+    text: <p>Interactive data visualizations for socio-linguistic research on 'bubble tea' vs 'boba' word choice. A friend and I surveyed 200+ participants on their background and preferred term for this drink</p>,
     extra: [
       externalBtn("https://public.tableau.com/profile/lucia.gomez#!/vizhome/BubbleTeaBobaWordChoice/Sheet1"),
       externalBtn("https://public.tableau.com/profile/lucia.gomez#!/vizhome/BubbleTeaBobaWordChoice/Heatmaps")
     ]
-  }
+  },
+  {
+    title: "Cards Against Cornellians",
+    date: "April 2019-March 2020",
+    tools: ["Python"],
+    image: ImageCAC,
+    link: "https://github.com/lucia-gomez/Cards-Against-Humanity-Engine",
+    text: <p>A commandline game engine for Cards Against Humanity, featuring custom ASCII graphics, networked gameplay, and customizeable card decks. Originally implemented in OCaml for a class project.</p>
+  },
+  {
+    title: "Space Bears",
+    date: "Oct-Dec 2019",
+    tools: ["Unreal Engine 4"],
+    image: ImageSpaceBears,
+    text: <p>My first experience working with virtual reality. Explore a space station manned by teddy bears! Group project for Cornell's CS1620: Visual Imaging</p>
+  },
 ];
 
 function findProject(name) {
