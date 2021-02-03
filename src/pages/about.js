@@ -3,6 +3,7 @@ import SectionTitle from "../components/sectionTitle"
 import Subsection from "../components/subsection"
 
 import ProfileImage from "../assets/images/profile-circle.png"
+import FunnyProfileImage from "../assets/images/funny-profile-circle.png"
 import LangBars from "../components/langBars"
 
 function ProfileInfo(iconName, text, otherIcon = null) {
@@ -14,13 +15,28 @@ function ProfileInfo(iconName, text, otherIcon = null) {
   )
 }
 
+function hoverImage() {
+  document.getElementById("profile-pic").setAttribute('src', FunnyProfileImage);
+}
+
+function unhoverImage() {
+  document.getElementById("profile-pic").setAttribute('src', ProfileImage);
+}
+
 export default function About() {
   return (
     <>
       {SectionTitle("About Me")}
       <div id='about-content'>
         <div id='profile'>
-          <img id="profile-pic" src={ProfileImage} alt="profile" />
+          <img
+            id="profile-pic"
+            src={ProfileImage}
+            onMouseOver={hoverImage}
+            onFocus={hoverImage}
+            onMouseOut={unhoverImage}
+            onBlur={unhoverImage}
+            alt="profile" />
           <div className='profile-icon-rows'>
             {ProfileInfo(null,
               <a href='https://github.com/lucia-gomez' target='_blank' rel='noopener noreferrer'>lucia-gomez</a>,
