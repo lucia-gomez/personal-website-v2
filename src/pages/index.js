@@ -28,8 +28,12 @@ export default function Home() {
 }
 
 (function () {
-  if (localStorage.getItem('theme') === 'theme-dark') {
-    setDarkMode('theme-dark');
+  if (typeof window !== 'undefined') {
+    if (localStorage.getItem('theme') === 'theme-dark') {
+      setDarkMode('theme-dark');
+    } else {
+      setDarkMode('theme-light');
+    }
   } else {
     setDarkMode('theme-light');
   }
