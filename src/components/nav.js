@@ -12,7 +12,7 @@ class CustomNav extends React.Component {
     super(props);
     this.sections = [
       { name: "Home", link: "/" }, { name: "About", link: "/#about" },
-      { name: "Portfolio", link: "/#portfolio" }, { name: "Experience", link: "/#experience" },
+      { name: "Portfolio", link: "/#portfolio" },
       { name: "Resume", link: Doc, target: "_blank" },
     ];
 

@@ -10,6 +10,7 @@ import ImageSpillTheTea from "../assets/images/portfolio/spillTheTea.png"
 import ImageSpaceBears from "../assets/images/portfolio/spaceBears.png"
 import ImageWelcomePreemie from "../assets/images/portfolio/welcomePreemie.png"
 import ImageSpotifyVibeCheck from "../assets/images/portfolio/spotifyVibeCheck.png"
+import ImageCliqueBite from "../assets/images/portfolio/cliquebite.png"
 
 function externalBtn(link) {
   return (
@@ -21,15 +22,6 @@ function externalBtn(link) {
 
 const projects = [
   {
-    title: "Sign Search",
-    date: "May 2020",
-    tools: ["Javascript", "React"],
-    image: ImageSignSearch,
-    link: "https://github.com/lucia-gomez/Sign-Search",
-    text: <p>A Chrome extension for providing a convenient way to lookup words in American Sign Language. Highlight a word on a page or enter a search directly into the extension to see multiple ways of signing the word.</p>,
-    extra: externalBtn("https://chrome.google.com/webstore/detail/sign-search/gniinlnnpjdbeleojkghgdccpapkapma")
-  },
-  {
     title: "Spotify Vibe Check",
     date: "Dec 2020-present",
     tools: ["React", "Spotify API", "Reach Router", "Express", "Materialize", "Heroku"],
@@ -39,12 +31,30 @@ const projects = [
     extra: externalBtn("https://spotify-vibe-check.herokuapp.com/"),
   },
   {
+    title: "Sign Search",
+    date: "May 2020",
+    tools: ["Javascript", "React"],
+    image: ImageSignSearch,
+    link: "https://github.com/lucia-gomez/Sign-Search",
+    text: <p>A Chrome extension for providing a convenient way to lookup words in American Sign Language. Highlight a word on a page or enter a search directly into the extension to see multiple ways of signing the word.</p>,
+    extra: externalBtn("https://chrome.google.com/webstore/detail/sign-search/gniinlnnpjdbeleojkghgdccpapkapma")
+  },
+  {
     title: "Personal Website",
     date: "Sept 2020-present",
     tools: ["React", "Gatsby", "Sass", "Netlify"],
     image: ImageWebsite,
     link: "https://github.com/lucia-gomez/personal-website-v2",
     text: <p>You're looking at it! This is V2, I tend to start from scratch when I'm bored or when I've learned something new.</p>,
+  },
+  {
+    title: "CliqueBite UI",
+    date: "Sept-Dec 2020",
+    tools: ["Figma"],
+    image: ImageCliqueBite,
+    extra: externalBtn("https://www.figma.com/proto/pEJBpCmDtQ7fQg1QBUJFZs/CliqueBite?node-id=170%3A2&scaling=scale-down"),
+    text: <p>Prototype for a social media app that encourages college students to achieve their eating habit goals. Followed the user-centered design process, as a group project for Cornell's INFO 3450: Human-Computer Interaction.
+    </p>
   },
   {
     title: "How Many Hollaback Girls",

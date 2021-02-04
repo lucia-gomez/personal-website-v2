@@ -11,7 +11,7 @@ export default function ArchivePage() {
       <Section id="archive" index={0}>
         {SectionTitle("Things I've Made")}
         <p>Vaguely organized in reverse chronological order, but mostly in order of how badly I want to show off each project</p>
-        <div className='portfolio-card-deck' style={{ padding: "0px 30px" }}>
+        <div className='portfolio-card-deck'>
           {projects.map(makePortfolioCard)}
         </div>
       </Section>

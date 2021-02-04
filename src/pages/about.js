@@ -71,17 +71,6 @@ export default function About() {
             <LangBars />
             <p id='scratch-note'>* My Scratch experience surpasses this scale</p>
           </Subsection>
-          <Subsection title='Numbers'>
-            <NumberRow number={3}>
-              <p>Versions of this website, because I'm indecisive and web dev is fun</p>
-            </NumberRow>
-            <NumberRow number={4}>
-              <p>Languages I know or am currently learning: English, Spanish, American Sign Language, Italian</p>
-            </NumberRow>
-            <NumberRow number={0}>
-              <p>Times I've baked bread in quarantine</p>
-            </NumberRow>
-          </Subsection>
         </div>
       </div>
     </>

@@ -61,11 +61,11 @@ class PortfolioCard extends React.Component {
           <p className='portfolio-card-date'>{this.props.date}</p>
           <span className='portfolio-card-divider'></span>
           {this.props.children}
-        </div>
-        <div className='portfolio-card-tags'>
-          {this.props.tools.map((tool, index) => (
-            <span className='portfolio-card-tag' key={index}>{tool}</span>
-          ))}
+          <div className='portfolio-card-tags'>
+            {this.props.tools.map((tool, index) => (
+              <span className='portfolio-card-tag' key={index}>{tool}</span>
+            ))}
+          </div>
         </div>
       </div>
     )
