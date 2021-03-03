@@ -11,6 +11,7 @@ import ImageSpaceBears from "../assets/images/portfolio/spaceBears.png"
 import ImageWelcomePreemie from "../assets/images/portfolio/welcomePreemie.png"
 import ImageSpotifyVibeCheck from "../assets/images/portfolio/spotifyVibeCheck.png"
 import ImageCliqueBite from "../assets/images/portfolio/cliquebite.png"
+import ImagePowerHour from "../assets/images/portfolio/powerHour.png"
 
 function externalBtn(link) {
   return (
@@ -29,6 +30,16 @@ const projects = [
     link: "https://github.com/lucia-gomez/spotify-vibe-check",
     text: <p>A web app to analyze the vibe of your Spotify playlists. (Work in progress)</p>,
     extra: externalBtn("https://spotify-vibe-check.herokuapp.com/"),
+  },
+  {
+    title: "Our Power Hour",
+    date: "February 2021-present",
+    tools: ["React", "Styled Components", "Netlify"],
+    image: ImagePowerHour,
+    link: "https://github.com/lucia-gomez/our-power-hour",
+    text: <p>Custom <Link href="https://en.wikipedia.org/wiki/Power_hour">power hour</Link> playlist generator to enjoy with friends.
+    Select a YouTube playlist, sit back, and drink when you hear the alarm. (Work in progress) </p>,
+    extra: externalBtn("https://ourpowerhour.netlify.app/"),
   },
   {
     title: "Sign Search",

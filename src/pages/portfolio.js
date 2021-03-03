@@ -6,7 +6,7 @@ import Button from "../components/button"
 import { featuredProjects } from "../scripts/projectList"
 
 export default function PortfolioSection() {
-  const projects = featuredProjects(["Spotify Vibe Check", "Sign Search", "Personal Website"]);
+  const projects = featuredProjects(["Spotify Vibe Check", "Sign Search", "Our Power Hour"]);
   return (
     <>
       {SectionTitle("Things I've Made")}
