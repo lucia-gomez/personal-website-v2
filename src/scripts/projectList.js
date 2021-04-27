@@ -12,6 +12,8 @@ import ImageWelcomePreemie from "../assets/images/portfolio/welcomePreemie.png"
 import ImageSpotifyVibeCheck from "../assets/images/portfolio/spotifyVibeCheck.png"
 import ImageCliqueBite from "../assets/images/portfolio/cliquebite.png"
 import ImagePowerHour from "../assets/images/portfolio/powerHour.png"
+import ImageCACWeb from "../assets/images/portfolio/cac-web.png"
+import ImageIsoCornell from "../assets/images/portfolio/isoCornell.png"
 
 function externalBtn(link) {
   return (
@@ -23,13 +25,13 @@ function externalBtn(link) {
 
 const projects = [
   {
-    title: "Spotify Vibe Check",
-    date: "Dec 2020-present",
-    tools: ["React", "Spotify API", "Reach Router", "Express", "Materialize", "Heroku"],
-    image: ImageSpotifyVibeCheck,
-    link: "https://github.com/lucia-gomez/spotify-vibe-check",
-    text: <p>A web app to analyze the vibe of your Spotify playlists. (Work in progress)</p>,
-    extra: externalBtn("https://spotify-vibe-check.herokuapp.com/"),
+    title: "Cards Against Cornellians 2.0",
+    date: "April 2021-present",
+    tools: ["React", "Flask-SocketIO", "Python", "Styled Components", "Heroku"],
+    image: ImageCACWeb,
+    link: "https://github.com/lucia-gomez/cards-against-cornellians-web",
+    text: <p style={{ marginBottom: '50px' }}>Cards Against Humanity based on the Cornell experience, using the game engine I made in 2019 (see below). (Work in progress)</p>,
+    extra: externalBtn("https://cards-against-cornellians.herokuapp.com/"),
   },
   {
     title: "Our Power Hour",
@@ -42,6 +44,15 @@ const projects = [
     extra: externalBtn("https://ourpowerhour.netlify.app/"),
   },
   {
+    title: "Spotify Vibe Check",
+    date: "Dec 2020-present",
+    tools: ["React", "Spotify API", "Reach Router", "Express", "Materialize", "Heroku"],
+    image: ImageSpotifyVibeCheck,
+    link: "https://github.com/lucia-gomez/spotify-vibe-check",
+    text: <p>A web app to analyze the vibe of your Spotify playlists. (Work in progress)</p>,
+    extra: externalBtn("https://spotify-vibe-check.herokuapp.com/"),
+  },
+  {
     title: "Sign Search",
     date: "May 2020",
     tools: ["Javascript", "React"],
@@ -49,6 +60,15 @@ const projects = [
     link: "https://github.com/lucia-gomez/Sign-Search",
     text: <p>A Chrome extension for providing a convenient way to lookup words in American Sign Language. Highlight a word on a page or enter a search directly into the extension to see multiple ways of signing the word.</p>,
     extra: externalBtn("https://chrome.google.com/webstore/detail/sign-search/gniinlnnpjdbeleojkghgdccpapkapma")
+  },
+  {
+    title: "Isometric Cornell",
+    date: "April 2021",
+    tools: ["Javascript", "Isomer"],
+    image: ImageIsoCornell,
+    link: "https://github.com/lucia-gomez/isometric-cornell",
+    text: <p>An animated, isometric model of Cornell's iconic McGraw Tower. Made as an excuse to play with Isomer JS.</p>,
+    extra: externalBtn("https://lucia-gomez.github.io/isometric-cornell/")
   },
   {
     title: "Personal Website",
@@ -104,7 +124,7 @@ const projects = [
     ]
   },
   {
-    title: "Cards Against Cornellians",
+    title: "Cards Against Cornellians 1.0",
     date: "April 2019-March 2020",
     tools: ["Python"],
     image: ImageCAC,
