@@ -27,6 +27,7 @@ const Layout = ({ children }) => {
             crossOrigin="anonymous"></link>
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"></link>
+          <script async defer data-website-id="5b5deb3e-51e6-4091-bb02-0d6219a5dd95" src="https://umami-lg.herokuapp.com/umami.js"></script>
         </Helmet>
       </div>
       <CustomNav></CustomNav>
