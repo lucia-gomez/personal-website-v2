@@ -6,8 +6,6 @@ import BannerContent from "./banner"
 import About from "./about"
 import PortfolioSection from "./portfolio"
 
-import { setDarkMode } from "../scripts/theme.js"
-
 export default function Home() {
 
   const sectionContents = [
@@ -26,15 +24,3 @@ export default function Home() {
     </Layout>
   )
 }
-
-(function () {
-  if (typeof window !== 'undefined') {
-    if (localStorage.getItem('theme') === 'theme-dark') {
-      setDarkMode('theme-dark');
-    } else {
-      setDarkMode('theme-light');
-    }
-  } else {
-    setDarkMode('theme-light');
-  }
-})();

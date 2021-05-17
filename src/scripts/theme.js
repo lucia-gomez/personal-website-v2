@@ -1,23 +1,20 @@
-export function setDarkMode(themeName) {
-  if (typeof window !== 'undefined') {
-    localStorage.setItem('theme', themeName);
-    document.documentElement.className = themeName;
+const themes = {
+  "light": {
+    "bg": "#eff0fa",
+    "medium": "#c5cae9",
+    "text": "#290e42",
+    "accent": "#26a69a",
+    "accentLight": "#64d8cb",
+    "textInv": "#eff0fa"
+  },
+  "dark": {
+    "bg": "#1a092b",
+    "medium": "#3b2254",
+    "text": "#eff0fa",
+    "accent": "#64d8cb",
+    "accentLight": "#26a69a",
+    "textInv": "#290e42"
   }
 }
 
-export function toggleDarkMode() {
-  if (typeof window !== 'undefined') {
-    if (localStorage.getItem('theme') === 'theme-dark') {
-      setDarkMode('theme-light');
-    } else {
-      setDarkMode('theme-dark');
-    }
-  }
-}
-
-export function isDarkMode() {
-  if (typeof window !== 'undefined') {
-    return localStorage.getItem('theme') === 'theme-dark';
-  }
-  return false;
-}
+export { themes }

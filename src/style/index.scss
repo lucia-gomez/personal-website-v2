@@ -4,36 +4,6 @@ $color-highlight: #26a69a;
 $color-highlight-light: #64d8cb;
 $color-text: #eff0fa;
 
-.theme-light {
-  --color-bg: #eff0fa;
-  --color-medium: #c5cae9;
-  --color-text: #290e42;
-  --color-highlight: #26a69a;
-  --color-highlight-light: #64d8cb;
-  --color-text-inv: #eff0fa;
-}
-
-.theme-dark {
-  --color-bg: #1a092b;
-  --color-medium: #3b2254;
-  --color-text: #eff0fa;
-  --color-highlight: #64d8cb;
-  --color-highlight-light: #26a69a;
-  --color-text-inv: #290e42;
-}
-
-.theme-light2 {
-  --color-bg: #f1f8e9;
-  --color-medium: #dcedc8;
-  --color-text: #002f6c;
-}
-
-.theme-dark2 {
-  --color-bg: #002f6c;
-  --color-medium: #01579b;
-  --color-text: #dcedc8;
-}
-
 body {
   align-items: center;
   justify-content: center;
@@ -42,8 +12,6 @@ body {
   padding: 0;
   font-family: 'Roboto', sans-serif;
   transition: all 0.25s linear;
-  background-color: var(--color-bg);
-  color: var(--color-text);
 }
 
 #banner {
@@ -61,6 +29,12 @@ body {
 
 nav {
   @extend .gradient-animation;
+}
+
+@media only screen and (max-width: 576px) {
+  label {
+    margin: unset!important;
+  }
 }
 
 h1 {
@@ -103,7 +77,7 @@ section {
     padding-bottom: 7vh;
   }
 
-  svg {
+  svg:not(.tool-icon) {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -112,7 +86,7 @@ section {
 
   &.-even-section {
     background-color: var(--color-medium);
-    svg {
+    svg:not(.tool-icon) {
       fill: var(--color-bg);
       filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.5));
     }
@@ -120,7 +94,7 @@ section {
 
   &.-odd-section {
     background-color: var(--color-bg);
-    svg {
+    svg:not(.tool-icon) {
       fill: var(--color-medium);
       filter: drop-shadow(5px 0px 5px rgba(0, 0, 0, 0.5));
     }
@@ -237,12 +211,14 @@ section {
 }
 
 .portfolio-card-body {
+  height: 300px;
   margin: 20px 30px;
   max-width: 660px;
   text-align: left;
-  padding-bottom: 25px;
+  display: grid;
+  grid-template-rows: auto 40px 20px 1fr auto;
   h4 {
-    max-width: 80%;
+    max-width: 78%;
   }
 }
 
@@ -287,6 +263,11 @@ span.portfolio-card-tag {
   i {
     font-size: 26px;
   }
+}
+
+#archive {
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 #archiveBtn {
@@ -416,4 +397,127 @@ span.portfolio-card-tag {
 
 #scratch-note {
   font-size: 12px;
+}
+
+.tab-content {
+  text-align: left;
+}
+
+.tool-item {
+  display: inline-block;
+  margin: 0px 10px;
+  text-align: center;
+
+  p {
+    margin: auto;
+    width: fit-content;
+  }
+}
+
+.tool-icon {
+  height: 40px;
+  width: 40px;
+  margin-bottom: 5px;
+  position: relative;
+
+  path, polygon {
+    fill: var(--color-text);
+    stroke: var(--color-text-inv);
+  }
+}
+
+.tool-icon-invert {
+  path, polygon {
+    fill: var(--color-bg);
+    stroke: var(--color-text);
+  }
+}
+
+/*******************
+  EXPERIENCE TIMELINE
+********************/
+
+$gutter: 30px;
+$border-width: 4px;
+$dot-diameter: 8px;
+
+.timeline {
+  width: fit-content;
+  min-width: 350px;
+  padding: 100px 0px;
+  position: relative;
+  margin: auto;
+  &:before {
+    box-sizing: unset;
+    content: '';
+    position: absolute;
+    top: 0px;
+    left:calc(33% + 15px);
+    bottom: 0px;
+    width: $border-width;
+    background: var(--color-medium);
+  }
+  &:after {
+    box-sizing: unset;
+    content: "";
+    display: table;
+    clear: both;
+  } 
+}
+
+.entry {
+  clear: both;
+  text-align: left;
+  position: relative;
+  .title {
+    margin-bottom: .5em;
+    float: left;
+    width: 33%;
+    padding-right: $gutter;
+    text-align: right;
+    position: relative;
+    &:before {
+      box-sizing: unset;
+      content: '';
+      position: absolute;
+      width: $dot-diameter;
+      height: $dot-diameter;
+      border: $border-width solid var(--color-highlight);
+      background-color: var(--color-bg);
+      border-radius:100%;
+      top: 5%;
+      right: -25px;
+      z-index: 99;
+    }
+    h3 {
+      margin: 0;
+      font-size: 120%;
+    }
+    p {
+      margin: 0;
+      font-size: 100%;
+    }
+  }
+  .body {
+    margin: 0 0 3em;
+    float: right;
+    width: 66%;
+    padding-left: $gutter;
+    p {
+      line-height: 1.4em;
+      &:first-child {
+        margin-top: 0;
+        font-weight: 400;
+      }
+    }
+    ul {
+      color:#aaa;
+      padding-left: 0;
+      list-style-type: none;
+      li:before {
+        content: "–";
+        margin-right: .5em;
+      }
+    }
+  }
 }

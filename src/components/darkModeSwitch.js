@@ -1,17 +1,8 @@
-import React, { useState } from "react"
+import React from "react"
 import Switch from "react-switch"
 import { FaMoon } from "react-icons/fa"
 
-import { toggleDarkMode, isDarkMode } from "../scripts/theme.js"
-
-function toggleDarkModeState(currentState, updateState) {
-  updateState(!currentState)
-  toggleDarkMode()
-}
-
-export default function DarkModeToggle() {
-  const [darkModeState, setDarkModeState] = useState(isDarkMode())
-
+const DarkModeToggle = props => {
   const moonIcon = (
     <div style={{ padding: '0px 5px', background: 'transparent' }} className='nav-link'>
       <FaMoon size='15px' />
@@ -21,8 +12,8 @@ export default function DarkModeToggle() {
   return (
     <label style={{ margin: 'auto', display: 'flex' }}>
       <Switch
-        checked={darkModeState}
-        onChange={() => toggleDarkModeState(darkModeState, setDarkModeState)}
+        checked={props.isDarkMode}
+        onChange={() => props.toggleDarkMode(!props.isDarkMode)}
         onHandleColor="#ede7f6"
         handleDiameter={15}
         uncheckedIcon={null}
@@ -38,3 +29,5 @@ export default function DarkModeToggle() {
     </label>
   );
 }
+
+export default DarkModeToggle;

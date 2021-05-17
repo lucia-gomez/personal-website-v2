@@ -4,19 +4,8 @@ import Section from "../components/section"
 import SectionTitle from "../components/sectionTitle"
 import { makePortfolioCard } from "./portfolio"
 import projects from "../scripts/projectList"
-import { setDarkMode } from "../scripts/theme.js"
 
 export default function ArchivePage() {
-  if (typeof window !== 'undefined') {
-    if (localStorage.getItem('theme') === 'theme-dark') {
-      setDarkMode('theme-dark');
-    } else {
-      setDarkMode('theme-light');
-    }
-  } else {
-    setDarkMode('theme-light');
-  }
-
   return (
     <Layout>
       <Section id="archive" index={0}>

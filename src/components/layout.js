@@ -5,15 +5,24 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
+import React, { useState } from "react"
 import { Helmet } from "react-helmet"
 import PropTypes from "prop-types"
+import { ThemeProvider, createGlobalStyle } from "styled-components"
+import { themes } from "../scripts/theme.js"
 
 import CustomNav from "./nav"
-// import "typeface-anton"
-// import 'typeface-roboto'
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: ${props => props.theme.bg};
+    color: ${props => props.theme.text};
+  }
+`
 
 const Layout = ({ children }) => {
+  const [isDarkMode, toggleDarkMode] = useState(false);
+  const theme = themes[isDarkMode ? "dark" : "light"];
 
   return (
     <>
@@ -37,10 +46,13 @@ const Layout = ({ children }) => {
           ></script>
         </Helmet>
       </div>
-      <CustomNav></CustomNav>
-      <div>
-        <main>{children}</main>
-      </div>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle theme={theme} />
+        <CustomNav {...{ isDarkMode, toggleDarkMode }} />
+        <div>
+          <main>{children}</main>
+        </div>
+      </ThemeProvider>
     </>
   )
 }
