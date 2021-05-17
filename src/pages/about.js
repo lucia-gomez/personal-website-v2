@@ -7,16 +7,71 @@ import ProfileImage from "../assets/images/profile-circle.png"
 import FunnyProfileImage from "../assets/images/funny-profile-circle.png"
 import LangBars from "../components/langBars"
 
+const AboutWrapper = styled.div`
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: row;
+  h4 {
+    height: min-content;
+    width: fit-content;
+  }
+
+  @media only screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+const ProfileWrapper = styled.div`
+  padding-top: 20px;
+  height: fit-content;
+`;
+
+const ProfilePic = styled.img`
+  border-radius: 300px;
+  height: 25vw;
+  width: 25vw;
+  mix-blend-mode: luminosity;
+  margin: auto;
+  max-height: 300px;
+  max-width: 300px;
+
+  @media only screen and (max-width: 600px) {
+    height: 30vh;
+    width: 30vh;
+  }
+`;
+
+const ProfileIconsWrapper = styled.div`
+  padding-top: 20px;
+`;
+
+const ProfileIconRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  position: relative;
+
+  height: 35px;
+  margin: auto;
+  width: 175px;
+  max-height: 300px;
+  max-width: 300px;
+  .material-icons {
+    color: var(--color-text);
+    margin-right: 5px;
+  }
+`;
+
 const ScratchNote = styled.p`
   font-size: 12px;
 `;
 
 function ProfileInfo(iconName, text, otherIcon = null) {
   return (
-    <div className='flex-row profile-icon-row'>
+    <ProfileIconRow>
       {otherIcon !== null ? otherIcon : <i className="material-icons">{iconName}</i>}
       <p>{text}</p>
-    </div>
+    </ProfileIconRow>
   )
 }
 
@@ -32,17 +87,16 @@ export default function About() {
   return (
     <>
       {SectionTitle("About Me")}
-      <div id='about-content'>
-        <div id='profile'>
-          <img
-            id="profile-pic"
+      <AboutWrapper>
+        <ProfileWrapper>
+          <ProfilePic
             src={ProfileImage}
             onMouseOver={hoverImage}
             onFocus={hoverImage}
             onMouseOut={unhoverImage}
             onBlur={unhoverImage}
             alt="profile" />
-          <div className='profile-icon-rows'>
+          <ProfileIconsWrapper>
             {ProfileInfo(null,
               <a href='https://github.com/lucia-gomez' target='_blank' rel='noopener noreferrer'>lucia-gomez</a>,
               <div className='material-icons' style={{ paddingLeft: '3px' }}>
@@ -52,8 +106,8 @@ export default function About() {
             {ProfileInfo("school", "Cornell University")}
             {ProfileInfo("place", "Ithaca, NY")}
             {ProfileInfo("home", "Redwood City, CA")}
-          </div>
-        </div>
+          </ProfileIconsWrapper>
+        </ProfileWrapper>
         <div>
           <Subsection title='Hello World!'>
             <p>I'm a senior at <span>Cornell University</span> majoring in Computer Science and Linguistics (graduating in May, 2021).
@@ -77,18 +131,7 @@ export default function About() {
             <ScratchNote>* My Scratch experience surpasses this scale</ScratchNote>
           </Subsection>
         </div>
-      </div>
+      </AboutWrapper>
     </>
   )
-}
-
-class NumberRow extends React.Component {
-  render() {
-    return (
-      <div className='about-number-row flex-row'>
-        <h3>{this.props.number}</h3>
-        {this.props.children}
-      </div>
-    )
-  }
 }
