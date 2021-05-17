@@ -1,10 +1,15 @@
 import React from "react"
+import styled from "styled-components"
 import SectionTitle from "../components/sectionTitle"
 import Subsection from "../components/subsection"
 
 import ProfileImage from "../assets/images/profile-circle.png"
 import FunnyProfileImage from "../assets/images/funny-profile-circle.png"
 import LangBars from "../components/langBars"
+
+const ScratchNote = styled.p`
+  font-size: 12px;
+`;
 
 function ProfileInfo(iconName, text, otherIcon = null) {
   return (
@@ -69,7 +74,7 @@ export default function About() {
               Since then, I've gained experience with more ~legitimate~ programming languages and tools:
             </p>
             <LangBars />
-            <p id='scratch-note'>* My Scratch experience surpasses this scale</p>
+            <ScratchNote>* My Scratch experience surpasses this scale</ScratchNote>
           </Subsection>
         </div>
       </div>
