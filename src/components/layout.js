@@ -21,13 +21,18 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const Layout = ({ children }) => {
-  const currentTheme = localStorage.getItem('theme') ?? "light";
+  let currentTheme = "light";
+  if (typeof window !== 'undefined') {
+    currentTheme = window.localStorage.getItem('theme');
+  }
   const [isDarkMode, setDarkMode] = useState(currentTheme === "dark");
   const theme = themes[isDarkMode ? "dark" : "light"];
 
   const toggleDarkMode = themeState => {
     setDarkMode(themeState);
-    localStorage.setItem("theme", themeState ? "dark" : "light");
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem("theme", themeState ? "dark" : "light");
+    }
   };
 
   return (
