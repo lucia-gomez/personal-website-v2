@@ -21,19 +21,20 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const Layout = ({ children }) => {
-  let currentTheme = "light";
-  if (typeof window !== 'undefined') {
-    currentTheme = window.localStorage.getItem('theme');
-  }
-  const [isDarkMode, setDarkMode] = useState(currentTheme === "dark");
+  // let currentTheme = "light";
+  // if (typeof window !== 'undefined') {
+  //   currentTheme = window.localStorage.getItem('theme');
+  // }
+  // const [isDarkMode, setDarkMode] = useState(currentTheme === "dark");
+  const [isDarkMode, toggleDarkMode] = useState(false);
   const theme = themes[isDarkMode ? "dark" : "light"];
 
-  const toggleDarkMode = themeState => {
-    setDarkMode(themeState);
-    if (typeof window !== 'undefined') {
-      window.localStorage.setItem("theme", themeState ? "dark" : "light");
-    }
-  };
+  // const toggleDarkMode = themeState => {
+  //   setDarkMode(themeState);
+  //   if (typeof window !== 'undefined') {
+  //     window.localStorage.setItem("theme", themeState ? "dark" : "light");
+  //   }
+  // };
 
   return (
     <>
