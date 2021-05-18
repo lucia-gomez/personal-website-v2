@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 
   span {
     font-weight: 700;
-    background-color: ${props => props.theme.medium};
+    background-color: ${props => props.theme.accentLight};
     border-radius: 5px;
     padding: 0px 3px;
   }

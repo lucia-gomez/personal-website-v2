@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { Navbar, Nav } from 'react-bootstrap'
 import Scrollspy from 'react-scrollspy'
 import DarkModeSwitch from "../components/darkModeSwitch"
@@ -8,19 +8,8 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import "typeface-roboto"
 import Doc from '../assets/resume.pdf';
 
-const gradientAnimation = keyframes`
-  0%{background-position:0% 2%}
-  50%{background-position:100% 99%}
-  100%{background-position:0% 2%}
-`;
-
 const NavWrapper = styled(Navbar)`
-  background: linear-gradient(139deg, #22b390, #b463cc, #2da3e6);
-  background-size: 300% 300%;
-
-  -webkit-animation: ${gradientAnimation} 9s ease infinite;
-  -moz-animation: ${gradientAnimation} 9s ease infinite;
-  animation: ${gradientAnimation} 9s ease infinite;
+  background-color: #6A1B9A;
 `;
 
 const NavLink = styled(Nav.Link).attrs(_ => ({

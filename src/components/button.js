@@ -13,7 +13,7 @@ const ButtonStyle = styled.a`
   :focus, 
   :not(:disabled):not(.disabled):active, 
   btn-primary:not(:disabled):not(.disabled).active{
-    background-color: ${props => props.theme.accentLight};
+    background-color: ${props => props.theme.accentHover};
     border: none;
     box-shadow: none;
     color: ${props => props.theme.textInv};

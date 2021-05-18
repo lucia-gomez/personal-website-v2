@@ -6,7 +6,7 @@ const LinkStyle = styled.a`
   color: ${props => props.theme.accent};
 
   :hover {
-    color: ${props => props.theme.accentLight};
+    color: ${props => props.theme.accentHover};
     text-decoration: none;
   }
 `;

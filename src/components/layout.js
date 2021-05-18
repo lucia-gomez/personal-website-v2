@@ -9,7 +9,7 @@ import React, { useState } from "react"
 import { Helmet } from "react-helmet"
 import PropTypes from "prop-types"
 import { ThemeProvider, createGlobalStyle } from "styled-components"
-import { themes } from "../scripts/theme.js"
+import { themes } from "../style/theme.js"
 
 import CustomNav from "./nav"
 
