@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import SectionTitle from "../components/sectionTitle"
 import Subsection from "../components/subsection"
@@ -75,26 +75,23 @@ function ProfileInfo(iconName, text, otherIcon = null) {
   )
 }
 
-function hoverImage() {
-  document.getElementById("profile-pic").setAttribute('src', FunnyProfileImage);
-}
-
-function unhoverImage() {
-  document.getElementById("profile-pic").setAttribute('src', ProfileImage);
-}
-
 export default function About() {
+  const [photoSrc, setPhotoSrc] = useState(ProfileImage);
+
+  const hoverPhoto = () => setPhotoSrc(FunnyProfileImage);
+  const unhoverPhoto = () => setPhotoSrc(ProfileImage);
+
   return (
     <>
       {SectionTitle("About Me")}
       <AboutWrapper>
         <ProfileWrapper>
           <ProfilePic
-            src={ProfileImage}
-            onMouseOver={hoverImage}
-            onFocus={hoverImage}
-            onMouseOut={unhoverImage}
-            onBlur={unhoverImage}
+            src={photoSrc}
+            onMouseOver={hoverPhoto}
+            onFocus={hoverPhoto}
+            onMouseOut={unhoverPhoto}
+            onBlur={unhoverPhoto}
             alt="profile" />
           <ProfileIconsWrapper>
             {ProfileInfo(null,
