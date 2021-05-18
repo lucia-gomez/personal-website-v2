@@ -46,7 +46,7 @@ const Section = props => {
 
   const content = (
     <>
-      <SectionContent>
+      <SectionContent className={props.className}>
         {props.children}
       </SectionContent>
       <svg viewBox="0 0 5 5" preserveAspectRatio="none">
