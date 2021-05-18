@@ -17,15 +17,6 @@ const AboutWrapper = styled.div`
     width: fit-content;
   }
 
-  /* a {
-    color: ${props => props.theme.accent};
-  }
-
-  a:hover {
-    color: ${props => props.theme.accentLight};
-    text-decoration: none;
-  } */
-
   @media only screen and (max-width: 600px) {
     display: flex;
     flex-direction: column;

@@ -6,7 +6,7 @@ import Button from "../components/button"
 import { IconLink } from "../components/externalButton"
 import { featuredProjects } from "../scripts/projectList"
 
-const PortfolioCardDeck = styled.div`
+export const PortfolioCardDeck = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -58,8 +58,16 @@ const PortfolioCardContent = styled.div`
   text-align: left;
   display: grid;
   grid-template-rows: auto 40px 20px 1fr auto;
+  
   h4 {
     max-width: 78%;
+  }
+
+  span {
+    font-weight: 700;
+    background-color: ${props => props.theme.medium};
+    border-radius: 5px;
+    padding: 0px 3px;
   }
 `;
 
