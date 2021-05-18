@@ -21,8 +21,14 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const Layout = ({ children }) => {
-  const [isDarkMode, toggleDarkMode] = useState(false);
+  const currentTheme = localStorage.getItem('theme') ?? "light";
+  const [isDarkMode, setDarkMode] = useState(currentTheme === "dark");
   const theme = themes[isDarkMode ? "dark" : "light"];
+
+  const toggleDarkMode = themeState => {
+    setDarkMode(themeState);
+    localStorage.setItem("theme", themeState ? "dark" : "light");
+  };
 
   return (
     <>
