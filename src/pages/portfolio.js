@@ -1,9 +1,112 @@
 import React from "react"
+import styled from "styled-components"
 import SectionTitle from "../components/sectionTitle"
 import Subsection from "../components/subsection"
-import Link from '../components/link'
 import Button from "../components/button"
+import { IconLink } from "../components/externalButton"
 import { featuredProjects } from "../scripts/projectList"
+
+const PortfolioCardDeck = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+
+  @media screen and (max-width: 850px) {
+    padding: 20px 5px;
+  }
+`;
+
+const PortfolioCardWrapper = styled.div`
+  width: 400px;
+  background-color: ${props => props.theme.bg};
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45);
+  position: relative;
+
+  @media screen and (max-width: 850px) {
+    margin: 0px;
+    margin-bottom: 30px;
+  }
+`;
+
+const PortfolioCardImage = styled.div`
+  height: 20rem;
+  max-height: 200px;
+  width: 100%;
+  border-radius: 10px 10px 0px 0px;
+  background-image: url(${props => props.image});
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  @media screen and (max-width: 850px) {
+    max-height: 200px;
+  }
+`;
+
+const PortfolioCardContent = styled.div`
+  height: 300px;
+  margin: 20px 30px;
+  max-width: 660px;
+  text-align: left;
+  display: grid;
+  grid-template-rows: auto 40px 20px 1fr auto;
+  h4 {
+    max-width: 78%;
+  }
+`;
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  position: relative;
+`;
+
+const PortfolioCardButtons = styled.div`
+  position: absolute;
+  right: 0px;
+  display: flex;
+  flex-direction: row;
+`;
+
+const PortfolioCardDivider = styled.span`
+  display: inline-block;
+  width: 50px;
+  height: 5px;
+  background-color: ${props => props.theme.accent}!important;
+`;
+
+const PortfolioCardTags = styled.div`
+  padding-top: 20px;
+  position: absolute;
+  bottom: 5px;
+  text-align: left;
+`;
+
+const PortfolioCardTag = styled.span`
+  background-color: ${props => props.theme.medium};
+  margin-bottom: 5px;
+  margin-right: 5px;
+  display: inline-block;
+  width: max-content;
+`;
+
+const GitLink = styled(IconLink)`
+  margin-bottom: 0.5rem;
+  margin-top: -2px;
+`;
+
+const ArchiveButton = styled(Button)`
+  margin: auto;
+  margin-top: 20px;
+`;
 
 export default function PortfolioSection() {
   const projects = featuredProjects(["Spotify Vibe Check", "Sign Search", "Our Power Hour"]);
@@ -11,10 +114,10 @@ export default function PortfolioSection() {
     <>
       {SectionTitle("Things I've Made")}
       <Subsection title="Featured">
-        <div className='portfolio-card-deck'>
+        <PortfolioCardDeck>
           {projects.map(makePortfolioCard)}
-        </div>
-        <Button href="/archive" sameTab={true} id='archiveBtn'>Explore the Archive</Button>
+        </PortfolioCardDeck>
+        <ArchiveButton href="/archive" sameTab={true}>Explore the Archive</ArchiveButton>
       </Subsection>
     </>
   )
@@ -36,38 +139,35 @@ export function makePortfolioCard(project, key) {
   );
 }
 
-class PortfolioCard extends React.Component {
-  render() {
-    const imgStyle = { backgroundImage: `url(${this.props.image})` };
-    const githubIcon = (this.props.git ?
-      <Link href={this.props.git ?? ''} className={'git-link icon-link'}>
-        <div className='material-icons'>
-          <i className="fa fa-github"></i>
-        </div>
-      </Link >
-      : null);
-
-    return (
-      <div className='portfolio-card'>
-        <div className="portfolio-card-image" style={imgStyle}></div>
-        <div className='portfolio-card-body'>
-          <div className='flex-row'>
-            <h4>{this.props.title}</h4>
-            <div className='portfolio-card-buttons flex-row'>
-              {githubIcon}
-              {this.props.link}
-            </div>
-          </div>
-          <p className='portfolio-card-date'>{this.props.date}</p>
-          <span className='portfolio-card-divider'></span>
-          {this.props.children}
-          <div className='portfolio-card-tags'>
-            {this.props.tools.map((tool, index) => (
-              <span className='portfolio-card-tag' key={index}>{tool}</span>
-            ))}
-          </div>
-        </div>
+const PortfolioCard = props => {
+  const githubIcon = (props.git ?
+    <GitLink href={props.git ?? ''}>
+      <div className='material-icons'>
+        <i className="fa fa-github"></i>
       </div>
-    )
-  }
+    </GitLink >
+    : null);
+
+  return (
+    <PortfolioCardWrapper>
+      <PortfolioCardImage image={props.image} />
+      <PortfolioCardContent>
+        <Row>
+          <h4>{props.title}</h4>
+          <PortfolioCardButtons>
+            {githubIcon}
+            {props.link}
+          </PortfolioCardButtons>
+        </Row>
+        <p>{props.date}</p>
+        <PortfolioCardDivider />
+        {props.children}
+        <PortfolioCardTags>
+          {props.tools.map((tool, index) => (
+            <PortfolioCardTag key={index}>{tool}</PortfolioCardTag>
+          ))}
+        </PortfolioCardTags>
+      </PortfolioCardContent>
+    </PortfolioCardWrapper>
+  );
 }

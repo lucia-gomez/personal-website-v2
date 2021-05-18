@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import SectionTitle from "../components/sectionTitle"
 import Subsection from "../components/subsection"
+import Link from "../components/link"
 
 import ProfileImage from "../assets/images/profile-circle.png"
 import FunnyProfileImage from "../assets/images/funny-profile-circle.png"
@@ -15,6 +16,15 @@ const AboutWrapper = styled.div`
     height: min-content;
     width: fit-content;
   }
+
+  /* a {
+    color: ${props => props.theme.accent};
+  }
+
+  a:hover {
+    color: ${props => props.theme.accentLight};
+    text-decoration: none;
+  } */
 
   @media only screen and (max-width: 600px) {
     display: flex;
@@ -92,10 +102,11 @@ export default function About() {
             onFocus={hoverPhoto}
             onMouseOut={unhoverPhoto}
             onBlur={unhoverPhoto}
-            alt="profile" />
+            alt="profile"
+          />
           <ProfileIconsWrapper>
             {ProfileInfo(null,
-              <a href='https://github.com/lucia-gomez' target='_blank' rel='noopener noreferrer'>lucia-gomez</a>,
+              <Link href='https://github.com/lucia-gomez'>lucia-gomez</Link>,
               <div className='material-icons' style={{ paddingLeft: '3px' }}>
                 <i className="fa fa-github"></i>
               </div>
@@ -111,17 +122,17 @@ export default function About() {
             I'm passionate about the <span>intersection of language and technology</span>, as well as augmented and virtual reality.
             I enjoy learning new languages, both human and programming, because doing so lets me see the world in new ways.
             For the past few years, I've been interested in <span>American Sign Language</span> and the challenges associated with machine translation-
-            I was featured <a href='https://www.leadwithlanguages.org/2019/03/14/ask-away-5-questions-cornell-computer-science-linguistics-major-mixing-asl-innovation/' target='_blank' rel='noopener noreferrer'>here</a>.
+            I was featured <Link href='https://www.leadwithlanguages.org/2019/03/14/ask-away-5-questions-cornell-computer-science-linguistics-major-mixing-asl-innovation/'>here</Link>.
             Getting others excited about Computer Science is also important to me- I'm a Teaching Assistant at Cornell, and I tutor kids through Juni Learning.
             I have at least one ABBA song stuck in my head at any given time.</p>
           </Subsection>
           <Subsection title='Languages & Tools'>
             <p>I fell in love with programming when I was 10 years old, thanks
-              to <a href='https://scratch.mit.edu/' target='_blank' rel='noopener noreferrer'>Scratch* </a>
-              and <a href='https://www.codecademy.com/' target='_blank' rel='noopener noreferrer'>Codecademy</a>.
+              to <Link href='https://scratch.mit.edu/'>Scratch* </Link>
+              and <Link href='https://www.codecademy.com/'>Codecademy</Link>.
               My humble nerd beginnings include
-              an <a href='https://scratch.mit.edu/projects/1554944/' target='_blank' rel='noopener noreferrer'>
-                animated Star Trek fanfiction</a> in Scratch, which is somehow still getting views.
+              an <Link href='https://scratch.mit.edu/projects/1554944/'>
+                animated Star Trek fanfiction</Link> in Scratch, which is somehow still getting views.
               Since then, I've gained experience with more ~legitimate~ programming languages and tools:
             </p>
             <LangBars />
