@@ -1,17 +1,40 @@
 import React from "react"
+import styled from "styled-components"
 import Switch from "react-switch"
 import { FaMoon } from "react-icons/fa"
 
+const MoonIcon = styled.div.attrs(_ => ({
+  className: 'nav-link'
+}))`
+  padding: 0px 5px;
+  background: transparent;
+`;
+
+const MySwitch = styled(Switch)`
+  .react-switch-bg {
+    background: ${props => props.theme.bg} !important;
+  }
+`;
+
+const SwitchLabel = styled.label`
+  margin: auto;
+  display: flex;
+
+  @media only screen and (max-width: 576px) {
+    margin: unset!important;
+  }
+`;
+
 const DarkModeToggle = props => {
   const moonIcon = (
-    <div style={{ padding: '0px 5px', background: 'transparent' }} className='nav-link'>
+    <MoonIcon>
       <FaMoon size='15px' />
-    </div>
+    </MoonIcon>
   )
 
   return (
-    <label style={{ margin: 'auto', display: 'flex' }}>
-      <Switch
+    <SwitchLabel>
+      <MySwitch
         checked={props.isDarkMode}
         onChange={() => props.toggleDarkMode(!props.isDarkMode)}
         onHandleColor="#ede7f6"
@@ -23,10 +46,9 @@ const DarkModeToggle = props => {
         height={19}
         width={35}
         className="react-switch"
-        id="material-switch"
       />
       {moonIcon}
-    </label>
+    </SwitchLabel>
   );
 }
 
