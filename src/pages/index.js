@@ -5,6 +5,7 @@ import Section from "../components/section"
 import BannerContent from "./banner"
 import About from "./about"
 import PortfolioSection from "./portfolio"
+import ExperienceSection from "./experience"
 
 export default function Home() {
 
@@ -12,6 +13,7 @@ export default function Home() {
     [<BannerContent />, 'banner'],
     [<About />, 'about'],
     [<PortfolioSection />, 'portfolio'],
+    [<ExperienceSection />, 'experience']
   ];
 
   return (
