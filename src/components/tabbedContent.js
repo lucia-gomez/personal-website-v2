@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Tab, Row, Col, Nav, Container } from 'react-bootstrap';
-import { colors } from '../style/theme'
 
 const TabLink = styled(Nav.Link)`
   color: ${props => props.theme.accent};
+  text-align: left;
 
   :hover {
     color: ${props => props.theme.accentHover};
   }
 
   &.nav-link.active {
-    color: ${colors.white};
-    background-color: ${props => props.theme.accent};
+    color: ${props => props.theme.header};
+    background-color: ${props => props.theme.accentLight};
+    border-left: 5px solid ${props => props.theme.accent};
   }
 `;
 
