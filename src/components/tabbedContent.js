@@ -1,45 +1,71 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { Container, Accordion, Card } from 'react-bootstrap';
+import { Tab, Row, Col, Nav, Container } from 'react-bootstrap';
+import { colors } from '../style/theme'
 
-const TabCard = styled(Card)`
-  background-color: ${props => props.open ? props.theme.accentLight : props.theme.medium};
-  border: none;
-  color: ${props => props.theme.text};
-  transition: background-color 300ms;
-`;
+const TabLink = styled(Nav.Link)`
+  color: ${props => props.theme.accent};
 
-const TabCollapsible = styled(Accordion.Collapse)`
-  background-color: ${props => props.theme.bg};
-  color: ${props => props.theme.text};
+  :hover {
+    color: ${props => props.theme.accentHover};
+  }
+
+  &.nav-link.active {
+    color: ${colors.white};
+    background-color: ${props => props.theme.accent};
+  }
 `;
 
 const TabbedContent = props => {
-  const [openTab, setOpenTab] = useState(0);
+  const tabs = Object.keys(props.tabs).map((tab, idx) =>
+    <Nav.Item key={idx}>
+      <TabLink eventKey={idx}>{tab}</TabLink>
+    </Nav.Item>
+  );
 
-  const clickTab = idx => {
-    if (idx === openTab) {
-      setOpenTab(null);
-    } else {
-      setOpenTab(idx);
-    }
-  }
+  const contents = Object.values(props.tabs).map((content, idx) =>
+    <Tab.Pane eventKey={idx} key={idx}>
+      {content}
+    </Tab.Pane>
+  );
 
-  const tabs = Object.entries(props.tabs).map(([tab, content], idx) =>
-    <TabCard open={idx === openTab} onClick={() => clickTab(idx)} key={idx}>
-      <Accordion.Toggle as={Card.Header} eventKey={idx + ""} open={idx === openTab}>
-        {tab}
-      </Accordion.Toggle>
-      <TabCollapsible eventKey={idx + ""}>
-        <Card.Body>{content}</Card.Body>
-      </TabCollapsible>
-    </TabCard>
+  const desktop = (
+    <Container className="d-none d-md-block">
+      <Tab.Container defaultActiveKey={0}>
+        <Row className="justify-content-center">
+          <Col sm={3}>
+            <Nav variant="pills" className="flex-column">
+              {tabs}
+            </Nav>
+          </Col>
+          <Col sm={6}>
+            <Tab.Content>
+              {contents}
+            </Tab.Content>
+          </Col>
+        </Row>
+      </Tab.Container>
+    </Container>
+  );
+
+  const mobile = (
+    <Container className="d-md-none">
+      <Tab.Container defaultActiveKey={0}>
+        <Nav variant="tabs">
+          {tabs}
+        </Nav>
+        <Tab.Content>
+          {contents}
+        </Tab.Content>
+      </Tab.Container>
+    </Container>
   );
 
   return (
-    <Container>
-      <Accordion defaultActiveKey="0">{tabs}</Accordion>
-    </Container>
+    <>
+      {desktop}
+      {mobile}
+    </>
   );
 }
 
