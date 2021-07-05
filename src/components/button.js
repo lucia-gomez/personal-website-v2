@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { colors } from '../style/theme'
 
 const ButtonStyle = styled.a`
   background-color: ${props => props.theme.accent};
   border: none;
-  color: ${props => props.theme.textInv};
+  color: ${colors.white};
   margin-right: 5px;
   width: fit-content;
 
@@ -16,7 +17,7 @@ const ButtonStyle = styled.a`
     background-color: ${props => props.theme.accentHover};
     border: none;
     box-shadow: none;
-    color: ${props => props.theme.textInv};
+    color: ${colors.white};
   }
 `;
 

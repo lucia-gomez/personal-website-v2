@@ -1,5 +1,6 @@
 export const colors = {
   "white": "#f7f7f7",
+  "gray": "#717171",
   "black": "#18062e",
 }
 
@@ -7,7 +8,8 @@ export const themes = {
   "light": {
     "bg": colors.white,
     "medium": "#ebebeb",
-    "text": colors.black,
+    "header": colors.black,
+    "text": colors.gray,
     "accent": "#AB47BC",
     "accentHover": "#CE93D8",
     "accentLight": "#edccf3",
@@ -16,10 +18,11 @@ export const themes = {
   "dark": {
     "bg": "#242424",
     "medium": "#171717",
+    "header": colors.white,
     "text": colors.white,
-    "accent": "#AB47BC",
-    "accentHover": "#CE93D8",
-    "accentLight": "#5c1169",
+    "accent": "#CE93D8",
+    "accentHover": "#AB47BC",
+    "accentLight": "#7b1fa2",
     "textInv": colors.black
   }
 }

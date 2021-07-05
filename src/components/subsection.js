@@ -17,10 +17,14 @@ const Wrapper = styled.div`
   }
 `;
 
+const Title = styled.h4`
+  color: ${props => props.theme.header};
+`;
+
 const Subsection = props => {
   return (
     <Wrapper>
-      <h4>{props.title}</h4>
+      <Title>{props.title}</Title>
       {props.children}
     </Wrapper>
   )

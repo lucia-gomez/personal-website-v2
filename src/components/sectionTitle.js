@@ -3,6 +3,7 @@ import styled from "styled-components"
 
 const Title = styled.div`
   margin: 0px auto 20px;
+  color: ${props => props.theme.header};
 
   span {
     box-decoration-break: clone;
