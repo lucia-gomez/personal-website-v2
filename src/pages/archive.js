@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Layout from "../components/layout"
 import Section from "../components/section"
 import SectionTitle from "../components/sectionTitle"
-import { PortfolioCardDeck, makePortfolioCard } from "./portfolio"
+import { PortfolioCardDeck, makePortfolioCard } from "../components/portfolioCardDeck"
 import SearchBar from '../components/searchBar'
 import FlipMove from 'react-flip-move'
 import projects from "../scripts/projectList"
