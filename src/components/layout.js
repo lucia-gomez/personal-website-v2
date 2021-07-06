@@ -40,10 +40,12 @@ const Layout = ({ children }) => {
           <meta name="keywords" content="Lucia, Gomez, web, developer, full, stack, full-stack, Javascript, React, Cornell, Facebook, ASL" />
           <meta name="robots" content="index, follow" />
           <script src="https://kit.fontawesome.com/9dd13a1052.js" crossOrigin="anonymous"></script>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Roboto&display=swap" rel="stylesheet"></link>
           <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-
         wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
             crossOrigin="anonymous"></link>
-          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"></link>
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"></link>
           <script async defer

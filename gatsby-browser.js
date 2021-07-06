@@ -1,2 +1,2 @@
 import "./node_modules/bootstrap/dist/css/bootstrap.css";
-import "./src/style/index.scss";
+import "./src/style/index.css";
