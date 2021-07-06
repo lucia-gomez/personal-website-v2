@@ -33,7 +33,7 @@ const projects = [
     image: ImagePowerHour,
     link: "https://github.com/lucia-gomez/our-power-hour",
     text: <p>Custom <Link href="https://en.wikipedia.org/wiki/Power_hour">power hour</Link> playlist generator to enjoy with friends.
-    Select a YouTube playlist, sit back, and drink when you hear the alarm. (Work in progress) </p>,
+      Select a YouTube playlist, sit back, and drink when you hear the alarm. (Work in progress) </p>,
     extra: ExternalButton("https://ourpowerhour.netlify.app/"),
   },
   {
@@ -66,7 +66,7 @@ const projects = [
   {
     title: "Personal Website",
     date: "Sept 2020-present",
-    tools: ["React", "Gatsby", "Sass", "Netlify"],
+    tools: ["React", "Gatsby", "Styled Components", "Netlify"],
     image: ImageWebsite,
     link: "https://github.com/lucia-gomez/personal-website-v2",
     text: <p>You're looking at it! This is V2, I tend to start from scratch when I'm bored or when I've learned something new.</p>,
@@ -78,7 +78,8 @@ const projects = [
     image: ImageCliqueBite,
     extra: ExternalButton("https://www.figma.com/proto/pEJBpCmDtQ7fQg1QBUJFZs/CliqueBite?node-id=170%3A2&scaling=scale-down"),
     text: <p>Prototype for a social media app that encourages college students to achieve their eating habit goals. Followed the user-centered design process, as a group project for Cornell's INFO 3450: Human-Computer Interaction.
-    </p>
+    </p>,
+    tags: ["UI/UX", "UX", "prototyping"]
   },
   {
     title: "How Many Hollaback Girls",

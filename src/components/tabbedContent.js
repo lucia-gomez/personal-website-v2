@@ -6,6 +6,10 @@ const TabColumn = styled(Nav)`
   position: relative;
 `;
 
+const TabPanel = styled(Tab.Pane)`
+  text-align: left;
+`;
+
 const TabActiveDesktop = styled.div`
   position: absolute;
   top: 0px;
@@ -29,8 +33,6 @@ const TabActiveMobile = styled.div`
 `;
 
 const TabLink = styled(Nav.Link)`
-  display: flex;
-  justify-content: center;
   min-width: 150px;
   border-radius: 0px;
   border-left: 5px solid ${props => props.theme.accentLight};
@@ -62,6 +64,8 @@ const MobileNav = styled(Nav)`
   @media only screen and (max-width: 768px) {
     .nav-link, .nav-link.active {
       border-bottom: 5px solid ${props => props.theme.accentLight};
+      display: flex;
+      justify-content: center;
     }
   }
 `;
@@ -75,9 +79,9 @@ const TabbedContent = props => {
   );
 
   const contents = Object.values(props.tabs).map((content, idx) =>
-    <Tab.Pane eventKey={idx} key={idx}>
+    <TabPanel eventKey={idx} key={idx}>
       {content}
-    </Tab.Pane>
+    </TabPanel>
   );
 
   const desktop = (
