@@ -66,7 +66,7 @@ const projects = [
   {
     title: "Personal Website",
     date: "Sept 2020-present",
-    tools: ["React", "Gatsby", "Sass", "Netlify"],
+    tools: ["React", "Gatsby", "Styled Components", "Netlify"],
     image: ImageWebsite,
     link: "https://github.com/lucia-gomez/personal-website-v2",
     text: <p>You're looking at it! This is V2, I tend to start from scratch when I'm bored or when I've learned something new.</p>,
