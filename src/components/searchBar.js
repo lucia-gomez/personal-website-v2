@@ -42,12 +42,21 @@ const Icon = styled.i`
   z-index: 1;
 `;
 
-const SearchBar = props => {
+const SearchBar = ({ callback }) => {
+  const handleChange = e => {
+    const query = e.target.value.trim();
+    const keywords = query.split(",").map(x => x.trim()).filter(x => x.length > 0);
+    callback(keywords);
+  }
+
   return (
     <Container>
       <div style={{ position: 'relative' }}>
         <Icon className="fas fa-search" />
-        <Input placeholder="Ex: React, drink" />
+        <Input
+          onChange={handleChange}
+          placeholder="Ex: React, drink"
+        />
       </div>
     </Container>
   );
