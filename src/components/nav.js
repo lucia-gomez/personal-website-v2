@@ -30,6 +30,7 @@ const CustomNav = props => {
   const sections = [
     { name: "Home", link: "/" }, { name: "About", link: "/#about" },
     { name: "Portfolio", link: "/#portfolio" },
+    { name: "Experience", link: "/#experience" },
     { name: "Resume", link: Doc, target: "_blank" },
   ];
 
