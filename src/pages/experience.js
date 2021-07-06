@@ -64,7 +64,7 @@ export default function ExperienceSection() {
     "Juni Learning": juni,
     "Cornell CIS": ta,
     "Facebook": facebook,
-    "Aurora Flight Sciences": aurora,
+    "Aurora": aurora,
   };
 
   return (

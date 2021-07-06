@@ -6,7 +6,7 @@ const TabColumn = styled(Nav)`
   position: relative;
 `;
 
-const TabActive = styled.div`
+const TabActiveDesktop = styled.div`
   position: absolute;
   top: 0px;
   background-color: ${props => props.theme.accent};
@@ -17,9 +17,23 @@ const TabActive = styled.div`
   transition: transform 300ms cubic-bezier(0.65, 0.05, 0.36, 1);
 `;
 
-const TabLink = styled(Nav.Link)` 
-  border-left: 5px solid ${props => props.theme.accentLight};
+const TabActiveMobile = styled.div`
+  position: absolute;
+  top: 40px;
+  background-color: ${props => props.theme.accent};
+  width: 150px;
+  height: 5px;
+  z-index: 1;
+  transform: translateX(${props => props.position * 150}px);
+  transition: transform 300ms cubic-bezier(0.65, 0.05, 0.36, 1);
+`;
+
+const TabLink = styled(Nav.Link)`
+  display: flex;
+  justify-content: center;
+  min-width: 150px;
   border-radius: 0px;
+  border-left: 5px solid ${props => props.theme.accentLight};
   color: ${props => props.theme.text};
   text-align: left;
   transition: background-color 300ms, color 300ms;
@@ -32,6 +46,23 @@ const TabLink = styled(Nav.Link)`
   &.nav-link.active {
     color: ${props => props.theme.accent};
     background-color: ${props => props.theme.medium};
+  }
+`;
+
+const MobileNav = styled(Nav)`
+  border: none;
+  margin-bottom: 20px;
+  overflow-x: scroll;
+  position: relative;
+
+  .nav-link {
+    border: none;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .nav-link, .nav-link.active {
+      border-bottom: 5px solid ${props => props.theme.accentLight};
+    }
   }
 `;
 
@@ -54,7 +85,7 @@ const TabbedContent = props => {
       <Tab.Container defaultActiveKey={0}>
         <Row className="justify-content-center">
           <Col sm={3}>
-            <TabActive {...{ position }} />
+            <TabActiveDesktop {...{ position }} />
             <TabColumn className="flex-column">
               {tabs}
             </TabColumn>
@@ -72,9 +103,10 @@ const TabbedContent = props => {
   const mobile = (
     <Container className="d-md-none">
       <Tab.Container defaultActiveKey={0}>
-        <Nav variant="tabs">
+        <MobileNav variant="tabs flex-nowrap">
+          <TabActiveMobile {...{ position }} />
           {tabs}
-        </Nav>
+        </MobileNav>
         <Tab.Content>
           {contents}
         </Tab.Content>
