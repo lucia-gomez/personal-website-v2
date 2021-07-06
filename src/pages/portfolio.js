@@ -1,4 +1,4 @@
-import React from "react"
+import React, { forwardRef } from "react"
 import styled from "styled-components"
 import SectionTitle from "../components/sectionTitle"
 import Subsection from "../components/subsection"
@@ -147,7 +147,7 @@ export function makePortfolioCard(project, key) {
   );
 }
 
-const PortfolioCard = props => {
+const PortfolioCard = forwardRef((props, ref) => {
   const githubIcon = (props.git ?
     <GitLink href={props.git ?? ''}>
       <div className='material-icons'>
@@ -157,7 +157,7 @@ const PortfolioCard = props => {
     : null);
 
   return (
-    <PortfolioCardWrapper>
+    <PortfolioCardWrapper key={props.key} ref={ref}>
       <PortfolioCardImage image={props.image} />
       <PortfolioCardContent>
         <Row>
@@ -178,4 +178,4 @@ const PortfolioCard = props => {
       </PortfolioCardContent>
     </PortfolioCardWrapper>
   );
-}
+})

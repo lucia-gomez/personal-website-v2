@@ -5,6 +5,7 @@ import Section from "../components/section"
 import SectionTitle from "../components/sectionTitle"
 import { PortfolioCardDeck, makePortfolioCard } from "./portfolio"
 import SearchBar from '../components/searchBar'
+import FlipMove from 'react-flip-move'
 import projects from "../scripts/projectList"
 
 const ArchiveWrapper = styled.div`
@@ -68,7 +69,17 @@ export default function ArchivePage() {
           <p>Vaguely organized in reverse chronological order, but mostly in order of how badly I want to show off each project</p>
           <SearchBar callback={searchProjects} />
           <PortfolioCardDeck>
-            {results.map(makePortfolioCard)}
+            <FlipMove
+              typeName={null}
+              ease="cubic-bezier(0.39,0,0.45,1.4)"
+              enterAnimation="fade"
+              leaveAnimation="fade"
+              duration={500}
+              staggerDurationBy={22}
+
+            >
+              {results.map(makePortfolioCard)}
+            </FlipMove>
           </PortfolioCardDeck>
         </ArchiveWrapper>
       </Section>
