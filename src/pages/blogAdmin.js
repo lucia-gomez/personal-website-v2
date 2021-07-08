@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Layout from "../components/layout";
 import Section from "../components/section";
@@ -19,9 +19,10 @@ const EditorWrapper = styled.div`
   border: 1px solid black;
 `;
 
-export default function BlogPage() {
+export default function BlogAdmin() {
   const [title, setTitle] = useState();
   const [summary, setSummary] = useState();
+  const [slug, setSlug] = useState();
   const [editorState, setEditorState] = useState(
     EditorState.createEmpty()
   );
@@ -35,6 +36,7 @@ export default function BlogPage() {
       title: title,
       summary: summary,
       content: getHTMLString(),
+      slug: slug,
     }).then(() => {
       alert("post created");
     });
@@ -43,24 +45,30 @@ export default function BlogPage() {
     // setEditorState(EditorState.createEmpty());
   }
 
+  const form = (
+    <div>
+      <label htmlFor="title">Title</label>
+      <input onChange={e => setTitle(e.target.value)} id="title"></input>
+      <label htmlFor="summary">Summary</label>
+      <input onChange={e => setSummary(e.target.value)} id="summary"></input>
+      <label htmlFor="slug">Slug</label>
+      <input onChange={e => setSlug(e.target.value)} id="slug"></input>
+      <EditorWrapper>
+        <Editor
+          editorState={editorState}
+          onEditorStateChange={x => setEditorState(x)}
+        />
+      </EditorWrapper>
+      <button onClick={createPost}>Create post</button>
+    </div>
+  );
+
   return (
     <Layout>
       <Section id="archive" index={0}>
         <BlogWrapper>
-          {SectionTitle("Blog")}
-          <div>
-            <label htmlFor="title">Title</label>
-            <input onChange={e => setTitle(e.target.value)} id="title"></input>
-            <label htmlFor="summary">Summary</label>
-            <input onChange={e => setSummary(e.target.value)} id="summary"></input>
-            <EditorWrapper>
-              <Editor
-                editorState={editorState}
-                onEditorStateChange={x => setEditorState(x)}
-              />
-            </EditorWrapper>
-            <button onClick={createPost}>Create post</button>
-          </div>
+          {SectionTitle("Blog Admin")}
+          {form}
         </BlogWrapper>
       </Section>
     </Layout>
