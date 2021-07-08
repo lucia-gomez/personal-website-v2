@@ -117,6 +117,7 @@ export function makePortfolioCard(project, key) {
       image={project.image}
       git={project.link ?? null}
       link={project.extra ?? null}
+      myKey={key}
       key={key}
     >
       {project.text}
@@ -134,7 +135,7 @@ const PortfolioCard = forwardRef((props, ref) => {
     : null);
 
   return (
-    <PortfolioCardWrapper key={props.key} ref={ref}>
+    <PortfolioCardWrapper key={props.myKey} ref={ref}>
       <PortfolioCardImage image={props.image} />
       <PortfolioCardContent>
         <Row>
