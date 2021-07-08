@@ -37,8 +37,6 @@ export default function BlogAdmin() {
       summary: summary,
       content: getHTMLString(),
       slug: slug,
-    }).then(() => {
-      alert("post created");
     });
     // setTitle();
     // setSummary();

@@ -37,6 +37,22 @@ app.post("/api/create", (req, res) => {
   });
 });
 
+app.post("/api/like", (req, res) => {
+  const id = req.body.id;
+  const update = "UPDATE posts SET likes = likes + 1 WHERE id = ?;"
+  db.query(update, [id], (err, result) => {
+    console.error(err);
+  });
+});
+
+app.post("/api/unlike", (req, res) => {
+  const id = req.body.id;
+  const update = "UPDATE posts SET likes = likes - 1 WHERE id = ?;"
+  db.query(update, [id], (err, result) => {
+    console.error(err);
+  });
+});
+
 app.listen(3001, () => {
   console.log("server is running on port 3001");
 });
