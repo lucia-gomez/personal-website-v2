@@ -6,6 +6,8 @@ const Row = styled.div`
   display: flex;
   flex-direction: row;
   align-items: baseline;
+  width: fit-content;
+  cursor: pointer;
 `;
 
 const Heart = styled.i`

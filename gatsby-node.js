@@ -2,7 +2,7 @@ const axios = require(`axios`)
 
 async function getAllPosts() {
   const posts = (await axios.get('http://localhost:3001/api/get')).data;
-  return posts;
+  return posts.reverse();
 }
 
 exports.createPages = async ({ actions: { createPage } }) => {

@@ -27,7 +27,7 @@ export default function BlogHomePage({ pageContext: { posts } }) {
       <Section id="archive" index={0}>
         {SectionTitle("Blog")}
         <Posts>
-          {posts !== undefined ? posts.reverse().map((post, idx) =>
+          {posts !== undefined ? posts.map((post, idx) =>
             <BlogPostLink post={post} key={idx} />
           ) : null}
         </Posts>

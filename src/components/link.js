@@ -1,14 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { a } from '../style/blogStyle';
 
 const LinkStyle = styled.a`
-  color: ${props => props.theme.accent};
-
-  :hover {
-    color: ${props => props.theme.accentHover};
-    text-decoration: none;
-  }
+  ${a}
 `;
 
 export default function Link(props) {
