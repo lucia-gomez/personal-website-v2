@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Navbar, Nav } from 'react-bootstrap'
 import Scrollspy from 'react-scrollspy'
 import DarkModeSwitch from "../components/darkModeSwitch"
+import { isAuthenticated, logout } from "../scripts/auth";
 
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import "typeface-roboto"
@@ -26,12 +27,24 @@ const NavLink = styled(Nav.Link).attrs(_ => ({
   }
 `;
 
+const LogoutButton = styled.a.attrs(_ => ({
+  className: 'btn'
+}))`
+  background-color: ${props => props.theme.bg};
+  color: ${props => props.theme.text};
+
+  :hover {
+    color: ${props => props.theme.accentHover};
+  }
+`;
+
 const CustomNav = props => {
   const sections = [
     { name: "Home", link: "/" }, { name: "About", link: "/#about" },
     { name: "Portfolio", link: "/#portfolio" },
     { name: "Experience", link: "/#experience" },
     { name: "Blog", link: "/blog" },
+    ...isAuthenticated() ? [{ name: "Admin", link: "/admin" }] : [],
     { name: "Resume", link: Doc, target: "_blank" },
   ];
 
@@ -66,6 +79,15 @@ const CustomNav = props => {
             </NavLink>
           ))}
           <DarkModeSwitch {...props} />
+          {isAuthenticated() ? <LogoutButton
+            href="#logout"
+            onClick={e => {
+              logout()
+              e.preventDefault()
+            }}
+          >
+            Log Out
+          </LogoutButton> : null}
         </Nav>
       </Navbar.Collapse>
     </NavWrapper >

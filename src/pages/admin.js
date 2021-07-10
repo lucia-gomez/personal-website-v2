@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Layout from "../components/layout";
 import Section from "../components/section";
 import SectionTitle from "../components/sectionTitle";
+import { login, isAuthenticated } from "../scripts/auth";
 
 import Axios from 'axios';
 import { Editor } from "react-draft-wysiwyg";
@@ -87,6 +88,11 @@ export default function BlogAdmin() {
     EditorState.createEmpty()
   );
   const [showPreview, setShowPreview] = useState(true);
+
+  if (!isAuthenticated()) {
+    login();
+    return <p>Redirecting to login...</p>
+  }
 
   const getHTMLString = () => draftToHtml(convertToRaw(editorState.getCurrentContent()));
 
