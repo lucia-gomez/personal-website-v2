@@ -1,19 +1,10 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Layout from "../components/layout";
 import Section from "../components/section";
 import { Link } from "gatsby"
 import Like from '../components/blog/like';
-import BlogStyle from '../style/blogStyle';
-
-import javascript from 'highlight.js/lib/languages/javascript';
-import xml from 'highlight.js/lib/languages/xml';
-import css from 'highlight.js/lib/languages/css';
-
-const hljs = require('highlight.js');
-hljs.registerLanguage('javascript', javascript);
-hljs.registerLanguage('xml', xml);
-hljs.registerLanguage('css', css);
+import BlogContent from '../components/blog/blogContent';
 
 const BlogWrapper = styled.div`
   padding: 0px 30px;
@@ -57,15 +48,6 @@ const Date = styled.p`
 `;
 
 export default function BlogPostPage({ pageContext: { post } }) {
-  const contentRef = useRef();
-
-  useEffect(() => {
-    const nodes = contentRef.current.querySelectorAll('pre');
-    nodes.forEach((node) => {
-      hljs.highlightElement(node);
-    })
-  }, [contentRef])
-
   return (
     <Layout>
       <Section id="archive" index={0}>
@@ -80,7 +62,7 @@ export default function BlogPostPage({ pageContext: { post } }) {
           <Content>
             <Title>{post.title}</Title>
             <Date>{post.dateString.substring(0, post.dateString.indexOf(","))}</Date>
-            <BlogStyle ref={contentRef} dangerouslySetInnerHTML={{ __html: post.content }} />
+            <BlogContent content={post.content} />
           </Content>
         </BlogWrapper>
       </Section>
