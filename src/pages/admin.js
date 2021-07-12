@@ -6,6 +6,7 @@ import SectionTitle from "../components/sectionTitle";
 import { login, isAuthenticated } from "../scripts/auth";
 
 import Axios from 'axios';
+import { getApiUrl } from '../scripts/util';
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw } from 'draft-js';
 import BlogContent from '../components/blog/blogContent';
@@ -97,7 +98,7 @@ export default function BlogAdmin() {
   const getHTMLString = () => draftToHtml(convertToRaw(editorState.getCurrentContent()));
 
   const createPost = () => {
-    Axios.post('http://localhost:3001/api/create', {
+    Axios.post(getApiUrl() + '/api/create', {
       datetime: new Date().toISOString().slice(0, 19).replace('T', ' '),
       dateString: new Date().toLocaleString(),
       title: title,

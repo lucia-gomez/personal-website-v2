@@ -2,14 +2,16 @@ const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const gatsby = require("gatsby-plugin-nodejs");
 
 const app = express();
+gatsby.prepare({ app }, () => { });
 
 const db = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
-  database: 'WebsiteBlog'
+  host: process.env.NODE_ENV === 'development' ? 'localhost' : 'us-cdbr-east-04.cleardb.com',
+  user: process.env.NODE_ENV === 'development' ? 'root' : 'b1601efb83fa98',
+  password: process.env.NODE_ENV === 'development' ? process.env.DB_PASSWORD : '2183ba1c',
+  database: process.env.NODE_ENV === 'development' ? 'WebsiteBlog' : 'heroku_a0f43feca6ab6ff'
 });
 
 app.use(cors());
@@ -53,6 +55,8 @@ app.post("/api/unlike", (req, res) => {
   });
 });
 
-app.listen(3001, () => {
-  console.log("server is running on port 3001");
+const PORT = 3001;
+
+app.listen(process.env.PORT || PORT, () => {
+  console.log("server is running");
 });

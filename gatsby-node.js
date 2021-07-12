@@ -1,7 +1,10 @@
 const axios = require(`axios`)
 
 async function getAllPosts() {
-  const posts = (await axios.get('http://localhost:3001/api/get')).data;
+  const api = process.env.NODE_ENV === 'development' ?
+    process.env.GATSBY_API_DEV
+    : process.env.GATSBY_API_PROD;
+  const posts = (await axios.get(api + '/api/get')).data;
   return posts.reverse();
 }
 

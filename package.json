@@ -20,6 +20,7 @@
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
     "gatsby": "^3.9.0",
+    "gatsby-plugin-nodejs": "^0.7.0",
     "gatsby-plugin-react-helmet": "^4.4.0",
     "gatsby-plugin-sass": "^2.3.12",
     "gatsby-plugin-styled-components": "^4.9.0",

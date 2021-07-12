@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Axios from 'axios';
+import { getApiUrl } from '../../scripts/util';
 
 const Row = styled.div`
   display: flex;
@@ -20,9 +21,9 @@ const Like = ({ postID, count }) => {
 
   const handleClick = () => {
     if (!isLiked) {
-      Axios.post('http://localhost:3001/api/like', { id: postID });
+      Axios.post(getApiUrl() + '/api/like', { id: postID });
     } else {
-      Axios.post('http://localhost:3001/api/unlike', { id: postID });
+      Axios.post(getApiUrl() + '/api/unlike', { id: postID });
     }
     setLiked(!isLiked);
   }

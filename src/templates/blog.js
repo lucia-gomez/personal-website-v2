@@ -17,8 +17,7 @@ const Posts = styled.div`
 
 export default function BlogHomePage({ pageContext: { posts } }) {
   useEffect(() => {
-    // TODO replace with prod client url
-    const url = process.env.NODE_ENV === 'development' ? "http://localhost:8000" : 'http://localhost:8000';
+    const url = process.env.NODE_ENV === 'development' ? "http://localhost:8000" : 'https://lucia-gomez.netlify.app';
     Axios.post(url + '/__refresh');
   }, [])
 
