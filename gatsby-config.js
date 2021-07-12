@@ -17,8 +17,7 @@ module.exports = {
           user: 'b1601efb83fa98',
           password: '2183ba1c',
           database: 'heroku_a0f43feca6ab6ff',
-          connectTimeout: 100000,
-          flags: 'INTERACTIVE'
+          connectTimeout: 600000,
         },
         queries: [
           {
