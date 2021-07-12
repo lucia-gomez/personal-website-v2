@@ -19,6 +19,7 @@ const MySwitch = styled(Switch)`
 const SwitchLabel = styled.label`
   margin: auto;
   display: flex;
+  align-items: center;
 
   @media only screen and (max-width: 576px) {
     margin: unset!important;
