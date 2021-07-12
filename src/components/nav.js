@@ -6,7 +6,6 @@ import DarkModeSwitch from "../components/darkModeSwitch"
 import { isAuthenticated, logout } from "../scripts/auth";
 
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import "typeface-roboto"
 import Doc from '../assets/resume.pdf';
 
 const NavWrapper = styled(Navbar)`

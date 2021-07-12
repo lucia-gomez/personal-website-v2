@@ -1,18 +1,21 @@
-const axios = require(`axios`)
-
-async function getAllPosts() {
-  const api = process.env.NODE_ENV === 'development' ?
-    process.env.GATSBY_API_DEV
-    : process.env.GATSBY_API_PROD;
-  const posts = (await axios.get(api + '/api/get')).data;
-  return posts.reverse();
-}
-
-exports.createPages = async ({ actions: { createPage } }) => {
-  let posts = [];
-  if (typeof window !== "undefined") {
-    posts = await getAllPosts();
-  }
+exports.createPages = async ({ actions: { createPage }, graphql }) => {
+  const { data } = await graphql(`
+    query {
+      allMysqlAllPosts {
+        nodes {
+          id,
+          date,
+          dateString,
+          title,
+          summary,
+          slug,
+          content, 
+          likes
+        }
+      }
+    }
+  `);
+  const posts = data.allMysqlAllPosts.nodes.reverse();
 
   // create main blog page, populated with blog posts
   createPage({
@@ -21,7 +24,7 @@ exports.createPages = async ({ actions: { createPage } }) => {
     context: { posts },
   })
 
-  // create a page for each blog post
+  // // create a page for each blog post
   posts.forEach(post => {
     createPage({
       path: `/blog/${post.slug}/`,
