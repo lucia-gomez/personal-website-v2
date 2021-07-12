@@ -2,10 +2,8 @@ const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const gatsby = require("gatsby-plugin-nodejs");
 
 const app = express();
-gatsby.prepare({ app }, () => { });
 
 const db = mysql.createPool({
   host: process.env.NODE_ENV === 'development' ? 'localhost' : 'us-cdbr-east-04.cleardb.com',

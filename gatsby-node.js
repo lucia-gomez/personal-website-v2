@@ -9,7 +9,10 @@ async function getAllPosts() {
 }
 
 exports.createPages = async ({ actions: { createPage } }) => {
-  const posts = await getAllPosts();
+  let posts = [];
+  if (typeof window !== "undefined") {
+    posts = await getAllPosts();
+  }
 
   // create main blog page, populated with blog posts
   createPage({
@@ -44,6 +47,10 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
         rules: [
           {
             test: /auth0-js/,
+            use: loaders.null(),
+          },
+          {
+            test: /react-draft-wysiwyg/,
             use: loaders.null(),
           },
         ],

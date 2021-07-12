@@ -6,7 +6,7 @@
 
 module.exports = {
   /* Your site config here */
-  plugins: ['gatsby-plugin-react-helmet', 'gatsby-plugin-styled-components', 'gatsby-plugin-nodejs'],
+  plugins: ['gatsby-plugin-react-helmet', 'gatsby-plugin-styled-components'],
 }
 
 require("dotenv").config({
