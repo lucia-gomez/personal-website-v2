@@ -3,25 +3,10 @@ import styled from "styled-components"
 import SectionTitle from "../components/sectionTitle"
 import TabbedContent from "../components/tabbedContent"
 import Link from "../components/link"
+import { ul, li } from "../style/blogStyle"
 
-const BulletPoints = styled.ul`
-  padding-left: 0px;
-  list-style: none;
-`;
-
-const Bullet = styled.li`
-  padding-bottom: 5px;
-  padding-left: 20px;
-  position: relative;
-
-  ::before {
-    font-family: "FontAwesome";
-    content: '\f054';
-    color: ${props => props.theme.accent};
-    position: absolute;
-    left: 0px;
-  }
-`;
+const BulletPoints = styled.ul`${ul}`;
+const Bullet = styled.li`${li}`;
 
 const ExperienceItem = (role, company, link, date, bullets) => (<>
   <h5>{role}, <Link href={link}>{company}</Link></h5>
