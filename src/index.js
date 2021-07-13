@@ -10,6 +10,7 @@ import ProtectedRoute from './components/protectedRoute';
 import BlogPostPage from './pages/blogPost';
 import BlogAdmin from './pages/admin';
 import Auth0ProviderWithHistory from "./scripts/auth0-provider-with-history";
+import Error404 from './pages/404';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -29,6 +30,7 @@ ReactDOM.render(
             <BlogPostPage />
           </Route>
           <ProtectedRoute path="/admin" component={BlogAdmin} />
+          <Route path="*" component={Error404} />
         </Switch>
       </Auth0ProviderWithHistory>
     </BrowserRouter>

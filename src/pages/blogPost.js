@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import Layout from "../components/layout";
 import Section from "../components/section";
@@ -62,11 +62,7 @@ export default function BlogPostPage() {
   }, [])
 
   if (post === null) {
-    return (
-      <Layout>
-        <h1>Post not found</h1>
-      </Layout>
-    )
+    return <Redirect to="/404" />
   }
 
   return (
