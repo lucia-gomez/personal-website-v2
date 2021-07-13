@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Like from './like';
-import { Link } from "gatsby"
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   min-width: 300px;

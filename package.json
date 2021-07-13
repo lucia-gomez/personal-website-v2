@@ -1,31 +1,14 @@
 {
-  "name": "gatsby-starter-hello-world",
-  "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
+  "name": "test-website",
   "version": "0.1.0",
-  "license": "0BSD",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
-  },
+  "private": true,
   "dependencies": {
-    "auth0-js": "^9.16.2",
+    "@auth0/auth0-react": "^1.5.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
     "express": "^4.17.1",
-    "gatsby": "^3.9.1",
-    "gatsby-plugin-react-helmet": "^4.9.0",
-    "gatsby-plugin-styled-components": "^4.9.0",
-    "gatsby-source-filesystem": "^3.9.0",
-    "gatsby-source-mysql": "^2.2.3",
-    "gatsby-telemetry": "^2.9.0",
     "highlight.js": "^11.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
@@ -35,19 +18,35 @@
     "react-flip-move": "^3.0.4",
     "react-helmet": "^6.1.0",
     "react-icons": "^3.11.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.3",
     "react-scrollspy": "^3.4.3",
     "react-switch": "^5.0.1",
     "styled-components": "^5.3.0",
     "use-dark-mode": "^2.3.1"
   },
-  "devDependencies": {
-    "prettier": "2.1.0"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

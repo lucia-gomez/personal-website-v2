@@ -1,13 +1,12 @@
-import React from "react"
-import Layout from "../components/layout"
-import Section from "../components/section"
+import Layout from "./components/layout"
+import Section from "./components/section"
 
-import BannerContent from "./banner"
-import About from "./about"
-import PortfolioSection from "./portfolio"
-import ExperienceSection from "./experience"
+import BannerContent from "./components/banner"
+import About from "./pages/about"
+import PortfolioSection from "./pages/portfolio"
+import ExperienceSection from "./pages/experience"
 
-export default function Home() {
+export default function App() {
 
   const sectionContents = [
     [<BannerContent />, 'banner'],

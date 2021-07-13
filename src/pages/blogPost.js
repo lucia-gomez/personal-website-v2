@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Layout from "../components/layout";
 import Section from "../components/section";
-import { Link } from "gatsby"
+import { Link } from "react-router-dom";
 import Like from '../components/blog/like';
 import BlogContent from '../components/blog/blogContent';
+import Axios from 'axios';
+import { getApiUrl } from '../scripts/util';
 
 const BlogWrapper = styled.div`
   padding: 0px 30px;
@@ -47,10 +50,28 @@ const Date = styled.p`
   color: ${props => props.theme.textLight};
 `;
 
-export default function BlogPostPage({ pageContext: { post } }) {
+export default function BlogPostPage() {
+  const { slug } = useParams();
+  const [post, setPost] = useState(null);
+
+  useEffect(() => {
+    Axios.get(getApiUrl() + '/api/get/' + slug).then(res => {
+      setPost(res.data[0]);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  if (post === null) {
+    return (
+      <Layout>
+        <h1>Post not found</h1>
+      </Layout>
+    )
+  }
+
   return (
     <Layout>
-      <Section id="archive" index={0}>
+      <Section id="blogPost" index={0}>
         <BlogWrapper>
           <Sidebar>
             <BackButton to="/blog">

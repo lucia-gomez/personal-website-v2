@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Navbar, Nav } from 'react-bootstrap'
 import Scrollspy from 'react-scrollspy'
 import DarkModeSwitch from "../components/darkModeSwitch"
-import { isAuthenticated, logout } from "../scripts/auth";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import Doc from '../assets/resume.pdf';
@@ -38,12 +38,14 @@ const LogoutButton = styled.a.attrs(_ => ({
 `;
 
 const CustomNav = props => {
+  const { logout } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   const sections = [
     { name: "Home", link: "/" }, { name: "About", link: "/#about" },
     { name: "Portfolio", link: "/#portfolio" },
     { name: "Experience", link: "/#experience" },
     { name: "Blog", link: "/blog" },
-    ...isAuthenticated() ? [{ name: "Admin", link: "/admin" }] : [],
+    ...(isAuthenticated ? [{ name: "Admin", link: "/admin" }] : []),
     { name: "Resume", link: Doc, target: "_blank" },
   ];
 
@@ -78,10 +80,12 @@ const CustomNav = props => {
             </NavLink>
           ))}
           <DarkModeSwitch {...props} />
-          {isAuthenticated() ? <LogoutButton
+          {isAuthenticated ? <LogoutButton
             href="#logout"
             onClick={e => {
-              logout()
+              logout({
+                returnTo: window.location.origin,
+              })
               e.preventDefault()
             }}
           >

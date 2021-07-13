@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import SectionTitle from "../components/sectionTitle"
+import SectionTitle from "./sectionTitle"
 
 const Wrapper = styled.div`
   position: relative;

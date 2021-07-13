@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Layout from "../components/layout";
 import Section from "../components/section";
 import SectionTitle from "../components/sectionTitle";
-import { login, isAuthenticated } from "../scripts/auth";
 
 import Axios from 'axios';
 import { getApiUrl } from '../scripts/util';
@@ -90,10 +89,10 @@ export default function BlogAdmin() {
   );
   const [showPreview, setShowPreview] = useState(true);
 
-  if (!isAuthenticated()) {
-    login();
-    return <p>Redirecting to login...</p>
-  }
+  // if (!isAuthenticated()) {
+  //   login();
+  //   return <p>Redirecting to login...</p>
+  // }
 
   const getHTMLString = () => draftToHtml(convertToRaw(editorState.getCurrentContent()));
 
