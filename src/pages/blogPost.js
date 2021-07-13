@@ -56,7 +56,7 @@ export default function BlogPostPage() {
 
   useEffect(() => {
     Axios.get(getApiUrl() + '/api/get/' + slug).then(res => {
-      setPost(res.data[0]);
+      setPost(res.data[0] ?? null);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

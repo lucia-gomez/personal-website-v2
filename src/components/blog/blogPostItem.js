@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Like from './like';
 import { Link } from "react-router-dom";
+import Delete from './delete';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Wrapper = styled.div`
   min-width: 300px;
@@ -31,8 +33,16 @@ const PostLink = styled(Link)`
   }
 `;
 
+const DeleteWrapper = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+`;
+
 const BlogPostLink = ({ post }) => {
+  const { isAuthenticated } = useAuth0();
   const date = post.dateString;
+
   return (
     <Wrapper>
       <PostDate>Posted {date.substring(0, date.indexOf(","))}</PostDate>
@@ -41,6 +51,10 @@ const BlogPostLink = ({ post }) => {
       </PostLink>
       <p>{post.summary}</p>
       <Like count={post.likes} postID={post.id} />
+      {isAuthenticated ? <DeleteWrapper>
+        <Delete postID={post.id} />
+      </DeleteWrapper>
+        : null}
     </Wrapper>
   );
 };
