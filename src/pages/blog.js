@@ -8,8 +8,6 @@ import Axios from 'axios';
 import { getApiUrl } from '../scripts/util';
 import { Spinner } from 'react-bootstrap';
 
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-
 const Posts = styled.div`
   display: flex;
   flex-direction: column;
