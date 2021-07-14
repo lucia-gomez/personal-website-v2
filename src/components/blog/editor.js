@@ -5,11 +5,11 @@ import { Button } from "../button";
 import { Form, Row, Col } from "react-bootstrap";
 import { colors } from '../../style/theme'
 
-import { Editor as ReactDraft } from "react-draft-wysiwyg";
+import { Editor as ReactDraft } from "@nick4fake/react-draft-wysiwyg";
 import { EditorState, ContentState, convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import "@nick4fake/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const Link = styled(LinkDefault)`
   color: ${colors.white};

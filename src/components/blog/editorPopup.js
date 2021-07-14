@@ -58,7 +58,7 @@ export default function EditorPopup({ post }) {
   return (
     <>
       <EditButton onClick={handleShow} />
-      <Modal show={show} onHide={handleClose} dialogClassName="modal-90w">
+      <Modal show={show} onHide={handleClose} dialogClassName="modal-90w" animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>Edit post</Modal.Title>
         </Modal.Header>
