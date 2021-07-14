@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Layout from "../components/layout";
 import Section from "../components/section";
 import SectionTitle from "../components/sectionTitle";
+import { Button } from "../components/button";
+import { Form, Row, Col } from "react-bootstrap";
 
 import Axios from 'axios';
 import { getApiUrl } from '../scripts/util';
+import { Link } from 'react-router-dom';
+
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw } from 'draft-js';
 import BlogContent from '../components/blog/blogContent';
@@ -78,6 +82,8 @@ const EditorWrapper = styled.div`
 const PreviewButton = styled.div`
   color: ${props => props.theme.accent};
   cursor: pointer;
+  padding-top: 20px;
+  width: fit-content;
 `;
 
 export default function BlogAdmin() {
@@ -88,11 +94,17 @@ export default function BlogAdmin() {
     EditorState.createEmpty()
   );
   const [showPreview, setShowPreview] = useState(true);
+  const [submitDisabled, setSubmitDisabled] = useState(true);
 
   // if (!isAuthenticated()) {
   //   login();
   //   return <p>Redirecting to login...</p>
   // }
+
+  useEffect(() => {
+    const isValid = x => x !== undefined && x.length > 0;
+    setSubmitDisabled(!(isValid(title) && isValid(summary) && isValid(slug)));
+  }, [title, summary, slug]);
 
   const getHTMLString = () => draftToHtml(convertToRaw(editorState.getCurrentContent()));
 
@@ -105,26 +117,60 @@ export default function BlogAdmin() {
       content: getHTMLString(),
       slug: slug,
     });
-    // setTitle();
-    // setSummary();
-    // setEditorState(EditorState.createEmpty());
   }
+
+  const titleForm = (
+    <Form.Group>
+      <Form.Label>Title</Form.Label>
+      <Form.Control onChange={e => setTitle(e.target.value)} />
+    </Form.Group>
+  );
+
+  const slugForm = (
+    <Form.Group>
+      <Form.Label>Slug</Form.Label>
+      <Form.Control onChange={e => setSlug(e.target.value)} />
+    </Form.Group>
+  );
+
+  const summaryForm = (
+    <Form.Group>
+      <Form.Label>Summary</Form.Label>
+      <Form.Control onChange={e => setSummary(e.target.value)} as="textarea" />
+    </Form.Group>
+  );
+
+  const formDesktop = (
+    <Form className="d-none d-md-block">
+      <Row>
+        <Col>{titleForm}</Col>
+        <Col>{slugForm}</Col>
+      </Row>
+      {summaryForm}
+    </Form>
+  );
+
+  const formMobile = (
+    <Form className="d-md-none">
+      {titleForm}
+      {slugForm}
+      {summaryForm}
+    </Form>
+  );
 
   const form = (
     <div>
-      <label htmlFor="title">Title</label>
-      <input onChange={e => setTitle(e.target.value)} id="title"></input>
-      <label htmlFor="summary">Summary</label>
-      <input onChange={e => setSummary(e.target.value)} id="summary"></input>
-      <label htmlFor="slug">Slug</label>
-      <input onChange={e => setSlug(e.target.value)} id="slug"></input>
+      {formDesktop}
+      {formMobile}
       <EditorWrapper>
         <Editor
           editorState={editorState}
           onEditorStateChange={x => setEditorState(x)}
         />
       </EditorWrapper>
-      <button onClick={createPost}>Create post</button>
+      <Link to="/blog">
+        <Button href="/" onClick={createPost} disabled={submitDisabled} sameTab={true}>Create post</Button>
+      </Link>
     </div>
   );
 

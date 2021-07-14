@@ -2,11 +2,11 @@ import React from "react"
 import styled from "styled-components"
 import SectionTitle from "../components/sectionTitle"
 import Subsection from "../components/subsection"
-import Button from "../components/button"
+import { ButtonLink } from "../components/button"
 import { featuredProjects } from "../scripts/projectList"
 import { PortfolioCardDeck, makePortfolioCard } from "../components/portfolioCardDeck"
 
-const ArchiveButton = styled(Button)`
+const ArchiveButton = styled(ButtonLink)`
   margin: auto;
   margin-top: 20px;
 `;

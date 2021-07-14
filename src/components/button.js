@@ -1,14 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { colors } from '../style/theme'
+import { Button as BootstrapButton } from 'react-bootstrap'
 
-const ButtonStyle = styled.a`
+const buttonStyle = css`
   background-color: ${props => props.theme.accent};
   border: none;
   color: ${colors.white};
   margin-right: 5px;
   width: fit-content;
+
+  .disabled, :disabled {
+    background-color: ${props => props.theme.accentLight};
+    border: none;
+    color: ${colors.white};
+
+    :hover, :focus {
+      background-color: ${props => props.theme.accentLight};
+    }
+  }
 
   :hover, 
   :focus, 
@@ -21,10 +32,19 @@ const ButtonStyle = styled.a`
   }
 `;
 
-const Button = props => {
+export const ButtonStyle = styled.a`
+  ${buttonStyle}
+`;
+
+const BootstrapButtonStyled = styled(BootstrapButton)`
+  ${buttonStyle}
+`;
+
+export const ButtonLink = props => {
   return (
     <ButtonStyle
       href={props.href}
+      onClick={props.onClick}
       target={props.sameTab ? null : "_blank"}
       rel={props.sameTab ? null : 'noopener noreferrer'}
       role="button"
@@ -36,8 +56,17 @@ const Button = props => {
   );
 }
 
-Button.propTypes = {
-  href: PropTypes.string.isRequired,
+export const Button = props => {
+  return (
+    <BootstrapButtonStyled
+      onClick={props.onClick}
+      disabled={props.disabled}
+    >
+      {props.children}
+    </BootstrapButtonStyled>
+  );
 }
 
-export default Button;
+ButtonLink.propTypes = {
+  href: PropTypes.string.isRequired,
+}
