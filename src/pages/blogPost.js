@@ -8,6 +8,7 @@ import Like from '../components/blog/like';
 import BlogContent from '../components/blog/blogContent';
 import Axios from 'axios';
 import { getApiUrl } from '../scripts/util';
+import { Spinner } from 'react-bootstrap';
 
 const BlogWrapper = styled.div`
   padding: 0px 30px;
@@ -53,22 +54,25 @@ const Date = styled.p`
 export default function BlogPostPage() {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     Axios.get(getApiUrl() + '/api/get/' + slug).then(res => {
       setPost(res.data[0] ?? null);
+      setLoading(false);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  if (post === null) {
+  if (post === null && !loading) {
     return <Redirect to="/404" />
   }
 
   return (
     <Layout>
       <Section id="blogPost" index={0}>
-        <BlogWrapper>
+        {!loading ? <BlogWrapper>
           <Sidebar>
             <BackButton to="/blog">
               <i className="fas fa-chevron-left" style={{ paddingRight: '3px' }} />
@@ -82,6 +86,10 @@ export default function BlogPostPage() {
             <BlogContent content={post.content} />
           </Content>
         </BlogWrapper>
+          : <Spinner animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        }
       </Section>
     </Layout>
   )

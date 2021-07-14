@@ -30,7 +30,7 @@ ReactDOM.render(
             <BlogPostPage />
           </Route>
           <ProtectedRoute path="/admin" component={BlogAdmin} />
-          <Route path="*" component={Error404} />
+          <Route component={Error404} />
         </Switch>
       </Auth0ProviderWithHistory>
     </BrowserRouter>
