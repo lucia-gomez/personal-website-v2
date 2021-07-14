@@ -14,6 +14,11 @@ const BlogWrapper = styled.div`
   position: relative;
   display: grid;
   grid-template-columns: 250px 1fr;
+
+  @media only screen and (max-width: 768px) {
+    display: block;
+    padding: 0px;
+  }
 `;
 
 const Sidebar = styled.div`
@@ -23,11 +28,14 @@ const Sidebar = styled.div`
   top: 60px;
   align-self: start;
   text-align: left;
+
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Content = styled.div`
   padding: 0px 40px;
-  height: 1000px;
   text-align: left;
 `;
 
@@ -46,7 +54,7 @@ const Title = styled.h2`
   font-weight: 900;
 `;
 
-const Date = styled.p`
+const Metadata = styled.div`
   color: ${props => props.theme.textLight};
 `;
 
@@ -81,7 +89,10 @@ export default function BlogPostPage() {
           </Sidebar>
           <Content>
             <Title>{post.title}</Title>
-            <Date>{post.dateString.substring(0, post.dateString.indexOf(","))}</Date>
+            <Metadata>
+              {post.dateString.substring(0, post.dateString.indexOf(","))}
+              <p>Lucia Gomez</p>
+            </Metadata>
             <BlogContent content={post.content} />
           </Content>
         </BlogWrapper>
