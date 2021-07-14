@@ -6,6 +6,7 @@ import SectionTitle from "../components/sectionTitle";
 import BlogPostLink from '../components/blog/blogPostItem';
 import Axios from 'axios';
 import { getApiUrl } from '../scripts/util';
+import { Spinner } from 'react-bootstrap';
 
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
@@ -18,22 +19,33 @@ const Posts = styled.div`
 
 export default function BlogHomePage() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     Axios.get(getApiUrl() + "/api/get").then(res => {
       setPosts(res.data.reverse());
+      setLoading(false);
     })
   }, []);
 
+  const content = posts.length === 0 ?
+    <p>No posts found</p>
+    : <Posts>
+      {posts.map((post, idx) =>
+        <BlogPostLink post={post} key={idx} />
+      )}
+    </Posts>
+
   return (
-    <Layout path="/">
-      <Section id="archive" index={0}>
+    <Layout>
+      <Section id="blog" index={0}>
         {SectionTitle("Blog")}
-        <Posts>
-          {posts.map((post, idx) =>
-            <BlogPostLink post={post} key={idx} />
-          )}
-        </Posts>
+        {loading ?
+          <Spinner animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+          : content}
       </Section>
     </Layout>
   );

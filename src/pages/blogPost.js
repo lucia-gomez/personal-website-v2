@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Redirect } from 'react-router-dom';
+import { useParams, Redirect, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Layout from "../components/layout";
 import Section from "../components/section";
-import { Link } from "react-router-dom";
 import Like from '../components/blog/like';
 import BlogContent from '../components/blog/blogContent';
 import Axios from 'axios';
