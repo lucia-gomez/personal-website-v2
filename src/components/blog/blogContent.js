@@ -10,7 +10,7 @@ hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('xml', xml);
 hljs.registerLanguage('css', css);
 
-const BlogContent = ({ content }) => {
+const BlogContent = ({ content, className }) => {
   const contentRef = useRef();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const BlogContent = ({ content }) => {
   }, [content])
 
   return (
-    <BlogStyle ref={contentRef} dangerouslySetInnerHTML={{ __html: content }} />
+    <BlogStyle ref={contentRef} dangerouslySetInnerHTML={{ __html: content }} className={className} />
   );
 }
 
