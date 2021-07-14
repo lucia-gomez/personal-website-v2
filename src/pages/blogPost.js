@@ -5,9 +5,11 @@ import Layout from "../components/layout";
 import Section from "../components/section";
 import Like from '../components/blog/like';
 import BlogContent from '../components/blog/blogContent';
+import EditorPopup from '../components/blog/editorPopup';
 import Axios from 'axios';
 import { getApiUrl } from '../scripts/util';
 import { Spinner } from 'react-bootstrap';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const BlogWrapper = styled.div`
   padding: 0px 30px;
@@ -52,13 +54,23 @@ const BackButton = styled(Link)`
 const Title = styled.h2`
   color: ${props => props.theme.header};
   font-weight: 900;
+  margin: 0px;
+  padding-right: 10px;
 `;
 
 const Metadata = styled.div`
   color: ${props => props.theme.textLight};
 `;
 
+const EditWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 0.5rem;
+`;
+
 export default function BlogPostPage() {
+  const { isAuthenticated } = useAuth0();
   const { slug } = useParams();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -88,7 +100,10 @@ export default function BlogPostPage() {
             <Like count={post.likes} postID={post.id} />
           </Sidebar>
           <Content>
-            <Title>{post.title}</Title>
+            <EditWrapper>
+              <Title>{post.title}</Title>
+              {isAuthenticated ? <EditorPopup post={post} /> : null}
+            </EditWrapper>
             <Metadata>
               {post.dateString.substring(0, post.dateString.indexOf(","))}
               <p>Lucia Gomez</p>
