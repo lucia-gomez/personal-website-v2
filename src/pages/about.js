@@ -50,6 +50,7 @@ const ProfileIconsWrapper = styled.div`
 const ProfileIconRow = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   position: relative;
 
   height: 35px;
@@ -57,6 +58,11 @@ const ProfileIconRow = styled.div`
   width: 175px;
   max-height: 300px;
   max-width: 300px;
+
+  p {
+    margin-bottom: 0px;
+  }
+
   .material-icons {
     color: var(--color-text);
     margin-right: 5px;
@@ -104,18 +110,17 @@ export default function About() {
             )}
             {ProfileInfo("school", "Cornell University")}
             {ProfileInfo("place", "Ithaca, NY")}
-            {ProfileInfo("home", "Redwood City, CA")}
+            {ProfileInfo("home", "Fairfax, VA")}
           </ProfileIconsWrapper>
         </ProfileWrapper>
         <div>
           <Subsection title='Hello World!'>
-            <p>I'm a senior at <span>Cornell University</span> majoring in Computer Science and Linguistics (graduating in May, 2021).
-            I'm passionate about the <span>intersection of language and technology</span>, as well as augmented and virtual reality.
-            I enjoy learning new languages, both human and programming, because doing so lets me see the world in new ways.
-            For the past few years, I've been interested in <span>American Sign Language</span> and the challenges associated with machine translation-
-            I was featured <Link href='https://www.leadwithlanguages.org/2019/03/14/ask-away-5-questions-cornell-computer-science-linguistics-major-mixing-asl-innovation/'>here</Link>.
-            Getting others excited about Computer Science is also important to me- I'm a Teaching Assistant at Cornell, and I tutor kids through Juni Learning.
-            I have at least one ABBA song stuck in my head at any given time.</p>
+            <p>I'm an incoming Software Engineer at <span>Facebook</span>,
+              and I recently graduated from Cornell as a Computer Science and Linguistics major.
+              I'm passionate about the <span>intersection of language and technology</span>, but I've been on a full-stack web dev spree lately.
+              For the past few years, I've been interested in <span>American Sign Language</span> and the challenges associated with machine translation-
+              I was featured <Link href='https://www.leadwithlanguages.org/2019/03/14/ask-away-5-questions-cornell-computer-science-linguistics-major-mixing-asl-innovation/'>here</Link>.
+              I have at least one ABBA song stuck in my head at any given time.</p>
           </Subsection>
           <Subsection title='Languages & Tools'>
             <p>I fell in love with programming when I was 10 years old, thanks
