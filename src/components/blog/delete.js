@@ -7,18 +7,17 @@ const Trash = styled.i.attrs(_ => ({
   className: 'fas fa-trash'
 }))`
   color: ${props => props.theme.accent};
-  padding-right: 3px;
   cursor: pointer;
 `;
 
-const Delete = ({ postID, callback }) => {
+const Delete = ({ postID, callback, className }) => {
   const handleClick = () => {
     Axios.delete(`${getApiUrl()}/api/delete/${postID}`);
     if (callback !== undefined) callback();
   }
 
   return (
-    <Trash onClick={handleClick} />
+    <Trash onClick={handleClick} className={className} />
   );
 }
 
