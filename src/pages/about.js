@@ -45,6 +45,11 @@ const ProfilePic = styled.img`
 
 const ProfileIconsWrapper = styled.div`
   padding-top: 20px;
+
+  i {
+    font-size: 22px;
+    width: 30px;
+  }
 `;
 
 const ProfileIconRow = styled.div`
@@ -73,10 +78,10 @@ const ScratchNote = styled.p`
   font-size: 12px;
 `;
 
-function ProfileInfo(iconName, text, otherIcon = null) {
+function ProfileInfo(icon, text) {
   return (
     <ProfileIconRow>
-      {otherIcon !== null ? otherIcon : <i className="material-icons">{iconName}</i>}
+      <i className={icon}></i>
       <p>{text}</p>
     </ProfileIconRow>
   )
@@ -102,15 +107,13 @@ export default function About() {
             alt="profile"
           />
           <ProfileIconsWrapper>
-            {ProfileInfo(null,
-              <Link href='https://github.com/lucia-gomez'>lucia-gomez</Link>,
-              <div className='material-icons' style={{ paddingLeft: '3px' }}>
-                <i className="fa fa-github"></i>
-              </div>
+            {ProfileInfo(
+              "fab fa-github",
+              <Link href='https://github.com/lucia-gomez'>lucia-gomez</Link>
             )}
-            {ProfileInfo("school", "Cornell University")}
-            {ProfileInfo("place", "Ithaca, NY")}
-            {ProfileInfo("home", "Fairfax, VA")}
+            {ProfileInfo("fas fa-graduation-cap", "Cornell University")}
+            {ProfileInfo("fas fa-map-marker-alt", "Ithaca, NY")}
+            {ProfileInfo("fas fa-home", "Fairfax, VA")}
           </ProfileIconsWrapper>
         </ProfileWrapper>
         <div>
