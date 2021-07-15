@@ -132,7 +132,12 @@ const EditorWrapper = styled.div`
 
   .rdw-editor-main {
     background-color: ${props => props.theme.bg};
+    color: ${props => props.theme.header};
     min-height: 200px;
+    padding: 10px;
+    border: 1px solid ${props => props.theme.textLight};
+    border-radius: 0px 0px 5px 5px;
+    border-top: none;
 
     pre {
       background-color: ${props => props.theme.medium};

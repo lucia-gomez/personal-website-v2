@@ -18,20 +18,42 @@ const EditButton = styled.i.attrs(_ => ({
 `;
 
 const Modal = styled(ModalDefault)`
+
+  .modal-content {
+    background-color: ${props => props.theme.bg};
+    color: ${props => props.theme.text};
+    position: relative;
+  }
+
+  .modal-header {
+    border-bottom: 1px solid ${props => props.theme.textLight};
+  }
+  
   @media (min-width: 576px) {
     .modal-dialog {
         max-width: 90vw;
     }
   }
 
-  .modal-footer {
-    padding: 0.5rem;
-    justify-content: flex-start;
+  .form-control {
+    background-color: ${props => props.theme.bg};
+    color: ${props => props.theme.header};
+    border: 1px solid ${props => props.theme.textLight};
+  }
+
+  .close {
+    color: ${props => props.theme.header};
   }
 `;
 
 const DeleteButton = styled(Delete)`
   color: ${colors.white};
+`;
+
+const ExtraButtons = styled.div`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 `;
 
 export default function EditorPopup({ post }) {
@@ -69,14 +91,14 @@ export default function EditorPopup({ post }) {
             buttonAction={(title, slug, summary, content) => handleSave(title, slug, summary, content)}
           />
         </div>
-        <Modal.Footer>
+        <ExtraButtons>
           <Button onClick={handleClose}>
             <DeleteButton postID={post.id} />
           </Button>
           <Button onClick={handleResetLikes}>
             Reset likes
           </Button>
-        </Modal.Footer>
+        </ExtraButtons>
       </Modal>
     </>
   );
