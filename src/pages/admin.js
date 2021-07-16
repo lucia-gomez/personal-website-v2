@@ -42,11 +42,6 @@ export default function BlogAdmin() {
   const [drafts, setDrafts] = useState([]);
   const [openDraft, setOpenDraft] = useState();
 
-  // if (!isAuthenticated()) {
-  //   login();
-  //   return <p>Redirecting to login...</p>
-  // }
-
   useEffect(() => {
     Axios.get(`${getApiUrl()}/api/draft/get`).then(res => {
       setDrafts(res.data.reverse());
