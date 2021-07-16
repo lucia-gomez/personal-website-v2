@@ -10,10 +10,10 @@ const Trash = styled.i.attrs(_ => ({
   cursor: pointer;
 `;
 
-const Delete = ({ postID, callback, className }) => {
+const Delete = ({ postID, callback, draft, className }) => {
   const handleClick = () => {
-    Axios.delete(`${getApiUrl()}/api/delete/${postID}`);
-    if (callback !== undefined) callback();
+    Axios.delete(`${getApiUrl()}/api/${draft ? 'draft' : 'delete'}/${postID}`);
+    if (callback !== undefined) callback(postID);
   }
 
   return (

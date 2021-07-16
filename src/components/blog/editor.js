@@ -20,12 +20,17 @@ const Link = styled(LinkDefault)`
   }
 `;
 
+const ButtonRow = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 export default function Editor(props) {
   const { post } = props;
 
-  const [title, setTitle] = useState(post === undefined ? undefined : post.title);
-  const [summary, setSummary] = useState(post === undefined ? undefined : post.summary);
-  const [slug, setSlug] = useState(post === undefined ? undefined : post.slug);
+  const [title, setTitle] = useState(post?.title ?? "");
+  const [summary, setSummary] = useState(post?.summary ?? "");
+  const [slug, setSlug] = useState(post?.slug ?? "");
   const [editorState, setEditorState] = useState(
     EditorState.createEmpty()
   );
@@ -37,12 +42,17 @@ export default function Editor(props) {
   }, [title, summary, slug]);
 
   useEffect(() => {
+    setTitle(post?.title ?? "");
+    setSummary(post?.summary ?? "");
+    setSlug(post?.slug ?? "");
     if (post !== undefined) {
       const blocksFromHtml = htmlToDraft(post.content);
       const { contentBlocks, entityMap } = blocksFromHtml;
       const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
       const editorState = EditorState.createWithContent(contentState);
       setEditorState(editorState);
+    } else {
+      setEditorState(EditorState.createEmpty());
     }
   }, [post])
 
@@ -102,6 +112,15 @@ export default function Editor(props) {
     </Button>
   );
 
+  const btnDraft = (
+    <Button
+      onClick={() => props.draftButtonAction(title, slug, summary, getHTMLString())}
+      disabled={buttonDisabled}
+    >
+      {post ? 'Close draft' : 'Save as draft'}
+    </Button>
+  )
+
   return (
     <div>
       {formDesktop}
@@ -116,7 +135,10 @@ export default function Editor(props) {
           }}
         />
       </EditorWrapper>
-      {btn}
+      <ButtonRow>
+        {btn}
+        {props.isPopup ? null : btnDraft}
+      </ButtonRow>
     </div>
   );
 }

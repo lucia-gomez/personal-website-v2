@@ -88,7 +88,8 @@ export default function EditorPopup({ post }) {
           <Editor
             post={post}
             buttonText="Update post"
-            buttonAction={(title, slug, summary, content) => handleSave(title, slug, summary, content)}
+            buttonAction={handleSave}
+            isPopup
           />
         </div>
         <ExtraButtons>
