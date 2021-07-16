@@ -3,23 +3,18 @@ import styled from 'styled-components';
 import Layout from "../components/layout";
 import Section from "../components/section";
 import SectionTitle from "../components/sectionTitle";
+import { Link as LinkDefault } from 'react-router-dom';
+import { Button } from "../components/button";
+import { colors } from '../style/theme'
 
 import Axios from 'axios';
 import { getApiUrl } from '../scripts/util';
 import Editor from '../components/blog/editor';
-import BlogContent from '../components/blog/blogContent';
 import BlogDraftItem from '../components/blog/blogDraftItem';
 
 const BlogWrapper = styled.div`
   padding: 0px 30px;
   text-align: left;
-`;
-
-const PreviewButton = styled.div`
-  color: ${props => props.theme.accent};
-  cursor: pointer;
-  padding-top: 20px;
-  width: fit-content;
 `;
 
 const DraftSection = styled.div`
@@ -34,9 +29,16 @@ const Drafts = styled.div`
   flex-wrap: wrap;
 `;
 
+const Link = styled(LinkDefault)`
+  color: ${colors.white};
+
+  :hover {
+    color: ${colors.white};
+    text-decoration: none;
+  }
+`;
+
 export default function BlogAdmin() {
-  const [showPreview, setShowPreview] = useState(false);
-  const [content, setContent] = useState();
   const [drafts, setDrafts] = useState([]);
   const [openDraft, setOpenDraft] = useState();
 
@@ -97,22 +99,42 @@ export default function BlogAdmin() {
     setDrafts(drafts.filter(draft => draft.id !== id));
   }
 
+  const buttons = (title, slug, summary, content) => {
+    const isValid = x => x !== undefined && x.length > 0;
+    const disabled = !(isValid(title) && isValid(summary) && isValid(slug));
+
+    const postFn = () => openDraft ?
+      publishDraft(title, slug, summary, content)
+      : createPost(title, slug, summary, content);
+    const postBtnText = openDraft ? 'Publish draft' : 'Publish post';
+    const postBtn = <Button onClick={postFn} sameTab={true} disabled={disabled} href="/">
+      {disabled ?
+        <p style={{ margin: '0px' }}>{postBtnText}</p>
+        : <Link to="/blog">
+          {postBtnText}
+        </Link>
+      }
+    </Button>
+
+    const saveFn = () => openDraft ?
+      closeDraft(title, slug, summary, content)
+      : createDraft(title, slug, summary, content);
+    const saveBtn = <Button onClick={saveFn} disabled={disabled}>
+      {openDraft ? 'Close draft' : 'Save as draft'}
+    </Button>
+
+    return <>
+      {postBtn}
+      {saveBtn}
+    </>
+  };
+
   return (
     <Layout>
       <Section id="archive" index={0}>
         <BlogWrapper>
           {SectionTitle("Blog Admin")}
-          <Editor
-            post={openDraft}
-            editorCallback={e => setContent(e)}
-            buttonText={openDraft ? "Publish draft" : "Create post"}
-            buttonAction={openDraft ? publishDraft : createPost}
-            draftButtonAction={openDraft ? closeDraft : createDraft}
-          />
-          <PreviewButton onClick={() => setShowPreview(!showPreview)}>
-            {showPreview ? 'Hide preview' : 'Show preview'}
-          </PreviewButton>
-          {showPreview ? <BlogContent content={content} /> : null}
+          <Editor post={openDraft} buttons={buttons} />
           {drafts.length === 0 ? null :
             <DraftSection>
               <h3>Drafts</h3>

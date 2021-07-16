@@ -50,12 +50,6 @@ const DeleteButton = styled(Delete)`
   color: ${colors.white};
 `;
 
-const ExtraButtons = styled.div`
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-`;
-
 export default function EditorPopup({ post }) {
   const [show, setShow] = useState(false);
 
@@ -77,6 +71,23 @@ export default function EditorPopup({ post }) {
     Axios.post(`${getApiUrl()}/api/likes/reset`, { id: post.id });
   }
 
+  const buttons = (title, slug, summary, content) => {
+    const isValid = x => x !== undefined && x.length > 0;
+    const disabled = !(isValid(title) && isValid(summary) && isValid(slug));
+
+    return (<>
+      <Button onClick={() => handleSave(title, slug, summary, content)} disabled={disabled}>
+        Update post
+      </Button>
+      <Button onClick={handleResetLikes}>
+        Reset likes
+      </Button>
+      <Button onClick={handleClose}>
+        <DeleteButton postID={post.id} />
+      </Button>
+    </>);
+  }
+
   return (
     <>
       <EditButton onClick={handleShow} />
@@ -85,21 +96,8 @@ export default function EditorPopup({ post }) {
           <Modal.Title>Edit post</Modal.Title>
         </Modal.Header>
         <div style={{ padding: '10px' }}>
-          <Editor
-            post={post}
-            buttonText="Update post"
-            buttonAction={handleSave}
-            isPopup
-          />
+          <Editor post={post} buttons={buttons} />
         </div>
-        <ExtraButtons>
-          <Button onClick={handleClose}>
-            <DeleteButton postID={post.id} />
-          </Button>
-          <Button onClick={handleResetLikes}>
-            Reset likes
-          </Button>
-        </ExtraButtons>
       </Modal>
     </>
   );

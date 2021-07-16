@@ -1,28 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link as LinkDefault } from 'react-router-dom';
-import { Button } from "../button";
 import { Form, Row, Col } from "react-bootstrap";
-import { colors } from '../../style/theme'
 
+import BlogContent from './blogContent';
 import { Editor as ReactDraft } from "@nick4fake/react-draft-wysiwyg";
 import { EditorState, ContentState, convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import "@nick4fake/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
-const Link = styled(LinkDefault)`
-  color: ${colors.white};
-
-  :hover {
-    color: ${colors.white};
-    text-decoration: none;
-  }
-`;
-
 const ButtonRow = styled.div`
   display: flex;
   flex-direction: row;
+  margin-top: 30px;
+`;
+
+const PreviewButton = styled.div`
+  color: ${props => props.theme.accent};
+  cursor: pointer;
+  padding-top: 20px;
+  width: fit-content;
 `;
 
 export default function Editor(props) {
@@ -34,12 +31,7 @@ export default function Editor(props) {
   const [editorState, setEditorState] = useState(
     EditorState.createEmpty()
   );
-  const [buttonDisabled, setButtonDisabled] = useState(true);
-
-  useEffect(() => {
-    const isValid = x => x !== undefined && x.length > 0;
-    setButtonDisabled(!(isValid(title) && isValid(summary) && isValid(slug)));
-  }, [title, summary, slug]);
+  const [showPreview, setShowPreview] = useState(false);
 
   useEffect(() => {
     setTitle(post?.title ?? "");
@@ -97,29 +89,7 @@ export default function Editor(props) {
     </Form>
   );
 
-  const btn = (
-    <Button
-      href="/"
-      onClick={() => props.buttonAction(title, slug, summary, getHTMLString())}
-      disabled={buttonDisabled}
-      sameTab={true}
-    >
-      {buttonDisabled ?
-        <p style={{ margin: '0px' }}>{props.buttonText}</p>
-        : <Link to="/blog">
-          {props.buttonText}
-        </Link>}
-    </Button>
-  );
-
-  const btnDraft = (
-    <Button
-      onClick={() => props.draftButtonAction(title, slug, summary, getHTMLString())}
-      disabled={buttonDisabled}
-    >
-      {post ? 'Close draft' : 'Save as draft'}
-    </Button>
-  )
+  const buttons = props.buttons(title, slug, summary, getHTMLString());
 
   return (
     <div>
@@ -135,16 +105,19 @@ export default function Editor(props) {
           }}
         />
       </EditorWrapper>
+      <PreviewButton onClick={() => setShowPreview(!showPreview)}>
+        {showPreview ? 'Hide preview' : 'Show preview'}
+      </PreviewButton>
+      {showPreview ? <BlogContent content={getHTMLString()} /> : null}
       <ButtonRow>
-        {btn}
-        {props.isPopup ? null : btnDraft}
+        {buttons}
       </ButtonRow>
     </div>
   );
 }
 
 const EditorWrapper = styled.div`
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 
   .rdw-editor-toolbar {
     background-color: ${props => props.theme.accentLight};
