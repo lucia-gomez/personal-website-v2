@@ -15,7 +15,7 @@ const BlogWrapper = styled.div`
   padding: 0px 30px;
   position: relative;
   display: grid;
-  grid-template-columns: 250px 1fr;
+  grid-template-columns: 250px minmax(0, 1fr);
 
   @media only screen and (max-width: 768px) {
     display: block;
