@@ -5,8 +5,8 @@ import Section from "../components/section"
 import SectionTitle from "../components/sectionTitle"
 import { PortfolioCardDeck, makePortfolioCard } from "../components/portfolioCardDeck"
 import SearchBar from '../components/searchBar'
-import FlipMove from 'react-flip-move'
 import projects from "../scripts/projectList"
+import { useTransition, animated } from '@react-spring/web'
 
 const ArchiveWrapper = styled.div`
   padding: 0px 30px;
@@ -61,6 +61,12 @@ export default function ArchivePage() {
     }
   }
 
+  const trans = useTransition(results, {
+    from: { opacity: 0 },
+    enter: { opacity: 1, maxHeight: 575 },
+    leave: { opacity: 0, maxHeight: 0 },
+  });
+
   return (
     <Layout>
       <Section id="archive" index={0}>
@@ -69,16 +75,11 @@ export default function ArchivePage() {
           <p>Vaguely organized in reverse chronological order, but mostly in order of how badly I want to show off each project</p>
           <SearchBar callback={searchProjects} placeholder="Ex: React, drink" />
           <PortfolioCardDeck>
-            <FlipMove
-              typeName={null}
-              ease="cubic-bezier(0.39,0,0.45,1.4)"
-              enterAnimation="fade"
-              leaveAnimation="fade"
-              duration={500}
-              staggerDurationBy={22}
-            >
-              {results.map(makePortfolioCard)}
-            </FlipMove>
+            {trans((style, project) =>
+              <animated.div style={style}>
+                {makePortfolioCard(project)}
+              </animated.div>
+            )}
           </PortfolioCardDeck>
         </ArchiveWrapper>
       </Section>

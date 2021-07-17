@@ -8,6 +8,7 @@ import Axios from 'axios';
 import { getApiUrl } from '../scripts/util';
 import { Spinner } from 'react-bootstrap';
 import SearchBar from '../components/searchBar';
+import { useTransition, animated } from '@react-spring/web';
 
 const Posts = styled.div`
   display: flex;
@@ -54,11 +55,19 @@ export default function BlogHomePage() {
     }
   }
 
+  const trans = useTransition(searchResults, {
+    from: { opacity: 0 },
+    enter: { opacity: 1, maxHeight: 300 },
+    leave: { opacity: 0, maxHeight: 0 },
+  });
+
   const content = posts.length === 0 ?
     <p>No posts found</p>
     : <Posts>
-      {searchResults.map((post, idx) =>
-        <BlogPostLink post={post} key={idx} />
+      {trans((style, post) =>
+        <animated.div style={style}>
+          <BlogPostLink post={post} />
+        </animated.div>
       )}
     </Posts>
 

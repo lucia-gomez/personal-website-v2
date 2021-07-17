@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 import styled from "styled-components";
 import { IconLink } from "../components/externalButton"
 
@@ -109,7 +109,7 @@ const GitLink = styled(IconLink)`
   margin-top: -2px;
 `;
 
-export function makePortfolioCard(project, key) {
+export function makePortfolioCard(project) {
   return (
     <PortfolioCard
       title={project.title}
@@ -118,15 +118,13 @@ export function makePortfolioCard(project, key) {
       image={project.image}
       git={project.link ?? null}
       link={project.extra ?? null}
-      myKey={key}
-      key={key}
     >
       {project.text}
     </PortfolioCard>
   );
 }
 
-const PortfolioCard = forwardRef((props, ref) => {
+const PortfolioCard = props => {
   const githubIcon = (props.git ?
     <GitLink href={props.git ?? ''}>
       <div className='material-icons'>
@@ -136,7 +134,7 @@ const PortfolioCard = forwardRef((props, ref) => {
     : null);
 
   return (
-    <PortfolioCardWrapper key={props.myKey} ref={ref}>
+    <PortfolioCardWrapper>
       <PortfolioCardImage image={props.image} />
       <PortfolioCardContent>
         <Row>
@@ -157,4 +155,4 @@ const PortfolioCard = forwardRef((props, ref) => {
       </PortfolioCardContent>
     </PortfolioCardWrapper>
   );
-})
+}
