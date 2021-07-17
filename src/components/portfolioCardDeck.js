@@ -58,10 +58,11 @@ const PortfolioCardContent = styled.div`
   
   h4 {
     max-width: 78%;
+    font-weight: 600;
   }
 
   span {
-    font-weight: 700;
+    font-weight: 600;
     background-color: ${props => props.theme.accentLight};
     border-radius: 5px;
     padding: 0px 3px;
