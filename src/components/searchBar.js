@@ -42,7 +42,7 @@ const Icon = styled.i`
   z-index: 1;
 `;
 
-const SearchBar = ({ callback }) => {
+const SearchBar = ({ callback, placeholder }) => {
   const handleChange = e => {
     const query = e.target.value.trim();
     const keywords = query.split(",").map(x => x.trim()).filter(x => x.length > 0);
@@ -55,7 +55,7 @@ const SearchBar = ({ callback }) => {
         <Icon className="fas fa-search" />
         <Input
           onChange={handleChange}
-          placeholder="Ex: React, drink"
+          placeholder={placeholder}
         />
       </div>
     </Container>

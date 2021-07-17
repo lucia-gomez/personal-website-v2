@@ -67,7 +67,7 @@ export default function ArchivePage() {
         <ArchiveWrapper>
           {SectionTitle("Things I've Made")}
           <p>Vaguely organized in reverse chronological order, but mostly in order of how badly I want to show off each project</p>
-          <SearchBar callback={searchProjects} />
+          <SearchBar callback={searchProjects} placeholder="Ex: React, drink" />
           <PortfolioCardDeck>
             <FlipMove
               typeName={null}
@@ -76,7 +76,6 @@ export default function ArchivePage() {
               leaveAnimation="fade"
               duration={500}
               staggerDurationBy={22}
-
             >
               {results.map(makePortfolioCard)}
             </FlipMove>
