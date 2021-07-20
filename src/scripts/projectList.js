@@ -33,7 +33,7 @@ const projects = [
     image: ImagePowerHour,
     link: "https://github.com/lucia-gomez/our-power-hour",
     text: <p>Custom <Link href="https://en.wikipedia.org/wiki/Power_hour">power hour</Link> playlist generator to enjoy with friends.
-      Select a YouTube playlist, sit back, and drink when you hear the alarm. (Work in progress) </p>,
+      Select a YouTube playlist, sit back, and drink when you hear the alarm.</p>,
     extra: ExternalButton("https://ourpowerhour.netlify.app/"),
   },
   {

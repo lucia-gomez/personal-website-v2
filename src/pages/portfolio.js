@@ -12,7 +12,7 @@ const ArchiveButton = styled(ButtonLink)`
 `;
 
 export default function PortfolioSection() {
-  const projects = featuredProjects(["Spotify Vibe Check", "Sign Search", "Our Power Hour"]);
+  const projects = featuredProjects(["Our Power Hour", "Cards Against Cornellians 2.0", "Sign Search"]);
   return (
     <>
       {SectionTitle("Things I've Made")}
