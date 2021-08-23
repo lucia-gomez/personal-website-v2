@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Link } from 'react-router-dom';
 import Like from './like';
 import ProfileImage from "../../assets/images/profile-circle.png";
+import Back from "./back";
 
 const Wrapper = styled.div`
   background-color: ${props => props.theme.bg};
@@ -13,18 +13,12 @@ const Wrapper = styled.div`
   text-align: left;
 
   @media only screen and (max-width: 768px) {
-    display: none;
-  }
-`;
-
-const BackButton = styled(Link)`
-  color: ${props => props.theme.accent};
-  margin: 5px;
-  display: block;
-
-  :hover {
-    color: ${props => props.theme.accentHover};
-    text-decoration: none;
+    height: 290px;
+    padding-top: 10px;
+    position: relative;
+    top: 0px;
+    width: 95%;
+    margin: auto;
   }
 `;
 
@@ -108,6 +102,12 @@ const Tooltip = styled.div`
   }
 `;
 
+const BackWrapper = styled(Back)`
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
+`;
+
 function copyToClipboard() {
   const url = window.location.href;
   navigator.clipboard.writeText(url);
@@ -119,13 +119,10 @@ function copyToClipboard() {
   }, 1500);
 }
 
-const Sidebar = ({ post }) => {
+const Sidebar = ({ post, className }) => {
   return (
-    <Wrapper>
-      <BackButton to="/blog">
-        <i className="fas fa-chevron-left" style={{ paddingRight: '3px' }} />
-        Back
-      </BackButton>
+    <Wrapper className={className}>
+      <BackWrapper />
       <SidebarContent>
         <ProfilePic
           src={ProfileImage}

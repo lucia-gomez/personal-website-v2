@@ -10,6 +10,7 @@ import { getApiUrl } from '../scripts/util';
 import { Spinner } from 'react-bootstrap';
 import { useAuth0 } from "@auth0/auth0-react";
 import Sidebar from '../components/blog/sidebar';
+import Back from '../components/blog/back';
 
 const BlogWrapper = styled.div`
   padding: 0px 30px;
@@ -46,6 +47,25 @@ const EditWrapper = styled.div`
   margin-bottom: 0.5rem;
 `;
 
+const SidebarDesktop = styled(Sidebar)`
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const SidebarMobile = styled(Sidebar)`
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const BackMobile = styled(Back)`
+  margin-left: 0px;
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+`;
+
 export default function BlogPostPage() {
   const { isAuthenticated } = useAuth0();
   const { slug } = useParams();
@@ -69,8 +89,9 @@ export default function BlogPostPage() {
     <Layout>
       <Section id="blogPost" index={0}>
         {!loading ? <BlogWrapper>
-          <Sidebar post={post} />
+          <SidebarDesktop post={post} />
           <Content>
+            <BackMobile />
             <EditWrapper>
               <Title>{post.title}</Title>
               {isAuthenticated ? <EditorPopup post={post} /> : null}
@@ -81,6 +102,7 @@ export default function BlogPostPage() {
             </Metadata>
             <BlogContent content={post.content} />
           </Content>
+          <SidebarMobile post={post} />
         </BlogWrapper>
           : <Spinner animation="border" role="status">
             <span className="sr-only">Loading...</span>
