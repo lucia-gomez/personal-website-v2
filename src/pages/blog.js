@@ -57,7 +57,7 @@ export default function BlogHomePage() {
 
   const trans = useTransition(searchResults, {
     from: { opacity: 0 },
-    enter: { opacity: 1, maxHeight: 300 },
+    enter: { opacity: 1, maxHeight: 400 },
     leave: { opacity: 0, maxHeight: 0 },
   });
 
