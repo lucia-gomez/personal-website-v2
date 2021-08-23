@@ -30,6 +30,8 @@ const PortfolioCardWrapper = styled.div`
   @media screen and (max-width: 850px) {
     margin: 0px;
     margin-bottom: 30px;
+    width: 100%;
+    max-width: 400px;
   }
 `;
 
