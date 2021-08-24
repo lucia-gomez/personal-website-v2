@@ -12,6 +12,22 @@ const ArchiveWrapper = styled.div`
   padding: 0px 30px;
 `;
 
+const Advanced = styled.div`
+  color: ${props => props.theme.accent};
+  cursor: pointer;
+  margin: auto;
+  width: fit-content;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+
+  i {
+    padding-right: 5px;
+    transform: ${props => (props.showAdvanced ? `rotate(90deg) translateX(3px) translateY(3px)` : '')};
+    transition: transform 200ms ease-in;
+  }
+`;
+
 const searchableFields = ["title", "date", "tools", "text", "tags"];
 
 function toStringRec(obj) {
@@ -53,6 +69,7 @@ const FilterRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
   padding-top: 10px;
 `;
 
@@ -76,11 +93,11 @@ const Filters = ({ active, setActive }) => {
     <FilterRow>
       Project category:
       {Object.entries(category).map(([catName, catNum], idx) =>
-        <FilterItemContainer>
+        <FilterItemContainer key={idx}>
           <FilterItem
             active={active === catNum ? "true" : "false"}
             onClick={() => setActive(catNum)}
-            key={idx}>
+          >
             {catName}
           </FilterItem>
         </FilterItemContainer>
@@ -93,12 +110,19 @@ export default function ArchivePage() {
   const [results, setResults] = useState(projects);
   const [searchKeywords, setSearchKeywords] = useState([]);
   const [activeFilter, setActiveFilter] = useState(-1); // all
+  const [showAdvanced, setShowAdvanced] = useState(false);
 
   const searchProjects = keywords => {
     setSearchKeywords(keywords);
   }
 
-  const trans = useTransition(results, {
+  const projectTransition = useTransition(results, {
+    from: { opacity: 0 },
+    enter: { opacity: 1, maxHeight: 575 },
+    leave: { opacity: 0, maxHeight: 0 },
+  });
+
+  const advancedTransition = useTransition(showAdvanced, {
     from: { opacity: 0 },
     enter: { opacity: 1, maxHeight: 575 },
     leave: { opacity: 0, maxHeight: 0 },
@@ -118,7 +142,14 @@ export default function ArchivePage() {
       filtered = filtered.filter(project => filterProject(project, searchKeywords));
       setResults(filtered);
     }
-  }, [activeFilter, searchKeywords])
+  }, [activeFilter, searchKeywords]);
+
+  const advancedButton = (
+    <Advanced onClick={() => setShowAdvanced(!showAdvanced)} {...{ showAdvanced }}>
+      <i className={`fas ${showAdvanced ? 'fa-chevron-right' : 'fa-chevron-right'}`}></i>
+      Advanced filters
+    </Advanced>
+  );
 
   return (
     <Layout>
@@ -127,9 +158,14 @@ export default function ArchivePage() {
           {SectionTitle("Things I've Made")}
           <p>Vaguely organized in reverse chronological order, but mostly in order of how badly I want to show off each project</p>
           <SearchBar callback={searchProjects} placeholder="Ex: React, drink" />
-          <Filters active={activeFilter} setActive={setActiveFilter} />
+          {advancedButton}
+          {advancedTransition((style, item) =>
+            <animated.div style={style}>
+              {item && <Filters active={activeFilter} setActive={setActiveFilter} />}
+            </animated.div>
+          )}
           <PortfolioCardDeck>
-            {trans((style, project) =>
+            {projectTransition((style, project) =>
               <animated.div style={style}>
                 {makePortfolioCard(project)}
               </animated.div>
