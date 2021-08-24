@@ -15,6 +15,8 @@ import ImageCliqueBite from "../assets/images/portfolio/cliquebite.png"
 import ImagePowerHour from "../assets/images/portfolio/powerHour.png"
 import ImageCACWeb from "../assets/images/portfolio/cac-web.png"
 import ImageIsoCornell from "../assets/images/portfolio/isoCornell.png"
+import ImageVaxGraph from "../assets/images/portfolio/vaxGraph.png"
+
 
 const projects = [
   {
@@ -70,6 +72,15 @@ const projects = [
     image: ImageWebsite,
     link: "https://github.com/lucia-gomez/personal-website-v2",
     text: <p>You're looking at it! This is V2, I tend to start from scratch when I'm bored or when I've learned something new.</p>,
+  },
+  {
+    title: "COVID-19 Vaccination Data Viz",
+    date: "Oct 2020",
+    tools: ["D3", "Python", "Javascript", "HTML/CSS"],
+    image: ImageVaxGraph,
+    link: "https://github.com/lucia-gomez/3300-project-1",
+    extra: ExternalButton("https://lucia-gomez.github.io/3300-project-1/"),
+    text: <p>Static data visualizations using D3 for a <Link href='https://www.kaggle.com/gpreda/covid-world-vaccination-progress'>worldwide COVID-19 vaccination dataset</Link> compared with country GDP. Group project for Cornell's INFO 3300: Data-Driven Web Apps.</p>,
   },
   {
     title: "CliqueBite UI",
