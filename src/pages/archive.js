@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Layout from "../components/layout"
 import Section from "../components/section"
 import SectionTitle from "../components/sectionTitle"
 import { PortfolioCardDeck, makePortfolioCard } from "../components/portfolioCardDeck"
 import SearchBar from '../components/searchBar'
-import projects from "../scripts/projectList"
+import projects, { category } from "../scripts/projectList"
 import { useTransition, animated } from '@react-spring/web'
 
 const ArchiveWrapper = styled.div`
@@ -49,16 +49,53 @@ function filterProject(project, keywords) {
   return keywordHits.every(x => x);
 }
 
+const FilterRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 10px;
+`;
+
+const FilterItemContainer = styled.div`
+  padding: 0px 5px;
+  :not(:last-child) {
+    border-right: 1px solid ${props => props.theme.textLight};
+  }
+`;
+
+const FilterItem = styled.span`
+  border-radius: 10px;
+  background-color: ${props => props.active === 'true' ? props.theme.accent : props.theme.medium};
+  color: ${props => props.active === 'true' ? props.theme.textInv : props.theme.accent};
+  padding: 0px 5px;
+  cursor: pointer;
+`;
+
+const Filters = ({ active, setActive }) => {
+  return (
+    <FilterRow>
+      Project category:
+      {Object.entries(category).map(([catName, catNum], idx) =>
+        <FilterItemContainer>
+          <FilterItem
+            active={active === catNum ? "true" : "false"}
+            onClick={() => setActive(catNum)}
+            key={idx}>
+            {catName}
+          </FilterItem>
+        </FilterItemContainer>
+      )}
+    </FilterRow>
+  );
+}
+
 export default function ArchivePage() {
   const [results, setResults] = useState(projects);
+  const [searchKeywords, setSearchKeywords] = useState([]);
+  const [activeFilter, setActiveFilter] = useState(-1); // all
 
   const searchProjects = keywords => {
-    if (keywords.length === 0) {
-      setResults(projects);
-    } else {
-      const filtered = projects.filter(project => filterProject(project, keywords));
-      setResults(filtered);
-    }
+    setSearchKeywords(keywords);
   }
 
   const trans = useTransition(results, {
@@ -67,6 +104,22 @@ export default function ArchivePage() {
     leave: { opacity: 0, maxHeight: 0 },
   });
 
+  useEffect(() => {
+    // filter by selected category
+    let filtered = projects;
+    if (activeFilter !== -1) {
+      filtered = filtered.filter(project => project.categories.includes(activeFilter));
+    }
+
+    // filter by search keywords
+    if (searchKeywords.length === 0) {
+      setResults(filtered);
+    } else {
+      filtered = filtered.filter(project => filterProject(project, searchKeywords));
+      setResults(filtered);
+    }
+  }, [activeFilter, searchKeywords])
+
   return (
     <Layout>
       <Section id="archive" index={0}>
@@ -74,6 +127,7 @@ export default function ArchivePage() {
           {SectionTitle("Things I've Made")}
           <p>Vaguely organized in reverse chronological order, but mostly in order of how badly I want to show off each project</p>
           <SearchBar callback={searchProjects} placeholder="Ex: React, drink" />
+          <Filters active={activeFilter} setActive={setActiveFilter} />
           <PortfolioCardDeck>
             {trans((style, project) =>
               <animated.div style={style}>
