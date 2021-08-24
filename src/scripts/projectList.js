@@ -16,6 +16,7 @@ import ImagePowerHour from "../assets/images/portfolio/powerHour.png"
 import ImageCACWeb from "../assets/images/portfolio/cac-web.png"
 import ImageIsoCornell from "../assets/images/portfolio/isoCornell.png"
 import ImageVaxGraph from "../assets/images/portfolio/vaxGraph.png"
+import ImageLangViz from "../assets/images/portfolio/langViz.png"
 
 const category = {
   "All": -1,
@@ -67,14 +68,14 @@ const projects = [
     categories: [category.Web],
   },
   {
-    title: "Isometric Cornell",
-    date: "April 2021",
-    tools: ["Javascript", "Isomer"],
-    image: ImageIsoCornell,
-    link: "https://github.com/lucia-gomez/isometric-cornell",
-    text: <p>An animated, isometric model of Cornell's iconic McGraw Tower. Made as an excuse to play with Isomer JS.</p>,
-    extra: ExternalButton("https://lucia-gomez.github.io/isometric-cornell/"),
-    categories: [category.Web],
+    title: "Endangered Languages Data Viz",
+    date: "April-May 2021",
+    tools: ["D3", "Topojson", "Javascript", "HTML/CSS"],
+    image: ImageLangViz,
+    link: "https://github.com/lucia-gomez/project2-3300-repl",
+    extra: ExternalButton("https://lucia-gomez.github.io/project2-3300-repl/"),
+    text: <p>Interactive data visualization using D3 and Topojson for an <Link href='https://www.kaggle.com/the-guardian/extinct-languages'>endangered world language dataset</Link>. Group project for Cornell's INFO 3300: Data-Driven Web Apps.</p>,
+    categories: [category.Web, category["Data visualization"]],
   },
   {
     title: "Personal Website",
@@ -86,8 +87,18 @@ const projects = [
     categories: [category.Web],
   },
   {
+    title: "Isometric Cornell",
+    date: "April 2021",
+    tools: ["Javascript", "Isomer"],
+    image: ImageIsoCornell,
+    link: "https://github.com/lucia-gomez/isometric-cornell",
+    text: <p>An animated, isometric model of Cornell's iconic McGraw Tower. Made as an excuse to play with Isomer JS.</p>,
+    extra: ExternalButton("https://lucia-gomez.github.io/isometric-cornell/"),
+    categories: [category.Web],
+  },
+  {
     title: "COVID-19 Vaccination Data Viz",
-    date: "Oct 2020",
+    date: "March 2021",
     tools: ["D3", "Python", "Javascript", "HTML/CSS"],
     image: ImageVaxGraph,
     link: "https://github.com/lucia-gomez/3300-project-1",
