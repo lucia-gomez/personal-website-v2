@@ -31,11 +31,12 @@ export default function ExperienceSection() {
       "Courses: Object-Oriented Data Structures Honors (CS 2112), Foundations of Artificial Intelligence (CS 4700), and Functional Programming (CS 3110)"
     ]);
 
-  const facebook = ExperienceItem("Software Engineering Intern", "Facebook", "https://www.facebook.com/careers/", "June - August 2019, June - August 2020",
-    ["2020: Full-stack web development on the Marketplace ML Foundations team",
+  const facebook = ExperienceItem("Software Engineer", "Facebook", "https://www.facebook.com/careers/", "June - Aug 2019, June - Aug 2020, Aug 2021 - present",
+    ["2021: Currently in Bootcamp!",
+      "2020 (internship): Full-stack web development on the Marketplace ML Foundations team",
       "Created a series of internal UI tools to empower logging interactions on Facebook Marketplace",
       "Optimized interaction logging logic to reduce errors and redundancy",
-      "2019: Full-stack web development on the Integrity Review Platform team",
+      "2019 (internship): Full-stack web development on the Integrity Review Platform team",
       "Implemented a web app using PHP and React to provide feedback to content reviewers"
     ]);
 
@@ -46,9 +47,9 @@ export default function ExperienceSection() {
     ]);
 
   const tabs = {
+    "Facebook": facebook,
     "Juni Learning": juni,
     "Cornell CIS": ta,
-    "Facebook": facebook,
     "Aurora": aurora,
   };
 
