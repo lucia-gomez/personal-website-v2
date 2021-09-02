@@ -55,6 +55,7 @@ const MobileNav = styled(Nav)`
   border: none;
   margin-bottom: 20px;
   overflow-x: scroll;
+  overflow-y: clip;
   position: relative;
 
   .nav-link {

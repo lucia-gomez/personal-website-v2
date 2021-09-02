@@ -33,7 +33,7 @@ const projects = [
     date: "Aug 2021",
     tools: ["Spark AR", "Blender", "Photoshop"],
     image: ImageARHand,
-    text: <p>I turned some 2D artwork into a 3D augmented reality experience with Spark AR target tracking. The 2D fingers in the poster come to life when viewed through the AR camera effect. <Link href="https://lucia-gomez.netlify.app/blog/spark-ar-hand-poster/">Read more</Link></p>,
+    text: <p>I turned 2D artwork into a 3D augmented reality experience with Spark AR. The poster comes to life when viewed through the AR camera effect. <Link href="https://lucia-gomez.netlify.app/blog/spark-ar-hand-poster/">Read more</Link></p>,
     extra: [
       ExternalButton("https://drive.google.com/file/d/1MvihpuFwkWgEcWhzmDE7TgnBCJccTWgr/view?usp=sharing"),
       ExternalButton("https://www.instagram.com/ar/651996575775549/?ch=ZTU0MjBmNjQwYTNjNDJkM2QzNWRkYjk2Mzc2M2U3NGQ%3D")

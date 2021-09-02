@@ -111,16 +111,16 @@ export default function About() {
               "fab fa-github",
               <Link href='https://github.com/lucia-gomez'>lucia-gomez</Link>
             )}
+            {ProfileInfo("fas fa-briefcase", "SWE, Facebook")}
             {ProfileInfo("fas fa-graduation-cap", "Cornell University")}
-            {ProfileInfo("fas fa-map-marker-alt", "Ithaca, NY")}
-            {ProfileInfo("fas fa-home", "Fairfax, VA")}
+            {ProfileInfo("fas fa-map-marker-alt", "Seattle, WA")}
           </ProfileIconsWrapper>
         </ProfileWrapper>
         <div>
           <Subsection title='Hello World!'>
-            <p>I'm an incoming Software Engineer at <span>Facebook</span>,
+            <p>I'm a Software Engineer in Bootcamp at <span>Facebook</span>,
               and I recently graduated from Cornell as a Computer Science and Linguistics major.
-              I'm passionate about the <span>intersection of language and technology</span>, but I've been on a full-stack web dev spree lately.
+              I'm passionate about the <span>intersection of language, art, and technology</span>, but I've been on a full-stack web dev spree lately.
               For the past few years, I've been interested in <span>American Sign Language</span> and the challenges associated with machine translation-
               I was featured <Link href='https://www.leadwithlanguages.org/2019/03/14/ask-away-5-questions-cornell-computer-science-linguistics-major-mixing-asl-innovation/'>here</Link>.
               I have at least one ABBA song stuck in my head at any given time.</p>

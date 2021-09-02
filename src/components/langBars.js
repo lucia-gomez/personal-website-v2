@@ -35,7 +35,7 @@ const Progress = styled(ProgressBar)`
 const LangBars = () => {
   const bars = [
     { name: "Python", progress: "100", }, { name: "Java", progress: "95", },
-    { name: "Javascript/React", progress: "90", }, { name: "HTML/CSS", progress: "70", },
+    { name: "Javascript/React", progress: "90", }, { name: "HTML/CSS", progress: "85", },
     { name: "OCaml", progress: "70", }, { name: "PHP/Hack", progress: "50", },
     { name: "SQL", progress: "50", }
   ];

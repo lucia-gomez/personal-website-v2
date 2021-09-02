@@ -120,6 +120,7 @@ export function makePortfolioCard(project) {
       image={project.image}
       git={project.link ?? null}
       link={project.extra ?? null}
+      key={project.title}
     >
       {project.text}
     </PortfolioCard>
