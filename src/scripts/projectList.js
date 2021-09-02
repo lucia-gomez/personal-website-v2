@@ -17,15 +17,29 @@ import ImageCACWeb from "../assets/images/portfolio/cac-web.png"
 import ImageIsoCornell from "../assets/images/portfolio/isoCornell.png"
 import ImageVaxGraph from "../assets/images/portfolio/vaxGraph.png"
 import ImageLangViz from "../assets/images/portfolio/langViz.png"
+import ImageARHand from "../assets/images/portfolio/arHand.png"
 
 const category = {
   "All": -1,
   "Web": 0,
   "Data visualization": 1,
-  "Other": 2,
+  "AR/VR": 2,
+  "Other": 99,
 };
 
 const projects = [
+  {
+    title: "3D Poster Animation: Hand Grab",
+    date: "Aug 2021",
+    tools: ["Spark AR", "Blender", "Photoshop"],
+    image: ImageARHand,
+    text: <p>I turned 2D artwork into a 3D augmented reality experience with Spark AR. The poster comes to life when viewed through the AR camera effect. <Link href="https://lucia-gomez.netlify.app/blog/spark-ar-hand-poster/">Read more</Link></p>,
+    extra: [
+      ExternalButton("https://drive.google.com/file/d/1MvihpuFwkWgEcWhzmDE7TgnBCJccTWgr/view?usp=sharing"),
+      ExternalButton("https://www.instagram.com/ar/651996575775549/?ch=ZTU0MjBmNjQwYTNjNDJkM2QzNWRkYjk2Mzc2M2U3NGQ%3D")
+    ],
+    categories: [category["AR/VR"]],
+  },
   {
     title: "Cards Against Cornellians 2.0",
     date: "April 2021-present",
@@ -172,7 +186,7 @@ const projects = [
     tools: ["Unreal Engine 4"],
     image: ImageSpaceBears,
     text: <p>My first experience working with virtual reality. Explore a space station manned by teddy bears! Group project for Cornell's CS1620: Visual Imaging</p>,
-    categories: [category.Other],
+    categories: [category["AR/VR"]],
   },
 ];
 
