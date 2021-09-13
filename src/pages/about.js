@@ -120,7 +120,7 @@ export default function About() {
           <Subsection title='Hello World!'>
             <p>I'm a Software Engineer in Bootcamp at <span>Facebook</span>,
               and I recently graduated from Cornell as a Computer Science and Linguistics major.
-              I'm passionate about the <span>intersection of language, art, and technology</span>, but I've been on a full-stack web dev spree lately.
+              I'm passionate about <span>augmented and virtual reality</span>, but I've been on a full-stack web dev spree lately.
               For the past few years, I've been interested in <span>American Sign Language</span> and the challenges associated with machine translation-
               I was featured <Link href='https://www.leadwithlanguages.org/2019/03/14/ask-away-5-questions-cornell-computer-science-linguistics-major-mixing-asl-innovation/'>here</Link>.
               I have at least one ABBA song stuck in my head at any given time.</p>
