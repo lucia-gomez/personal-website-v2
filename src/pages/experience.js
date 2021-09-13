@@ -55,10 +55,17 @@ export default function ExperienceSection() {
       "Created documentation and trained other employees on the framework"
     ]);
 
+  const cudap = ExperienceItem("President", "Cornell University Deaf Awareness Project", "https://cornell.campusgroups.com/cudap/home/", "June 2019 - August 2020",
+    ["Successfully advocated for the creation of American Sign Language classes at Cornell",
+      "Planned events to educate about Deaf culture, ASL, and accessibility",
+      "Responsibilities included creating agendas and leading weekly board meetings, longterm goalsetting, budget management, and collaboration with community agencies",
+    ]);
+
   const tabs = {
     "Facebook": facebook,
     "Juni Learning": juni,
     "Cornell CIS": ta,
+    "CUDAP": cudap,
     "Aurora": aurora,
   };
 
