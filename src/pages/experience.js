@@ -41,7 +41,7 @@ export default function ExperienceSection() {
     ]);
 
   const facebook = ExperienceItem("Software Engineer", "Facebook", "https://www.facebook.com/careers/", "June - Aug 2019, June - Aug 2020, Aug 2021 - present",
-    ["2021: Currently in Bootcamp!",
+    ["Present: SWE working on AR glasses",
       "2020 (internship): Full-stack web development on the Marketplace ML Foundations team",
       ["Created a series of internal UI tools to empower logging interactions on Facebook Marketplace",
         "Optimized interaction logging logic to reduce errors and redundancy"],
