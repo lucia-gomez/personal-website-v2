@@ -118,13 +118,13 @@ export default function ArchivePage() {
 
   const projectTransition = useTransition(results, {
     from: { opacity: 0 },
-    enter: { opacity: 1, maxHeight: 575 },
+    enter: { opacity: 1, maxHeight: 625 },
     leave: { opacity: 0, maxHeight: 0 },
   });
 
   const advancedTransition = useTransition(showAdvanced, {
     from: { opacity: 0 },
-    enter: { opacity: 1, maxHeight: 575 },
+    enter: { opacity: 1, maxHeight: 625 },
     leave: { opacity: 0, maxHeight: 0 },
   });
 

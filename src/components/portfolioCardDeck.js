@@ -32,6 +32,7 @@ const PortfolioCardWrapper = styled.div`
     margin-bottom: 30px;
     width: 100%;
     max-width: 400px;
+    max-height: 590px;
   }
 `;
 
@@ -57,6 +58,10 @@ const PortfolioCardContent = styled.div`
   text-align: left;
   display: grid;
   grid-template-rows: auto 40px 20px 1fr auto;
+
+  @media only screen and (max-width: 576px) {
+    height: fit-content;
+  }
   
   h4 {
     max-width: 78%;
@@ -89,13 +94,6 @@ const PortfolioCardDivider = styled.span`
   width: 50px;
   height: 5px;
   background-color: ${props => props.theme.accent}!important;
-`;
-
-const PortfolioCardTags = styled.div`
-  padding-top: 20px;
-  position: absolute;
-  bottom: 5px;
-  text-align: left;
 `;
 
 const PortfolioCardTag = styled.span`
@@ -150,11 +148,11 @@ const PortfolioCard = props => {
         <p>{props.date}</p>
         <PortfolioCardDivider />
         {props.children}
-        <PortfolioCardTags>
+        <div>
           {props.tools.map((tool, index) => (
             <PortfolioCardTag key={index}>{tool}</PortfolioCardTag>
           ))}
-        </PortfolioCardTags>
+        </div>
       </PortfolioCardContent>
     </PortfolioCardWrapper>
   );
