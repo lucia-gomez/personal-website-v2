@@ -34,10 +34,10 @@ const Progress = styled(ProgressBar)`
 
 const LangBars = () => {
   const bars = [
-    { name: "Python", progress: "100", }, { name: "Java", progress: "95", },
-    { name: "Javascript/React", progress: "90", }, { name: "HTML/CSS", progress: "85", },
-    { name: "OCaml", progress: "70", }, { name: "PHP/Hack", progress: "50", },
-    { name: "SQL", progress: "50", }
+    { name: "Python", progress: "100", }, { name: "Javascript/React", progress: "95", },
+    { name: "Java", progress: "90", }, { name: "HTML/CSS", progress: "85", },
+    { name: "OCaml", progress: "70", }, { name: 'Dart/Flutter', progress: "60" },
+    { name: "PHP/Hack", progress: "50", }, { name: "SQL", progress: "50", }
   ];
 
   return (

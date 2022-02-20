@@ -118,7 +118,7 @@ export default function About() {
         </ProfileWrapper>
         <div>
           <Subsection title='Hello World!'>
-            <p>I'm a Software Engineer in Bootcamp at <span>Facebook</span>,
+            <p>I'm a Software Engineer working on AR glasses at <span>Facebook</span>,
               and I recently graduated from Cornell as a Computer Science and Linguistics major.
               I'm passionate about <span>augmented and virtual reality</span>, but I've been on a full-stack web dev spree lately.
               For the past few years, I've been interested in <span>American Sign Language</span> and the challenges associated with machine translation-
