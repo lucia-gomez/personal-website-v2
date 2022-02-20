@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Delete from './delete';
 import { useAuth0 } from "@auth0/auth0-react";
 import BlogContent from './blogContent';
+import { hexToRGB } from '../../style/theme';
 
 const Wrapper = styled.div`
   min-width: 300px;
@@ -75,8 +76,8 @@ const ContentPreview = styled(BlogContent)`
     width: 100%;
     content: "";
     background: linear-gradient(to top,
-      rgba(36, 36, 36, 0) 0%, 
-      rgba(255,255,255, 0) 70%
+      ${props => props.theme.bg} 0%,  
+      ${props => hexToRGB(props.theme.bg, 0.0)} 70%
     );
     pointer-events: none;
   }
