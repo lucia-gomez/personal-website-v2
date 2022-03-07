@@ -22,7 +22,9 @@ const SwitchLabel = styled.label`
   align-items: center;
 
   @media only screen and (max-width: 576px) {
-    margin: unset!important;
+    right: 5px;
+    position: absolute;
+    top: 15px;
   }
 `;
 

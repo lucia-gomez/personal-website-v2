@@ -10,6 +10,20 @@ import Doc from '../assets/resume.pdf';
 
 const NavWrapper = styled(Navbar)`
   background-color: #6A1B9A;
+
+  .navbar-nav {
+    flex-wrap: wrap;
+
+    @media only screen and (max-width: 576px) {
+      flex-direction: row;
+    }
+  }
+`;
+
+const ExtraNav = styled(Nav)`
+  .nav-link {
+    padding-right: 5px;
+  }
 `;
 
 const NavLink = styled(Nav.Link).attrs(_ => ({
@@ -18,11 +32,16 @@ const NavLink = styled(Nav.Link).attrs(_ => ({
   background: none;
   border: none;
   color: ${props => props.theme.text};
+  width: max-content;
 
   .active {
     background-color: ${props => props.theme.accent};
     border: none;
     color: ${props => props.theme.textInv};
+  }
+
+  .extra {
+    padding-right: 5px;
   }
 `;
 
@@ -34,6 +53,22 @@ const LogoutButton = styled.a.attrs(_ => ({
 
   :hover {
     color: ${props => props.theme.accentHover};
+  }
+`;
+
+const NavItem = styled(Nav.Item)`
+  @media only screen and (max-width: 576px) {
+    :not(:last-child) { 
+      padding-right: 5px;
+      display: flex;
+      align-items: center;
+
+      :after {
+        content: '|';
+        padding-left: 5px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
   }
 `;
 
@@ -61,19 +96,19 @@ const CustomNav = props => {
   ];
 
   return (
-    <NavWrapper id="main-navbar" className="navbar navbar-dark" expand="sm" fixed="top" >
+    <NavWrapper id="main-navbar" className="navbar navbar-dark" expand="sm" fixed="top" collapseOnSelect>
       <Navbar.Toggle aria-controls="navbarCollapse" />
       <Navbar.Collapse id="navbarCollapse">
         <Scrollspy componentTag='div' defaultActiveKey="./#home"
           className="navbar-nav mr-auto" items={['home', 'about', 'portfolio', 'experience']}
           currentClassName='isCurrent'>
           {sections.map((section, key) => (
-            <Nav.Item as="li" key={key}>
+            <NavItem as="li" key={key}>
               <NavLink as="a" href={section.link} target={section.target ?? null} >{section.name}</NavLink>
-            </Nav.Item>
+            </NavItem>
           ))}
         </Scrollspy>
-        <Nav>
+        <ExtraNav>
           {icons.map((icon, key) => (
             <NavLink key={key} href={icon.link} target='_blank' rel='noopener noreferrer'>
               {icon.icon}
@@ -91,7 +126,7 @@ const CustomNav = props => {
           >
             Log Out
           </LogoutButton> : null}
-        </Nav>
+        </ExtraNav>
       </Navbar.Collapse>
     </NavWrapper >
   );
