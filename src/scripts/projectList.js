@@ -42,7 +42,7 @@ const projects = [
   },
   {
     title: "Cards Against Cornellians 2.0",
-    date: "April 2021-present",
+    date: "April-June 2021",
     tools: ["React", "Flask-SocketIO", "Python", "Styled Components", "Heroku"],
     image: ImageCACWeb,
     link: "https://github.com/lucia-gomez/cards-against-cornellians-web",
@@ -63,7 +63,7 @@ const projects = [
   },
   {
     title: "Spotify Vibe Check",
-    date: "Dec 2020-present",
+    date: "Dec 2020",
     tools: ["React", "Spotify API", "Reach Router", "Express", "Materialize", "Heroku"],
     image: ImageSpotifyVibeCheck,
     link: "https://github.com/lucia-gomez/spotify-vibe-check",
