@@ -18,6 +18,7 @@ import ImageIsoCornell from "../assets/images/portfolio/isoCornell.png"
 import ImageVaxGraph from "../assets/images/portfolio/vaxGraph.png"
 import ImageLangViz from "../assets/images/portfolio/langViz.png"
 import ImageARHand from "../assets/images/portfolio/arHand.png"
+import ImageLavaLamp from "../assets/images/portfolio/lavaLamp.png"
 
 const category = {
   "All": -1,
@@ -28,6 +29,26 @@ const category = {
 };
 
 const projects = [
+  {
+    title: "Lava Lamp Simulator",
+    date: "April 2022",
+    tools: ["WebGL", "GLSL", "HTML/CSS"],
+    image: ImageLavaLamp,
+    text: <p>I woke up one day and wanted to play with WebGL, so I made a lava lamp simulator</p>,
+    link: "https://github.com/lucia-gomez/lava-lamp",
+    extra: ExternalButton("https://lucia-gomez.github.io/lava-lamp/"),
+    categories: [category.Web],
+  },
+  {
+    title: "Sign Search",
+    date: "March 2022",
+    tools: ["Javascript", "React"],
+    image: ImageSignSearch,
+    link: "https://github.com/lucia-gomez/Sign-Search",
+    text: <p>A Chrome extension for providing a convenient way to lookup words in American Sign Language. Highlight a word on a page or enter a search directly into the extension to see multiple ways of signing the word.</p>,
+    extra: ExternalButton("https://chrome.google.com/webstore/detail/sign-search/gniinlnnpjdbeleojkghgdccpapkapma"),
+    categories: [category.Web],
+  },
   {
     title: "3D Poster Animation: Hand Grab",
     date: "Aug 2021",
@@ -69,16 +90,6 @@ const projects = [
     link: "https://github.com/lucia-gomez/spotify-vibe-check",
     text: <p>A web app to analyze the vibe of your Spotify playlists. (Work in progress)</p>,
     extra: ExternalButton("https://spotify-vibe-check.herokuapp.com/"),
-    categories: [category.Web],
-  },
-  {
-    title: "Sign Search",
-    date: "May 2020",
-    tools: ["Javascript", "React"],
-    image: ImageSignSearch,
-    link: "https://github.com/lucia-gomez/Sign-Search",
-    text: <p>A Chrome extension for providing a convenient way to lookup words in American Sign Language. Highlight a word on a page or enter a search directly into the extension to see multiple ways of signing the word.</p>,
-    extra: ExternalButton("https://chrome.google.com/webstore/detail/sign-search/gniinlnnpjdbeleojkghgdccpapkapma"),
     categories: [category.Web],
   },
   {
