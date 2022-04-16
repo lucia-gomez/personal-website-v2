@@ -48,8 +48,17 @@ const shell = {
     require(`../assets/zines/shell/${i + 1}.png`)
   )
 };
+const wugs = {
+  title: "This is a Wug",
+  date: "April 2022",
+  description: "\"This is a wug\" is a famous linguistics experiment. Now it's the beginning of a war",
+  height: 520,
+  pages: Array.from(Array(8)).map((_, i) =>
+    require(`../assets/zines/wug/${i + 1}.png`)
+  )
+};
 
-const zines = [lactoseIntolerance, pickle, shell, birds_arent_real, snakesCantSign];
+const zines = [wugs, lactoseIntolerance, pickle, shell, birds_arent_real, snakesCantSign];
 
 const SubsectionWrapper = styled.div`
   h4 {
