@@ -81,6 +81,7 @@ const CustomNav = props => {
     { name: "Experience", link: "/#experience" },
     { name: "Blog", link: "/blog" },
     ...(isAuthenticated ? [{ name: "Admin", link: "/admin" }] : []),
+    { name: "Art", link: "/art" },
     { name: "Resume", link: Doc, target: "_blank" },
   ];
 
