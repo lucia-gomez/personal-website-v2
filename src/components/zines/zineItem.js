@@ -4,9 +4,10 @@ import ZineFlipBook from './zineFlipBook';
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: 1fr 100px;
+  grid-template-rows: 320px auto;
   width: 200px;
   margin-left: 20px;
+  margin-bottom: 20px;
 
   :hover {
     transform: scale(1.05);
@@ -18,9 +19,21 @@ const Wrapper = styled.div`
   }
 
   img {
-    width: 200px;
+    width: 100%;
     height: 100%;
     object-fit: contain;
+  }
+
+  @media only screen and (max-width: 576px) {
+    display: block;
+    justify-content: flex-start;
+    margin-left: 0;
+    width: 300px;
+
+    img {
+      object-fit: unset;
+      height: unset;
+    }
   }
 `;
 
