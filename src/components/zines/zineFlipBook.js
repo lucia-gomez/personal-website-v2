@@ -7,7 +7,7 @@ import FlipPage from 'react-flip-page';
 const ModalWrapper = styled.div`
   .modal-header, .modal-body, .modal-footer {
     background-color: ${props => props.theme.bg};
-    border-color: ${props => props.theme.textLight};
+    border-color: ${props => props.theme.medium};
   }
 
   .modal-title {
@@ -41,6 +41,7 @@ export default function ZineFlipBook({ zine, show, handleClose }) {
       flipOnTouch={true}
       showTouchHint={true}
       height={zine.height}
+      animationDuration={500}
       ref={flipBookRef}>
       {zine.pages.map((page, i) =>
         <article key={i}>
@@ -56,8 +57,11 @@ export default function ZineFlipBook({ zine, show, handleClose }) {
         <Modal.Header closeButton>
           <Modal.Title>{zine.title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ display: 'flex', justifyContent: 'center' }}>
-          {getZineFlipBook(zine)}
+        <Modal.Body>
+          <p>{zine.description}</p>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            {getZineFlipBook(zine)}
+          </div>
         </Modal.Body>
         <Modal.Footer style={{ justifyContent: 'space-between' }}>
           <Button onClick={handlePreviousPage}>

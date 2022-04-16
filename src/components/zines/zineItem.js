@@ -3,10 +3,15 @@ import { useState } from 'react';
 import ZineFlipBook from './zineFlipBook';
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  display: grid;
+  grid-template-rows: 1fr 100px;
   width: 200px;
+  margin-left: 20px;
+
+  :hover {
+    transform: scale(1.05);
+    transition: transform 200ms;
+  }
 
   p {
     width: fit-content;
@@ -14,7 +19,18 @@ const Wrapper = styled.div`
 
   img {
     width: 200px;
+    height: 100%;
+    object-fit: contain;
   }
+`;
+
+const ZineTitle = styled.p`
+  margin: 0;
+`;
+
+const ZineDate = styled.p`
+  color: ${props => props.theme.textLight};
+  margin: 0;
 `;
 
 export default function ZineItem({ zine }) {
@@ -26,7 +42,10 @@ export default function ZineItem({ zine }) {
   return (<>
     <Wrapper onClick={handleShow}>
       <img src={zine.pages[0]} alt={`${zine.title} zine cover page`} />
-      <p>{zine.title}</p>
+      <div>
+        <ZineTitle>{zine.title}</ZineTitle>
+        <ZineDate>{zine.date}</ZineDate>
+      </div>
     </Wrapper>
     <ZineFlipBook show={showModal} {...{ zine, handleClose }} />
   </>);
