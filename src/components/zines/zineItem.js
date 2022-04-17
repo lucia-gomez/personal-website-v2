@@ -3,10 +3,8 @@ import { useState } from 'react';
 import ZineFlipBook from './zineFlipBook';
 
 const Wrapper = styled.div`
-  display: grid;
-  grid-template-rows: 320px auto;
   width: 200px;
-  margin-left: 20px;
+  margin-right: 20px;
   margin-bottom: 20px;
 
   :hover {
@@ -14,31 +12,26 @@ const Wrapper = styled.div`
     transition: transform 200ms;
   }
 
-  p {
-    width: fit-content;
-  }
-
   img {
     width: 100%;
-    height: 100%;
+    height: 300px;
     object-fit: contain;
+    object-position: left;
   }
 
   @media only screen and (max-width: 576px) {
-    display: block;
-    justify-content: flex-start;
-    margin-left: 0;
-    width: 300px;
+    width: 100%;
 
     img {
-      object-fit: unset;
-      height: unset;
+      width: 120px;
+      height: 220px;
     }
   }
 `;
 
 const ZineTitle = styled.p`
   margin: 0;
+  color: ${props => props.theme.accent};
 `;
 
 const ZineDate = styled.p`

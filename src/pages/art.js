@@ -3,6 +3,7 @@ import Layout from "../components/layout"
 import Section from "../components/section"
 import SectionTitle from "../components/sectionTitle"
 import Subsection from "../components/subsection"
+import Link from '../components/link';
 import ZineItem from "../components/zines/zineItem";
 import { PortfolioCardDeck } from '../components/portfolioCardDeck'
 
@@ -67,7 +68,17 @@ const SubsectionWrapper = styled.div`
 `;
 
 const ZinePortfolioCardDeck = styled(PortfolioCardDeck)`
+  padding: 0px;
+
   @media only screen and (min-width: 576px) {
+    justify-content: flex-start;
+  }
+
+  @media only screen and (max-width: 576px) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
     justify-content: flex-start;
   }
 `;
@@ -79,7 +90,7 @@ export default function ArtPage() {
         {SectionTitle("Art")}
         <SubsectionWrapper>
           <Subsection title='Zines'>
-            <p>Sometimes I make silly little zines. Click on a zine to read it!</p>
+            <p>Sometimes I make silly little <Link href="https://en.wikipedia.org/wiki/Zine">zines</Link>. Click on a zine to read it!</p>
             <ZinePortfolioCardDeck>
               {zines.map((zine, idx) =>
                 <ZineItem zine={zine} key={idx} />

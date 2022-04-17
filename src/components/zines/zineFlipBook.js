@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { Modal } from 'react-bootstrap';
 import { Button } from '../button';
 import FlipPage from 'react-flip-page';
@@ -21,6 +21,7 @@ const ModalWrapper = styled.div`
 `;
 
 export default function ZineFlipBook({ zine, show, handleClose }) {
+  const theme = useTheme();
   const flipBookRef = useRef(null);
 
   const handlePreviousPage = () => {
@@ -42,6 +43,7 @@ export default function ZineFlipBook({ zine, show, handleClose }) {
       showTouchHint={true}
       height={zine.height}
       animationDuration={500}
+      pageBackground={theme.bg}
       ref={flipBookRef}>
       {zine.pages.map((page, i) =>
         <article key={i}>
