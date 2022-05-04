@@ -19,6 +19,8 @@ import ImageVaxGraph from "../assets/images/portfolio/vaxGraph.png"
 import ImageLangViz from "../assets/images/portfolio/langViz.png"
 import ImageARHand from "../assets/images/portfolio/arHand.png"
 import ImageLavaLamp from "../assets/images/portfolio/lavaLamp.png"
+import Image2048 from "../assets/images/portfolio/2048.png"
+import ImageMinesweeper from "../assets/images/portfolio/minesweeper.png"
 
 const category = {
   "All": -1,
@@ -198,6 +200,24 @@ const projects = [
     image: ImageSpaceBears,
     text: <p>My first experience working with virtual reality. Explore a space station manned by teddy bears! Group project for Cornell's CS1620: Visual Imaging</p>,
     categories: [category["AR/VR"]],
+  },
+  {
+    title: "2048 Clone",
+    date: "2015",
+    tools: ["Java"],
+    image: Image2048,
+    link: "https://github.com/luciag123/2048-Clone",
+    text: <p>A 2048 clone I made while I was bored during APCS class in high school</p>,
+    categories: [category.Other],
+  },
+  {
+    title: "Minesweeper Clone",
+    date: "2014",
+    tools: ["Java"],
+    image: ImageMinesweeper,
+    link: "https://github.com/luciag123/Minesweeper",
+    text: <p>Final project for my first real Computer Science class</p>,
+    categories: [category.Other],
   },
 ];
 
