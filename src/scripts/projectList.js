@@ -41,7 +41,7 @@ const projects = [
   },
   {
     title: "Sign Search",
-    date: "March 2022",
+    date: "May 2020, March 2022",
     tools: ["Javascript", "React"],
     image: ImageSignSearch,
     link: "https://github.com/lucia-gomez/Sign-Search",
