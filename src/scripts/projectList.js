@@ -83,6 +83,16 @@ const projects = [
     categories: [category.Web],
   },
   {
+    title: "How Many Hollaback Girls",
+    date: "Sept 2020, Nov 2022",
+    tools: ["Javascript", "HTML/CSS", "AWS"],
+    image: ImageHollabackGirls,
+    link: "https://github.com/lucia-gomez/how-many-hollaback-girls",
+    text: <p>One day, on my walk to campus, I accidentally listened to <i>Hollaback Girl</i> on repeat. For the rest of the day, I measured time in units of Hollaback Girls, because why not? This time converter made things easier.</p>,
+    extra: ExternalButton("https://howmanyhollabackgirls.com"),
+    categories: [category.Web],
+  },
+  {
     title: "Spotify Vibe Check",
     date: "Dec 2020",
     tools: ["React", "Spotify API", "Reach Router", "Express", "Materialize", "Heroku"],
@@ -141,16 +151,6 @@ const projects = [
     </p>,
     tags: ["UI/UX", "UX", "prototyping"],
     categories: [category.Other],
-  },
-  {
-    title: "How Many Hollaback Girls",
-    date: "Sept 2020",
-    tools: ["Javascript", "HTML/CSS", "AWS"],
-    image: ImageHollabackGirls,
-    link: "https://github.com/lucia-gomez/how-many-hollaback-girls",
-    text: <p>One day, on my walk to campus, I accidentally listened to <i>Hollaback Girl</i> on repeat. For the rest of the day, I measured time in units of Hollaback Girls, because why not? This time converter made things easier.</p>,
-    extra: ExternalButton("https://howmanyhollabackgirls.com"),
-    categories: [category.Web],
   },
   {
     title: "Welcome Preemie",
