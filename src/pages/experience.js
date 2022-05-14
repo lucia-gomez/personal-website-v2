@@ -35,12 +35,6 @@ export default function ExperienceSection() {
         "Debugged student code in Java, Python, JavaScript, and HTML/CSS",
         "Maintained records for each student and communicated progress to parents"],
     ]);
-  // const juni = ExperienceItem("Instructor", "Juni Learning", "https://junilearning.com/", "September 2020 - July 2021, Feb 2022 - May 2022",
-  //   ["Executed one-on-one Computer Science lesson plans for students ages 8-18, while adapting to student needs and interests",
-  //     "Debugged student code in Java, Python, JavaScript, and HTML/CSS",
-  //     "Maintained records for each student and communicated progress to parents",
-  //     "Juni Content Creator (2022): Part-time contractor to create short, asynchronous courses. Brainstormed and wrote curricula for courses on GitHub, React, and Intro to Linguistics until the contractor program was terminated"
-  //   ]);
 
   const ta = ExperienceItem("Teaching Assistant", "Cornell CIS", "https://cis.cornell.edu/", "October 2018 - December 2020",
     ["Tutored students on effective programming practices in Java, OCaml, and Python",
