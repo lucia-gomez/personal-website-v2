@@ -58,8 +58,16 @@ const wugs = {
     require(`../assets/zines/wug/${i + 1}.png`)
   )
 };
+const peppa = {
+  title: "We'll Always Have Peppa",
+  date: "May 2022",
+  description: "Peppa never did learn how to whistle but we still gave her a good life",
+  pages: Array.from(Array(8)).map((_, i) =>
+    require(`../assets/zines/peppa/${i + 1}.png`)
+  )
+};
 
-const zines = [wugs, lactoseIntolerance, pickle, shell, birds_arent_real, snakesCantSign];
+const zines = [peppa, wugs, lactoseIntolerance, pickle, shell, birds_arent_real, snakesCantSign];
 
 const SubsectionWrapper = styled.div`
   h4 {
