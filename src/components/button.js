@@ -61,6 +61,7 @@ export const Button = props => {
     <BootstrapButtonStyled
       onClick={props.onClick}
       disabled={props.disabled}
+      className={props.className}
     >
       {props.children}
     </BootstrapButtonStyled>

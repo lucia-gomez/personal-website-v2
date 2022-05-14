@@ -1,6 +1,12 @@
 import styled from 'styled-components';
-import { useState } from 'react';
-import ZineFlipBook from './zineFlipBook';
+import { Link } from 'react-router-dom';
+
+const LinkWrapper = styled(Link)`
+  :hover {
+    color: unset;
+    text-decoration: unset;
+  }
+`;
 
 const Wrapper = styled.div`
   width: 200px;
@@ -40,19 +46,15 @@ const ZineDate = styled.p`
 `;
 
 export default function ZineItem({ zine }) {
-  const [showModal, setShowModal] = useState(false);
-
-  const handleClose = () => setShowModal(false);
-  const handleShow = () => setShowModal(true);
-
-  return (<>
-    <Wrapper onClick={handleShow}>
-      <img src={zine.pages[0]} alt={`${zine.title} zine cover page`} />
-      <div>
-        <ZineTitle>{zine.title}</ZineTitle>
-        <ZineDate>{zine.date}</ZineDate>
-      </div>
-    </Wrapper>
-    <ZineFlipBook show={showModal} {...{ zine, handleClose }} />
-  </>);
+  return (
+    <LinkWrapper to={`/art/zine/${zine.slug}`}>
+      <Wrapper>
+        <img src={zine.pages[0]} alt={`${zine.title} zine cover page`} />
+        <div>
+          <ZineTitle>{zine.title}</ZineTitle>
+          <ZineDate>{zine.date}</ZineDate>
+        </div>
+      </Wrapper>
+    </LinkWrapper>
+  );
 }

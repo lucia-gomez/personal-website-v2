@@ -7,10 +7,10 @@ import BlogContent from '../components/blog/blogContent';
 import EditorPopup from '../components/blog/editorPopup';
 import Axios from 'axios';
 import { getApiUrl } from '../scripts/util';
-import { Spinner } from 'react-bootstrap';
 import { useAuth0 } from "@auth0/auth0-react";
 import Sidebar from '../components/blog/sidebar';
 import Back from '../components/blog/back';
+import Spinner from '../components/spinner';
 
 const BlogWrapper = styled.div`
   padding: 0px 30px;
@@ -91,7 +91,7 @@ export default function BlogPostPage() {
         {!loading ? <BlogWrapper>
           <SidebarDesktop post={post} />
           <Content>
-            <BackMobile />
+            <BackMobile link="/blog" />
             <EditWrapper>
               <Title>{post.title}</Title>
               {isAuthenticated ? <EditorPopup post={post} /> : null}
@@ -104,9 +104,7 @@ export default function BlogPostPage() {
           </Content>
           <SidebarMobile post={post} />
         </BlogWrapper>
-          : <Spinner animation="border" role="status">
-            <span className="sr-only">Loading...</span>
-          </Spinner>
+          : <Spinner />
         }
       </Section>
     </Layout>

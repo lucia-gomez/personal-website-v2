@@ -122,7 +122,7 @@ function copyToClipboard() {
 const Sidebar = ({ post, className }) => {
   return (
     <Wrapper className={className}>
-      <BackWrapper />
+      <BackWrapper link="/blog" />
       <SidebarContent>
         <ProfilePic
           src={ProfileImage}

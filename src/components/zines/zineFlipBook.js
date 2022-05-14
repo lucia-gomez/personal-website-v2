@@ -1,26 +1,49 @@
 import { useRef } from 'react';
 import styled, { useTheme } from 'styled-components';
-import { Modal } from 'react-bootstrap';
 import { Button } from '../button';
 import FlipPage from 'react-flip-page';
 
-const ModalWrapper = styled.div`
-  .modal-header, .modal-body, .modal-footer {
-    background-color: ${props => props.theme.bg};
-    border-color: ${props => props.theme.medium};
-  }
+const Wrapper = styled.div`
+  position: relative;
+  width: fit-content;
+  margin: auto;
 
-  .modal-title {
-    color: ${props => props.theme.text};
-  }
-
-  .modal-header button {
-    text-shadow: none;
-    color: ${props => props.theme.text};
+  @media only screen and (max-width: 576px) {
+    padding-top: 50px;
   }
 `;
 
-export default function ZineFlipBook({ zine, show, handleClose }) {
+const ButtonLeft = styled.div`
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  left: -50px;
+
+  @media only screen and (max-width: 576px) {
+    top: 0px;
+    left: 0px;
+    transform: none;
+  }
+`;
+
+const ButtonRight = styled.div`
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  right: -50px;
+
+  @media only screen and (max-width: 576px) {
+    top: 0px;
+    right: 0px;
+    transform: none;
+  }
+`;
+
+const ArrowButton = styled(Button)`
+  margin: 0px;
+`;
+
+export default function ZineFlipBook({ zine }) {
   const theme = useTheme();
   const flipBookRef = useRef(null);
 
@@ -54,26 +77,20 @@ export default function ZineFlipBook({ zine, show, handleClose }) {
   };
 
   return (
-    <Modal show={show} onHide={handleClose} centered >
-      <ModalWrapper>
-        <Modal.Header closeButton>
-          <Modal.Title>{zine.title}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>{zine.description}</p>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            {getZineFlipBook(zine)}
-          </div>
-        </Modal.Body>
-        <Modal.Footer style={{ justifyContent: 'space-between' }}>
-          <Button onClick={handlePreviousPage}>
-            <i className="fas fa-arrow-left"></i>
-          </Button>
-          <Button onClick={handleNextPage}>
-            <i className="fas fa-arrow-right"></i>
-          </Button>
-        </Modal.Footer>
-      </ModalWrapper>
-    </Modal>
+    <Wrapper>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        {getZineFlipBook(zine)}
+      </div>
+      <ButtonLeft>
+        <ArrowButton onClick={handlePreviousPage}>
+          <i className="fas fa-arrow-left"></i>
+        </ArrowButton>
+      </ButtonLeft>
+      <ButtonRight>
+        <ArrowButton onClick={handleNextPage}>
+          <i className="fas fa-arrow-right"></i>
+        </ArrowButton>
+      </ButtonRight>
+    </Wrapper>
   );
 }

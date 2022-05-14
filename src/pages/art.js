@@ -6,68 +6,7 @@ import Subsection from "../components/subsection"
 import Link from '../components/link';
 import ZineItem from "../components/zines/zineItem";
 import { PortfolioCardDeck } from '../components/portfolioCardDeck'
-
-const lactoseIntolerance = {
-  title: "The Seven Deadly Sins of Lactose Intolerance",
-  date: "April 2022",
-  description: "I, a lactose intolerant, sacrified a Lactaid bottle's label for this zine",
-  pages: Array.from(Array(8)).map((_, i) =>
-    require(`../assets/zines/lactose_intolerance/${i + 1}.png`)
-  )
-};
-const snakesCantSign = {
-  title: "Snakes Can't Sign",
-  date: "July 2019",
-  description: "My first zine, made for Facebook's Open Arts zine fest. Printed on a Risograph",
-  pages: Array.from(Array(8)).map((_, i) =>
-    require(`../assets/zines/snakes_cant_sign/${i + 1}.png`)
-  )
-};
-const pickle = {
-  title: "Should You Tickle Your Pickle?",
-  date: "March 2021",
-  description: "Hey, I'm not your mom. Do what you want",
-  pages: Array.from(Array(8)).map((_, i) =>
-    require(`../assets/zines/pickle/${i + 1}.png`)
-  )
-};
-const birds_arent_real = {
-  title: "Birds Aren't Real",
-  date: "April 2020",
-  description: "I got a collage book for Christmas and it didn't disappoint",
-  height: 418,
-  pages: Array.from(Array(4)).map((_, i) =>
-    require(`../assets/zines/birds_arent_real/${i + 1}.png`)
-  )
-};
-const shell = {
-  title: "We're All Going to Shell",
-  date: "February 2021",
-  description: "Made with watercolor, inspired by puns",
-  height: 418,
-  pages: Array.from(Array(4)).map((_, i) =>
-    require(`../assets/zines/shell/${i + 1}.png`)
-  )
-};
-const wugs = {
-  title: "This is a Wug",
-  date: "April 2022",
-  description: "\"This is a wug\" is a famous linguistics experiment. Now it's the beginning of a war",
-  height: 520,
-  pages: Array.from(Array(8)).map((_, i) =>
-    require(`../assets/zines/wug/${i + 1}.png`)
-  )
-};
-const peppa = {
-  title: "We'll Always Have Peppa",
-  date: "May 2022",
-  description: "Peppa never did learn how to whistle but we still gave her a good life",
-  pages: Array.from(Array(8)).map((_, i) =>
-    require(`../assets/zines/peppa/${i + 1}.png`)
-  )
-};
-
-const zines = [peppa, wugs, lactoseIntolerance, pickle, shell, birds_arent_real, snakesCantSign];
+import zines from '../scripts/zineList';
 
 const SubsectionWrapper = styled.div`
   h4 {

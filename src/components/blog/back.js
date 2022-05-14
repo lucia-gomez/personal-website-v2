@@ -12,9 +12,9 @@ const BackButton = styled(Link)`
   }
 `;
 
-const Back = ({ className }) => {
+const Back = ({ className, link }) => {
   return (
-    <BackButton to="/blog" className={className}>
+    <BackButton to={link} className={className}>
       <i className="fas fa-chevron-left" style={{ paddingRight: '3px' }} />
       Back
     </BackButton>
