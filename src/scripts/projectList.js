@@ -86,7 +86,7 @@ const projects = [
   },
   {
     title: "How Many Hollaback Girls",
-    date: "Sept 2020, Nov 2022",
+    date: "Sept 2020, Nov 2021",
     tools: ["Javascript", "HTML/CSS", "AWS"],
     image: ImageHollabackGirls,
     link: "https://github.com/lucia-gomez/how-many-hollaback-girls",
