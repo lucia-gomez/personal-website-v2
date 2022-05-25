@@ -91,7 +91,7 @@ const projects = [
     image: ImageHollabackGirls,
     link: "https://github.com/lucia-gomez/how-many-hollaback-girls",
     text: <p>One day, on my walk to campus, I accidentally listened to <i>Hollaback Girl</i> on repeat. For the rest of the day, I measured time in units of Hollaback Girls, because why not? This time converter made things easier.</p>,
-    extra: ExternalButton("https://howmanyhollabackgirls.com"),
+    extra: ExternalButton("http://howmanyhollabackgirls.com"),
     categories: [category.Web],
   },
   {
