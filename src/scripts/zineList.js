@@ -64,8 +64,17 @@ export const peppa = {
     require(`../assets/zines/peppa/${i + 1}.png`)
   )
 };
+export const futurist = {
+  title: "FUTURIST",
+  slug: "futurist",
+  date: "May 2022",
+  description: "A Matrix-y dystopian future. Physical collage + digital Photoshop magic",
+  pages: Array.from(Array(8)).map((_, i) =>
+    require(`../assets/zines/futurist/${i + 1}.png`)
+  )
+};
 
-const zines = [peppa, wugs, lactoseIntolerance, pickle, shell, birds_arent_real, snakesCantSign];
+const zines = [futurist, peppa, wugs, lactoseIntolerance, pickle, shell, birds_arent_real, snakesCantSign];
 export default zines;
 
 /**

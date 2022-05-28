@@ -12,6 +12,8 @@ const Wrapper = styled.div`
   width: 200px;
   margin-right: 20px;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
 
   :hover {
     transform: scale(1.05);
@@ -22,7 +24,8 @@ const Wrapper = styled.div`
     width: 100%;
     height: 300px;
     object-fit: contain;
-    object-position: left;
+    object-position: left bottom;
+    margin-bottom: 10px;
   }
 
   @media only screen and (max-width: 576px) {
