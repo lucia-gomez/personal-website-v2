@@ -28,6 +28,7 @@ export default function Editor(props) {
   const [title, setTitle] = useState(post?.title ?? "");
   const [summary, setSummary] = useState(post?.summary ?? "");
   const [slug, setSlug] = useState(post?.slug ?? "");
+  const [date, setDate] = useState(post?.dateString ?? "");
   const [editorState, setEditorState] = useState(
     EditorState.createEmpty()
   );
@@ -37,6 +38,7 @@ export default function Editor(props) {
     setTitle(post?.title ?? "");
     setSummary(post?.summary ?? "");
     setSlug(post?.slug ?? "");
+    setDate(post?.dateString ?? "");
     if (post !== undefined) {
       const blocksFromHtml = htmlToDraft(post.content);
       const { contentBlocks, entityMap } = blocksFromHtml;
@@ -64,6 +66,13 @@ export default function Editor(props) {
     </Form.Group>
   );
 
+  const dateForm = (
+    <Form.Group>
+      <Form.Label>Date</Form.Label>
+      <Form.Control onChange={e => setDate(e.target.value)} value={date} />
+    </Form.Group>
+  );
+
   const summaryForm = (
     <Form.Group>
       <Form.Label>Summary</Form.Label>
@@ -76,6 +85,7 @@ export default function Editor(props) {
       <Row>
         <Col>{titleForm}</Col>
         <Col>{slugForm}</Col>
+        <Col>{dateForm}</Col>
       </Row>
       {summaryForm}
     </Form>
@@ -85,11 +95,12 @@ export default function Editor(props) {
     <Form className="d-md-none">
       {titleForm}
       {slugForm}
+      {dateForm}
       {summaryForm}
     </Form>
   );
 
-  const buttons = props.buttons(title, slug, summary, getHTMLString());
+  const buttons = props.buttons(title, slug, date, summary, getHTMLString());
 
   return (
     <div>

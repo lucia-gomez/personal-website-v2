@@ -99,8 +99,9 @@ app.post("/api/update", (req, res) => {
   const title = req.body.title;
   const summary = req.body.summary;
   const newContent = req.body.content;
-  const sql = "UPDATE posts SET content = ?, title = ?, summary = ? WHERE id = ?;";
-  db.query(sql, [newContent, title, summary, id], (err, result) => {
+  const newDateString = req.body.dateString;
+  const sql = "UPDATE posts SET dateString = ?, content = ?, title = ?, summary = ? WHERE id = ?;";
+  db.query(sql, [newDateString, newContent, title, summary, id], (err, result) => {
     if (err) console.error(err);
     res.send(result);
   })

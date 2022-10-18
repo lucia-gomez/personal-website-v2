@@ -56,10 +56,11 @@ export default function EditorPopup({ post }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleSave = (title, _, summary, content) => {
+  const handleSave = (title, _, date, summary, content) => {
     const args = {
       id: post.id,
       title: title,
+      dateString: date,
       summary: summary,
       content: content,
     }
@@ -71,12 +72,12 @@ export default function EditorPopup({ post }) {
     Axios.post(`${getApiUrl()}/api/likes/reset`, { id: post.id });
   }
 
-  const buttons = (title, slug, summary, content) => {
+  const buttons = (title, slug, date, summary, content) => {
     const isValid = x => x !== undefined && x.length > 0;
     const disabled = !(isValid(title) && isValid(summary) && isValid(slug));
 
     return (<>
-      <Button onClick={() => handleSave(title, slug, summary, content)} disabled={disabled}>
+      <Button onClick={() => handleSave(title, slug, date, summary, content)} disabled={disabled}>
         Update post
       </Button>
       <Button onClick={handleResetLikes}>
