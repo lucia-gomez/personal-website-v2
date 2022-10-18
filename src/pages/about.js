@@ -1,11 +1,10 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import SectionTitle from "../components/sectionTitle"
 import Subsection from "../components/subsection"
 import Link from "../components/link"
 
 import ProfileImage from "../assets/images/profile-circle.png"
-import FunnyProfileImage from "../assets/images/funny-profile-circle.png"
 import LangBars from "../components/langBars"
 
 const AboutWrapper = styled.div`
@@ -88,24 +87,12 @@ function ProfileInfo(icon, text) {
 }
 
 export default function About() {
-  const [photoSrc, setPhotoSrc] = useState(ProfileImage);
-
-  const hoverPhoto = () => setPhotoSrc(FunnyProfileImage);
-  const unhoverPhoto = () => setPhotoSrc(ProfileImage);
-
   return (
     <>
       {SectionTitle("About Me")}
       <AboutWrapper>
         <ProfileWrapper>
-          <ProfilePic
-            src={photoSrc}
-            onMouseOver={hoverPhoto}
-            onFocus={hoverPhoto}
-            onMouseOut={unhoverPhoto}
-            onBlur={unhoverPhoto}
-            alt="profile"
-          />
+          <ProfilePic src={ProfileImage} alt="profile" />
           <ProfileIconsWrapper>
             {ProfileInfo(
               "fab fa-github",
