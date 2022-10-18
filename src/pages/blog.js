@@ -36,10 +36,16 @@ export default function BlogHomePage() {
   const [searchResults, setSearchResults] = useState(posts);
   const [loading, setLoading] = useState(true);
 
+  const sortByDisplayDate = posts => posts.sort((a, b) => {
+    const date1 = new Date(a.dateString);
+    const date2 = new Date(b.dateString);
+    return date2 - date1;
+  });
+
   useEffect(() => {
     setLoading(true);
     Axios.get(getApiUrl() + "/api/get").then(res => {
-      const d = res.data.reverse()
+      const d = sortByDisplayDate(res.data);
       setPosts(d);
       setSearchResults(d);
       setLoading(false);

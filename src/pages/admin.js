@@ -48,10 +48,15 @@ export default function BlogAdmin() {
     });
   }, [openDraft]);
 
-  const createPost = (title, slug, summary, contentCurr) => {
+  const createPost = (title, slug, date, summary, contentCurr) => {
+    const fakeTime = new Date().toLocaleTimeString();
+    const dateString = date != null && date.length > 0 ? 
+      `${date}, ${fakeTime}`: 
+      new Date().toLocaleString();
+
     Axios.post(getApiUrl() + '/api/create', {
       datetime: new Date().toISOString().slice(0, 19).replace('T', ' '),
-      dateString: new Date().toLocaleString(),
+      dateString: dateString,
       title: title,
       summary: summary,
       content: contentCurr,
@@ -59,8 +64,8 @@ export default function BlogAdmin() {
     });
   }
 
-  const publishDraft = (title, slug, summary, contentCurr) => {
-    createPost(title, slug, summary, contentCurr);
+  const publishDraft = (title, slug, date, summary, contentCurr) => {
+    createPost(title, slug, date, summary, contentCurr);
     Axios.delete(`${getApiUrl()}/api/draft/${openDraft.id}`);
   }
 
@@ -94,13 +99,13 @@ export default function BlogAdmin() {
     setDrafts(drafts.filter(draft => draft.id !== id));
   }
 
-  const buttons = (title, slug, summary, content) => {
+  const buttons = (title, slug, date, summary, content) => {
     const isValid = x => x !== undefined && x.length > 0;
     const disabled = !(isValid(title) && isValid(summary) && isValid(slug));
 
     const postFn = () => openDraft ?
-      publishDraft(title, slug, summary, content)
-      : createPost(title, slug, summary, content);
+      publishDraft(title, slug, date, summary, content)
+      : createPost(title, slug, date, summary, content);
     const postBtnText = openDraft ? 'Publish draft' : 'Publish post';
     const postBtn = <Button onClick={postFn} sameTab={true} disabled={disabled} href="/">
       {disabled ?
@@ -112,7 +117,7 @@ export default function BlogAdmin() {
     </Button>
 
     const saveFn = () => openDraft ?
-      closeDraft(title, slug, summary, content)
+      closeDraft(title, slug, date, summary, content)
       : createDraft(title, slug, summary, content);
     const saveBtn = <Button onClick={saveFn} disabled={disabled}>
       {openDraft ? 'Close draft' : 'Save as draft'}
