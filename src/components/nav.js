@@ -77,7 +77,7 @@ const CustomNav = props => {
   const { isAuthenticated } = useAuth0();
   const sections = [
     { name: "Home", link: "/" }, { name: "About", link: "/#about" },
-    { name: "Portfolio", link: "/#portfolio" },
+    { name: "Portfolio", link: "/archive" },
     { name: "Experience", link: "/#experience" },
     { name: "Blog", link: "/blog" },
     ...(isAuthenticated ? [{ name: "Admin", link: "/admin" }] : []),
