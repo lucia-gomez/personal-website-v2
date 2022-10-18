@@ -73,8 +73,17 @@ export const futurist = {
     require(`../assets/zines/futurist/${i + 1}.png`)
   )
 };
+export const sevenThings = {
+  title: "Seven Things I Don't Hate About You",
+  slug: "seven-things",
+  date: "August 2022",
+  description: "I made a zine for my girlfriend after we watched '10 Things I Hate About You' together. She kindly let me share it here",
+  pages: Array.from(Array(8)).map((_, i) =>
+    require(`../assets/zines/seven_things/${i + 1}.png`)
+  )
+};
 
-const zines = [futurist, peppa, wugs, lactoseIntolerance, pickle, shell, birds_arent_real, snakesCantSign];
+const zines = [sevenThings, futurist, peppa, wugs, lactoseIntolerance, pickle, shell, birds_arent_real, snakesCantSign];
 export default zines;
 
 /**
