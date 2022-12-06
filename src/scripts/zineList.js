@@ -77,13 +77,22 @@ export const sevenThings = {
   title: "Seven Things I Don't Hate About You",
   slug: "seven-things",
   date: "August 2022",
-  description: "I made a zine for my girlfriend after we watched '10 Things I Hate About You' together. She kindly let me share it here",
+  description: "I made a zine for my girlfriend after we watched '10 Things I Hate About You' together",
   pages: Array.from(Array(8)).map((_, i) =>
     require(`../assets/zines/seven_things/${i + 1}.png`)
   )
 };
+export const palm = {
+  title: "Never Trust a Palm Tree",
+  slug: "never-trust-a-palm-tree",
+  date: "December 2022",
+  description: "I've never trusted palm trees, and neither should you",
+  pages: Array.from(Array(8)).map((_, i) =>
+    require(`../assets/zines/palm/${i + 1}.png`)
+  )
+};
 
-const zines = [sevenThings, futurist, peppa, wugs, lactoseIntolerance, pickle, shell, birds_arent_real, snakesCantSign];
+const zines = [palm, sevenThings, futurist, peppa, wugs, lactoseIntolerance, pickle, shell, birds_arent_real, snakesCantSign];
 export default zines;
 
 /**
