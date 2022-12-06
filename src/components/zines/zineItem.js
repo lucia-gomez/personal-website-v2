@@ -29,7 +29,7 @@ const Wrapper = styled.div`
   }
 
   @media only screen and (max-width: 576px) {
-    width: 100%;
+    width: 90%;
 
     img {
       width: 120px;
