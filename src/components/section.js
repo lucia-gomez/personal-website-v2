@@ -38,7 +38,10 @@ const SectionContent = styled.div`
   max-width: 1800px;
   margin: auto;
   text-align: center;
-  padding-bottom: 7vh;
+
+  @media only screen and (max-width: 576px) {
+    padding-bottom: 7vh;
+  }
 `;
 
 const Section = props => {

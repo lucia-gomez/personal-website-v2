@@ -23,7 +23,7 @@ const Title = styled.h4`
 
 const Subsection = props => {
   return (
-    <Wrapper>
+    <Wrapper className={props.className}>
       <Title>{props.title}</Title>
       {props.children}
     </Wrapper>
