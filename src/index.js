@@ -38,6 +38,9 @@ ReactDOM.render(
           <Route exact path="/art/zine/:slug">
             <ZinePage />
           </Route>
+          <Route path="/art/:slug">
+            <ArtPage />
+          </Route>
           <Route component={Error404} />
         </Switch>
       </Auth0ProviderWithHistory>
