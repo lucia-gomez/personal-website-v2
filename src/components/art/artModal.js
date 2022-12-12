@@ -20,8 +20,23 @@ const ArtModalWrapper = styled(ModalWrapper)`
       img {
         width: 100%;
       }
+
+      .h4, h4 {
+        font-size: 22px;
+      }
     }
   }
+`;
+
+const ModalInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const ModalMetadata = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 const ModalImg = styled.div`
@@ -34,12 +49,29 @@ const ModalImg = styled.div`
   }
 `;
 
+const ModalDate = styled.h4`
+  color: ${props => props.theme.textLight};
+  margin-bottom: 0;
+  margin-left: 4px;
+`;
+
+const ModalDescription = styled.p`
+  color: ${props => props.theme.text};
+  margin: 0;
+`;
+
 export default function ArtModal(props) {
   const {modalItem, isShowing, handleClose} = props;
   return modalItem != null && 
     <ArtModalWrapper show={isShowing} onHide={handleClose} animation={false}>
       <Modal.Header closeButton>
-        <Modal.Title>{modalItem.title} | {modalItem.date}</Modal.Title>
+        <ModalInfo>
+          <ModalMetadata>
+            <Modal.Title>{modalItem.title}</Modal.Title>
+            <ModalDate>{`| ${modalItem.date}`}</ModalDate>
+          </ModalMetadata>
+          {modalItem.description && <ModalDescription>{modalItem.description}</ModalDescription>}
+        </ModalInfo>
       </Modal.Header>
       <ModalImg>
         <img src={modalItem.src} alt={modalItem.alt} />

@@ -42,6 +42,13 @@ const LinkWrapper = styled(LinkRouter)`
   }
 `;
 
+const ArtList = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+`;
+
 export default function ArtPage() {
   const [modalItem, setModalItem] = useState(null);
   const {slug} = useParams();
@@ -74,16 +81,18 @@ export default function ArtPage() {
       {artList.map((section, index) => 
         <SubsectionWrapper title={section.sectionName} key={index}>
           <p>{section.description}</p>
+          <ArtList>
           {section.items.map(item => <div key={item.title}>
             <LinkWrapper to={`/art/${item.slug}`}>
               <ArtItem 
                 title={item.title}
                 date={item.date}
                 src={item.src} 
-                alt={item.alt} 
+                alt={item.alt}
               />
             </LinkWrapper>
           </div>)}
+          </ArtList>
         </SubsectionWrapper>
       )}
       <ArtModal modalItem={modalItem} isShowing={modalItem != null} handleClose={handleModalClose} />

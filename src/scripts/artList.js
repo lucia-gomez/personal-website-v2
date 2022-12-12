@@ -8,7 +8,15 @@ const artList = [
         date: 'December, 2022',
         slug: 'sushi', 
         src: require('../assets/images/art/sushi.png'),
-        alt: "sushi drawing"
+        alt: "sushi drawing",
+      },
+      {
+        title: 'Self Portrait',
+        date: 'December, 2022',
+        slug: 'self-portrait', 
+        src: require('../assets/images/art/portrait.png'),
+        alt: "self portrait",
+        description: "A cartoon-y self portrait, bags under my eyes and all",
       },
     ],
   }
