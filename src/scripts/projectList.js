@@ -21,6 +21,7 @@ import ImageARHand from "../assets/images/portfolio/arHand.png"
 import ImageLavaLamp from "../assets/images/portfolio/lavaLamp.png"
 import Image2048 from "../assets/images/portfolio/2048.png"
 import ImageMinesweeper from "../assets/images/portfolio/minesweeper.png"
+import ImageInARWeTrust from "../assets/images/portfolio/inARWeTrust.gif"
 
 const category = {
   "All": -1,
@@ -31,6 +32,16 @@ const category = {
 };
 
 const projects = [
+  {
+    title: "In AR We Trust",
+    date: "January 2023",
+    tools: ["Spark AR", "Javascript", "Photoshop"],
+    image: ImageInARWeTrust,
+    text: <p>An interactive Spark AR effect for a poster on my wall from MoCo in Amsterdam</p>,
+    link: "https://github.com/lucia-gomez/in_AR_we_trust",
+    extra: ExternalButton("https://drive.google.com/file/d/14lz50ZaYcxSKhY3jSiiDJCBbJe2Ebeow/view?usp=sharing"),
+    categories: [category["AR/VR"]],
+  },
   {
     title: "Lava Lamp Simulator",
     date: "April 2022",
