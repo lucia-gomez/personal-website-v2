@@ -12,7 +12,7 @@ const ArchiveButton = styled(ButtonLink)`
 `;
 
 export default function PortfolioSection() {
-  const projects = featuredProjects(["Lava Lamp Simulator", "Sign Search", "3D Poster Animation: Hand Grab"]);
+  const projects = featuredProjects(["In AR We Trust", "Sign Search", "Lava Lamp Simulator"]);
   return (
     <>
       {SectionTitle("Things I've Made")}
