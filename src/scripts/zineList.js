@@ -91,8 +91,18 @@ export const palm = {
     require(`../assets/zines/palm/${i + 1}.png`)
   )
 };
+export const toad = {
+  title: "Let's Normalize Screaming Like Toad",
+  slug: "lets-normalize-screaming-like-toad",
+  date: "January 2023",
+  description: "Sometimes I want to scream like Toad in public",
+  pages: Array.from(Array(8)).map((_, i) =>
+    require(`../assets/zines/toad/${i + 1}.png`)
+  )
+};
 
-const zines = [palm, sevenThings, futurist, peppa, wugs, lactoseIntolerance, pickle, shell, birds_arent_real, snakesCantSign];
+const zines = [toad, palm, sevenThings, futurist, peppa, wugs, lactoseIntolerance, 
+  pickle, shell, birds_arent_real, snakesCantSign];
 export default zines;
 
 /**
