@@ -7,15 +7,14 @@ import SectionTitle from '../../components/sectionTitle'
 const Wrapper = styled.div`
   position: relative;
   top: 20vh;
+  max-width: 90vw;
+  margin: auto;
 `;
 
 const Text = styled.p`
-  max-width: 400px;
+  width: 400px;
   margin: auto;
-
-  @media only screen and (max-width: 576px) {
-    max-width: 90vw;
-  }
+  max-width: 90vw;
 `;
 
 export default function ToadARPage() {
