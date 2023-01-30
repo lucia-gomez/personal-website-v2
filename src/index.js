@@ -13,6 +13,7 @@ import Auth0ProviderWithHistory from "./scripts/auth0-provider-with-history";
 import ArtPage from './pages/art';
 import ZinePage from './pages/zine';
 import Error404 from './pages/404';
+import ToadARPage from './pages/projects/toadAR';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -40,6 +41,9 @@ ReactDOM.render(
           </Route>
           <Route path="/art/:slug">
             <ArtPage />
+          </Route>
+          <Route path="/toad-ar">
+            <ToadARPage />
           </Route>
           <Route component={Error404} />
         </Switch>
