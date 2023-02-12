@@ -95,7 +95,7 @@ export const toad = {
   title: "Let's Normalize Screaming Like Toad",
   slug: "lets-normalize-screaming-like-toad",
   date: "January 2023",
-  description: "Sometimes I want to scream like Toad in public",
+  description: "Sometimes I want to scream like Toad in public. A zine with bonus AR content",
   pages: Array.from(Array(8)).map((_, i) =>
     require(`../assets/zines/toad/${i + 1}.png`)
   )

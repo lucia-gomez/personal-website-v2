@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { colors } from '../style/theme'
 import { Button as BootstrapButton } from 'react-bootstrap'
+import { FaInstagram } from 'react-icons/fa'
 
 const buttonStyle = css`
   background-color: ${props => props.theme.accent};
   border: none;
   color: ${colors.white};
-  margin-right: 5px;
   width: fit-content;
 
   .disabled, :disabled {
@@ -30,6 +30,12 @@ const buttonStyle = css`
     box-shadow: none;
     color: ${colors.white};
   }
+`;
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const ButtonStyle = styled.a`
@@ -66,6 +72,17 @@ export const Button = props => {
       {props.children}
     </BootstrapButtonStyled>
   );
+}
+
+export const InstagramButton = props => {
+  return (
+    <ButtonLink href={props.href}> 
+      <Row>
+        <FaInstagram size='20px' className="tool-icon" style={{marginRight: 5}}/>
+        {props.children}
+      </Row>
+    </ButtonLink>
+  )
 }
 
 ButtonLink.propTypes = {
