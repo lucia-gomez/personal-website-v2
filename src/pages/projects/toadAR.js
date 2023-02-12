@@ -6,7 +6,7 @@ import SectionTitle from '../../components/sectionTitle'
 
 const Wrapper = styled.div`
   position: relative;
-  top: 20vh;
+  top: 27vh;
   max-width: 90vw;
   margin: auto;
   display: flex;
