@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { InstagramButton } from '../../components/button'
 import Layout from '../../components/layout'
-import Section from '../../components/section'
 import SectionTitle from '../../components/sectionTitle'
 
 const Wrapper = styled.div`
@@ -10,6 +9,10 @@ const Wrapper = styled.div`
   top: 20vh;
   max-width: 90vw;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 `;
 
 const Text = styled.p`
@@ -21,7 +24,7 @@ const Text = styled.p`
 export default function ToadARPage() {
   return (
     <Layout>
-      <Section id='toad-AR' index={-1}>
+      {/* <Section id='toad-AR' index={-1}> */}
         <Wrapper>
           {SectionTitle('Toad AR Effect')}
           <Text>Thanks for reading <i>Let's Normalize Screaming Like Toad</i>. 
@@ -31,7 +34,7 @@ export default function ToadARPage() {
           <p>(Warning: loud noises)</p>
           <InstagramButton href="https://www.instagram.com/ar/575344457802728/">Open in Instagram</InstagramButton>
         </Wrapper>
-      </Section>
+      {/* </Section> */}
     </Layout>
   )
 }
