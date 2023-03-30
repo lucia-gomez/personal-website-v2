@@ -22,6 +22,7 @@ import ImageLavaLamp from "../assets/images/portfolio/lavaLamp.png"
 import Image2048 from "../assets/images/portfolio/2048.png"
 import ImageMinesweeper from "../assets/images/portfolio/minesweeper.png"
 import ImageInARWeTrust from "../assets/images/portfolio/inARWeTrust.gif"
+import ImageBubbleBlower from "../assets/images/portfolio/bubbleBlower.png"
 
 const category = {
   "All": -1,
@@ -32,6 +33,16 @@ const category = {
 };
 
 const projects = [
+  {
+    title: "Bubble Blower",
+    date: "March 2023",
+    tools: ["p5.js"],
+    image: ImageBubbleBlower,
+    text: <p>A small experiment with p5.js, a Javascript interactive graphics library. Click and drag to blow bubbles</p>,
+    link: "https://github.com/lucia-gomez/bubble-blower",
+    extra: ExternalButton("https://lucia-gomez.github.io/bubble-blower/"),
+    categories: [category.Web],
+  },
   {
     title: "In AR We Trust",
     date: "January 2023",
