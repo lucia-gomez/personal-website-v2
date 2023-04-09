@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet"
 import PropTypes from "prop-types"
 import { ThemeProvider, createGlobalStyle } from "styled-components"
 import { themes } from "../style/theme.js"
+import CustomNav from "./nav.js"
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -66,6 +67,7 @@ const Layout = ({ children }) => {
       </div>
       <ThemeProvider theme={theme}>
         <GlobalStyle theme={theme} />
+        <CustomNav />
         <main>{children}</main>
       </ThemeProvider>
     </>

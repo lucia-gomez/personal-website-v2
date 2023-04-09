@@ -1,19 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import "../node_modules/bootstrap/dist/css/bootstrap.css";
-import './style/index.css';
-import App from './App';
-import ArchivePage from './pages/archive';
-import BlogHomePage from './pages/blog';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import ProtectedRoute from './components/protectedRoute';
-import BlogPostPage from './pages/blogPost';
-import BlogAdmin from './pages/admin';
-import Auth0ProviderWithHistory from "./scripts/auth0-provider-with-history";
-import ArtPage from './pages/art';
-import ZinePage from './pages/zine';
-import Error404 from './pages/404';
-import ToadARPage from './pages/projects/toadAR';
+import React from "react"
+import ReactDOM from "react-dom"
+import "../node_modules/bootstrap/dist/css/bootstrap.css"
+import "./style/index.css"
+import App from "./App"
+import ArchivePage from "./pages/archive"
+import BlogHomePage from "./pages/blog"
+import { BrowserRouter, Route, Switch } from "react-router-dom"
+import ProtectedRoute from "./components/protectedRoute"
+import BlogPostPage from "./pages/blogPost"
+import BlogAdmin from "./pages/admin"
+import Auth0ProviderWithHistory from "./scripts/auth0-provider-with-history"
+import ArtPage from "./pages/art"
+import ZinePage from "./pages/zine"
+import Error404 from "./pages/404"
+import ToadARPage from "./pages/projects/toadAR"
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,7 +23,7 @@ ReactDOM.render(
           <Route exact path="/">
             <App />
           </Route>
-          <Route path="/archive">
+          <Route path="/portfolio">
             <ArchivePage />
           </Route>
           <Route exact path="/blog">
@@ -50,5 +50,5 @@ ReactDOM.render(
       </Auth0ProviderWithHistory>
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById('root')
-);
+  document.getElementById("root")
+)

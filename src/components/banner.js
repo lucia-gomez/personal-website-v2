@@ -42,7 +42,6 @@ const Title = styled.h1`
   color: #000;
   mix-blend-mode: color-dodge;
   margin: 0;
-  margin-bottom: 20vh;
   text-align: center;
   animation: fade-in 1s 500ms forwards ease-in;
 

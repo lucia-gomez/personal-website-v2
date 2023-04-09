@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import SectionTitle from "../components/sectionTitle"
 import Subsection from "../components/subsection"
 import Link from "../components/link"
 
@@ -20,12 +19,12 @@ const AboutWrapper = styled.div`
     display: flex;
     flex-direction: column;
   }
-`;
+`
 
 const ProfileWrapper = styled.div`
   padding-top: 20px;
   height: fit-content;
-`;
+`
 
 const ProfilePic = styled.img`
   border-radius: 300px;
@@ -40,7 +39,7 @@ const ProfilePic = styled.img`
     height: 30vh;
     width: 30vh;
   }
-`;
+`
 
 const ProfileIconsWrapper = styled.div`
   padding-top: 20px;
@@ -49,7 +48,7 @@ const ProfileIconsWrapper = styled.div`
     font-size: 22px;
     width: 30px;
   }
-`;
+`
 
 const ProfileIconRow = styled.div`
   display: flex;
@@ -71,11 +70,11 @@ const ProfileIconRow = styled.div`
     color: var(--color-text);
     margin-right: 5px;
   }
-`;
+`
 
 const ScratchNote = styled.p`
   font-size: 12px;
-`;
+`
 
 function ProfileInfo(icon, text) {
   return (
@@ -88,44 +87,54 @@ function ProfileInfo(icon, text) {
 
 export default function About() {
   return (
-    <>
-      {SectionTitle("About Me")}
-      <AboutWrapper>
-        <ProfileWrapper>
-          <ProfilePic src={ProfileImage} alt="profile" />
-          <ProfileIconsWrapper>
-            {ProfileInfo(
-              "fab fa-github",
-              <Link href='https://github.com/lucia-gomez'>lucia-gomez</Link>
-            )}
-            {ProfileInfo("fas fa-briefcase", "SWE, Facebook")}
-            {ProfileInfo("fas fa-graduation-cap", "Cornell University")}
-            {ProfileInfo("fas fa-map-marker-alt", "Seattle, WA")}
-          </ProfileIconsWrapper>
-        </ProfileWrapper>
-        <div>
-          <Subsection title='Hello World!'>
-            <p>I'm a Software Engineer working on AR glasses at <span>Facebook</span>,
-              and I recently graduated from Cornell as a Computer Science and Linguistics major.
-              I'm passionate about <span>augmented and virtual reality</span>, but I've been on a full-stack web dev spree lately.
-              For the past few years, I've been interested in <span>American Sign Language</span> and the challenges associated with machine translation-
-              I was featured <Link href='https://www.leadwithlanguages.org/2019/03/14/ask-away-5-questions-cornell-computer-science-linguistics-major-mixing-asl-innovation/'>here</Link>.
-              I have at least one ABBA song stuck in my head at any given time.</p>
-          </Subsection>
-          <Subsection title='Languages & Tools'>
-            <p>I fell in love with programming when I was 10 years old, thanks
-              to <Link href='https://scratch.mit.edu/'>Scratch* </Link>
-              and <Link href='https://www.codecademy.com/'>Codecademy</Link>.
-              My humble nerd beginnings include
-              an <Link href='https://scratch.mit.edu/projects/1554944/'>
-                animated Star Trek fanfiction</Link> in Scratch, which is somehow still getting views.
-              Since then, I've gained experience with more ~legitimate~ programming languages and tools:
-            </p>
-            <LangBars />
-            <ScratchNote>* My Scratch experience surpasses this scale</ScratchNote>
-          </Subsection>
-        </div>
-      </AboutWrapper>
-    </>
+    <AboutWrapper>
+      <ProfileWrapper>
+        <ProfilePic src={ProfileImage} alt="profile" />
+        <ProfileIconsWrapper>
+          {ProfileInfo(
+            "fab fa-github",
+            <Link href="https://github.com/lucia-gomez">lucia-gomez</Link>
+          )}
+          {ProfileInfo("fas fa-briefcase", "SWE, Facebook")}
+          {ProfileInfo("fas fa-graduation-cap", "Cornell University")}
+          {ProfileInfo("fas fa-map-marker-alt", "Seattle, WA")}
+        </ProfileIconsWrapper>
+      </ProfileWrapper>
+      <div>
+        <Subsection title="Hello World!">
+          <p>
+            I'm a Software Engineer working on AR glasses at{" "}
+            <span>Facebook</span>, and I recently graduated from Cornell as a
+            Computer Science and Linguistics major. I'm passionate about{" "}
+            <span>augmented and virtual reality</span>, but I've been on a
+            full-stack web dev spree lately. For the past few years, I've been
+            interested in <span>American Sign Language</span> and the challenges
+            associated with machine translation- I was featured{" "}
+            <Link href="https://www.leadwithlanguages.org/2019/03/14/ask-away-5-questions-cornell-computer-science-linguistics-major-mixing-asl-innovation/">
+              here
+            </Link>
+            . I have at least one ABBA song stuck in my head at any given time.
+          </p>
+        </Subsection>
+        <Subsection title="Languages & Tools">
+          <p>
+            I fell in love with programming when I was 10 years old, thanks to{" "}
+            <Link href="https://scratch.mit.edu/">Scratch* </Link>
+            and <Link href="https://www.codecademy.com/">Codecademy</Link>. My
+            humble nerd beginnings include an{" "}
+            <Link href="https://scratch.mit.edu/projects/1554944/">
+              animated Star Trek fanfiction
+            </Link>{" "}
+            in Scratch, which is somehow still getting views. Since then, I've
+            gained experience with more ~legitimate~ programming languages and
+            tools:
+          </p>
+          <LangBars />
+          <ScratchNote>
+            * My Scratch experience surpasses this scale
+          </ScratchNote>
+        </Subsection>
+      </div>
+    </AboutWrapper>
   )
 }
