@@ -7,21 +7,10 @@ import PortfolioSection from "./pages/portfolio"
 import ExperienceSection from "./pages/experience"
 
 export default function App() {
-
-  const sectionContents = [
-    [<BannerContent />, 'banner'],
-    [<About />, 'about'],
-    [<PortfolioSection />, 'portfolio'],
-    [<ExperienceSection />, 'experience']
-  ];
-
   return (
     <Layout>
-      {sectionContents.map(([content, id], index) => (
-        <Section id={id} index={index} key={index}>
-          {content}
-        </Section>)
-      )}
+      <BannerContent>Lucia Gomez</BannerContent>
+      <About />
     </Layout>
   )
 }

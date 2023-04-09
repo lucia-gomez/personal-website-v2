@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components'
+import React from "react"
+import styled from "styled-components"
 
 const Wrapper = styled.div`
   display: flex;
@@ -8,18 +8,11 @@ const Wrapper = styled.div`
   p {
     text-align: left;
   }
+`
 
-  span {
-    font-weight: 700;
-    background-color: ${props => props.theme.accentLight};
-    border-radius: 5px;
-    padding: 0px 3px;
-  }
-`;
-
-const Title = styled.h4`
+const Title = styled.h3`
   color: ${props => props.theme.header};
-`;
+`
 
 const Subsection = props => {
   return (
@@ -30,4 +23,4 @@ const Subsection = props => {
   )
 }
 
-export default Subsection;
+export default Subsection
