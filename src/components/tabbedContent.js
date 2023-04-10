@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import { Tab, Row, Col, Nav, Container } from "react-bootstrap"
+import { ul, li } from "../style/blogStyle"
 
 const TabColumn = styled(Nav)`
   position: relative;
@@ -72,7 +73,35 @@ const MobileNav = styled(Nav)`
   }
 `
 
+const CustomContainer = styled(Container)`
+  padding: 0px;
+  @media screen and (min-width: 850px) {
+    margin: 0px;
+    width: 65vw;
+  }
+`
+
+const BulletPoints = styled.ul`
+  ${ul}
+`
+const Bullet = styled.li`
+  ${li}
+`
+
+export function makeBulletPoints(bullets) {
+  return (
+    <BulletPoints key={bullets}>
+      {bullets.map((bullet, idx) => {
+        if (typeof bullet === "string")
+          return <Bullet key={idx}> {bullet}</Bullet>
+        else return makeBulletPoints(bullet)
+      })}
+    </BulletPoints>
+  )
+}
+
 const TabbedContent = props => {
+  const { horizontal = false } = props
   const [position, setPosition] = useState(0)
 
   const tabs = Object.keys(props.tabs).map((tab, idx) => (
@@ -88,7 +117,7 @@ const TabbedContent = props => {
   ))
 
   const desktop = (
-    <Container className="d-none d-md-block">
+    <Container className={horizontal ? "d-none" : "d-none d-md-block"}>
       <Tab.Container defaultActiveKey={0}>
         <Row>
           <Col sm={3}>
@@ -103,8 +132,9 @@ const TabbedContent = props => {
     </Container>
   )
 
+  // mobile but also horizontal layout
   const mobile = (
-    <Container className="d-md-none">
+    <CustomContainer className={horizontal ? "d-md-block" : "d-md-none"}>
       <Tab.Container defaultActiveKey={0}>
         <MobileNav variant="tabs flex-nowrap">
           <TabActiveMobile {...{ position }} />
@@ -112,7 +142,7 @@ const TabbedContent = props => {
         </MobileNav>
         <Tab.Content>{contents}</Tab.Content>
       </Tab.Container>
-    </Container>
+    </CustomContainer>
   )
 
   return (

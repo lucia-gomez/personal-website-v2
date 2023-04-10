@@ -5,7 +5,8 @@ import Link from "../components/link"
 import Layout from "../components/layout"
 
 import ProfileImage from "../assets/images/profile-circle.png"
-import ExperienceSection from "./experience"
+import ExperienceSection from "../components/experience"
+import TechnologiesSection from "../components/technologies"
 
 const AboutWrapper = styled.div`
   padding: 56px 20px 50px 20px;
@@ -133,7 +134,7 @@ export default function About() {
             <br></br>I have at least one ABBA song stuck in my head at any given
             time.
           </Subsection>
-          <Subsection title="Tools & Technologies">
+          <Subsection title="Tools & Technologies" openByDefault={false}>
             <p>
               I fell in love with programming and creative technology when I was
               10 years old. My humble nerd beginnings include an{" "}
@@ -144,8 +145,9 @@ export default function About() {
               that. More recently, I've gained hands-on experience with several
               creative tools and technologies to bring my ideas to life
             </p>
+            <TechnologiesSection />
           </Subsection>
-          <Subsection title="Experience">
+          <Subsection title="Experience" openByDefault={false}>
             <ExperienceSection />
           </Subsection>
         </div>
