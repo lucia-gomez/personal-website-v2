@@ -14,7 +14,6 @@ const GlobalStyle = createGlobalStyle`
 
   main {
     min-height: 100vh;
-    padding-bottom: 50px;
   }
 
   footer {

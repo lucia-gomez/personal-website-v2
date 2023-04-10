@@ -8,7 +8,7 @@ import ProfileImage from "../assets/images/profile-circle.png"
 import ExperienceSection from "./experience"
 
 const AboutWrapper = styled.div`
-  padding: 56px 20px 0px 20px;
+  padding: 56px 20px 50px 20px;
   display: flex;
   flex-direction: row;
   h4 {
