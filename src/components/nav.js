@@ -9,8 +9,10 @@ import Doc from "../assets/resume.pdf"
 import { hexToRGB } from "../style/theme"
 
 const NavWrapper = styled(Navbar)`
+  backdrop-filter: blur(50px);
+
   @media only screen and (max-width: 576px) {
-    backdrop-filter: blur(50px);
+    background-color: none;
   }
 
   .navbar-nav {
@@ -96,9 +98,8 @@ const CustomNav = () => {
   const { isAuthenticated } = useAuth0()
   const sections = [
     { name: "Home", link: "/" },
-    { name: "About", link: "/about-me" },
+    { name: "About Me", link: "/about-me" },
     { name: "Portfolio", link: "/portfolio" },
-    { name: "Experience", link: "/experience" },
     { name: "Blog", link: "/blog" },
     ...(isAuthenticated ? [{ name: "Admin", link: "/admin" }] : []),
     { name: "Art", link: "/art" },

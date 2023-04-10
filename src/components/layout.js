@@ -4,15 +4,30 @@ import PropTypes from "prop-types"
 import { ThemeProvider, createGlobalStyle } from "styled-components"
 import { themes } from "../style/theme.js"
 import CustomNav from "./nav.js"
+import GradientBackground from "./gradient.js"
 
 const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${props => props.theme.bg};
     color: ${props => props.theme.text};
   }
+
+  main {
+    min-height: 100vh;
+    padding-bottom: 50px;
+  }
+
+  footer {
+    font-size: 14px;
+    opacity: 0.5;
+    padding: 16px;
+    position: absolute;
+    bottom: 0;
+  }
 `
 
-const Layout = ({ children }) => {
+const Layout = props => {
+  const { children, gradientEnabled = true } = props
   let currentTheme = "default"
   const storedTheme = window.localStorage.getItem("lucia-gomez-theme")
   if (typeof window !== "undefined" && storedTheme != null) {
@@ -68,7 +83,9 @@ const Layout = ({ children }) => {
       <ThemeProvider theme={theme}>
         <GlobalStyle theme={theme} />
         <CustomNav />
+        {gradientEnabled && <GradientBackground />}
         <main>{children}</main>
+        <footer>© Lucia Gomez 2023</footer>
       </ThemeProvider>
     </>
   )
@@ -76,6 +93,7 @@ const Layout = ({ children }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  gradientEnabled: PropTypes.bool,
 }
 
 export default Layout
