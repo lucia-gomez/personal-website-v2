@@ -1,11 +1,12 @@
 body {
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   transition: all 0.25s linear;
   font-family: "Nanum Gothic", sans-serif;
+  position: relative;
 }
 
 h1,

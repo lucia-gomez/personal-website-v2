@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components"
 
 const ul = css`
   padding-left: 0px;
@@ -7,7 +7,7 @@ const ul = css`
   ul {
     padding-left: 20px;
   }
-`;
+`
 
 const li = css`
   padding-bottom: 5px;
@@ -16,28 +16,30 @@ const li = css`
 
   :not(ol)::before {
     font-family: "FontAwesome";
-    content: '\f054';
+    content: "\f054";
     color: ${props => props.theme.accent};
     position: absolute;
     left: 0px;
   }
-`;
+`
 
 const a = css`
   color: ${props => props.theme.accent};
+  display: contents;
+  transition: color 200ms;
 
   :hover {
     color: ${props => props.theme.accentHover};
     text-decoration: none;
   }
-`;
+`
 
 const BlogStyle = styled.div`
-  ul { 
-    ${ul} 
+  ul {
+    ${ul}
   }
   ul li {
-    ${li} 
+    ${li}
   }
   a {
     ${a}
@@ -54,7 +56,7 @@ const BlogStyle = styled.div`
     border-radius: 5px;
     margin-bottom: 20px;
   }
-`;
+`
 
-export default BlogStyle;
-export { ul, li, a };
+export default BlogStyle
+export { ul, li, a }
