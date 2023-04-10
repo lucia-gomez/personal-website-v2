@@ -12,6 +12,10 @@ const GlobalStyle = createGlobalStyle`
     color: ${props => props.theme.text};
   }
 
+  ::-webkit-scrollbar-thumb {
+    background: ${props => props.theme.accent};
+  }
+
   main {
     min-height: 100vh;
   }
