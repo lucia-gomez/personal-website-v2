@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from "styled-components";
-import { IconLink } from "../components/externalButton"
+import React from "react"
+import styled from "styled-components"
+import { IconLink } from "../externalButton"
 
 export const PortfolioCardDeck = styled.div`
   display: flex;
@@ -13,8 +13,7 @@ export const PortfolioCardDeck = styled.div`
   @media screen and (max-width: 850px) {
     padding: 20px 5px;
   }
-`;
-
+`
 
 const PortfolioCardWrapper = styled.div`
   width: 400px;
@@ -34,7 +33,7 @@ const PortfolioCardWrapper = styled.div`
     max-width: 400px;
     max-height: 590px;
   }
-`;
+`
 
 const PortfolioCardImage = styled.div`
   height: 20rem;
@@ -49,7 +48,7 @@ const PortfolioCardImage = styled.div`
   @media screen and (max-width: 850px) {
     max-height: 200px;
   }
-`;
+`
 
 const PortfolioCardContent = styled.div`
   height: 300px;
@@ -62,7 +61,7 @@ const PortfolioCardContent = styled.div`
   @media only screen and (max-width: 576px) {
     height: fit-content;
   }
-  
+
   h4 {
     max-width: 78%;
     font-weight: 600;
@@ -74,27 +73,27 @@ const PortfolioCardContent = styled.div`
     border-radius: 5px;
     padding: 0px 3px;
   }
-`;
+`
 
 const Row = styled.div`
   display: flex;
   flex-direction: row;
   position: relative;
-`;
+`
 
 const PortfolioCardButtons = styled.div`
   position: absolute;
   right: 0px;
   display: flex;
   flex-direction: row;
-`;
+`
 
 const PortfolioCardDivider = styled.span`
   display: inline-block;
   width: 50px;
   height: 5px;
   background-color: ${props => props.theme.accent}!important;
-`;
+`
 
 const PortfolioCardTag = styled.span`
   background-color: ${props => props.theme.medium};
@@ -102,12 +101,12 @@ const PortfolioCardTag = styled.span`
   margin-right: 5px;
   display: inline-block;
   width: max-content;
-`;
+`
 
 const GitLink = styled(IconLink)`
   margin-bottom: 0.5rem;
   margin-top: -2px;
-`;
+`
 
 export function makePortfolioCard(project) {
   return (
@@ -122,17 +121,17 @@ export function makePortfolioCard(project) {
     >
       {project.text}
     </PortfolioCard>
-  );
+  )
 }
 
 const PortfolioCard = props => {
-  const githubIcon = (props.git ?
-    <GitLink href={props.git ?? ''}>
-      <div className='material-icons'>
+  const githubIcon = props.git ? (
+    <GitLink href={props.git ?? ""}>
+      <div className="material-icons">
         <i className="fa fa-github"></i>
       </div>
-    </GitLink >
-    : null);
+    </GitLink>
+  ) : null
 
   return (
     <PortfolioCardWrapper>
@@ -155,5 +154,5 @@ const PortfolioCard = props => {
         </div>
       </PortfolioCardContent>
     </PortfolioCardWrapper>
-  );
+  )
 }

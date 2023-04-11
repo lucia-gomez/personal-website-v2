@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 const Title = styled.h2`
   margin: 0px auto 20px;
-  color: ${props => props.theme.accent};
+  color: ${props => props.theme.text};
   font-size: 48px;
 `
 

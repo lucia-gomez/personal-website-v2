@@ -8,7 +8,7 @@ import { featuredProjects } from "./scripts/projectList"
 import {
   PortfolioCardDeck,
   makePortfolioCard,
-} from "./components/portfolioCardDeck"
+} from "./components/portfolio/portfolioCardDeck"
 
 const ArchiveButton = styled(ButtonLink)`
   margin: auto;
