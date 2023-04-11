@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import { useEffect, useState } from "react"
 import Layout from "../components/layout"
-import Section from "../components/section"
 import SectionTitle from "../components/sectionTitle"
 import Subsection from "../components/subsection"
 import Link from "../components/link"
@@ -12,12 +11,6 @@ import { PortfolioCardDeck } from "../components/portfolio/portfolioCardDeck"
 import zines from "../scripts/zineList"
 import artList, { getArtBySlug } from "../scripts/artList"
 import ArtModal from "../components/art/artModal"
-
-const SubsectionWrapper = styled(Subsection)`
-  h4 {
-    width: fit-content;
-  }
-`
 
 const ZinePortfolioCardDeck = styled(PortfolioCardDeck)`
   padding: 0px;
@@ -68,9 +61,9 @@ export default function ArtPage() {
 
   return (
     <Layout>
-      <Section id="art" index={0}>
+      <div style={{ padding: "75px 20px 50px 20px" }}>
         {SectionTitle("Art")}
-        <SubsectionWrapper title="Zines">
+        <Subsection title="Zines">
           <p>
             Sometimes I make silly little{" "}
             <Link href="https://en.wikipedia.org/wiki/Zine">zines</Link>. Click
@@ -81,9 +74,9 @@ export default function ArtPage() {
               <ZineItem zine={zine} key={idx} />
             ))}
           </ZinePortfolioCardDeck>
-        </SubsectionWrapper>
+        </Subsection>
         {artList.map((section, index) => (
-          <SubsectionWrapper title={section.sectionName} key={index}>
+          <Subsection title={section.sectionName} key={index}>
             <p>{section.description}</p>
             <ArtList>
               {section.items.map(item => (
@@ -99,14 +92,14 @@ export default function ArtPage() {
                 </div>
               ))}
             </ArtList>
-          </SubsectionWrapper>
+          </Subsection>
         ))}
-        <ArtModal
-          modalItem={modalItem}
-          isShowing={modalItem != null}
-          handleClose={handleModalClose}
-        />
-      </Section>
+      </div>
+      <ArtModal
+        modalItem={modalItem}
+        isShowing={modalItem != null}
+        handleClose={handleModalClose}
+      />
     </Layout>
   )
 }
