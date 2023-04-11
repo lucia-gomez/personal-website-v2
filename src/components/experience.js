@@ -68,10 +68,10 @@ export default function ExperienceSection() {
     ]
   )
 
-  const facebook = ExperienceItem(
+  const meta = ExperienceItem(
     "Software Engineer",
-    "Facebook",
-    "https://www.facebook.com/careers/",
+    "Meta",
+    "https://www.metacareers.com/",
     "Aug 2021 - present, June - Aug 2020, June - Aug 2019",
     [
       "Present: SWE working on AR glasses",
@@ -112,7 +112,7 @@ export default function ExperienceSection() {
   )
 
   const tabs = {
-    Facebook: facebook,
+    Meta: meta,
     "Juni Learning": juni,
     "Cornell CIS": ta,
     CUDAP: cudap,
