@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import styled from "styled-components"
 import Layout from "../components/layout"
 import SectionTitle from "../components/sectionTitle"
 import {
@@ -10,10 +9,7 @@ import projects from "../scripts/projectList"
 import filterProject from "../scripts/search"
 import { useTransition, animated } from "@react-spring/web"
 import PortfolioFiltersSection from "../components/portfolio/portfolioFiltersSection"
-
-const ArchiveWrapper = styled.div`
-  padding: 75px 20px 50px 20px;
-`
+import PortfolioItem from "../components/portfolio/portfolioItem"
 
 export default function ArchivePage() {
   const [results, setResults] = useState(projects)
@@ -52,7 +48,7 @@ export default function ArchivePage() {
 
   return (
     <Layout>
-      <ArchiveWrapper>
+      <div style={{ padding: "75px 20px 50px 20px" }}>
         {SectionTitle("Things I've Made")}
         <p>
           Dive into my project archive. Use the filters to help sift through the
@@ -61,6 +57,11 @@ export default function ArchivePage() {
         <PortfolioFiltersSection
           {...{ activeFilter, setActiveFilter, searchProjects }}
         />
+        {/* {projectTransition((style, project, _, index) => (
+          <animated.div style={style}>
+            <PortfolioItem {...{ index, project }} />
+          </animated.div>
+        ))} */}
         <PortfolioCardDeck>
           {projectTransition((style, project) => (
             <animated.div style={style}>
@@ -68,7 +69,7 @@ export default function ArchivePage() {
             </animated.div>
           ))}
         </PortfolioCardDeck>
-      </ArchiveWrapper>
+      </div>
     </Layout>
   )
 }

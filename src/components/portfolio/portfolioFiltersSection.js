@@ -33,7 +33,7 @@ export default function PortfolioFiltersSection(props) {
   })
 
   return (
-    <>
+    <div style={{ paddingBottom: 30 }}>
       <Advanced onClick={() => setExpanded(!isExpanded)} {...{ isExpanded }}>
         Advanced filters
         <i className={"fas fa-chevron-down"}></i>
@@ -47,6 +47,6 @@ export default function PortfolioFiltersSection(props) {
           />
         </div>
       </animated.div>
-    </>
+    </div>
   )
 }
