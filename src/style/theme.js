@@ -1,21 +1,9 @@
 export const colors = {
-  white: "#f7f7f7",
-  gray: "#717171",
+  white: "#f7f0ff",
   black: "#18062e",
 }
 
 export const themes = {
-  light: {
-    bg: colors.white,
-    medium: "#ebebeb",
-    header: colors.black,
-    text: colors.gray,
-    textLight: "#c5c5c5",
-    accent: "#AB47BC",
-    accentHover: "#CE93D8",
-    accentLight: "#edccf3",
-    textInv: colors.white,
-  },
   default: {
     bg: "#221a2a",
     medium: "#2F2939",
