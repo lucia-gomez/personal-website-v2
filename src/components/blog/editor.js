@@ -1,84 +1,90 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { Form, Row, Col } from "react-bootstrap";
+import React, { useState, useEffect } from "react"
+import styled from "styled-components"
+import { Form, Row, Col } from "react-bootstrap"
 
-import BlogContent from './blogContent';
-import { Editor as ReactDraft } from "@nick4fake/react-draft-wysiwyg";
-import { EditorState, ContentState, convertToRaw } from 'draft-js';
-import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
-import "@nick4fake/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import BlogContent from "./blogContent"
+import { Editor as ReactDraft } from "@nick4fake/react-draft-wysiwyg"
+import { EditorState, ContentState, convertToRaw } from "draft-js"
+import draftToHtml from "draftjs-to-html"
+import htmlToDraft from "html-to-draftjs"
+import "@nick4fake/react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 const ButtonRow = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 30px;
-`;
+`
 
 const PreviewButton = styled.div`
   color: ${props => props.theme.accent};
   cursor: pointer;
   padding-top: 20px;
   width: fit-content;
-`;
+`
 
 export default function Editor(props) {
-  const { post } = props;
+  const { post } = props
 
-  const [title, setTitle] = useState(post?.title ?? "");
-  const [summary, setSummary] = useState(post?.summary ?? "");
-  const [slug, setSlug] = useState(post?.slug ?? "");
-  const [date, setDate] = useState(post?.dateString ?? "");
-  const [editorState, setEditorState] = useState(
-    EditorState.createEmpty()
-  );
-  const [showPreview, setShowPreview] = useState(false);
+  const [title, setTitle] = useState(post?.title ?? "")
+  const [summary, setSummary] = useState(post?.summary ?? "")
+  const [slug, setSlug] = useState(post?.slug ?? "")
+  const [date, setDate] = useState(post?.dateString ?? "")
+  const [editorState, setEditorState] = useState(EditorState.createEmpty())
+  const [showPreview, setShowPreview] = useState(false)
 
   useEffect(() => {
-    setTitle(post?.title ?? "");
-    setSummary(post?.summary ?? "");
-    setSlug(post?.slug ?? "");
-    setDate(post?.dateString ?? "");
+    setTitle(post?.title ?? "")
+    setSummary(post?.summary ?? "")
+    setSlug(post?.slug ?? "")
+    setDate(post?.dateString ?? "")
     if (post !== undefined) {
-      const blocksFromHtml = htmlToDraft(post.content);
-      const { contentBlocks, entityMap } = blocksFromHtml;
-      const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
-      const editorState = EditorState.createWithContent(contentState);
-      setEditorState(editorState);
+      const blocksFromHtml = htmlToDraft(post.content)
+      const { contentBlocks, entityMap } = blocksFromHtml
+      const contentState = ContentState.createFromBlockArray(
+        contentBlocks,
+        entityMap
+      )
+      const editorState = EditorState.createWithContent(contentState)
+      setEditorState(editorState)
     } else {
-      setEditorState(EditorState.createEmpty());
+      setEditorState(EditorState.createEmpty())
     }
   }, [post])
 
-  const getHTMLString = () => draftToHtml(convertToRaw(editorState.getCurrentContent()));
+  const getHTMLString = () =>
+    draftToHtml(convertToRaw(editorState.getCurrentContent()))
 
   const titleForm = (
     <Form.Group>
       <Form.Label>Title</Form.Label>
       <Form.Control onChange={e => setTitle(e.target.value)} value={title} />
     </Form.Group>
-  );
+  )
 
   const slugForm = (
     <Form.Group>
       <Form.Label>Slug</Form.Label>
       <Form.Control onChange={e => setSlug(e.target.value)} value={slug} />
     </Form.Group>
-  );
+  )
 
   const dateForm = (
     <Form.Group>
       <Form.Label>Date</Form.Label>
       <Form.Control onChange={e => setDate(e.target.value)} value={date} />
     </Form.Group>
-  );
+  )
 
   const summaryForm = (
     <Form.Group>
       <Form.Label>Summary</Form.Label>
-      <Form.Control onChange={e => setSummary(e.target.value)} value={summary} as="textarea" />
+      <Form.Control
+        onChange={e => setSummary(e.target.value)}
+        value={summary}
+        as="textarea"
+      />
     </Form.Group>
-  );
+  )
 
   const formDesktop = (
     <Form className="d-none d-md-block">
@@ -89,7 +95,7 @@ export default function Editor(props) {
       </Row>
       {summaryForm}
     </Form>
-  );
+  )
 
   const formMobile = (
     <Form className="d-md-none">
@@ -98,9 +104,9 @@ export default function Editor(props) {
       {dateForm}
       {summaryForm}
     </Form>
-  );
+  )
 
-  const buttons = props.buttons(title, slug, date, summary, getHTMLString());
+  const buttons = props.buttons(title, slug, date, summary, getHTMLString())
 
   return (
     <div>
@@ -110,21 +116,18 @@ export default function Editor(props) {
         <ReactDraft
           editorState={editorState}
           onEditorStateChange={x => {
-            setEditorState(x);
-            if (props.editorCallback)
-              props.editorCallback(getHTMLString());
+            setEditorState(x)
+            if (props.editorCallback) props.editorCallback(getHTMLString())
           }}
         />
       </EditorWrapper>
       <PreviewButton onClick={() => setShowPreview(!showPreview)}>
-        {showPreview ? 'Hide preview' : 'Show preview'}
+        {showPreview ? "Hide preview" : "Show preview"}
       </PreviewButton>
       {showPreview ? <BlogContent content={getHTMLString()} /> : null}
-      <ButtonRow>
-        {buttons}
-      </ButtonRow>
+      <ButtonRow>{buttons}</ButtonRow>
     </div>
-  );
+  )
 }
 
 const EditorWrapper = styled.div`
@@ -138,7 +141,7 @@ const EditorWrapper = styled.div`
 
   .rdw-editor-main {
     background-color: ${props => props.theme.bg};
-    color: ${props => props.theme.header};
+    color: ${props => props.theme.text};
     min-height: 200px;
     padding: 10px;
     border: 1px solid ${props => props.theme.textLight};
@@ -188,4 +191,4 @@ const EditorWrapper = styled.div`
     background-color: ${props => props.theme.accent};
     color: ${props => props.theme.textInv};
   }
-`;
+`

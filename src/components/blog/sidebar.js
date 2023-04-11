@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import Like from './like';
-import ProfileImage from "../../assets/images/profile-circle.png";
-import Back from "./back";
+import styled from "styled-components"
+import Like from "./like"
+import ProfileImage from "../../assets/images/profile-circle.png"
+import Back from "./back"
 
 const Wrapper = styled.div`
   background-color: ${props => props.theme.bg};
@@ -20,13 +20,13 @@ const Wrapper = styled.div`
     width: 95%;
     margin: auto;
   }
-`;
+`
 
 const SidebarContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
+`
 
 const ProfilePic = styled.img`
   border-radius: 300px;
@@ -34,7 +34,7 @@ const ProfilePic = styled.img`
   width: 150px;
   mix-blend-mode: luminosity;
   margin-bottom: 10px;
-`;
+`
 
 const Divider = styled.div`
   height: 1px;
@@ -43,19 +43,19 @@ const Divider = styled.div`
   background-color: ${props => props.theme.text};
   margin-bottom: 1rem;
   opacity: 20%;
-`;
+`
 
 const Row = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-`;
+`
 
 const Name = styled.h5`
-  color: ${props => props.theme.header};
+  color: ${props => props.theme.text};
   font-weight: 900;
   margin: 0px;
-`;
+`
 
 const ShareRow = styled.div`
   display: flex;
@@ -63,12 +63,12 @@ const ShareRow = styled.div`
   align-items: baseline;
   width: fit-content;
   cursor: pointer;
-`;
+`
 
 const Share = styled.i`
   color: ${props => props.theme.accent};
   padding-right: 3px;
-`;
+`
 
 const Tooltip = styled.div`
   position: relative;
@@ -97,26 +97,27 @@ const Tooltip = styled.div`
       margin-left: -5px;
       border-width: 5px;
       border-style: solid;
-      border-color: ${props => props.theme.accent} transparent transparent transparent;
+      border-color: ${props => props.theme.accent} transparent transparent
+        transparent;
     }
   }
-`;
+`
 
 const BackWrapper = styled(Back)`
   @media only screen and (max-width: 768px) {
     display: none;
   }
-`;
+`
 
 function copyToClipboard() {
-  const url = window.location.href;
-  navigator.clipboard.writeText(url);
+  const url = window.location.href
+  navigator.clipboard.writeText(url)
 
-  const tooltip = document.getElementById("tooltip");
-  tooltip.style.opacity = 1;
+  const tooltip = document.getElementById("tooltip")
+  tooltip.style.opacity = 1
   setTimeout(() => {
-    tooltip.style.opacity = 0;
-  }, 1500);
+    tooltip.style.opacity = 0
+  }, 1500)
 }
 
 const Sidebar = ({ post, className }) => {
@@ -124,10 +125,7 @@ const Sidebar = ({ post, className }) => {
     <Wrapper className={className}>
       <BackWrapper link="/blog" />
       <SidebarContent>
-        <ProfilePic
-          src={ProfileImage}
-          alt="profile picture"
-        />
+        <ProfilePic src={ProfileImage} alt="profile picture" />
         <Name>Lucia Gomez</Name>
         <p>Full-stack developer</p>
         <Divider />
@@ -136,14 +134,14 @@ const Sidebar = ({ post, className }) => {
         <Like count={post.likes} postID={post.id} />
         <Tooltip>
           <ShareRow onClick={copyToClipboard}>
-            <Share className='fas fa-link' />
+            <Share className="fas fa-link" />
             Share
           </ShareRow>
           <span id="tooltip">Link copied to clipboard</span>
         </Tooltip>
       </Row>
     </Wrapper>
-  );
+  )
 }
 
 export default Sidebar

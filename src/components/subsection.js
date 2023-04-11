@@ -13,15 +13,19 @@ const Wrapper = styled.div`
 `
 
 const Row = styled.div`
+  width: fit-content;
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-bottom: 8px;
   cursor: ${props => (props.collapsible ? "pointer" : "unset")};
+  @media screen and (max-width: 576px) {
+    justify-content: space-between;
+  }
 `
 
 const Title = styled.h3`
-  color: ${props => props.theme.header};
+  color: ${props => props.theme.text};
   width: fit-content;
   margin: 0;
 `

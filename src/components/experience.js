@@ -1,6 +1,27 @@
 import React from "react"
-import TabbedContent, { makeBulletPoints } from "./tabbedContent"
+import styled from "styled-components"
+import TabbedContent from "./tabbedContent"
 import Link from "./link"
+import { ul, li } from "../style/blogStyle"
+
+const BulletPoints = styled.ul`
+  ${ul}
+`
+const Bullet = styled.li`
+  ${li}
+`
+
+export function makeBulletPoints(bullets) {
+  return (
+    <BulletPoints key={bullets}>
+      {bullets.map((bullet, idx) => {
+        if (typeof bullet === "string")
+          return <Bullet key={idx}> {bullet}</Bullet>
+        else return makeBulletPoints(bullet)
+      })}
+    </BulletPoints>
+  )
+}
 
 const ExperienceItem = (role, company, link, date, bullets) => (
   <>

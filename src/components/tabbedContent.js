@@ -1,7 +1,18 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import styled from "styled-components"
 import { Tab, Row, Col, Nav, Container } from "react-bootstrap"
-import { ul, li } from "../style/blogStyle"
+import { hexToRGB } from "../style/theme"
+
+const TAB_MOBILE_WIDTH = 150
+const TAB_BORDER_THICKNESS = 4
+
+const CustomContainer = styled(Container)`
+  padding: 0px;
+  @media screen and (min-width: 850px) {
+    margin: 0px;
+    width: 65vw;
+  }
+`
 
 const TabColumn = styled(Nav)`
   position: relative;
@@ -15,7 +26,7 @@ const TabActiveDesktop = styled.div`
   position: absolute;
   top: 0px;
   background-color: ${props => props.theme.accent};
-  width: 5px;
+  width: ${TAB_BORDER_THICKNESS}px;
   height: 40px;
   z-index: 1;
   transform: translateY(${props => props.position * 40}px);
@@ -26,29 +37,30 @@ const TabActiveMobile = styled.div`
   position: absolute;
   top: 40px;
   background-color: ${props => props.theme.accent};
-  width: 150px;
-  height: 5px;
+  width: ${TAB_MOBILE_WIDTH}px;
+  height: ${TAB_BORDER_THICKNESS}px;
   z-index: 1;
-  transform: translateX(${props => props.position * 150}px);
+  transform: translateX(${props => props.position * TAB_MOBILE_WIDTH}px);
   transition: transform 300ms cubic-bezier(0.65, 0.05, 0.36, 1);
 `
 
 const TabLink = styled(Nav.Link)`
-  min-width: 150px;
+  min-width: ${TAB_MOBILE_WIDTH}px;
   border-radius: 0px;
-  border-left: 5px solid ${props => props.theme.accentLight};
+  border-left: ${TAB_BORDER_THICKNESS}px solid
+    ${props => props.theme.accentLight};
   color: ${props => props.theme.text};
   text-align: left;
   transition: background-color 300ms, color 300ms;
 
   :hover {
-    background-color: ${props => props.theme.medium};
-    color: ${props => props.theme.header};
+    background-color: ${props => hexToRGB(props.theme.medium, 0.5)};
+    color: ${props => props.theme.text};
   }
 
   &.nav-link.active {
     color: ${props => props.theme.accent};
-    background-color: ${props => props.theme.medium};
+    background-color: ${props => hexToRGB(props.theme.medium, 0.5)};
   }
 `
 
@@ -63,49 +75,38 @@ const MobileNav = styled(Nav)`
     border: none;
   }
 
-  @media only screen and (max-width: 768px) {
-    .nav-link,
-    .nav-link.active {
-      border-bottom: 5px solid ${props => props.theme.accentLight};
-      display: flex;
-      justify-content: center;
-    }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-link,
+  .nav-link.active {
+    border-bottom: ${TAB_BORDER_THICKNESS}px solid
+      ${props => props.theme.accentLight};
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-link:hover {
+    border-color: ${props => props.theme.accentLight};
   }
 `
-
-const CustomContainer = styled(Container)`
-  padding: 0px;
-  @media screen and (min-width: 850px) {
-    margin: 0px;
-    width: 65vw;
-  }
-`
-
-const BulletPoints = styled.ul`
-  ${ul}
-`
-const Bullet = styled.li`
-  ${li}
-`
-
-export function makeBulletPoints(bullets) {
-  return (
-    <BulletPoints key={bullets}>
-      {bullets.map((bullet, idx) => {
-        if (typeof bullet === "string")
-          return <Bullet key={idx}> {bullet}</Bullet>
-        else return makeBulletPoints(bullet)
-      })}
-    </BulletPoints>
-  )
-}
 
 const TabbedContent = props => {
   const { horizontal = false } = props
   const [position, setPosition] = useState(0)
+  const horizontalTabs = useRef()
+
+  const onClickTab = idx => {
+    setPosition(idx)
+    horizontalTabs?.current.scrollTo({
+      left: TAB_MOBILE_WIDTH * (idx - 0.5),
+      behavior: "smooth",
+    })
+  }
 
   const tabs = Object.keys(props.tabs).map((tab, idx) => (
-    <TabLink eventKey={idx} key={idx} onClick={() => setPosition(idx)}>
+    <TabLink eventKey={idx} key={idx} onClick={() => onClickTab(idx)}>
       {tab}
     </TabLink>
   ))
@@ -136,7 +137,7 @@ const TabbedContent = props => {
   const mobile = (
     <CustomContainer className={horizontal ? "d-md-block" : "d-md-none"}>
       <Tab.Container defaultActiveKey={0}>
-        <MobileNav variant="tabs flex-nowrap">
+        <MobileNav variant="tabs flex-nowrap" ref={horizontalTabs}>
           <TabActiveMobile {...{ position }} />
           {tabs}
         </MobileNav>

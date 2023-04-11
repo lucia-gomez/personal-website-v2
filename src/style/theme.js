@@ -19,12 +19,11 @@ export const themes = {
   default: {
     bg: "#221a2a",
     medium: "#2F2939",
-    header: colors.white,
     text: "#f7f0ff",
     textLight: colors.white,
     accent: "#1ebf66",
     accentHover: "#f28034",
-    accentLight: "#245944",
+    accentLight: "#10532e",
     textInv: colors.black,
   },
 }

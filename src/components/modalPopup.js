@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Modal } from "react-bootstrap";
+import styled from "styled-components"
+import { Modal } from "react-bootstrap"
 
 const ModalWrapper = styled(Modal)`
   .modal-content {
@@ -15,16 +15,16 @@ const ModalWrapper = styled(Modal)`
   .modal-title {
     color: ${props => props.theme.text};
   }
-  
+
   @media (min-width: 576px) {
     .modal-dialog {
-        max-width: 90vw;
+      max-width: 90vw;
     }
   }
 
   .form-control {
     background-color: ${props => props.theme.bg};
-    color: ${props => props.theme.header};
+    color: ${props => props.theme.text};
     border: 1px solid ${props => props.theme.textLight};
   }
 
@@ -33,6 +33,6 @@ const ModalWrapper = styled(Modal)`
     opacity: unset;
     text-shadow: none;
   }
-`;
+`
 
-export default ModalWrapper;
+export default ModalWrapper
