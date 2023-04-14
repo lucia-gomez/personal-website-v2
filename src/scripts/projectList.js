@@ -2,28 +2,6 @@ import React from "react"
 import Link from "../components/link"
 import ExternalButton from "../components/externalButton"
 
-import ImageSignSearch from "../assets/images/portfolio/signSearch.png"
-import ImageWebsite from "../assets/images/portfolio/website.jpg"
-import ImageSubreddit from "../assets/images/portfolio/subreddit.png"
-import ImageCAC from "../assets/images/portfolio/cac.png"
-import ImageHollabackGirls from "../assets/images/portfolio/hollabackgirls.png"
-import ImageSpillTheTea from "../assets/images/portfolio/spillTheTea.png"
-import ImageSpaceBears from "../assets/images/portfolio/spaceBears.png"
-import ImageWelcomePreemie from "../assets/images/portfolio/welcomePreemie.png"
-import ImageSpotifyVibeCheck from "../assets/images/portfolio/spotifyVibeCheck.png"
-import ImageCliqueBite from "../assets/images/portfolio/cliquebite.png"
-import ImagePowerHour from "../assets/images/portfolio/powerHour.png"
-import ImageCACWeb from "../assets/images/portfolio/cac-web.png"
-import ImageIsoCornell from "../assets/images/portfolio/isoCornell.png"
-import ImageVaxGraph from "../assets/images/portfolio/vaxGraph.png"
-import ImageLangViz from "../assets/images/portfolio/langViz.png"
-import ImageARHand from "../assets/images/portfolio/arHand.jpeg"
-import ImageLavaLamp from "../assets/images/portfolio/lavaLamp.png"
-import Image2048 from "../assets/images/portfolio/2048.png"
-import ImageMinesweeper from "../assets/images/portfolio/minesweeper.png"
-import ImageInARWeTrust from "../assets/images/portfolio/inARWeTrust.gif"
-import ImageBubbleBlower from "../assets/images/portfolio/bubbleBlower.png"
-
 const category = {
   All: -1,
   Web: 0,
@@ -38,7 +16,7 @@ const projects = [
     title: "Bubble Blower",
     date: "March 2023",
     tools: ["p5.js"],
-    image: ImageBubbleBlower,
+    image: "bubbleBlower.png?updatedAt=1681511925613",
     text: (
       <p>
         A small experiment with p5.js, a Javascript interactive graphics
@@ -48,12 +26,13 @@ const projects = [
     link: "https://github.com/lucia-gomez/bubble-blower",
     extra: ExternalButton("https://lucia-gomez.github.io/bubble-blower/"),
     categories: [category.Web],
+    centerImage: false,
   },
   {
     title: "In AR We Trust",
     date: "January 2023",
     tools: ["Spark AR", "Javascript", "Photoshop"],
-    image: ImageInARWeTrust,
+    image: "inARWeTrust.gif",
     text: (
       <p>
         An interactive Spark AR effect for a poster on my wall from MoCo in
@@ -70,7 +49,7 @@ const projects = [
     title: "Lava Lamp Simulator",
     date: "April 2022",
     tools: ["WebGL", "GLSL", "HTML/CSS"],
-    image: ImageLavaLamp,
+    image: "lavaLamp.png",
     text: (
       <p>
         I woke up one day and wanted to play with WebGL, so I made a lava lamp
@@ -85,7 +64,7 @@ const projects = [
     title: "Sign Search",
     date: "May 2020, March 2022",
     tools: ["Javascript", "React"],
-    image: ImageSignSearch,
+    image: "signSearch.png",
     link: "https://github.com/lucia-gomez/Sign-Search",
     text: (
       <p>
@@ -103,7 +82,7 @@ const projects = [
     title: "3D Poster Animation: Hand Grab",
     date: "Aug 2021",
     tools: ["Spark AR", "Blender", "Photoshop"],
-    image: ImageARHand,
+    image: "arHand.jpeg",
     text: (
       <p>
         I turned 2D artwork into a 3D augmented reality experience with Spark
@@ -127,7 +106,7 @@ const projects = [
     title: "Cards Against Cornellians 2.0",
     date: "April-June 2021",
     tools: ["React", "Flask-SocketIO", "Python", "Styled Components", "Heroku"],
-    image: ImageCACWeb,
+    image: "cac-web.png",
     link: "https://github.com/lucia-gomez/cards-against-cornellians-web",
     text: (
       <p>
@@ -137,12 +116,13 @@ const projects = [
     ),
     extra: ExternalButton("https://cards-against-cornellians.herokuapp.com/"),
     categories: [category.Web],
+    centerImage: false,
   },
   {
     title: "Our Power Hour",
     date: "February 2021-present",
     tools: ["React", "Styled Components", "Netlify"],
-    image: ImagePowerHour,
+    image: "powerHour.png",
     link: "https://github.com/lucia-gomez/our-power-hour",
     text: (
       <p>
@@ -159,7 +139,7 @@ const projects = [
     title: "How Many Hollaback Girls",
     date: "Sept 2020, Nov 2022",
     tools: ["Javascript", "HTML/CSS", "AWS"],
-    image: ImageHollabackGirls,
+    image: "hollabackgirls.png",
     link: "https://github.com/lucia-gomez/how-many-hollaback-girls",
     text: (
       <p>
@@ -183,7 +163,7 @@ const projects = [
       "Materialize",
       "Heroku",
     ],
-    image: ImageSpotifyVibeCheck,
+    image: "spotifyVibeCheck.png",
     link: "https://github.com/lucia-gomez/spotify-vibe-check",
     text: (
       <p>
@@ -193,12 +173,13 @@ const projects = [
     ),
     extra: ExternalButton("https://spotify-vibe-check.herokuapp.com/"),
     categories: [category.Web],
+    centerImage: false,
   },
   {
     title: "Endangered Languages Data Viz",
     date: "April-May 2021",
     tools: ["D3", "Topojson", "Javascript", "HTML/CSS"],
-    image: ImageLangViz,
+    image: "langViz.png",
     link: "https://github.com/lucia-gomez/project2-3300-repl",
     extra: ExternalButton("https://lucia-gomez.github.io/project2-3300-repl/"),
     text: (
@@ -223,7 +204,7 @@ const projects = [
       "Styled Components",
       "Heroku",
     ],
-    image: ImageWebsite,
+    image: "website.jpg",
     link: "https://github.com/lucia-gomez/personal-website-v2",
     text: (
       <p>
@@ -237,7 +218,7 @@ const projects = [
     title: "Isometric Cornell",
     date: "April 2021",
     tools: ["Javascript", "Isomer"],
-    image: ImageIsoCornell,
+    image: "isoCornell.png",
     link: "https://github.com/lucia-gomez/isometric-cornell",
     text: (
       <p>
@@ -252,7 +233,7 @@ const projects = [
     title: "COVID-19 Vaccination Data Viz",
     date: "March 2021",
     tools: ["D3", "Python", "Javascript", "HTML/CSS"],
-    image: ImageVaxGraph,
+    image: "vaxGraph.png",
     link: "https://github.com/lucia-gomez/3300-project-1",
     extra: ExternalButton("https://lucia-gomez.github.io/3300-project-1/"),
     text: (
@@ -271,7 +252,7 @@ const projects = [
     title: "CliqueBite UI",
     date: "Sept-Dec 2020",
     tools: ["Figma"],
-    image: ImageCliqueBite,
+    image: "cliquebite.png",
     extra: ExternalButton(
       "https://www.figma.com/proto/pEJBpCmDtQ7fQg1QBUJFZs/CliqueBite?node-id=170%3A2&scaling=scale-down"
     ),
@@ -290,7 +271,7 @@ const projects = [
     title: "Welcome Preemie",
     date: "Aug-Oct 2020",
     tools: ["Squarespace", "CSS"],
-    image: ImageWelcomePreemie,
+    image: "welcomePreemie.png",
     text: (
       <p>
         Redesigned a client's e-commerce website using Squarespace, and added
@@ -305,7 +286,7 @@ const projects = [
     title: "Subreddit Recommender",
     date: "March-May 2020",
     tools: ["Python", "Flask", "NLTK", "Bootstrap"],
-    image: ImageSubreddit,
+    image: "subreddit.png",
     link: "https://github.com/lucia-gomez/cs4300sp2020-ael226-ilg7-nr292-vmw9-zjs28",
     text: (
       <p>
@@ -320,7 +301,7 @@ const projects = [
     title: "Spill the Tea",
     date: "May 2020",
     tools: ["Tableau"],
-    image: ImageSpillTheTea,
+    image: "spillTheTea.png",
     text: (
       <p>
         Interactive data visualizations for socio-linguistic research on 'bubble
@@ -342,7 +323,7 @@ const projects = [
     title: "Cards Against Cornellians 1.0",
     date: "April 2019-March 2020",
     tools: ["Python"],
-    image: ImageCAC,
+    image: "cac.png",
     link: "https://github.com/lucia-gomez/Cards-Against-Humanity-Engine",
     text: (
       <p>
@@ -357,7 +338,7 @@ const projects = [
     title: "Space Bears",
     date: "Oct-Dec 2019",
     tools: ["Unreal Engine 4"],
-    image: ImageSpaceBears,
+    image: "spaceBears.png",
     text: (
       <p>
         My first experience working with virtual reality. Explore a space
@@ -371,7 +352,7 @@ const projects = [
     title: "2048 Clone",
     date: "2015",
     tools: ["Java"],
-    image: Image2048,
+    image: "2048.png",
     link: "https://github.com/luciag123/2048-Clone",
     text: (
       <p>
@@ -384,7 +365,7 @@ const projects = [
     title: "Minesweeper Clone",
     date: "2014",
     tools: ["Java"],
-    image: ImageMinesweeper,
+    image: "minesweeper.png",
     link: "https://github.com/luciag123/Minesweeper",
     text: <p>Final project for my first real Computer Science class</p>,
     categories: [category.Other],

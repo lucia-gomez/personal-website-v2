@@ -36,7 +36,8 @@ const PortfolioCardImage = styled.div`
   width: 100%;
   border-radius: 5px 0px 0px 5px;
   background-image: url(${props => props.image});
-  background-position: top center;
+  background-position: ${props =>
+    props.centerImage ? "top center" : "top left"};
   background-size: cover;
   background-repeat: no-repeat;
   mix-blend-mode: luminosity;
@@ -112,7 +113,8 @@ export function makePortfolioCard(project) {
       title={project.title}
       date={project.date}
       tools={project.tools}
-      image={project.image}
+      image={"https://ik.imagekit.io/5xtlzx2c3y/portfolio/" + project.image}
+      centerImage={project.centerImage != null ? project.centerImage : true}
       git={project.link ?? null}
       link={project.extra ?? null}
       key={project.title}
@@ -133,7 +135,7 @@ const PortfolioCard = props => {
 
   return (
     <PortfolioCardWrapper>
-      <PortfolioCardImage image={props.image} />
+      <PortfolioCardImage image={props.image} centerImage={props.centerImage} />
       <PortfolioCardContent>
         <Row>
           <Header>
