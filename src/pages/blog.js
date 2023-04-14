@@ -3,9 +3,9 @@ import styled from "styled-components"
 import Layout from "../components/layout/layout"
 import SectionTitle from "../components/sectionTitle"
 import BlogPostLink from "../components/blog/blogPostItem"
+import BlogLoading from "../components/blog/blogLoading"
 import Axios from "axios"
 import { getApiUrl } from "../scripts/util"
-import { Spinner } from "react-bootstrap"
 import SearchBar from "../components/searchBar"
 import { useTransition, animated } from "@react-spring/web"
 import filterPost from "../scripts/searchBlog"
@@ -31,22 +31,6 @@ const Posts = styled.div`
     margin-top: 30px;
   }
 `
-
-const LoadingWrapper = styled.div`
-  height: 50vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-
-const Loading = () => (
-  <LoadingWrapper>
-    <Spinner animation="border" role="status">
-      <span className="sr-only">Loading...</span>
-    </Spinner>
-  </LoadingWrapper>
-)
 
 export default function BlogHomePage() {
   const [posts, setPosts] = useState([])
@@ -81,15 +65,15 @@ export default function BlogHomePage() {
 
   const searchAnimation = useTransition(searchResults, {
     from: { opacity: 0 },
-    enter: { opacity: 1, maxHeight: 400 },
-    leave: { opacity: 0, maxHeight: 0 },
+    enter: { opacity: 1, maxWidth: 350 },
+    leave: { opacity: 0, maxWidth: 0 },
   })
 
   return (
     <Layout>
       <div style={{ padding: "75px 20px 50px 20px" }}>
         {SectionTitle("Blog")}
-        {loading && <Loading />}
+        {loading && <BlogLoading />}
         {!loading && searchResults.length === 0 && (
           <p style={{ padding: "20px 0px" }}>No posts found :(</p>
         )}

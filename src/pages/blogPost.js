@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import { useParams, Redirect } from "react-router-dom"
 import styled from "styled-components"
 import Layout from "../components/layout/layout"
-import Section from "../components/section"
 import BlogContent from "../components/blog/blogContent"
 import EditorPopup from "../components/blog/editorPopup"
 import Axios from "axios"
@@ -10,10 +9,24 @@ import { getApiUrl } from "../scripts/util"
 import { useAuth0 } from "@auth0/auth0-react"
 import Sidebar from "../components/blog/sidebar"
 import Back from "../components/blog/back"
-import Spinner from "../components/spinner"
+import BlogLoading from "../components/blog/blogLoading"
 
+// nav, page content, footer
 const BlogWrapper = styled.div`
-  padding: 0px 30px;
+  display: grid;
+
+  @media screen and (min-width: 768px) {
+    grid-template-rows: 75px calc(100vh - 75px);
+  }
+
+  @media screen and (max-width: 768px) {
+    display: block;
+    padding: 75px 20px 50px 20px;
+  }
+`
+
+// side bar, blog content
+const ContentWrapper = styled.div`
   position: relative;
   display: grid;
   grid-template-columns: 250px minmax(0, 1fr);
@@ -25,11 +38,12 @@ const BlogWrapper = styled.div`
 `
 
 const Content = styled.div`
-  padding: 0px 40px;
   text-align: left;
+  overflow-y: scroll;
+  padding-right: 20px;
 `
 
-const Title = styled.h2`
+const Title = styled.h1`
   color: ${props => props.theme.text};
   font-weight: 900;
   margin: 0px;
@@ -87,12 +101,13 @@ export default function BlogPostPage() {
 
   return (
     <Layout>
-      <Section id="blogPost" index={0}>
+      <BlogWrapper>
+        <BackMobile link="/blog" />
+        <div />
         {!loading ? (
-          <BlogWrapper>
+          <ContentWrapper>
             <SidebarDesktop post={post} />
             <Content>
-              <BackMobile link="/blog" />
               <EditWrapper>
                 <Title>{post.title}</Title>
                 {isAuthenticated ? <EditorPopup post={post} /> : null}
@@ -104,11 +119,11 @@ export default function BlogPostPage() {
               <BlogContent content={post.content} />
             </Content>
             <SidebarMobile post={post} />
-          </BlogWrapper>
+          </ContentWrapper>
         ) : (
-          <Spinner />
+          <BlogLoading />
         )}
-      </Section>
+      </BlogWrapper>
     </Layout>
   )
 }

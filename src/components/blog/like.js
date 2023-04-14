@@ -37,7 +37,7 @@ const Like = ({ postID, count }) => {
   return (
     <Row onClick={handleClick}>
       <Heart className={isLiked ? "fas fa-heart" : "far fa-heart"} />
-      <p>{isLiked ? count + 1 : count}</p>
+      <p style={{ margin: 0 }}>{isLiked ? count + 1 : count}</p>
     </Row>
   )
 }

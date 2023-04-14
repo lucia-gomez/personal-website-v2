@@ -1,17 +1,13 @@
 import React from "react"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
-const Gradient = styled.div`
-  position: absolute;
+export const gradient = css`
   background: linear-gradient(
     to bottom,
     #cc5e25 20%,
     #493153,
     ${props => props.theme.bg}
   );
-  height: 100vh;
-  width: 100%;
-  z-index: -1;
 
   ::before {
     content: "";
@@ -29,6 +25,14 @@ const Gradient = styled.div`
   }
 `
 
+const GradientBg = styled.div`
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  z-index: -1;
+  ${gradient}
+`
+
 export default function GradientBackground() {
-  return <Gradient />
+  return <GradientBg />
 }

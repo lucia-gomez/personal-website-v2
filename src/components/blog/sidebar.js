@@ -2,23 +2,25 @@ import styled from "styled-components"
 import Like from "./like"
 import ProfileImage from "../../assets/images/profile-circle.png"
 import Back from "./back"
+import { hexToRGB } from "../../style/theme"
+import { gradient } from "../layout/gradient"
 
 const Wrapper = styled.div`
-  background-color: ${props => props.theme.bg};
+  background-color: ${props => hexToRGB(props.theme.medium, 0.4)};
   border-radius: 5px;
   height: 310px;
-  position: sticky;
   top: 60px;
   align-self: start;
   text-align: left;
+  margin: 0px 20px;
 
   @media only screen and (max-width: 768px) {
     height: 290px;
-    padding-top: 10px;
     position: relative;
     top: 0px;
-    width: 95%;
+    width: 100%;
     margin: auto;
+    margin-top: 20px;
   }
 `
 
@@ -26,13 +28,34 @@ const SidebarContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (max-width: 768px) {
+    padding-top: 20px;
+  }
+`
+
+const ProfilePicWrapper = styled.div`
+  position: relative;
+  height: 150px;
+  width: 150px;
+  border-radius: 300px;
+  ::before {
+    border-radius: 300px;
+  }
+
+  @media screen and (max-width: 768px) {
+    ${gradient}
+  }
 `
 
 const ProfilePic = styled.img`
-  border-radius: 300px;
-  height: 150px;
-  width: 150px;
-  mix-blend-mode: luminosity;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  filter: grayscale(1);
+  mix-blend-mode: darken;
   margin-bottom: 10px;
 `
 
@@ -68,6 +91,12 @@ const ShareRow = styled.div`
 const Share = styled.i`
   color: ${props => props.theme.accent};
   padding-right: 3px;
+  transition: transform 150ms;
+
+  :hover {
+    color: ${props => props.theme.accentHover};
+    transform: scale(1.1);
+  }
 `
 
 const Tooltip = styled.div`
@@ -125,7 +154,9 @@ const Sidebar = ({ post, className }) => {
     <Wrapper className={className}>
       <BackWrapper link="/blog" />
       <SidebarContent>
-        <ProfilePic src={ProfileImage} alt="profile picture" />
+        <ProfilePicWrapper>
+          <ProfilePic src={ProfileImage} alt="profile picture" />
+        </ProfilePicWrapper>
         <Name>Lucia Gomez</Name>
         <p>Full-stack developer</p>
         <Divider />
