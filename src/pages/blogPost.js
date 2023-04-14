@@ -104,9 +104,9 @@ export default function BlogPostPage() {
       <BlogWrapper>
         <BackMobile link="/blog" />
         <div />
-        {!loading ? (
-          <ContentWrapper>
-            <SidebarDesktop post={post} />
+        <ContentWrapper>
+          <SidebarDesktop post={post} />
+          {!loading ? (
             <Content>
               <EditWrapper>
                 <Title>{post.title}</Title>
@@ -118,11 +118,11 @@ export default function BlogPostPage() {
               </Metadata>
               <BlogContent content={post.content} />
             </Content>
-            <SidebarMobile post={post} />
-          </ContentWrapper>
-        ) : (
-          <BlogLoading />
-        )}
+          ) : (
+            <BlogLoading />
+          )}
+          <SidebarMobile post={post} />
+        </ContentWrapper>
       </BlogWrapper>
     </Layout>
   )

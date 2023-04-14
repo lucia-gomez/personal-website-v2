@@ -32,6 +32,13 @@ const Posts = styled.div`
   }
 `
 
+const AnimatedBlogPost = styled(animated.div)`
+  margin: 0px 30px 30px 0px;
+  :last-child {
+    margin-right: 0px;
+  }
+`
+
 export default function BlogHomePage() {
   const [posts, setPosts] = useState([])
   const [searchResults, setSearchResults] = useState(posts)
@@ -74,26 +81,22 @@ export default function BlogHomePage() {
       <div style={{ padding: "75px 20px 50px 20px" }}>
         {SectionTitle("Blog")}
         {loading && <BlogLoading />}
-        {!loading && searchResults.length === 0 && (
-          <p style={{ padding: "20px 0px" }}>No posts found :(</p>
-        )}
         {!loading && (
-          <>
-            <BlogSearchBar
-              callback={searchPosts}
-              placeholder="Ex: Heroku, database"
-            />
-            <Posts>
-              {searchResults.map((post, idx) => (
-                <BlogPostLink post={post} key={idx} />
-              ))}
-              {/* {searchAnimation((style, post) => (
-                <animated.div style={style}>
-                  <BlogPostLink post={post} />
-                </animated.div>
-              ))} */}
-            </Posts>
-          </>
+          <BlogSearchBar
+            callback={searchPosts}
+            placeholder="Ex: Heroku, database"
+          />
+        )}
+        {!loading && searchResults.length === 0 ? (
+          <p style={{ padding: "20px 0px" }}>No posts found :(</p>
+        ) : (
+          <Posts>
+            {searchAnimation((style, post) => (
+              <AnimatedBlogPost style={style}>
+                <BlogPostLink post={post} />
+              </AnimatedBlogPost>
+            ))}
+          </Posts>
         )}
       </div>
     </Layout>

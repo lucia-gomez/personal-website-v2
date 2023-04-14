@@ -26,6 +26,7 @@ const Like = ({ postID, count }) => {
   const [isLiked, setLiked] = useState(false)
 
   const handleClick = () => {
+    if (postID == null) return
     if (!isLiked) {
       Axios.post(getApiUrl() + "/api/like", { id: postID })
     } else {

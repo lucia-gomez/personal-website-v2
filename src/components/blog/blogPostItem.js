@@ -12,15 +12,10 @@ const Wrapper = styled.div`
   border-radius: 5px;
   background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
   text-align: left;
-  margin: 0px 30px 30px 0px;
   position: relative;
   display: grid;
   min-height: 0;
   grid-template-rows: 1fr 30px;
-
-  :last-child {
-    margin-right: 0px;
-  }
 
   a {
     color: ${props => props.theme.text};

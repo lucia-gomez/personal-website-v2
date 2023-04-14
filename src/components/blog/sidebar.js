@@ -162,7 +162,7 @@ const Sidebar = ({ post, className }) => {
         <Divider />
       </SidebarContent>
       <Row>
-        <Like count={post.likes} postID={post.id} />
+        <Like count={post?.likes || "--"} postID={post?.id} />
         <Tooltip>
           <ShareRow onClick={copyToClipboard}>
             <Share className="fas fa-link" />
