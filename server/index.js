@@ -2,7 +2,9 @@ const express = require("express")
 const mysql = require("mysql")
 const bodyParser = require("body-parser")
 const cors = require("cors")
+const dotenv = require("dotenv")
 
+dotenv.config()
 const app = express()
 
 const db = mysql.createPool({
@@ -13,8 +15,8 @@ const db = mysql.createPool({
   user: process.env.NODE_ENV === "development" ? "root" : "b1601efb83fa98",
   password:
     process.env.NODE_ENV === "development"
-      ? process.env.DB_PASSWORD
-      : "2183ba1c",
+      ? process.env.REACT_APP_DB_PASSWORD_DEV
+      : process.env.REACT_APP_DB_PASSWORD_PROD,
   database:
     process.env.NODE_ENV === "development"
       ? "WebsiteBlog"
