@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components"
+import { hexToRGB } from "./theme"
 
 const ul = css`
   padding-left: 0px;
@@ -45,14 +46,14 @@ const BlogStyle = styled.div`
     ${a}
   }
   pre {
-    background-color: ${props => props.theme.bg};
+    background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
     padding: 10px;
     border-radius: 5px;
   }
   img {
     height: 100%;
     width: 100%;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45);
+    /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45); */
     border-radius: 5px;
     margin-bottom: 20px;
   }

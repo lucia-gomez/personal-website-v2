@@ -101,6 +101,9 @@ const ContentPreview = styled.p`
   column-width: 200px;
 `
 
+const placeholderImageUrl =
+  "https://contenthub-static.grammarly.com/blog/wp-content/uploads/2017/11/how-to-write-a-blog-post.jpeg"
+
 const BlogPostLink = ({ post }) => {
   const { isAuthenticated } = useAuth0()
   const previewDiv = useRef()
@@ -112,13 +115,10 @@ const BlogPostLink = ({ post }) => {
     return tempDiv.innerText || tempDiv.textContent || ""
   }
 
-  const tempImageUrl =
-    "https://contenthub-static.grammarly.com/blog/wp-content/uploads/2017/11/how-to-write-a-blog-post.jpeg"
-
   return (
     <Wrapper>
       <ClickableCard to={`/blog/${post.slug}/`}>
-        <Image image={post.imageUrl ?? tempImageUrl} />
+        <Image image={post.imageUrl || placeholderImageUrl} />
         <Body>
           <div>
             <Title>{post.title}</Title>

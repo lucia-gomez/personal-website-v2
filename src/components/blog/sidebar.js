@@ -6,7 +6,7 @@ import { hexToRGB } from "../../style/theme"
 import { gradient } from "../layout/gradient"
 
 const Wrapper = styled.div`
-  background-color: ${props => hexToRGB(props.theme.medium, 0.4)};
+  background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
   border-radius: 5px;
   height: 310px;
   top: 60px;
@@ -162,7 +162,7 @@ const Sidebar = ({ post, className }) => {
         <Divider />
       </SidebarContent>
       <Row>
-        <Like count={post?.likes || "--"} postID={post?.id} />
+        <Like count={post != null ? post.likes : "--"} postID={post?.id} />
         <Tooltip>
           <ShareRow onClick={copyToClipboard}>
             <Share className="fas fa-link" />
