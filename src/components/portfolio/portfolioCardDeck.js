@@ -1,106 +1,104 @@
 import React from "react"
 import styled from "styled-components"
 import { IconLink } from "../externalButton"
+import { hexToRGB } from "../../style/theme"
 
 export const PortfolioCardDeck = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 20px;
+  overflow-y: scroll;
   position: relative;
-
-  @media screen and (max-width: 850px) {
-    padding: 20px 5px;
-  }
+  padding-right: 8px;
 `
 
 const PortfolioCardWrapper = styled.div`
-  width: 400px;
-  background-color: ${props => props.theme.bg};
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  margin: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45);
+  width: 100%;
+  min-height: 150px;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
+  border-radius: 5px;
+  margin-bottom: 8px;
   position: relative;
 
   @media screen and (max-width: 850px) {
-    margin: 0px;
+    grid-template-columns: 4fr 9fr;
+    height: unset;
+  }
+
+  @media screen and (max-width: 576px) {
+    grid-template-columns: unset;
+    grid-template-rows: 150px 1fr;
     margin-bottom: 30px;
-    width: 100%;
-    max-width: 400px;
-    max-height: 590px;
+    box-shadow: -2px 2px 6px ${props => props.theme.bg};
   }
 `
 
 const PortfolioCardImage = styled.div`
-  height: 20rem;
-  max-height: 200px;
   width: 100%;
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 5px 0px 0px 5px;
   background-image: url(${props => props.image});
-  background-position: top left;
+  background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
+  mix-blend-mode: luminosity;
 
-  @media screen and (max-width: 850px) {
-    max-height: 200px;
+  @media only screen and (max-width: 576px) {
+    border-radius: 5px 5px 0px 0px;
   }
 `
 
 const PortfolioCardContent = styled.div`
-  height: 300px;
-  margin: 20px 30px;
-  max-width: 660px;
+  padding: 10px;
   text-align: left;
   display: grid;
-  grid-template-rows: auto 40px 20px 1fr auto;
+  grid-template-rows: 40px 1fr auto;
 
   @media only screen and (max-width: 576px) {
     height: fit-content;
-  }
-
-  h4 {
-    max-width: 78%;
-    font-weight: 600;
-  }
-
-  span {
-    font-weight: 600;
-    background-color: ${props => props.theme.accentLight};
-    border-radius: 5px;
-    padding: 0px 3px;
+    grid-template-rows: auto 1fr auto;
   }
 `
 
 const Row = styled.div`
+  display: grid;
+  grid-template-columns: 1fr auto;
+`
+
+const Header = styled.div`
   display: flex;
   flex-direction: row;
-  position: relative;
+  @media screen and (max-width: 576px) {
+    flex-direction: column;
+    padding-bottom: 12px;
+
+    h5 {
+      margin: 0;
+    }
+  }
 `
 
 const PortfolioCardButtons = styled.div`
-  position: absolute;
-  right: 0px;
   display: flex;
   flex-direction: row;
 `
 
-const PortfolioCardDivider = styled.span`
-  display: inline-block;
-  width: 50px;
-  height: 5px;
-  background-color: ${props => props.theme.accent}!important;
+const PortfolioCardTitle = styled.h5`
+  width: fit-content;
+`
+
+const PortfolioCardDate = styled.h5`
+  color: ${props => hexToRGB(props.theme.text, 0.2)};
+  margin: 0px 8px;
 `
 
 const PortfolioCardTag = styled.span`
-  background-color: ${props => props.theme.medium};
-  margin-bottom: 5px;
-  margin-right: 5px;
+  border-radius: 5px;
+  background-color: ${props => hexToRGB(props.theme.accent, 0.4)};
+  color: ${props => props.theme.textInv};
+  padding: 0px 4px;
+  margin-right: 8px;
   display: inline-block;
   width: max-content;
+  font-size: 14px;
 `
 
 const GitLink = styled(IconLink)`
@@ -138,14 +136,15 @@ const PortfolioCard = props => {
       <PortfolioCardImage image={props.image} />
       <PortfolioCardContent>
         <Row>
-          <h4>{props.title}</h4>
+          <Header>
+            <PortfolioCardTitle>{props.title}</PortfolioCardTitle>
+            <PortfolioCardDate>{props.date}</PortfolioCardDate>
+          </Header>
           <PortfolioCardButtons>
             {githubIcon}
             {props.link}
           </PortfolioCardButtons>
         </Row>
-        <p>{props.date}</p>
-        <PortfolioCardDivider />
         {props.children}
         <div>
           {props.tools.map((tool, index) => (

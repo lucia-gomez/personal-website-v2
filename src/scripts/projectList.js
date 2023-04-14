@@ -17,7 +17,7 @@ import ImageCACWeb from "../assets/images/portfolio/cac-web.png"
 import ImageIsoCornell from "../assets/images/portfolio/isoCornell.png"
 import ImageVaxGraph from "../assets/images/portfolio/vaxGraph.png"
 import ImageLangViz from "../assets/images/portfolio/langViz.png"
-import ImageARHand from "../assets/images/portfolio/arHand.png"
+import ImageARHand from "../assets/images/portfolio/arHand.jpeg"
 import ImageLavaLamp from "../assets/images/portfolio/lavaLamp.png"
 import Image2048 from "../assets/images/portfolio/2048.png"
 import ImageMinesweeper from "../assets/images/portfolio/minesweeper.png"
@@ -30,7 +30,6 @@ const category = {
   "AR/VR": 1,
   "Data Visualization": 2,
   "Digital Art": 3,
-  Zine: 4,
   Other: 99,
 }
 
@@ -131,7 +130,7 @@ const projects = [
     image: ImageCACWeb,
     link: "https://github.com/lucia-gomez/cards-against-cornellians-web",
     text: (
-      <p style={{ marginBottom: "50px" }}>
+      <p>
         Cards Against Humanity based on the Cornell experience, using the game
         engine I made in 2019 (see below). (Work in progress)
       </p>

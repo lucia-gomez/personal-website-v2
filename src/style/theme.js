@@ -11,7 +11,7 @@ export const themes = {
     textLight: colors.white,
     accent: "#1ebf66",
     accentHover: "#f28034",
-    accentLight: "#10532e",
+    accentLight: "#2f5741",
     textInv: colors.black,
   },
 }

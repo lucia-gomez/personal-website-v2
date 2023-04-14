@@ -18,7 +18,7 @@ const Advanced = styled.div`
 
   i {
     margin-left: 4px;
-    transform: rotateZ(${props => (props.showAdvanced ? "0" : "-90deg")});
+    transform: rotateZ(${props => (props.isExpanded ? "0" : "-90deg")});
     transition: transform 100ms;
   }
 `
@@ -35,7 +35,7 @@ export default function PortfolioFiltersSection(props) {
   return (
     <div style={{ paddingBottom: 30 }}>
       <Advanced onClick={() => setExpanded(!isExpanded)} {...{ isExpanded }}>
-        Advanced filters
+        {isExpanded ? "Hide Filters" : "Show Filters"}
         <i className={"fas fa-chevron-down"}></i>
       </Advanced>
       <animated.div style={{ ...collapseAnimatedStyle, overflow: "hidden" }}>

@@ -15,6 +15,7 @@ const Image = styled.div`
   background-position: top left;
   background-size: cover;
   background-repeat: no-repeat;
+  /* transform: skewY(${props => (props.isEven ? "4deg" : "-4deg")}); */
 `
 
 export default function PortfolioItem({ project, index }) {
@@ -22,7 +23,7 @@ export default function PortfolioItem({ project, index }) {
   return (
     <Row isEven={isEven}>
       {project.title}
-      <Image image={project.image} />
+      <Image image={project.image} isEven={isEven} />
     </Row>
   )
 }

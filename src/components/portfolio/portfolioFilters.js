@@ -28,6 +28,13 @@ const FilterItem = styled.div`
   padding: 2px 8px;
   margin: 4px 8px 4px 0px;
   cursor: pointer;
+  transition: background-color 150ms, color 150ms, transform 150ms;
+
+  :hover {
+    background-color: ${props => props.theme.accentHover};
+    color: ${props => props.theme.text};
+    transform: scale(1.05);
+  }
 `
 
 export default function PortfolioFilters({
