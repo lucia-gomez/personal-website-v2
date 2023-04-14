@@ -56,7 +56,7 @@ const Icon = styled.i`
   z-index: 1;
 `
 
-const SearchBar = ({ callback, placeholder }) => {
+const SearchBar = ({ callback, placeholder, className }) => {
   const [isFocused, setFocused] = useState(false)
   const [isHovered, setHovered] = useState(false)
 
@@ -70,7 +70,7 @@ const SearchBar = ({ callback, placeholder }) => {
   }
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative" }} className={className}>
       <Icon isActive={isFocused || isHovered} className="fas fa-search" />
       <Input
         onChange={handleChange}

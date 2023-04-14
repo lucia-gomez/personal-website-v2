@@ -10,13 +10,43 @@ import SearchBar from "../components/searchBar"
 import { useTransition, animated } from "@react-spring/web"
 import filterPost from "../scripts/searchBlog"
 
+const BlogSearchBar = styled(SearchBar)`
+  @media screen and (max-width: 576px) {
+    width: fit-content;
+    margin: auto;
+  }
+`
+
 const Posts = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
   margin-top: 30px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  @media screen and (max-width: 576px) {
+    max-width: 80vw;
+    margin: auto;
+    margin-top: 30px;
+  }
 `
+
+const LoadingWrapper = styled.div`
+  height: 50vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const Loading = () => (
+  <LoadingWrapper>
+    <Spinner animation="border" role="status">
+      <span className="sr-only">Loading...</span>
+    </Spinner>
+  </LoadingWrapper>
+)
 
 export default function BlogHomePage() {
   const [posts, setPosts] = useState([])
@@ -49,40 +79,36 @@ export default function BlogHomePage() {
     }
   }
 
-  const trans = useTransition(searchResults, {
+  const searchAnimation = useTransition(searchResults, {
     from: { opacity: 0 },
     enter: { opacity: 1, maxHeight: 400 },
     leave: { opacity: 0, maxHeight: 0 },
   })
 
-  const content =
-    posts.length === 0 ? (
-      <p>No posts found</p>
-    ) : (
-      <Posts>
-        {trans((style, post) => (
-          <animated.div style={style}>
-            <BlogPostLink post={post} />
-          </animated.div>
-        ))}
-      </Posts>
-    )
-
   return (
     <Layout>
       <div style={{ padding: "75px 20px 50px 20px" }}>
         {SectionTitle("Blog")}
-        {loading ? (
-          <Spinner animation="border" role="status">
-            <span className="sr-only">Loading...</span>
-          </Spinner>
-        ) : (
+        {loading && <Loading />}
+        {!loading && searchResults.length === 0 && (
+          <p style={{ padding: "20px 0px" }}>No posts found :(</p>
+        )}
+        {!loading && (
           <>
-            <SearchBar
+            <BlogSearchBar
               callback={searchPosts}
               placeholder="Ex: Heroku, database"
             />
-            {content}
+            <Posts>
+              {searchResults.map((post, idx) => (
+                <BlogPostLink post={post} key={idx} />
+              ))}
+              {/* {searchAnimation((style, post) => (
+                <animated.div style={style}>
+                  <BlogPostLink post={post} />
+                </animated.div>
+              ))} */}
+            </Posts>
           </>
         )}
       </div>
