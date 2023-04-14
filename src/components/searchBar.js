@@ -1,6 +1,10 @@
 import React, { useState } from "react"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import { hexToRGB } from "../style/theme"
+
+const placeholderStyle = css`
+  color: ${props => hexToRGB(props.theme.text, 0.2)};
+`
 
 const Input = styled.input`
   width: 300px;
@@ -17,11 +21,29 @@ const Input = styled.input`
     border: 2px solid ${props => props.theme.accentHover};
   }
 
-  ::-webkit-input-placeholder,
-  ::-moz-placeholder,
-  :-ms-input-placeholder,
+  ::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    ${placeholderStyle}
+  }
   :-moz-placeholder {
-    color: ${props => hexToRGB(props.theme.textLight, 0.7)};
+    /* Mozilla Firefox 4 to 18 */
+    ${placeholderStyle}
+  }
+  ::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    ${placeholderStyle}
+  }
+  :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    ${placeholderStyle}
+  }
+  ::-ms-input-placeholder {
+    /* Microsoft Edge */
+    ${placeholderStyle}
+  }
+
+  ::placeholder {
+    ${placeholderStyle}
   }
 `
 
