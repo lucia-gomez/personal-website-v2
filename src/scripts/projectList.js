@@ -13,6 +13,23 @@ const category = {
 
 const projects = [
   {
+    title: "Friendly Takeover",
+    date: "April 2023",
+    tools: ["Javascript", "HTML/CSS"],
+    image: "friendlyTakeover.gif",
+    text: (
+      <p>
+        An interactive digital collage of nature taking over a city, with
+        soothing audio
+      </p>
+    ),
+    link: "https://github.com/lucia-gomez/friendly-takeover-collage",
+    extra: ExternalButton(
+      "https://lucia-gomez.github.io/friendly-takeover-collage/"
+    ),
+    categories: [category.Web, category["Digital Art"]],
+  },
+  {
     title: "Bubble Blower",
     date: "March 2023",
     tools: ["p5.js"],
@@ -25,7 +42,7 @@ const projects = [
     ),
     link: "https://github.com/lucia-gomez/bubble-blower",
     extra: ExternalButton("https://lucia-gomez.github.io/bubble-blower/"),
-    categories: [category.Web],
+    categories: [category.Web, category["Digital Art"]],
     centerImage: false,
   },
   {
@@ -43,7 +60,7 @@ const projects = [
     extra: ExternalButton(
       "https://drive.google.com/file/d/14lz50ZaYcxSKhY3jSiiDJCBbJe2Ebeow/view?usp=sharing"
     ),
-    categories: [category["AR/VR"]],
+    categories: [category["AR/VR"], category["Digital Art"]],
   },
   {
     title: "Lava Lamp Simulator",
@@ -58,7 +75,7 @@ const projects = [
     ),
     link: "https://github.com/lucia-gomez/lava-lamp",
     extra: ExternalButton("https://lucia-gomez.github.io/lava-lamp/"),
-    categories: [category.Web],
+    categories: [category.Web, category["Digital Art"]],
   },
   {
     title: "Sign Search",
@@ -100,7 +117,7 @@ const projects = [
         "https://www.instagram.com/ar/651996575775549/?ch=ZTU0MjBmNjQwYTNjNDJkM2QzNWRkYjk2Mzc2M2U3NGQ%3D"
       ),
     ],
-    categories: [category["AR/VR"]],
+    categories: [category["AR/VR"], category["Digital Art"]],
   },
   {
     title: "Cards Against Cornellians 2.0",
@@ -203,6 +220,7 @@ const projects = [
       "Auth0",
       "Styled Components",
       "Heroku",
+      "ImageKit",
     ],
     image: "website.jpg",
     link: "https://github.com/lucia-gomez/personal-website-v2",
