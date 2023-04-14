@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   border-radius: 5px;
   background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
   text-align: left;
-  margin: 0px 40px 30px 0px;
+  margin: 0px 30px 30px 0px;
   position: relative;
   display: grid;
   min-height: 0;
@@ -46,9 +46,11 @@ const Image = styled.div`
   background-image: url(${props => props.image});
   width: 350px;
   border-radius: 5px 5px 0px 0px;
-  background-position: top left;
+  background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
+  filter: grayscale(1);
+  mix-blend-mode: hard-light;
 
   @media screen and (max-width: 576px) {
     max-width: 80vw;
@@ -115,10 +117,13 @@ const BlogPostLink = ({ post }) => {
     return tempDiv.innerText || tempDiv.textContent || ""
   }
 
+  const tempImageUrl =
+    "https://contenthub-static.grammarly.com/blog/wp-content/uploads/2017/11/how-to-write-a-blog-post.jpeg"
+
   return (
     <Wrapper>
       <ClickableCard to={`/blog/${post.slug}/`}>
-        <Image image="https://contenthub-static.grammarly.com/blog/wp-content/uploads/2017/11/how-to-write-a-blog-post.jpeg" />
+        <Image image={post.imageUrl ?? tempImageUrl} />
         <Body>
           <div>
             <Title>{post.title}</Title>

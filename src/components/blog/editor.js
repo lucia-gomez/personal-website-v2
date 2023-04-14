@@ -25,10 +25,13 @@ const PreviewButton = styled.div`
 export default function Editor(props) {
   const { post } = props
 
+  console.log(post)
+
   const [title, setTitle] = useState(post?.title ?? "")
   const [summary, setSummary] = useState(post?.summary ?? "")
   const [slug, setSlug] = useState(post?.slug ?? "")
   const [date, setDate] = useState(post?.dateString ?? "")
+  const [imageUrl, setImageUrl] = useState(post?.imageUrl ?? "")
   const [editorState, setEditorState] = useState(EditorState.createEmpty())
   const [showPreview, setShowPreview] = useState(false)
 
@@ -37,6 +40,7 @@ export default function Editor(props) {
     setSummary(post?.summary ?? "")
     setSlug(post?.slug ?? "")
     setDate(post?.dateString ?? "")
+    setImageUrl(post?.imageUrl ?? "")
     if (post !== undefined) {
       const blocksFromHtml = htmlToDraft(post.content)
       const { contentBlocks, entityMap } = blocksFromHtml
@@ -75,6 +79,16 @@ export default function Editor(props) {
     </Form.Group>
   )
 
+  const imageUrlForm = (
+    <Form.Group>
+      <Form.Label>Image</Form.Label>
+      <Form.Control
+        onChange={e => setImageUrl(e.target.value)}
+        value={imageUrl}
+      />
+    </Form.Group>
+  )
+
   const summaryForm = (
     <Form.Group>
       <Form.Label>Summary</Form.Label>
@@ -93,6 +107,7 @@ export default function Editor(props) {
         <Col>{slugForm}</Col>
         <Col>{dateForm}</Col>
       </Row>
+      {imageUrlForm}
       {summaryForm}
     </Form>
   )
@@ -106,7 +121,14 @@ export default function Editor(props) {
     </Form>
   )
 
-  const buttons = props.buttons(title, slug, date, summary, getHTMLString())
+  const buttons = props.buttons(
+    title,
+    slug,
+    date,
+    imageUrl,
+    summary,
+    getHTMLString()
+  )
 
   return (
     <div>

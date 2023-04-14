@@ -48,7 +48,7 @@ export default function BlogAdmin() {
     })
   }, [openDraft])
 
-  const createPost = (title, slug, date, summary, contentCurr) => {
+  const createPost = (title, slug, date, imageUrl, summary, contentCurr) => {
     const fakeTime = new Date().toLocaleTimeString()
     const dateString =
       date != null && date.length > 0
@@ -59,14 +59,15 @@ export default function BlogAdmin() {
       datetime: new Date().toISOString().slice(0, 19).replace("T", " "),
       dateString: dateString,
       title: title,
+      imageUrl: imageUrl,
       summary: summary,
       content: contentCurr,
       slug: slug,
     })
   }
 
-  const publishDraft = (title, slug, date, summary, contentCurr) => {
-    createPost(title, slug, date, summary, contentCurr)
+  const publishDraft = (title, slug, date, imageUrl, summary, contentCurr) => {
+    createPost(title, slug, date, imageUrl, summary, contentCurr)
     Axios.delete(`${getApiUrl()}/api/draft/${openDraft.id}`)
   }
 
@@ -75,21 +76,23 @@ export default function BlogAdmin() {
     window.scrollTo(0, 0)
   }
 
-  const createDraft = (title, slug, summary, contentCurr) => {
+  const createDraft = (title, slug, imageUrl, summary, contentCurr) => {
     Axios.post(getApiUrl() + "/api/draft/create", {
       title: title,
       summary: summary,
       content: contentCurr,
       slug: slug,
+      imageUrl: imageUrl,
     })
   }
 
-  const closeDraft = (title, slug, summary, contentCurr) => {
+  const closeDraft = (title, slug, imageUrl, summary, contentCurr) => {
     Axios.post(`${getApiUrl()}/api/draft/update`, {
       id: openDraft.id,
       title: title,
       summary: summary,
       slug: slug,
+      imageUrl: imageUrl,
       content: contentCurr,
     }).then(_ => {
       setOpenDraft(undefined)
@@ -100,14 +103,14 @@ export default function BlogAdmin() {
     setDrafts(drafts.filter(draft => draft.id !== id))
   }
 
-  const buttons = (title, slug, date, summary, content) => {
+  const buttons = (title, slug, date, imageUrl, summary, content) => {
     const isValid = x => x !== undefined && x.length > 0
     const disabled = !(isValid(title) && isValid(summary) && isValid(slug))
 
     const postFn = () =>
       openDraft
-        ? publishDraft(title, slug, date, summary, content)
-        : createPost(title, slug, date, summary, content)
+        ? publishDraft(title, slug, date, imageUrl, summary, content)
+        : createPost(title, slug, date, imageUrl, summary, content)
     const postBtnText = openDraft ? "Publish draft" : "Publish post"
     const postBtn = (
       <Button onClick={postFn} sameTab={true} disabled={disabled} href="/">
@@ -121,8 +124,8 @@ export default function BlogAdmin() {
 
     const saveFn = () =>
       openDraft
-        ? closeDraft(title, slug, date, summary, content)
-        : createDraft(title, slug, summary, content)
+        ? closeDraft(title, slug, imageUrl, summary, content)
+        : createDraft(title, slug, imageUrl, summary, content)
     const saveBtn = (
       <Button onClick={saveFn} disabled={disabled}>
         {openDraft ? "Close draft" : "Save as draft"}
