@@ -5,8 +5,8 @@ import { useAuth0 } from "@auth0/auth0-react"
 import { Link, useLocation } from "react-router-dom"
 
 import { FaGithub, FaLinkedin } from "react-icons/fa"
-import Doc from "../assets/resume.pdf"
-import { hexToRGB } from "../style/theme"
+import Doc from "../../assets/resume.pdf"
+import { hexToRGB } from "../../style/theme"
 
 const NavWrapper = styled(Navbar)`
   backdrop-filter: blur(50px);

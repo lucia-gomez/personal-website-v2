@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react"
-import Layout from "../components/layout"
+import Layout from "../components/layout/layout"
 import SectionTitle from "../components/sectionTitle"
 import {
   PortfolioCardDeck,
   makePortfolioCard,
 } from "../components/portfolio/portfolioCardDeck"
 import projects from "../scripts/projectList"
-import filterProject from "../scripts/search"
+import filterProject from "../scripts/searchPortfolio"
 import { useTransition, animated } from "@react-spring/web"
 import PortfolioFiltersSection from "../components/portfolio/portfolioFiltersSection"
 import PortfolioItem from "../components/portfolio/portfolioItem"

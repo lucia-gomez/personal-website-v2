@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
-import TabbedContent from "./tabbedContent"
+import TabbedContent from "../tabbedContent"
 
-import { ul, li } from "../style/blogStyle"
+import { ul, li } from "../../style/blogStyle"
 
 const BulletPoints = styled.ul`
   ${ul}

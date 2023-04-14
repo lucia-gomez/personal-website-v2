@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useParams, Redirect } from "react-router-dom"
 import styled from "styled-components"
-import Layout from "../components/layout"
+import Layout from "../components/layout/layout"
 import Section from "../components/section"
 import BlogContent from "../components/blog/blogContent"
 import EditorPopup from "../components/blog/editorPopup"

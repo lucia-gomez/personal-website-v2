@@ -1,14 +1,41 @@
 import React from "react"
-import Layout from "./components/layout"
-import BannerContent from "./components/banner"
+import Layout from "./components/layout/layout"
 import styled from "styled-components"
-import Subsection from "./components/subsection"
+import Subsection from "./components/layout/subsection"
 import { ButtonLink } from "./components/button"
 import { featuredProjects } from "./scripts/projectList"
 import {
   PortfolioCardDeck,
   makePortfolioCard,
 } from "./components/portfolio/portfolioCardDeck"
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const Title = styled.h1`
+  font-size: 70px;
+  color: #000;
+  mix-blend-mode: color-dodge;
+  margin: 0;
+  margin-bottom: 20vh;
+  text-align: center;
+  animation: fade-in 1s 500ms forwards ease-in;
+
+  @keyframes fade-in {
+    from {
+      color: #000;
+    }
+    to {
+      color: #9d9d9d;
+    }
+  }
+`
 
 const ArchiveButton = styled(ButtonLink)`
   margin: auto;
@@ -36,7 +63,9 @@ function FeaturedWork() {
 export default function App() {
   return (
     <Layout>
-      <BannerContent>Lucia Gomez</BannerContent>
+      <Wrapper>
+        <Title>Lucia Gomez</Title>
+      </Wrapper>
       <FeaturedWork />
     </Layout>
   )

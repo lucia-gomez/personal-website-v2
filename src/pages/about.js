@@ -1,12 +1,12 @@
 import React from "react"
 import styled from "styled-components"
-import Subsection from "../components/subsection"
+import Subsection from "../components/layout/subsection"
 import Link from "../components/link"
-import Layout from "../components/layout"
+import Layout from "../components/layout/layout"
 
 import ProfileImage from "../assets/images/profile-circle.png"
-import ExperienceSection from "../components/experience"
-import TechnologiesSection from "../components/technologies"
+import ExperienceSection from "../components/about/experience"
+import TechnologiesSection from "../components/about/technologies"
 
 const AboutWrapper = styled.div`
   padding: 56px 20px 50px 20px;
