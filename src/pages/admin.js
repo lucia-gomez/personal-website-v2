@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import Layout from "../components/layout/layout"
-import Section from "../components/section"
 import SectionTitle from "../components/sectionTitle"
 import { Link as LinkDefault } from "react-router-dom"
 import { Button } from "../components/button"
@@ -142,27 +141,25 @@ export default function BlogAdmin() {
 
   return (
     <Layout>
-      <Section id="archive" index={0}>
-        <BlogWrapper>
-          <SectionTitle>Blog Admin</SectionTitle>
-          <Editor post={openDraft} buttons={buttons} />
-          {drafts.length === 0 ? null : (
-            <DraftSection>
-              <h3>Drafts</h3>
-              <Drafts>
-                {drafts.map((draft, idx) => (
-                  <BlogDraftItem
-                    post={draft}
-                    handleOpenDraft={handleOpenDraft}
-                    handleDeleteDraft={handleDeleteDraft}
-                    key={idx}
-                  />
-                ))}
-              </Drafts>
-            </DraftSection>
-          )}
-        </BlogWrapper>
-      </Section>
+      <BlogWrapper>
+        <SectionTitle>Blog Admin</SectionTitle>
+        <Editor post={openDraft} buttons={buttons} />
+        {drafts.length === 0 ? null : (
+          <DraftSection>
+            <h3>Drafts</h3>
+            <Drafts>
+              {drafts.map((draft, idx) => (
+                <BlogDraftItem
+                  post={draft}
+                  handleOpenDraft={handleOpenDraft}
+                  handleDeleteDraft={handleDeleteDraft}
+                  key={idx}
+                />
+              ))}
+            </Drafts>
+          </DraftSection>
+        )}
+      </BlogWrapper>
     </Layout>
   )
 }
