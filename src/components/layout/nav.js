@@ -63,31 +63,18 @@ const LogoutButton = styled.a.attrs(_ => ({
 const NavItem = styled(Nav.Item)`
   list-style-type: none;
   @media only screen and (max-width: 576px) {
+    padding: 0.5rem 8px;
     .nav-link {
-      padding: 0.1rem 1.2rem;
-    }
-
-    :not(:nth-last-child(-n + 2)) {
-      display: flex;
-      align-items: center;
-
-      :after {
-        content: "|";
-        color: ${props => props.theme.text};
-        opacity: 0.5;
-      }
+      padding: 0;
     }
   }
 `
 
 const MobileNav = styled(Navbar.Collapse)`
-  display: flex;
-  flex-wrap: wrap;
-
   @media only screen and (max-width: 576px) {
     .extra-nav {
       flex-basis: 100%;
-      padding-left: 1.2rem;
+      padding-left: 8px;
     }
   }
 `
@@ -100,9 +87,9 @@ const CustomNav = () => {
     { name: "Home", link: "/" },
     { name: "About Me", link: "/about-me" },
     { name: "Portfolio", link: "/portfolio" },
+    { name: "Art", link: "/art" },
     { name: "Blog", link: "/blog" },
     ...(isAuthenticated ? [{ name: "Admin", link: "/admin" }] : []),
-    { name: "Art", link: "/art" },
     { name: "Resume", link: Doc, target: "_blank" },
   ]
 
