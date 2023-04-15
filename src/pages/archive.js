@@ -20,6 +20,7 @@ const Grid = styled.div`
 
   @media screen and (max-width: 576px) {
     padding-right: 20px;
+    height: 100%;
   }
 `
 
@@ -36,6 +37,7 @@ export default function ArchivePage() {
   const [results, setResults] = useState(projects)
   const [searchKeywords, setSearchKeywords] = useState([])
   const [activeFilter, setActiveFilter] = useState(-1) // all
+  const [isMobile] = useState(window.innerWidth <= 576)
   const cardDeckRef = useRef()
 
   const searchProjects = keywords => {
@@ -47,7 +49,10 @@ export default function ArchivePage() {
     const cards = cardDeckRef?.current.children
     let numVisible = 0
     for (let card of cards) {
-      if (isScrolledIntoViewVertical(cardDeckRef.current, card, true)) {
+      if (
+        !(isMobile && numVisible > 3) &&
+        isScrolledIntoViewVertical(cardDeckRef.current, card, true)
+      ) {
         const delay = ++numVisible * 500
         card.style.animationDelay = delay + "ms"
         card.style.animationDuration = "1s"
@@ -57,7 +62,7 @@ export default function ArchivePage() {
         }, delay + 1000)
       }
     }
-  }, [])
+  }, [isMobile])
 
   useEffect(() => {
     if (cardDeckRef.current == null) return
@@ -102,7 +107,7 @@ export default function ArchivePage() {
         animateOnce
         animatePreScroll
         offset={-50}
-        scrollableParentSelector="#card-deck"
+        scrollableParentSelector={isMobile ? "" : "#card-deck"}
         key={idx}
       >
         <div style={innerStyle}>{makePortfolioCard(project)}</div>

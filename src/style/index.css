@@ -32,4 +32,5 @@ h3 {
 
 .animate__fadeInLeft {
   animation-fill-mode: backwards;
+  -webkit-animation-fill-mode: backwards;
 }

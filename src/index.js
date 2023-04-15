@@ -15,11 +15,13 @@ import ZinePage from "./pages/zine"
 import Error404 from "./pages/404"
 import ToadARPage from "./pages/projects/toadAR"
 import About from "./pages/about"
+import ScrollToTop from "./ScrollToTop"
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Auth0ProviderWithHistory>
+        <ScrollToTop />
         <Switch>
           <Route exact path="/">
             <App />
