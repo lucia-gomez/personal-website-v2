@@ -5,9 +5,6 @@ import ModalWrapper from "../modalPopup"
 
 const ArtModalWrapper = styled(ModalWrapper)`
   .modal-dialog {
-    max-width: 95vw;
-    position: relative;
-
     img {
       width: auto;
       height: 100%;
@@ -16,8 +13,6 @@ const ArtModalWrapper = styled(ModalWrapper)`
 
   @media only screen and (max-width: 576px) {
     .modal-dialog {
-      max-width: 97vw;
-
       img {
         width: 100%;
         border-radius: 0px 0px 5px 5px;
@@ -67,7 +62,7 @@ export default function ArtModal(props) {
   const { modalItem, isShowing, handleClose } = props
   return (
     modalItem != null && (
-      <ArtModalWrapper show={isShowing} onHide={handleClose} animation={false}>
+      <ArtModalWrapper show={isShowing} onHide={handleClose}>
         <Modal.Header closeButton>
           <ModalInfo>
             <Modal.Title as="h3">{modalItem.title}</Modal.Title>

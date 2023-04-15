@@ -3,8 +3,6 @@ import { hexToRGB } from "../style/theme"
 import { Modal } from "react-bootstrap"
 
 const ModalWrapper = styled(Modal)`
-  top: 25%;
-
   .modal-content {
     background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
     backdrop-filter: blur(20px);
@@ -12,6 +10,18 @@ const ModalWrapper = styled(Modal)`
     border-radius: 5px;
     color: ${props => props.theme.text};
     position: relative;
+  }
+
+  .modal-dialog {
+    max-width: 95vw;
+    position: relative;
+
+    @media screen and (max-width: 576px) {
+      max-width: 97vw;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 
   .modal-header {
@@ -25,12 +35,12 @@ const ModalWrapper = styled(Modal)`
     color: ${props => props.theme.text};
   }
 
-  @media (min-width: 576px) {
+  /* @media (min-width: 576px) {
     top: 0;
     .modal-dialog {
       max-width: 95vw;
     }
-  }
+  } */
 
   .form-control {
     background-color: ${props => hexToRGB(props.theme.medium, 0.2)};

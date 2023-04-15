@@ -34,3 +34,16 @@ h3 {
   animation-fill-mode: backwards;
   -webkit-animation-fill-mode: backwards;
 }
+
+/* ReactBootstrap modal animation override */
+@media screen and (max-width: 576px) {
+  .modal.show .modal-dialog {
+    transform: translateY(-50%) !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .modal.fade .modal-dialog {
+    transform: translateY(-50%) !important;
+  }
+}
