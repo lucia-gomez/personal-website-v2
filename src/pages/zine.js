@@ -1,21 +1,29 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import Layout from "../components/layout/layout"
-import Section from "../components/section"
 import SectionTitle from "../components/sectionTitle"
 import Back from "../components/blog/back"
 import ZineFlipBook from "../components/zines/zineFlipBook"
 import { useParams, Redirect } from "react-router-dom"
 import { getZineBySlug } from "../scripts/zineList"
-import Spinner from "../components/spinner"
+import BlogLoading from "../components/blog/blogLoading"
+
+const Wrapper = styled.div`
+  padding: 75px 20px 50px 20px;
+`
+
+const ZineTitle = styled(SectionTitle)`
+  margin: 0;
+`
 
 const BackZine = styled(Back)`
-  width: fit-content;
-  margin: 0px 20px;
+  margin: 0px;
 `
 
 const Description = styled.p`
-  margin: 10px;
+  margin: 0;
+  margin-bottom: 12px;
+  display: flex;
 `
 
 export default function ZinePage() {
@@ -38,20 +46,18 @@ export default function ZinePage() {
 
   return (
     <Layout>
-      <Section id="zine" index={0}>
-        {zine === null ? (
-          <Spinner />
-        ) : (
-          <>
-            <BackZine link="/art" />
-            {SectionTitle(zine.title)}
-            <Description>
-              {zine.description} | {zine.date}
-            </Description>
-            <ZineFlipBook zine={zine} />
-          </>
-        )}
-      </Section>
+      {zine == null ? (
+        <BlogLoading />
+      ) : (
+        <Wrapper>
+          <BackZine link="/art" />
+          <ZineTitle>{zine.title}</ZineTitle>
+          <Description>
+            {zine.description} | {zine.date}
+          </Description>
+          <ZineFlipBook zine={zine} />
+        </Wrapper>
+      )}
     </Layout>
   )
 }

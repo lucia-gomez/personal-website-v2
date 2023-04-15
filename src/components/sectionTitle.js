@@ -7,6 +7,6 @@ const Title = styled.h2`
   font-size: 48px;
 `
 
-export default function SectionTitle(title) {
-  return <Title>{title}</Title>
+export default function SectionTitle(props) {
+  return <Title className={props.className}>{props.children}</Title>
 }

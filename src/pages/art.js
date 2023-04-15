@@ -94,8 +94,8 @@ export default function ArtPage() {
             onScroll={e => handleScroll(e)}
           >
             {zines.map((zine, idx) => (
-              <div style={{ visibility: "hidden" }}>
-                <ZineItem zine={zine} key={idx} />
+              <div style={{ visibility: "hidden" }} key={idx}>
+                <ZineItem zine={zine} />
               </div>
             ))}
           </ZinePortfolioCardDeck>
