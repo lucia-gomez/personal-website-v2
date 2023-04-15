@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 const BackButton = styled(Link)`
   color: ${props => props.theme.accent};
-  text-shadow: 0 0 15px black;
+  text-shadow: 0 0 5px ${props => props.theme.bg};
   margin: 5px;
   display: block;
 

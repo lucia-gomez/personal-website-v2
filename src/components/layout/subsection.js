@@ -10,6 +10,10 @@ const Wrapper = styled.div`
   p {
     text-align: left;
   }
+
+  @media screen and (max-width: 576px) {
+    padding: 30px 0px 5px 0px;
+  }
 `
 
 const Row = styled.div`

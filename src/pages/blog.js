@@ -26,9 +26,7 @@ const Posts = styled.div`
   overflow-y: hidden;
 
   @media screen and (max-width: 576px) {
-    max-width: 80vw;
-    margin: auto;
-    margin-top: 30px;
+    margin-left: 20px;
   }
 `
 

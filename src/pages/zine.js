@@ -14,6 +14,10 @@ const Wrapper = styled.div`
 
 const ZineTitle = styled(SectionTitle)`
   margin: 0;
+
+  @media screen and (max-width: 576px) {
+    font-size: 30px;
+  }
 `
 
 const BackZine = styled(Back)`

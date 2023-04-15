@@ -87,6 +87,7 @@ const PortfolioCardButtons = styled.div`
 
 const PortfolioCardTitle = styled.h5`
   width: fit-content;
+  font-weight: bolder;
 `
 
 const PortfolioCardDate = styled.h5`

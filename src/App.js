@@ -26,8 +26,20 @@ const Title = styled.h1`
   margin-bottom: 20vh;
   text-align: center;
   animation: fade-in 1s 500ms forwards ease-in;
+  @media screen and (max-width: 850px) {
+    animation-name: fade-in-mobile;
+  }
 
   @keyframes fade-in {
+    from {
+      color: #000;
+    }
+    to {
+      color: #9d9d9d;
+    }
+  }
+
+  @keyframes fade-in-mobile {
     from {
       color: #000;
     }
