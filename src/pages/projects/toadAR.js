@@ -33,7 +33,9 @@ export default function ToadARPage() {
         </Text>
         <br />
         <p>(Warning: loud noises)</p>
-        <InstagramButton href="https://www.instagram.com/ar/575344457802728/">
+        <InstagramButton
+          to={{ pathname: "https://www.instagram.com/ar/575344457802728/" }}
+        >
           Open in Instagram
         </InstagramButton>
       </Wrapper>

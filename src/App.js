@@ -52,7 +52,7 @@ function FeaturedWork() {
     <div style={{ paddingBottom: 50 }}>
       <Subsection title="Featured Work" collapsible={false}>
         <PortfolioCardDeck>{projects.map(makePortfolioCard)}</PortfolioCardDeck>
-        <ArchiveButton href="/archive" sameTab={true}>
+        <ArchiveButton to="/portfolio" sameTab={true}>
           Explore the Archive
         </ArchiveButton>
       </Subsection>
