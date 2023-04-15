@@ -20,40 +20,40 @@ import ScrollToTop from "./ScrollToTop"
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      {/* <Auth0ProviderWithHistory> */}
-      <ScrollToTop />
-      <Switch>
-        <Route exact path="/">
-          <App />
-        </Route>
-        <Route exact path="/about-me">
-          <About />
-        </Route>
-        <Route path="/portfolio">
-          <ArchivePage />
-        </Route>
-        <Route exact path="/blog">
-          <BlogHomePage />
-        </Route>
-        <Route exact path="/blog/:slug">
-          <BlogPostPage />
-        </Route>
-        <ProtectedRoute path="/admin" component={BlogAdmin} />
-        <Route exact path="/art">
-          <ArtPage />
-        </Route>
-        <Route exact path="/art/zine/:slug">
-          <ZinePage />
-        </Route>
-        <Route path="/art/:slug">
-          <ArtPage />
-        </Route>
-        <Route path="/toad-ar">
-          <ToadARPage />
-        </Route>
-        <Route component={Error404} />
-      </Switch>
-      {/* </Auth0ProviderWithHistory> */}
+      <Auth0ProviderWithHistory>
+        <ScrollToTop />
+        <Switch>
+          <Route exact path="/">
+            <App />
+          </Route>
+          <Route exact path="/about-me">
+            <About />
+          </Route>
+          <Route path="/portfolio">
+            <ArchivePage />
+          </Route>
+          <Route exact path="/blog">
+            <BlogHomePage />
+          </Route>
+          <Route exact path="/blog/:slug">
+            <BlogPostPage />
+          </Route>
+          <ProtectedRoute path="/admin" component={BlogAdmin} />
+          <Route exact path="/art">
+            <ArtPage />
+          </Route>
+          <Route exact path="/art/zine/:slug">
+            <ZinePage />
+          </Route>
+          <Route path="/art/:slug">
+            <ArtPage />
+          </Route>
+          <Route path="/toad-ar">
+            <ToadARPage />
+          </Route>
+          <Route component={Error404} />
+        </Switch>
+      </Auth0ProviderWithHistory>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
