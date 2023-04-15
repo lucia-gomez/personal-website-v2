@@ -13,9 +13,13 @@ import AnimationOnScroll from "react-animate-on-scroll"
 
 const Grid = styled.div`
   height: 100vh;
-  padding: 75px 20px 50px 20px;
+  padding: 75px 10px 50px 20px;
   display: grid;
   grid-template-rows: auto 1fr;
+
+  @media screen and (max-width: 576px) {
+    padding-right: 20px;
+  }
 `
 
 // https://stackoverflow.com/a/37285344
@@ -100,9 +104,6 @@ export default function ArchivePage() {
       )
       setResults(filtered)
     }
-    if (cardDeckRef?.current != null) {
-      // cardDeckRef.current.scroll(1)
-    }
   }, [activeFilter, searchKeywords])
 
   const animatedCard = (project, idx) => {
@@ -138,12 +139,7 @@ export default function ArchivePage() {
           />
         </div>
         <PortfolioCardDeck id="card-deck" ref={cardDeckRef}>
-          {projects.map(
-            (project, idx) => animatedCard(project, idx)
-            // <div style={styleProject(project)}>
-            //   {makePortfolioCard(project)}
-            // </div>
-          )}
+          {projects.map((project, idx) => animatedCard(project, idx))}
         </PortfolioCardDeck>
       </Grid>
     </Layout>

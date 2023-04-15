@@ -4,9 +4,11 @@ import { IconLink } from "../externalButton"
 import { hexToRGB } from "../../style/theme"
 
 export const PortfolioCardDeck = styled.div`
-  overflow-y: scroll;
-  position: relative;
-  padding-right: 8px;
+  position: relative; // this affects animations, idk why, DON'T delete
+  @media screen and (min-width: 576px) {
+    overflow-y: scroll;
+    padding-right: 8px;
+  }
 `
 
 const PortfolioCardWrapper = styled.div`

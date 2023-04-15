@@ -62,7 +62,6 @@ const SearchBar = ({ callback, placeholder, className }) => {
   const [isHovered, setHovered] = useState(false)
   const debouncedCallback = useRef(
     _.debounce(arg => {
-      console.log("debounce")
       callback(arg)
     }, 200)
   ).current
