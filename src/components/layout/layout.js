@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
 
   main {
     min-height: 100vh;
+    min-height: var(--doc-height);
   }
 
   footer {

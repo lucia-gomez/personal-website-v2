@@ -10,6 +10,13 @@ import SearchBar from "../components/searchBar"
 import { useTransition, animated } from "@react-spring/web"
 import filterPost from "../scripts/searchBlog"
 
+const Wrapper = styled.div`
+  padding: 65px 20px 50px 20px;
+  max-height: var(--doc-height);
+  display: grid;
+  grid-template-rows: auto 1fr;
+`
+
 const BlogSearchBar = styled(SearchBar)`
   @media screen and (max-width: 576px) {
     width: fit-content;
@@ -20,8 +27,8 @@ const BlogSearchBar = styled(SearchBar)`
 const Posts = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
-  margin-top: 30px;
+  margin-top: 8px;
+  padding-bottom: 8px;
   overflow-x: scroll;
   overflow-y: hidden;
 
@@ -32,8 +39,12 @@ const Posts = styled.div`
 
 const AnimatedBlogPost = styled(animated.div)`
   margin: 0px 30px 30px 0px;
+  height: 100%;
   :last-child {
     margin-right: 0px;
+    @media screen and (max-width: 576px) {
+      padding-right: 20px;
+    }
   }
 `
 
@@ -76,15 +87,17 @@ export default function BlogHomePage() {
 
   return (
     <Layout>
-      <div style={{ padding: "75px 20px 50px 20px" }}>
-        <SectionTitle>Blog</SectionTitle>
-        {loading && <BlogLoading />}
-        {!loading && (
-          <BlogSearchBar
-            callback={searchPosts}
-            placeholder="Ex: Heroku, database"
-          />
-        )}
+      <Wrapper>
+        <div>
+          <SectionTitle>Blog</SectionTitle>
+          {loading && <BlogLoading />}
+          {!loading && (
+            <BlogSearchBar
+              callback={searchPosts}
+              placeholder="Ex: Heroku, database"
+            />
+          )}
+        </div>
         {!loading && searchResults.length === 0 ? (
           <p style={{ padding: "20px 0px" }}>No posts found :(</p>
         ) : (
@@ -96,7 +109,7 @@ export default function BlogHomePage() {
             ))}
           </Posts>
         )}
-      </div>
+      </Wrapper>
     </Layout>
   )
 }

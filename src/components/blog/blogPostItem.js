@@ -7,7 +7,8 @@ import { useAuth0 } from "@auth0/auth0-react"
 import { hexToRGB } from "../../style/theme"
 
 const Wrapper = styled.div`
-  height: 60vh;
+  height: 100%;
+  max-height: 60vh;
   width: 350px;
   border-radius: 5px;
   background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
@@ -39,7 +40,7 @@ const ClickableCard = styled(Link)`
 
 const Image = styled.div`
   background-image: url(${props => props.image});
-  width: 350px;
+  width: 100%;
   border-radius: 5px 5px 0px 0px;
   background-position: bottom;
   background-size: cover;
@@ -75,7 +76,7 @@ const Title = styled.h5`
 const Footer = styled.div`
   width: 100%;
   border-top: 1px solid ${props => hexToRGB(props.theme.text, 0.1)};
-  padding: 10px 20px 0px 20px;
+  padding: 0px 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

@@ -27,7 +27,7 @@ export const gradient = css`
 
 const GradientBg = styled.div`
   position: absolute;
-  height: 100vh;
+  height: var(--doc-height);
   width: 100%;
   z-index: -1;
   ${gradient}

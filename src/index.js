@@ -16,6 +16,22 @@ import Error404 from "./pages/404"
 import ToadARPage from "./pages/projects/toadAR"
 import About from "./pages/about"
 import ScrollToTop from "./ScrollToTop"
+const _ = require("lodash")
+
+function updateDocumentHeight() {
+  const debounceResize = _.debounce(() => {
+    console.log("updating height")
+    document.documentElement.style.setProperty(
+      "--doc-height",
+      `${window.innerHeight}px`
+    )
+  }, 200)
+  debounceResize()
+}
+window.addEventListener("resize", () => {
+  updateDocumentHeight()
+})
+updateDocumentHeight()
 
 ReactDOM.render(
   <React.StrictMode>
