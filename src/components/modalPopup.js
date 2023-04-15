@@ -1,15 +1,24 @@
 import styled from "styled-components"
+import { hexToRGB } from "../style/theme"
 import { Modal } from "react-bootstrap"
 
 const ModalWrapper = styled(Modal)`
+  top: 25%;
+
   .modal-content {
-    background-color: ${props => props.theme.bg};
+    background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
+    backdrop-filter: blur(20px);
+    border: none;
+    border-radius: 5px;
     color: ${props => props.theme.text};
     position: relative;
   }
 
   .modal-header {
-    border-bottom: 1px solid ${props => props.theme.textLight};
+    border: none;
+    @media screen and (min-width: 576px) {
+      padding-bottom: 0px;
+    }
   }
 
   .modal-title {
@@ -17,13 +26,14 @@ const ModalWrapper = styled(Modal)`
   }
 
   @media (min-width: 576px) {
+    top: 0;
     .modal-dialog {
-      max-width: 90vw;
+      max-width: 95vw;
     }
   }
 
   .form-control {
-    background-color: ${props => props.theme.bg};
+    background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
     color: ${props => props.theme.text};
     border: 1px solid ${props => props.theme.textLight};
   }
@@ -32,6 +42,15 @@ const ModalWrapper = styled(Modal)`
     color: ${props => props.theme.accent};
     opacity: unset;
     text-shadow: none;
+    font-size: 32px;
+    padding: 12px;
+    transition: color 150ms, transform 150ms;
+
+    :hover {
+      color: ${props => props.theme.accentHover};
+      transform: scale(1.05);
+      opacity: 1 !important;
+    }
   }
 `
 
