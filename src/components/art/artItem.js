@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from "styled-components"
+import { hexToRGB } from "../../style/theme"
 
 const Wrapper = styled.div`
   width: 400px;
@@ -24,23 +25,25 @@ const Wrapper = styled.div`
   @media only screen and (max-width: 576px) {
     width: 90%;
   }
-`;
+`
 
 const ArtTitle = styled.p`
   margin: 0;
-  color: ${props => props.theme.accent};
-`;
+  color: ${props => props.theme.text};
+`
 
 const ArtDate = styled.p`
-  color: ${props => props.theme.textLight};
+  color: ${props => hexToRGB(props.theme.text, 0.2)};
   margin: 0;
-`;
+`
 
 export default function ArtItem(props) {
-  const {title, date, src, alt} = props;
-  return <Wrapper className={props.className}>
-    <img {...{src, alt}} />
-    <ArtTitle>{title}</ArtTitle>
-    <ArtDate>{date}</ArtDate>
-  </Wrapper>
-} 
+  const { title, date, src, alt } = props
+  return (
+    <Wrapper className={props.className}>
+      <img {...{ src, alt }} />
+      <ArtTitle>{title}</ArtTitle>
+      <ArtDate>{date}</ArtDate>
+    </Wrapper>
+  )
+}

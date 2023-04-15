@@ -10,6 +10,7 @@ import projects from "../scripts/projectList"
 import filterProject from "../scripts/searchPortfolio"
 import PortfolioFiltersSection from "../components/portfolio/portfolioFiltersSection"
 import AnimationOnScroll from "react-animate-on-scroll"
+import { isScrolledIntoViewVertical } from "../scripts/util"
 
 const Grid = styled.div`
   height: 100vh;
@@ -21,22 +22,6 @@ const Grid = styled.div`
     padding-right: 20px;
   }
 `
-
-// https://stackoverflow.com/a/37285344
-function isScrolledIntoView(container, element, partial) {
-  let cTop = container.scrollTop
-  let cBottom = cTop + container.clientHeight
-
-  let eTop = element.offsetTop
-  let eBottom = eTop + element.clientHeight
-
-  let isTotal = eTop >= cTop && eBottom <= cBottom
-  let isPartial =
-    partial &&
-    ((eTop < cTop && eBottom > cTop) || (eBottom > cBottom && eTop < cBottom))
-
-  return isTotal || isPartial
-}
 
 function resetAnimation(element) {
   element.style.animationName = "none"
@@ -62,7 +47,7 @@ export default function ArchivePage() {
     const cards = cardDeckRef?.current.children
     let numVisible = 0
     for (let card of cards) {
-      if (isScrolledIntoView(cardDeckRef.current, card, true)) {
+      if (isScrolledIntoViewVertical(cardDeckRef.current, card, true)) {
         const delay = ++numVisible * 500
         card.style.animationDelay = delay + "ms"
         card.style.animationDuration = "1s"
