@@ -81,7 +81,7 @@ export default function ArtPage() {
   return (
     <Layout>
       <div style={{ padding: "75px 20px 50px 20px" }}>
-        {SectionTitle("Art")}
+        <SectionTitle>Art</SectionTitle>
         <Subsection title="Zines">
           <p>
             Sometimes I make silly little{" "}

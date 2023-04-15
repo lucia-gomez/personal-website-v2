@@ -79,7 +79,7 @@ export default function BlogHomePage() {
   return (
     <Layout>
       <div style={{ padding: "75px 20px 50px 20px" }}>
-        {SectionTitle("Blog")}
+        <SectionTitle>Blog</SectionTitle>
         {loading && <BlogLoading />}
         {!loading && (
           <BlogSearchBar

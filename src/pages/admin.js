@@ -144,7 +144,7 @@ export default function BlogAdmin() {
     <Layout>
       <Section id="archive" index={0}>
         <BlogWrapper>
-          {SectionTitle("Blog Admin")}
+          <SectionTitle>Blog Admin</SectionTitle>
           <Editor post={openDraft} buttons={buttons} />
           {drafts.length === 0 ? null : (
             <DraftSection>

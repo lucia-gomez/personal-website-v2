@@ -114,7 +114,7 @@ export default function ArchivePage() {
     <Layout>
       <Grid>
         <div>
-          {SectionTitle("Things I've Made")}
+          <SectionTitle>Things I've Made</SectionTitle>
           <p>
             Dive into my project archive. Use the filters to help sift through
             the chaos

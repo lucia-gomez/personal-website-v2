@@ -21,7 +21,7 @@ export default function Error404() {
   return (
     <Layout>
       <Error404Wrapper>
-        {SectionTitle("Page not found")}
+        <SectionTitle>Page not found</SectionTitle>
         <img src={Image404} alt="the office cringe GIF" />
       </Error404Wrapper>
     </Layout>

@@ -24,9 +24,8 @@ const Text = styled.p`
 export default function ToadARPage() {
   return (
     <Layout>
-      {/* <Section id='toad-AR' index={-1}> */}
       <Wrapper>
-        {SectionTitle("Toad AR Effect")}
+        <SectionTitle>Toad AR Effect</SectionTitle>
         <Text>
           Thanks for reading <i>Let's Normalize Screaming Like Toad</i>. To get
           the full experience, try out the AR effect in Instagram. You'll need a
@@ -38,7 +37,6 @@ export default function ToadARPage() {
           Open in Instagram
         </InstagramButton>
       </Wrapper>
-      {/* </Section> */}
     </Layout>
   )
 }
