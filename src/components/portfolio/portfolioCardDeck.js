@@ -40,6 +40,7 @@ const PortfolioCardImage = styled.div`
     props.centerImage ? "top center" : "top left"};
   background-size: cover;
   background-repeat: no-repeat;
+  filter: grayscale(1);
   mix-blend-mode: luminosity;
 
   @media only screen and (max-width: 576px) {

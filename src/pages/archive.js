@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import styled from "styled-components"
 import Layout from "../components/layout/layout"
 import SectionTitle from "../components/sectionTitle"
@@ -8,8 +8,8 @@ import {
 } from "../components/portfolio/portfolioCardDeck"
 import projects from "../scripts/projectList"
 import filterProject from "../scripts/searchPortfolio"
-import { useTransition, animated } from "@react-spring/web"
 import PortfolioFiltersSection from "../components/portfolio/portfolioFiltersSection"
+import AnimationOnScroll from "react-animate-on-scroll"
 
 const Grid = styled.div`
   height: 100vh;
@@ -18,20 +18,69 @@ const Grid = styled.div`
   grid-template-rows: auto 1fr;
 `
 
+// https://stackoverflow.com/a/37285344
+function isScrolledIntoView(container, element, partial) {
+  let cTop = container.scrollTop
+  let cBottom = cTop + container.clientHeight
+
+  let eTop = element.offsetTop
+  let eBottom = eTop + element.clientHeight
+
+  let isTotal = eTop >= cTop && eBottom <= cBottom
+  let isPartial =
+    partial &&
+    ((eTop < cTop && eBottom > cTop) || (eBottom > cBottom && eTop < cBottom))
+
+  return isTotal || isPartial
+}
+
+function resetAnimation(element) {
+  element.style.animationName = "none"
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      element.style.animationName = ""
+    }, 0)
+  })
+}
+
 export default function ArchivePage() {
   const [results, setResults] = useState(projects)
   const [searchKeywords, setSearchKeywords] = useState([])
   const [activeFilter, setActiveFilter] = useState(-1) // all
+  const cardDeckRef = useRef()
 
   const searchProjects = keywords => {
     setSearchKeywords(keywords)
   }
 
-  const projectTransition = useTransition(results, {
-    from: { opacity: 0 },
-    enter: { opacity: 1, maxHeight: 625 },
-    leave: { opacity: 0, maxHeight: 0 },
-  })
+  useEffect(() => {
+    if (cardDeckRef.current == null) return
+    const cards = cardDeckRef?.current.children
+    let numVisible = 0
+    for (let card of cards) {
+      if (isScrolledIntoView(cardDeckRef.current, card, true)) {
+        const delay = ++numVisible * 500
+        card.style.animationDelay = delay + "ms"
+        card.style.animationDuration = "1s"
+        // reset animation delay when done
+        setTimeout(() => {
+          card.style.animationDelay = "unset"
+        }, delay + 1000)
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    if (cardDeckRef.current == null) return
+    const cards = cardDeckRef.current.children
+    for (let card of cards) {
+      resetAnimation(card)
+    }
+
+    // MASSIVE hack, trigger a scroll to forece new elements animateIn
+    cardDeckRef.current.scrollBy(0, 1)
+    cardDeckRef.current.scrollBy(0, -1)
+  }, [results])
 
   useEffect(() => {
     // filter by selected category
@@ -51,7 +100,29 @@ export default function ArchivePage() {
       )
       setResults(filtered)
     }
+    if (cardDeckRef?.current != null) {
+      // cardDeckRef.current.scroll(1)
+    }
   }, [activeFilter, searchKeywords])
+
+  const animatedCard = (project, idx) => {
+    const innerStyle = results.includes(project)
+      ? { height: "initial", display: "initial" }
+      : { height: 0, display: "none" }
+    return (
+      <AnimationOnScroll
+        animateIn="animate__fadeInLeft"
+        duration={0.2}
+        animateOnce
+        animatePreScroll
+        offset={-50}
+        scrollableParentSelector="#card-deck"
+        key={idx}
+      >
+        <div style={innerStyle}>{makePortfolioCard(project)}</div>
+      </AnimationOnScroll>
+    )
+  }
 
   return (
     <Layout>
@@ -66,15 +137,13 @@ export default function ArchivePage() {
             {...{ activeFilter, setActiveFilter, searchProjects }}
           />
         </div>
-        <PortfolioCardDeck>
-          {results.map(project => {
-            return makePortfolioCard(project)
-          })}
-          {/* {projectTransition((style, project) => (
-            <animated.div style={style}>
-              {makePortfolioCard(project)}
-            </animated.div>
-          ))} */}
+        <PortfolioCardDeck id="card-deck" ref={cardDeckRef}>
+          {projects.map(
+            (project, idx) => animatedCard(project, idx)
+            // <div style={styleProject(project)}>
+            //   {makePortfolioCard(project)}
+            // </div>
+          )}
         </PortfolioCardDeck>
       </Grid>
     </Layout>

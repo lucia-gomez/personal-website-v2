@@ -1,6 +1,7 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import styled, { css } from "styled-components"
 import { hexToRGB } from "../style/theme"
+const _ = require("lodash")
 
 const placeholderStyle = css`
   color: ${props => hexToRGB(props.theme.text, 0.2)};
@@ -59,6 +60,12 @@ const Icon = styled.i`
 const SearchBar = ({ callback, placeholder, className }) => {
   const [isFocused, setFocused] = useState(false)
   const [isHovered, setHovered] = useState(false)
+  const debouncedCallback = useRef(
+    _.debounce(arg => {
+      console.log("debounce")
+      callback(arg)
+    }, 200)
+  ).current
 
   const handleChange = e => {
     const query = e.target.value.trim()
@@ -66,7 +73,7 @@ const SearchBar = ({ callback, placeholder, className }) => {
       .split(",")
       .map(x => x.trim())
       .filter(x => x.length > 0)
-    callback(keywords)
+    debouncedCallback(keywords)
   }
 
   return (
