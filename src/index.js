@@ -20,7 +20,6 @@ const _ = require("lodash")
 
 function updateDocumentHeight() {
   const debounceResize = _.debounce(() => {
-    console.log("updating height")
     document.documentElement.style.setProperty(
       "--doc-height",
       `${window.innerHeight}px`

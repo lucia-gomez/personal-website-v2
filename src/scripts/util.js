@@ -20,9 +20,14 @@ export function isScrolledIntoViewVertical(container, element, partial) {
   return isTotal || isPartial
 }
 
-export function isScrolledIntoViewHorizontal(container, element, partial) {
+export function isScrolledIntoViewHorizontal(
+  container,
+  element,
+  partial,
+  offset = 0
+) {
   let cLeft = container.scrollLeft
-  let cRight = cLeft + container.clientWidth
+  let cRight = cLeft + container.clientWidth + offset
 
   let eLeft = element.offsetLeft
   let eRight = eLeft + element.clientWidth

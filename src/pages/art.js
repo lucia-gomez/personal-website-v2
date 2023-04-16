@@ -54,12 +54,15 @@ export default function ArtPage() {
     let numVisible = 0
     for (let zineElt of zineElts) {
       if (
-        isScrolledIntoViewHorizontal(zineDeckRef.current, zineElt, true) &&
+        isScrolledIntoViewHorizontal(zineDeckRef.current, zineElt, true, 50) &&
         !zineElt.className.includes("animate")
       ) {
+        numVisible++
         zineElt.style.visibility = "visible"
-        zineElt.style.animationDelay = ++numVisible * 200 + "ms"
+        zineElt.style.animationDelay = numVisible * 200 + "ms"
+        zineElt.style.webkitAnimationDelay = numVisible * 200 + "ms"
         zineElt.style.animationDuration = "750ms"
+        zineElt.style.webkitAnimationDuration = "750ms"
         zineElt.className = "animate__animated animate__fadeIn"
       }
     }
