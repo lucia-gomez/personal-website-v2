@@ -60,7 +60,7 @@ export default function ArtPage() {
         {artList.map((section, index) => (
           <Subsection title={section.sectionName} key={index}>
             <p>{section.description}</p>
-            <ArtList>
+            <ArtList offset={50}>
               {section.items.map(item => (
                 <div key={item.title}>
                   <LinkWrapper to={`/art/${item.slug}`}>
