@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import Layout from "../components/layout/layout"
 import SectionTitle from "../components/sectionTitle"
 import Subsection from "../components/layout/subsection"
@@ -10,16 +10,7 @@ import ZineItem from "../components/zines/zineItem"
 import zines from "../scripts/zineList"
 import artList, { getArtBySlug } from "../scripts/artList"
 import ArtModal from "../components/art/artModal"
-import { isScrolledIntoViewHorizontal } from "../scripts/util"
-
-const ZinePortfolioCardDeck = styled.div`
-  padding: 0px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  overflow-x: scroll;
-  justify-content: flex-start;
-`
+import HorizontalScroller from "../components/horizontalScroller"
 
 const LinkWrapper = styled(LinkRouter)`
   :hover {
@@ -39,7 +30,6 @@ export default function ArtPage() {
   const [modalItem, setModalItem] = useState(null)
   const { slug } = useParams()
   const history = useHistory()
-  const zineDeckRef = useRef()
 
   useEffect(() => {
     const foundArt = getArtBySlug(slug)
@@ -47,34 +37,6 @@ export default function ArtPage() {
       setModalItem(foundArt)
     }
   }, [slug])
-
-  const checkScrollVisibility = () => {
-    if (zineDeckRef.current == null) return
-    const zineElts = zineDeckRef.current.children
-    let numVisible = 0
-    for (let zineElt of zineElts) {
-      if (
-        isScrolledIntoViewHorizontal(zineDeckRef.current, zineElt, true, 50) &&
-        !zineElt.className.includes("animate")
-      ) {
-        numVisible++
-        zineElt.style.visibility = "visible"
-        zineElt.style.animationDelay = numVisible * 200 + "ms"
-        zineElt.style.webkitAnimationDelay = numVisible * 200 + "ms"
-        zineElt.style.animationDuration = "750ms"
-        zineElt.style.webkitAnimationDuration = "750ms"
-        zineElt.className = "animate__animated animate__fadeIn"
-      }
-    }
-  }
-
-  useEffect(() => {
-    checkScrollVisibility()
-  }, [])
-
-  const handleScroll = useCallback(e => {
-    checkScrollVisibility()
-  }, [])
 
   const handleModalClose = () => {
     setModalItem(null)
@@ -91,17 +53,11 @@ export default function ArtPage() {
             <Link href="https://en.wikipedia.org/wiki/Zine">zines</Link>. Click
             on a zine to read it!
           </p>
-          <ZinePortfolioCardDeck
-            id="zine-deck"
-            ref={zineDeckRef}
-            onScroll={e => handleScroll(e)}
-          >
+          <HorizontalScroller offset={50}>
             {zines.map((zine, idx) => (
-              <div style={{ visibility: "hidden" }} key={idx}>
-                <ZineItem zine={zine} />
-              </div>
+              <ZineItem zine={zine} key={idx} />
             ))}
-          </ZinePortfolioCardDeck>
+          </HorizontalScroller>
         </Subsection>
         {artList.map((section, index) => (
           <Subsection title={section.sectionName} key={index}>
