@@ -1,16 +1,17 @@
-import styled from "styled-components"
-import { useEffect, useState } from "react"
-import Layout from "../components/layout/layout"
-import SectionTitle from "../components/sectionTitle"
-import Subsection from "../components/layout/subsection"
-import Link from "../components/link"
 import { Link as LinkRouter, useHistory, useParams } from "react-router-dom"
-import ArtItem from "../components/art/artItem"
-import ZineItem from "../components/zines/zineItem"
-import zines from "../scripts/zineList"
 import artList, { getArtBySlug } from "../scripts/artList"
+import { useEffect, useState } from "react"
+
+import ArtItem from "../components/art/artItem"
 import ArtModal from "../components/art/artModal"
 import HorizontalScroller from "../components/horizontalScroller"
+import Layout from "../components/layout/layout"
+import Link from "../components/link"
+import SectionTitle from "../components/sectionTitle"
+import Subsection from "../components/layout/subsection"
+import ZineItem from "../components/zines/zineItem"
+import styled from "styled-components"
+import zines from "../scripts/zineList"
 
 const LinkWrapper = styled(LinkRouter)`
   :hover {
@@ -19,11 +20,8 @@ const LinkWrapper = styled(LinkRouter)`
   }
 `
 
-const ArtList = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
+const ArtList = styled(HorizontalScroller)`
+  padding-left: 10px;
 `
 
 export default function ArtPage() {
@@ -53,11 +51,11 @@ export default function ArtPage() {
             <Link href="https://en.wikipedia.org/wiki/Zine">zines</Link>. Click
             on a zine to read it!
           </p>
-          <HorizontalScroller offset={50}>
+          <ArtList offset={50}>
             {zines.map((zine, idx) => (
               <ZineItem zine={zine} key={idx} />
             ))}
-          </HorizontalScroller>
+          </ArtList>
         </Subsection>
         {artList.map((section, index) => (
           <Subsection title={section.sectionName} key={index}>

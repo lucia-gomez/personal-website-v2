@@ -1,7 +1,7 @@
-import styled from "styled-components"
-import { hexToRGB } from "../../style/theme"
 import { Modal } from "react-bootstrap"
 import ModalWrapper from "../modalPopup"
+import { hexToRGB } from "../../style/theme"
+import styled from "styled-components"
 
 const ArtModalWrapper = styled(ModalWrapper)`
   .modal-dialog {
@@ -34,6 +34,7 @@ const ModalInfo = styled.div`
 const ModalMetadata = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
 `
 

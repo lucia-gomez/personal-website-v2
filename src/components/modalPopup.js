@@ -1,6 +1,6 @@
-import styled from "styled-components"
-import { hexToRGB } from "../style/theme"
 import { Modal } from "react-bootstrap"
+import { hexToRGB } from "../style/theme"
+import styled from "styled-components"
 
 const ModalWrapper = styled(Modal)`
   .modal-content {
@@ -34,13 +34,6 @@ const ModalWrapper = styled(Modal)`
   .modal-title {
     color: ${props => props.theme.text};
   }
-
-  /* @media (min-width: 576px) {
-    top: 0;
-    .modal-dialog {
-      max-width: 95vw;
-    }
-  } */
 
   .form-control {
     background-color: ${props => hexToRGB(props.theme.medium, 0.2)};

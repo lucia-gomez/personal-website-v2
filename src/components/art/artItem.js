@@ -1,5 +1,5 @@
-import styled from "styled-components"
 import { hexToRGB } from "../../style/theme"
+import styled from "styled-components"
 
 const Wrapper = styled.div`
   width: 400px;
@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   }
 
   @media only screen and (max-width: 576px) {
-    width: 90%;
+    max-width: 80vw;
   }
 `
 

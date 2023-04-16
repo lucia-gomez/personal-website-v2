@@ -1,12 +1,11 @@
-import React from "react"
-import styled from "styled-components"
-import Subsection from "../components/layout/subsection"
-import Link from "../components/link"
-import Layout from "../components/layout/layout"
-
-import ProfileImage from "../assets/images/profile-circle.png"
 import ExperienceSection from "../components/about/experience"
+import Layout from "../components/layout/layout"
+import Link from "../components/link"
+import ProfileImage from "../assets/images/profile-circle.png"
+import React from "react"
+import Subsection from "../components/layout/subsection"
 import TechnologiesSection from "../components/about/technologies"
+import styled from "styled-components"
 
 const AboutWrapper = styled.div`
   padding: 56px 20px 50px 20px;
@@ -52,6 +51,7 @@ const ProfileIconsWrapper = styled.div`
 
   i {
     font-size: 22px;
+    text-align: center;
     width: 35px;
   }
 `

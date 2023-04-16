@@ -35,9 +35,10 @@ const Posts = styled(HorizontalScroller)`
   }
 `
 
-const AnimatedBlogPost = styled.div`
+const BlogPostWrapper = styled.div`
   margin: 0px 30px 0px 0px;
   height: 100%;
+  border-radius: 5px;
 
   /* :last-child {
     margin-right: 0px;
@@ -96,9 +97,9 @@ export default function BlogHomePage() {
         ) : (
           <Posts>
             {searchResults.map((post, idx) => (
-              <AnimatedBlogPost key={idx}>
+              <BlogPostWrapper key={idx}>
                 <BlogPostLink post={post} />
-              </AnimatedBlogPost>
+              </BlogPostWrapper>
             ))}
           </Posts>
         )}
