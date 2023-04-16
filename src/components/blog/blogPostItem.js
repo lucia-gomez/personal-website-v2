@@ -50,6 +50,7 @@ const Image = styled.div`
 
   @media screen and (max-width: 576px) {
     max-width: 80vw;
+    opacity: 0.8;
   }
 `
 

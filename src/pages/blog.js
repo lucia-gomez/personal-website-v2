@@ -27,8 +27,8 @@ const BlogSearchBar = styled(SearchBar)`
 const Posts = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: 8px;
-  padding-bottom: 8px;
+  margin-top: 20px;
+  padding-bottom: 20px;
   overflow-x: scroll;
   overflow-y: hidden;
 
@@ -38,8 +38,9 @@ const Posts = styled.div`
 `
 
 const AnimatedBlogPost = styled(animated.div)`
-  margin: 0px 30px 30px 0px;
+  margin: 0px 30px 0px 0px;
   height: 100%;
+
   :last-child {
     margin-right: 0px;
     @media screen and (max-width: 576px) {
