@@ -1,6 +1,7 @@
-import React, { useCallback, useEffect, useRef } from "react"
-import styled from "styled-components"
+import React, { useCallback, useEffect, useMemo, useRef } from "react"
+
 import { isScrolledIntoViewHorizontal } from "../scripts/util"
+import styled from "styled-components"
 
 const Scroller = styled.div`
   display: flex;
@@ -11,6 +12,7 @@ const Scroller = styled.div`
 export default function HorizontalScroller(props) {
   const { children, className, offset } = props
   const parentRef = useRef()
+  const memoChildren = useMemo(() => children, [children])
 
   const checkScrollVisibility = useCallback(() => {
     if (parentRef.current == null) return
@@ -32,10 +34,19 @@ export default function HorizontalScroller(props) {
     }
   }, [offset])
 
-  // animate in visible children on mount
+  // animate visible children on mount
   useEffect(() => {
     checkScrollVisibility()
   }, [checkScrollVisibility])
+
+  // reanimate when children change
+  useEffect(() => {
+    const children = parentRef.current?.children
+    for (let child of children) {
+      child.className = ""
+    }
+    checkScrollVisibility()
+  }, [checkScrollVisibility, memoChildren])
 
   return (
     <Scroller
@@ -43,7 +54,7 @@ export default function HorizontalScroller(props) {
       ref={parentRef}
       className={className}
     >
-      {children.map((child, idx) => (
+      {memoChildren.map((child, idx) => (
         <div style={{ visibility: "hidden" }} key={idx}>
           {child}
         </div>

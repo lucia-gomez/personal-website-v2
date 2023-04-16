@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react"
-import styled from "styled-components"
-import Layout from "../components/layout/layout"
-import SectionTitle from "../components/sectionTitle"
-import BlogPostLink from "../components/blog/blogPostItem"
-import BlogLoading from "../components/blog/blogLoading"
+
 import Axios from "axios"
-import { getApiUrl } from "../scripts/util"
+import BlogLoading from "../components/blog/blogLoading"
+import BlogPostLink from "../components/blog/blogPostItem"
+import HorizontalScroller from "../components/horizontalScroller"
+import Layout from "../components/layout/layout"
 import SearchBar from "../components/searchBar"
-import { useTransition, animated } from "@react-spring/web"
+import SectionTitle from "../components/sectionTitle"
 import filterPost from "../scripts/searchBlog"
+import { getApiUrl } from "../scripts/util"
+import styled from "styled-components"
 
 const Wrapper = styled.div`
   padding: 65px 20px 50px 20px;
@@ -24,12 +25,9 @@ const BlogSearchBar = styled(SearchBar)`
   }
 `
 
-const Posts = styled.div`
-  display: flex;
-  flex-direction: row;
+const Posts = styled(HorizontalScroller)`
   margin-top: 20px;
   padding-bottom: 20px;
-  overflow-x: scroll;
   overflow-y: hidden;
 
   @media screen and (max-width: 576px) {
@@ -37,16 +35,16 @@ const Posts = styled.div`
   }
 `
 
-const AnimatedBlogPost = styled(animated.div)`
+const AnimatedBlogPost = styled.div`
   margin: 0px 30px 0px 0px;
   height: 100%;
 
-  :last-child {
+  /* :last-child {
     margin-right: 0px;
     @media screen and (max-width: 576px) {
       padding-right: 20px;
     }
-  }
+  } */
 `
 
 export default function BlogHomePage() {
@@ -80,12 +78,6 @@ export default function BlogHomePage() {
     }
   }
 
-  const searchAnimation = useTransition(searchResults, {
-    from: { opacity: 0 },
-    enter: { opacity: 1, maxWidth: 350 },
-    leave: { opacity: 0, maxWidth: 0 },
-  })
-
   return (
     <Layout>
       <Wrapper>
@@ -103,8 +95,8 @@ export default function BlogHomePage() {
           <p style={{ padding: "20px 0px" }}>No posts found :(</p>
         ) : (
           <Posts>
-            {searchAnimation((style, post) => (
-              <AnimatedBlogPost style={style}>
+            {searchResults.map((post, idx) => (
+              <AnimatedBlogPost key={idx}>
                 <BlogPostLink post={post} />
               </AnimatedBlogPost>
             ))}
