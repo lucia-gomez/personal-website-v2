@@ -39,3 +39,26 @@ export function isScrolledIntoViewHorizontal(
 
   return isTotal || isPartial
 }
+
+// https://stackoverflow.com/a/66124172
+function getRgb(color) {
+  let [r, g, b] = color
+    .replace("rgb(", "")
+    .replace(")", "")
+    .split(",")
+    .map(str => Number(str))
+  return {
+    r,
+    g,
+    b,
+  }
+}
+
+// https://stackoverflow.com/a/66124172
+export function colorInterpolate(colorA, colorB, intval) {
+  const rgbA = getRgb(colorA),
+    rgbB = getRgb(colorB)
+  const colorVal = prop =>
+    Math.round(rgbA[prop] * (1 - intval) + rgbB[prop] * intval)
+  return `rgb(${colorVal("r")}, ${colorVal("g")}, ${colorVal("b")})`
+}

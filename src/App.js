@@ -2,50 +2,131 @@ import {
   PortfolioCardDeck,
   makePortfolioCard,
 } from "./components/portfolio/portfolioCardDeck"
+import React, { useEffect, useRef, useState } from "react"
+import styled, { css, useTheme } from "styled-components"
 
 import { ButtonLink } from "./components/button"
-import React from "react"
-import Subsection from "./components/layout/subsection"
+import SectionTitle from "./components/sectionTitle"
+import { colorInterpolate } from "./scripts/util"
 import { featuredProjects } from "./scripts/projectList"
-import styled from "styled-components"
+import { hexToRGB } from "./style/theme.js"
+
+const LandingWrapper = styled.div`
+  max-height: var(--doc-height);
+  overflow-y: scroll;
+  position: relative;
+`
+
+const Sticky = styled.div`
+  position: sticky;
+  top: 75px;
+  /* height: var(--doc-height); */
+`
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
-  position: relative;
+
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: black;
+
+  @media screen and (max-width: 576px) {
+    align-items: flex-start;
+    padding-left: 5vw;
+
+    h1,
+    h4 {
+      text-align: left;
+    }
+  }
+`
+
+const bannerText = css`
+  text-align: center;
+  opacity: 0;
+  margin: 0;
+
+  animation-duration: 500ms;
+  --webkit-animation-duration: 500ms;
 `
 
 const Title = styled.h1`
+  ${bannerText}
+  line-height: 1em;
   font-size: 70px;
-  color: #000;
-  mix-blend-mode: color-dodge;
-  margin: 0;
-  margin-bottom: 20vh;
+  margin-bottom: 12px;
+
+  animation-delay: 500ms;
+  --webkit-animation-delay: 500ms;
+`
+
+const JobTitle = styled.h4`
+  ${bannerText}
+  height: 10vh;
+
+  animation-delay: 1s;
+  --webkit-animation-delay: 1s;
+`
+
+const jobTitles = [
+  "Creative Technologist",
+  "Software Engineer",
+  "Web Developer",
+]
+
+export default function App() {
+  const theme = useTheme()
+  const pageRef = useRef()
+  const [lerpColor, setLerpColor] = useState(0)
+
+  useEffect(() => {
+    pageRef.current.addEventListener("scroll", _ => {
+      const percentage = (2 * pageRef.current.scrollTop) / window.innerHeight
+      const lerp = colorInterpolate(
+        "rgb(0,0,0)",
+        "rgb(247, 240, 255)",
+        percentage
+      )
+      setLerpColor(lerp)
+    })
+  }, [theme.text])
+
+  return (
+    <LandingWrapper ref={pageRef}>
+      <section>
+        <div style={{ height: "40vh" }} />
+        <Sticky>
+          <Wrapper style={{ color: lerpColor }}>
+            <Title className="animate__animated animate__fadeInDown">
+              Lucia Gomez
+            </Title>
+            <JobTitle className="animate__animated animate__fadeInUp">
+              Creative Technologist
+            </JobTitle>
+          </Wrapper>
+        </Sticky>
+        <div style={{ height: "60vh" }} />
+      </section>
+      <section>
+        <Sticky>
+          <FeaturedWork />
+        </Sticky>
+      </section>
+    </LandingWrapper>
+  )
+}
+
+const FeaturedWrapper = styled.div`
+  padding: 0px 20px 50px;
+`
+
+const FeaturedTitle = styled(SectionTitle)`
   text-align: center;
-  animation: fade-in 1s 500ms forwards ease-in;
-  @media screen and (max-width: 850px) {
-    animation-name: fade-in-mobile;
-  }
-
-  @keyframes fade-in {
-    from {
-      color: #000;
-    }
-    to {
-      color: #9d9d9d;
-    }
-  }
-
-  @keyframes fade-in-mobile {
-    from {
-      color: #000;
-    }
-    to {
-      color: #9d9d9d;
-    }
+  @media screen and (max-width: 576px) {
+    font-size: 36px;
+    text-align: left;
   }
 `
 
@@ -61,24 +142,16 @@ function FeaturedWork() {
     "Lava Lamp Simulator",
   ])
   return (
-    <div style={{ paddingBottom: 50 }}>
-      <Subsection title="Featured Work" collapsible={false}>
-        <PortfolioCardDeck>{projects.map(makePortfolioCard)}</PortfolioCardDeck>
-        <ArchiveButton to="/portfolio" sameTab={true}>
-          Explore the Archive
-        </ArchiveButton>
-      </Subsection>
-    </div>
-  )
-}
-
-export default function App() {
-  return (
-    <>
-      <Wrapper>
-        <Title>Lucia Gomez</Title>
-      </Wrapper>
-      <FeaturedWork />
-    </>
+    <FeaturedWrapper>
+      <p>
+        Hi, I'm Lucia. I build a lot of cool stuff, but here's some of my
+        favorite projects
+      </p>
+      <PortfolioCardDeck>{projects.map(makePortfolioCard)}</PortfolioCardDeck>
+      <p>There's more where that came from...</p>
+      <ArchiveButton to="/portfolio" sameTab={true}>
+        Explore the Archive
+      </ArchiveButton>
+    </FeaturedWrapper>
   )
 }
