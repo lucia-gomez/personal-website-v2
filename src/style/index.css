@@ -36,6 +36,11 @@ h3 {
   -webkit-animation-fill-mode: backwards;
 }
 
+.animate__zoomIn {
+  animation-fill-mode: backwards;
+  -webkit-animation-fill-mode: backwards;
+}
+
 /* ReactBootstrap modal animation override */
 @media screen and (max-width: 576px) {
   .modal.show .modal-dialog {

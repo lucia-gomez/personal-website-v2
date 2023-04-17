@@ -1,15 +1,20 @@
-import {
-  PortfolioCardDeck,
-  makePortfolioCard,
-} from "./components/portfolio/portfolioCardDeck"
-import React, { useEffect, useRef, useState } from "react"
-import styled, { css, useTheme } from "styled-components"
+import React, { useEffect, useMemo, useRef, useState } from "react"
+import styled, { useTheme } from "styled-components"
 
+import AnimationOnScroll from "react-animate-on-scroll"
 import { ButtonLink } from "./components/button"
-import SectionTitle from "./components/sectionTitle"
+import Footer from "./components/layout/footer"
+import Name from "./components/banner/name"
 import { colorInterpolate } from "./scripts/util"
 import { featuredProjects } from "./scripts/projectList"
 import { hexToRGB } from "./style/theme.js"
+import { makePortfolioCard } from "./components/portfolio/portfolioCardDeck"
+
+const projects = featuredProjects([
+  "In AR We Trust",
+  "Sign Search",
+  "Lava Lamp Simulator",
+])
 
 const LandingWrapper = styled.div`
   max-height: var(--doc-height);
@@ -20,61 +25,36 @@ const LandingWrapper = styled.div`
 const Sticky = styled.div`
   position: sticky;
   top: 75px;
-  /* height: var(--doc-height); */
+  padding: 0 5vw;
 `
 
-const Wrapper = styled.div`
-  width: 100%;
+function AnimatedSection(props) {
+  const { animateIn = true, offset = -100, children } = props
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: black;
+  const parent = child =>
+    animateIn ? (
+      <AnimationOnScroll
+        animateIn="animate__zoomIn"
+        // animateOut="animate__zoomOut"
+        animatePreScroll={false}
+        // animateOnce
+        duration={1}
+        offset={offset}
+        scrollableParentSelector="#banner"
+      >
+        {child}
+      </AnimationOnScroll>
+    ) : (
+      <>{child}</>
+    )
 
-  @media screen and (max-width: 576px) {
-    align-items: flex-start;
-    padding-left: 5vw;
-
-    h1,
-    h4 {
-      text-align: left;
-    }
-  }
-`
-
-const bannerText = css`
-  text-align: center;
-  opacity: 0;
-  margin: 0;
-
-  animation-duration: 500ms;
-  --webkit-animation-duration: 500ms;
-`
-
-const Title = styled.h1`
-  ${bannerText}
-  line-height: 1em;
-  font-size: 70px;
-  margin-bottom: 12px;
-
-  animation-delay: 500ms;
-  --webkit-animation-delay: 500ms;
-`
-
-const JobTitle = styled.h4`
-  ${bannerText}
-  height: 10vh;
-
-  animation-delay: 1s;
-  --webkit-animation-delay: 1s;
-`
-
-const jobTitles = [
-  "Creative Technologist",
-  "Software Engineer",
-  "Web Developer",
-]
+  return parent(
+    <section>
+      <Sticky>{children}</Sticky>
+      <div style={{ height: "60vh" }} />
+    </section>
+  )
+}
 
 export default function App() {
   const theme = useTheme()
@@ -94,64 +74,68 @@ export default function App() {
   }, [theme.text])
 
   return (
-    <LandingWrapper ref={pageRef}>
-      <section>
-        <div style={{ height: "40vh" }} />
-        <Sticky>
-          <Wrapper style={{ color: lerpColor }}>
-            <Title className="animate__animated animate__fadeInDown">
-              Lucia Gomez
-            </Title>
-            <JobTitle className="animate__animated animate__fadeInUp">
-              Creative Technologist
-            </JobTitle>
-          </Wrapper>
-        </Sticky>
-        <div style={{ height: "60vh" }} />
-      </section>
-      <section>
-        <Sticky>
-          <FeaturedWork />
-        </Sticky>
-      </section>
+    <LandingWrapper ref={pageRef} id="banner">
+      <div style={{ height: "40vh" }} />
+      <AnimatedSection animateIn={false}>
+        <Name color={lerpColor} />
+      </AnimatedSection>
+      <AnimatedSection offset={0}>
+        <p>
+          Hi, I'm Lucia. I build a lot of cool stuff, but here's some of my
+          favorite projects
+        </p>
+      </AnimatedSection>
+      {projects.map((project, idx) => (
+        <div style={{ padding: "24px 0" }}>
+          <AnimatedSection offset={-100} key={idx}>
+            {makePortfolioCard(project)}
+          </AnimatedSection>
+        </div>
+      ))}
+      <div style={{ padding: "50px 0" }}>
+        <AnimatedSection offset={50}>
+          <p>There's more where that came from...</p>
+          <Actions>
+            <ButtonLink to="/portfolio" sameTab={true}>
+              Full Portfolio
+            </ButtonLink>
+            <ButtonLink to="/about-me" sameTab={true}>
+              About Me
+            </ButtonLink>
+            <ButtonLink to="/blog" sameTab={true}>
+              Blog
+            </ButtonLink>
+          </Actions>
+        </AnimatedSection>
+      </div>
     </LandingWrapper>
   )
 }
+
+const Actions = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  a {
+    margin-bottom: 20px;
+  }
+`
 
 const FeaturedWrapper = styled.div`
   padding: 0px 20px 50px;
 `
 
-const FeaturedTitle = styled(SectionTitle)`
-  text-align: center;
-  @media screen and (max-width: 576px) {
-    font-size: 36px;
-    text-align: left;
-  }
-`
-
-const ArchiveButton = styled(ButtonLink)`
-  margin: auto;
-  margin-top: 20px;
-`
-
-function FeaturedWork() {
-  const projects = featuredProjects([
-    "In AR We Trust",
-    "Sign Search",
-    "Lava Lamp Simulator",
-  ])
-  return (
-    <FeaturedWrapper>
-      <p>
-        Hi, I'm Lucia. I build a lot of cool stuff, but here's some of my
-        favorite projects
-      </p>
-      <PortfolioCardDeck>{projects.map(makePortfolioCard)}</PortfolioCardDeck>
-      <p>There's more where that came from...</p>
-      <ArchiveButton to="/portfolio" sameTab={true}>
-        Explore the Archive
-      </ArchiveButton>
-    </FeaturedWrapper>
-  )
-}
+// function FeaturedWork() {
+//   return (
+//     <FeaturedWrapper>
+//       {projects.map((project, idx) => {
+//         makePortfolioCard(project)
+//       })}
+//       <p>There's more where that came from...</p>
+//       <ArchiveButton to="/portfolio" sameTab={true}>
+//         Explore the Archive
+//       </ArchiveButton>
+//       <Footer />
+//     </FeaturedWrapper>
+//   )
+// }
