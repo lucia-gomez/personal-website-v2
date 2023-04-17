@@ -1,12 +1,12 @@
-import React from "react"
-import styled from "styled-components"
-import { Navbar, Nav } from "react-bootstrap"
-import { useAuth0 } from "@auth0/auth0-react"
-import { Link, useLocation } from "react-router-dom"
-
 import { FaGithub, FaLinkedin } from "react-icons/fa"
+import { Link, useLocation } from "react-router-dom"
+import { Nav, Navbar } from "react-bootstrap"
+
 import Doc from "../../assets/resume.pdf"
+import React from "react"
 import { hexToRGB } from "../../style/theme"
+import styled from "styled-components"
+import { useAuth0 } from "@auth0/auth0-react"
 
 const NavWrapper = styled(Navbar)`
   backdrop-filter: blur(50px);
@@ -14,19 +14,19 @@ const NavWrapper = styled(Navbar)`
   @media only screen and (max-width: 576px) {
     background-color: none;
   }
-
-  .navbar-nav {
-    flex-wrap: wrap;
-    flex-direction: row;
-  }
 `
 
-const ExtraNav = styled(Nav).attrs(_ => ({
-  className: "extra-nav",
-}))`
+const IconsNav = styled(Nav)`
   margin-left: auto;
+  flex-wrap: wrap;
+  flex-direction: row;
   .nav-link {
     padding-right: 5px;
+  }
+
+  @media only screen and (max-width: 576px) {
+    flex-basis: 100%;
+    padding-left: 8px;
   }
 `
 
@@ -42,8 +42,8 @@ const NavLink = styled(Link).attrs(_ => ({
     opacity: 1;
   }
 
-  .extra {
-    padding-right: 5px;
+  @media screen and (max-width: 576px) {
+    padding: 0.5rem 8px;
   }
 `
 
@@ -60,24 +60,12 @@ const LogoutButton = styled.a.attrs(_ => ({
   }
 `
 
-const NavItem = styled(Nav.Item)`
-  list-style-type: none;
-  @media only screen and (max-width: 576px) {
-    padding: 0.5rem 8px;
-    .nav-link {
-      padding: 0;
-    }
+const collapseNav = () => {
+  const collapseButton = document.getElementsByClassName("navbar-toggler")[0]
+  if (window.getComputedStyle(collapseButton).display !== "none") {
+    collapseButton.click()
   }
-`
-
-const MobileNav = styled(Navbar.Collapse)`
-  @media only screen and (max-width: 576px) {
-    .extra-nav {
-      flex-basis: 100%;
-      padding-left: 8px;
-    }
-  }
-`
+}
 
 const CustomNav = () => {
   const { pathname } = useLocation()
@@ -110,22 +98,21 @@ const CustomNav = () => {
       className="navbar navbar-dark"
       expand="sm"
       fixed="top"
-      collapseOnSelect
     >
       <Navbar.Toggle aria-controls="navbarCollapse" />
-      <MobileNav id="navbarCollapse">
+      <Navbar.Collapse id="navbarCollapse">
         {sections.map((section, key) => (
-          <NavItem as="li" key={key}>
-            <NavLink
-              selected={pathname === section.link}
-              to={section.link}
-              target={section.target ?? null}
-            >
-              {section.name}
-            </NavLink>
-          </NavItem>
+          <NavLink
+            onClick={collapseNav}
+            selected={pathname === section.link}
+            to={section.link}
+            target={section.target ?? null}
+            key={key}
+          >
+            {section.name}
+          </NavLink>
         ))}
-        <ExtraNav>
+        <IconsNav>
           {icons.map((icon, key) => (
             <NavLink
               key={key}
@@ -149,8 +136,8 @@ const CustomNav = () => {
               Log Out
             </LogoutButton>
           ) : null}
-        </ExtraNav>
-      </MobileNav>
+        </IconsNav>
+      </Navbar.Collapse>
     </NavWrapper>
   )
 }

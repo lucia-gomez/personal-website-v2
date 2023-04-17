@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react"
-import styled from "styled-components"
-import Layout from "../components/layout/layout"
-import SectionTitle from "../components/sectionTitle"
-import { Link as LinkDefault } from "react-router-dom"
-import { Button } from "../components/button"
-import { colors } from "../style/theme"
+import React, { useEffect, useState } from "react"
 
 import Axios from "axios"
-import { getApiUrl } from "../scripts/util"
-import Editor from "../components/blog/editor"
 import BlogDraftItem from "../components/blog/blogDraftItem"
+import { Button } from "../components/button"
+import Editor from "../components/blog/editor"
+import { Link as LinkDefault } from "react-router-dom"
+import SectionTitle from "../components/sectionTitle"
+import { colors } from "../style/theme"
+import { getApiUrl } from "../scripts/util"
+import styled from "styled-components"
 
 const BlogWrapper = styled.div`
   padding: 0px 30px;
@@ -140,26 +139,24 @@ export default function BlogAdmin() {
   }
 
   return (
-    <Layout>
-      <BlogWrapper>
-        <SectionTitle>Blog Admin</SectionTitle>
-        <Editor post={openDraft} buttons={buttons} />
-        {drafts.length === 0 ? null : (
-          <DraftSection>
-            <h3>Drafts</h3>
-            <Drafts>
-              {drafts.map((draft, idx) => (
-                <BlogDraftItem
-                  post={draft}
-                  handleOpenDraft={handleOpenDraft}
-                  handleDeleteDraft={handleDeleteDraft}
-                  key={idx}
-                />
-              ))}
-            </Drafts>
-          </DraftSection>
-        )}
-      </BlogWrapper>
-    </Layout>
+    <BlogWrapper>
+      <SectionTitle>Blog Admin</SectionTitle>
+      <Editor post={openDraft} buttons={buttons} />
+      {drafts.length === 0 ? null : (
+        <DraftSection>
+          <h3>Drafts</h3>
+          <Drafts>
+            {drafts.map((draft, idx) => (
+              <BlogDraftItem
+                post={draft}
+                handleOpenDraft={handleOpenDraft}
+                handleDeleteDraft={handleDeleteDraft}
+                key={idx}
+              />
+            ))}
+          </Drafts>
+        </DraftSection>
+      )}
+    </BlogWrapper>
   )
 }

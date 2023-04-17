@@ -1,13 +1,13 @@
-import React from "react"
-import Layout from "./components/layout/layout"
-import styled from "styled-components"
-import Subsection from "./components/layout/subsection"
-import { ButtonLink } from "./components/button"
-import { featuredProjects } from "./scripts/projectList"
 import {
   PortfolioCardDeck,
   makePortfolioCard,
 } from "./components/portfolio/portfolioCardDeck"
+
+import { ButtonLink } from "./components/button"
+import React from "react"
+import Subsection from "./components/layout/subsection"
+import { featuredProjects } from "./scripts/projectList"
+import styled from "styled-components"
 
 const Wrapper = styled.div`
   width: 100%;
@@ -74,11 +74,11 @@ function FeaturedWork() {
 
 export default function App() {
   return (
-    <Layout>
+    <>
       <Wrapper>
         <Title>Lucia Gomez</Title>
       </Wrapper>
       <FeaturedWork />
-    </Layout>
+    </>
   )
 }

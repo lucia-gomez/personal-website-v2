@@ -1,8 +1,7 @@
-import React from "react"
-import styled from "styled-components"
 import { InstagramButton } from "../../components/button"
-import Layout from "../../components/layout/layout"
+import React from "react"
 import SectionTitle from "../../components/sectionTitle"
+import styled from "styled-components"
 
 const Wrapper = styled.div`
   position: relative;
@@ -23,22 +22,20 @@ const Text = styled.p`
 
 export default function ToadARPage() {
   return (
-    <Layout>
-      <Wrapper>
-        <SectionTitle>Toad AR Effect</SectionTitle>
-        <Text>
-          Thanks for reading <i>Let's Normalize Screaming Like Toad</i>. To get
-          the full experience, try out the AR effect in Instagram. You'll need a
-          physical copy of the zine for this
-        </Text>
-        <br />
-        <p>(Warning: loud noises)</p>
-        <InstagramButton
-          to={{ pathname: "https://www.instagram.com/ar/575344457802728/" }}
-        >
-          Open in Instagram
-        </InstagramButton>
-      </Wrapper>
-    </Layout>
+    <Wrapper>
+      <SectionTitle>Toad AR Effect</SectionTitle>
+      <Text>
+        Thanks for reading <i>Let's Normalize Screaming Like Toad</i>. To get
+        the full experience, try out the AR effect in Instagram. You'll need a
+        physical copy of the zine for this
+      </Text>
+      <br />
+      <p>(Warning: loud noises)</p>
+      <InstagramButton
+        to={{ pathname: "https://www.instagram.com/ar/575344457802728/" }}
+      >
+        Open in Instagram
+      </InstagramButton>
+    </Wrapper>
   )
 }

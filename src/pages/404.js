@@ -1,8 +1,7 @@
-import React from "react"
-import styled from "styled-components"
-import Layout from "../components/layout/layout"
-import SectionTitle from "../components/sectionTitle"
 import Image404 from "../assets/images/404-office.gif"
+import React from "react"
+import SectionTitle from "../components/sectionTitle"
+import styled from "styled-components"
 
 const Error404Wrapper = styled.div`
   position: relative;
@@ -19,11 +18,9 @@ const Error404Wrapper = styled.div`
 
 export default function Error404() {
   return (
-    <Layout>
-      <Error404Wrapper>
-        <SectionTitle>Page not found</SectionTitle>
-        <img src={Image404} alt="the office cringe GIF" />
-      </Error404Wrapper>
-    </Layout>
+    <Error404Wrapper>
+      <SectionTitle>Page not found</SectionTitle>
+      <img src={Image404} alt="the office cringe GIF" />
+    </Error404Wrapper>
   )
 }

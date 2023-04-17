@@ -4,7 +4,6 @@ import Axios from "axios"
 import BlogLoading from "../components/blog/blogLoading"
 import BlogPostLink from "../components/blog/blogPostItem"
 import HorizontalScroller from "../components/horizontalScroller"
-import Layout from "../components/layout/layout"
 import SearchBar from "../components/searchBar"
 import SectionTitle from "../components/sectionTitle"
 import filterPost from "../scripts/searchBlog"
@@ -82,30 +81,28 @@ export default function BlogHomePage() {
   }
 
   return (
-    <Layout>
-      <Wrapper>
-        <div>
-          <SectionTitle>Blog</SectionTitle>
-          {loading && <BlogLoading />}
-          {!loading && (
-            <BlogSearchBar
-              callback={searchPosts}
-              placeholder="Ex: Heroku, database"
-            />
-          )}
-        </div>
-        {!loading && searchResults.length === 0 ? (
-          <p style={{ padding: "20px 0px" }}>No posts found :(</p>
-        ) : (
-          <Posts>
-            {searchResults.map((post, idx) => (
-              <BlogPostWrapper key={idx}>
-                <BlogPostLink post={post} />
-              </BlogPostWrapper>
-            ))}
-          </Posts>
+    <Wrapper>
+      <div>
+        <SectionTitle>Blog</SectionTitle>
+        {loading && <BlogLoading />}
+        {!loading && (
+          <BlogSearchBar
+            callback={searchPosts}
+            placeholder="Ex: Heroku, database"
+          />
         )}
-      </Wrapper>
-    </Layout>
+      </div>
+      {!loading && searchResults.length === 0 ? (
+        <p style={{ padding: "20px 0px" }}>No posts found :(</p>
+      ) : (
+        <Posts>
+          {searchResults.map((post, idx) => (
+            <BlogPostWrapper key={idx}>
+              <BlogPostLink post={post} />
+            </BlogPostWrapper>
+          ))}
+        </Posts>
+      )}
+    </Wrapper>
   )
 }

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react"
-import { useParams, Redirect } from "react-router-dom"
-import styled from "styled-components"
-import Layout from "../components/layout/layout"
-import BlogContent from "../components/blog/blogContent"
-import EditorPopup from "../components/blog/editorPopup"
+import { Redirect, useParams } from "react-router-dom"
+
 import Axios from "axios"
-import { getApiUrl } from "../scripts/util"
-import { useAuth0 } from "@auth0/auth0-react"
-import Sidebar from "../components/blog/sidebar"
 import Back from "../components/blog/back"
+import BlogContent from "../components/blog/blogContent"
 import BlogLoading from "../components/blog/blogLoading"
+import EditorPopup from "../components/blog/editorPopup"
+import Sidebar from "../components/blog/sidebar"
+import { getApiUrl } from "../scripts/util"
+import styled from "styled-components"
+import { useAuth0 } from "@auth0/auth0-react"
 
 // nav, page content, footer
 const BlogWrapper = styled.div`
@@ -100,30 +100,28 @@ export default function BlogPostPage() {
   }
 
   return (
-    <Layout>
-      <BlogWrapper>
-        <BackMobile link="/blog" />
-        <div />
-        <ContentWrapper>
-          <SidebarDesktop post={post} />
-          {!loading ? (
-            <Content>
-              <EditWrapper>
-                <Title>{post.title}</Title>
-                {isAuthenticated ? <EditorPopup post={post} /> : null}
-              </EditWrapper>
-              <Metadata>
-                {post.dateString.substring(0, post.dateString.indexOf(","))}
-                <p>Lucia Gomez</p>
-              </Metadata>
-              <BlogContent content={post.content} />
-            </Content>
-          ) : (
-            <BlogLoading />
-          )}
-          <SidebarMobile post={post} />
-        </ContentWrapper>
-      </BlogWrapper>
-    </Layout>
+    <BlogWrapper>
+      <BackMobile link="/blog" />
+      <div />
+      <ContentWrapper>
+        <SidebarDesktop post={post} />
+        {!loading ? (
+          <Content>
+            <EditWrapper>
+              <Title>{post.title}</Title>
+              {isAuthenticated ? <EditorPopup post={post} /> : null}
+            </EditWrapper>
+            <Metadata>
+              {post.dateString.substring(0, post.dateString.indexOf(","))}
+              <p>Lucia Gomez</p>
+            </Metadata>
+            <BlogContent content={post.content} />
+          </Content>
+        ) : (
+          <BlogLoading />
+        )}
+        <SidebarMobile post={post} />
+      </ContentWrapper>
+    </BlogWrapper>
   )
 }

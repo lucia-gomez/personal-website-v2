@@ -1,11 +1,10 @@
 import { Link as LinkRouter, useHistory, useParams } from "react-router-dom"
 import artList, { getArtBySlug } from "../scripts/artList"
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 import ArtItem from "../components/art/artItem"
 import ArtModal from "../components/art/artModal"
 import HorizontalScroller from "../components/horizontalScroller"
-import Layout from "../components/layout/layout"
 import Link from "../components/link"
 import SectionTitle from "../components/sectionTitle"
 import Subsection from "../components/layout/subsection"
@@ -41,47 +40,60 @@ export default function ArtPage() {
     history.push("/art")
   }
 
-  return (
-    <Layout>
-      <div style={{ padding: "75px 20px 50px 20px" }}>
-        <SectionTitle>Art</SectionTitle>
-        <Subsection title="Zines">
-          <p>
-            Sometimes I make silly little{" "}
-            <Link href="https://en.wikipedia.org/wiki/Zine">zines</Link>. Click
-            on a zine to read it!
-          </p>
+  const memoZines = useMemo(
+    () => (
+      <Subsection title="Zines">
+        <p>
+          Sometimes I make silly little{" "}
+          <Link href="https://en.wikipedia.org/wiki/Zine">zines</Link>. Click on
+          a zine to read it!
+        </p>
+        <ArtList offset={50}>
+          {zines.map((zine, idx) => (
+            <ZineItem zine={zine} key={idx} />
+          ))}
+        </ArtList>
+      </Subsection>
+    ),
+    []
+  )
+
+  const memoSections = useMemo(
+    () =>
+      artList.map((section, index) => (
+        <Subsection title={section.sectionName} key={index}>
+          <p>{section.description}</p>
           <ArtList offset={50}>
-            {zines.map((zine, idx) => (
-              <ZineItem zine={zine} key={idx} />
+            {section.items.map(item => (
+              <div key={item.title}>
+                <LinkWrapper to={`/art/${item.slug}`}>
+                  <ArtItem
+                    title={item.title}
+                    date={item.date}
+                    src={item.src}
+                    alt={item.alt}
+                  />
+                </LinkWrapper>
+              </div>
             ))}
           </ArtList>
         </Subsection>
-        {artList.map((section, index) => (
-          <Subsection title={section.sectionName} key={index}>
-            <p>{section.description}</p>
-            <ArtList offset={50}>
-              {section.items.map(item => (
-                <div key={item.title}>
-                  <LinkWrapper to={`/art/${item.slug}`}>
-                    <ArtItem
-                      title={item.title}
-                      date={item.date}
-                      src={item.src}
-                      alt={item.alt}
-                    />
-                  </LinkWrapper>
-                </div>
-              ))}
-            </ArtList>
-          </Subsection>
-        ))}
+      )),
+    []
+  )
+
+  return (
+    <>
+      <div style={{ padding: "75px 20px 50px 20px" }}>
+        <SectionTitle>Art</SectionTitle>
+        {memoZines}
+        {memoSections}
       </div>
       <ArtModal
         modalItem={modalItem}
         isShowing={modalItem != null}
         handleClose={handleModalClose}
       />
-    </Layout>
+    </>
   )
 }

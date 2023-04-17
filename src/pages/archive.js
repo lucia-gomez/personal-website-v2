@@ -5,7 +5,6 @@ import {
 import React, { useEffect, useRef, useState } from "react"
 
 import AnimationOnScroll from "react-animate-on-scroll"
-import Layout from "../components/layout/layout"
 import PortfolioFiltersSection from "../components/portfolio/portfolioFiltersSection"
 import SectionTitle from "../components/sectionTitle"
 import filterProject from "../scripts/searchPortfolio"
@@ -117,22 +116,20 @@ export default function ArchivePage() {
   }
 
   return (
-    <Layout>
-      <Grid>
-        <div>
-          <SectionTitle>Things I've Made</SectionTitle>
-          <p>
-            Dive into my project archive. Use the filters to help sift through
-            the chaos
-          </p>
-          <PortfolioFiltersSection
-            {...{ activeFilter, setActiveFilter, searchProjects }}
-          />
-        </div>
-        <PortfolioCardDeck id="card-deck" ref={cardDeckRef}>
-          {projects.map((project, idx) => animatedCard(project, idx))}
-        </PortfolioCardDeck>
-      </Grid>
-    </Layout>
+    <Grid>
+      <div>
+        <SectionTitle>Things I've Made</SectionTitle>
+        <p>
+          Dive into my project archive. Use the filters to help sift through the
+          chaos
+        </p>
+        <PortfolioFiltersSection
+          {...{ activeFilter, setActiveFilter, searchProjects }}
+        />
+      </div>
+      <PortfolioCardDeck id="card-deck" ref={cardDeckRef}>
+        {projects.map((project, idx) => animatedCard(project, idx))}
+      </PortfolioCardDeck>
+    </Grid>
   )
 }

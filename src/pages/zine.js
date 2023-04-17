@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 
 import Back from "../components/blog/back"
 import BlogLoading from "../components/blog/blogLoading"
-import Layout from "../components/layout/layout"
 import SectionTitle from "../components/sectionTitle"
 import ZineFlipBook from "../components/zines/zineFlipBook"
 import { getZineBySlug } from "../scripts/zineList"
@@ -55,22 +54,18 @@ export default function ZinePage() {
     return <Redirect to="/404" />
   }
 
-  return (
-    <Layout>
-      {zine == null ? (
-        <BlogLoading />
-      ) : (
-        <Wrapper>
-          <div>
-            <BackZine link="/art" />
-            <ZineTitle>{zine.title}</ZineTitle>
-            <Description>
-              {zine.description} | {zine.date}
-            </Description>
-          </div>
-          <ZineFlipBook zine={zine} />
-        </Wrapper>
-      )}
-    </Layout>
+  return zine == null ? (
+    <BlogLoading />
+  ) : (
+    <Wrapper>
+      <div>
+        <BackZine link="/art" />
+        <ZineTitle>{zine.title}</ZineTitle>
+        <Description>
+          {zine.description} | {zine.date}
+        </Description>
+      </div>
+      <ZineFlipBook zine={zine} />
+    </Wrapper>
   )
 }
