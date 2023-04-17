@@ -1,16 +1,17 @@
-import React, { useState, useEffect, useRef } from "react"
-import styled from "styled-components"
-import Layout from "../components/layout/layout"
-import SectionTitle from "../components/sectionTitle"
 import {
   PortfolioCardDeck,
   makePortfolioCard,
 } from "../components/portfolio/portfolioCardDeck"
-import projects from "../scripts/projectList"
-import filterProject from "../scripts/searchPortfolio"
-import PortfolioFiltersSection from "../components/portfolio/portfolioFiltersSection"
+import React, { useEffect, useRef, useState } from "react"
+
 import AnimationOnScroll from "react-animate-on-scroll"
+import Layout from "../components/layout/layout"
+import PortfolioFiltersSection from "../components/portfolio/portfolioFiltersSection"
+import SectionTitle from "../components/sectionTitle"
+import filterProject from "../scripts/searchPortfolio"
 import { isScrolledIntoViewVertical } from "../scripts/util"
+import projects from "../scripts/projectList"
+import styled from "styled-components"
 
 const Grid = styled.div`
   height: 100vh;
@@ -53,7 +54,7 @@ export default function ArchivePage() {
         !(isMobile && numVisible > 3) &&
         isScrolledIntoViewVertical(cardDeckRef.current, card, true)
       ) {
-        const delay = ++numVisible * 500
+        const delay = ++numVisible * 500 * Math.pow(0.9, numVisible)
         card.style.animationDelay = delay + "ms"
         card.style.animationDuration = "1s"
         // reset animation delay when done

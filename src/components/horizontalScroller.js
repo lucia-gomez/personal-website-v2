@@ -3,11 +3,15 @@ import React, { useCallback, useEffect, useMemo, useRef } from "react"
 import { isScrolledIntoViewHorizontal } from "../scripts/util"
 import styled from "styled-components"
 
+const _ = require("lodash")
+
 const Scroller = styled.div`
   display: flex;
   flex-wrap: nowrap;
   overflow-x: scroll;
 `
+
+const ANIMATION_CLASSNAMES = ["animate__animated", "animate__fadeIn"]
 
 export default function HorizontalScroller(props) {
   const { children, className, offset } = props
@@ -18,21 +22,37 @@ export default function HorizontalScroller(props) {
     if (parentRef.current == null) return
     const children = parentRef.current.children
     let numVisible = 0
-    for (let child of children) {
+    let lastIndexAnimated = 0
+    for (let i = 0; i < children.length; i++) {
+      let child = children[i]
       if (
         isScrolledIntoViewHorizontal(parentRef.current, child, true, offset) &&
         !child.className.includes("animate")
       ) {
+        lastIndexAnimated = i
         numVisible++
+        const delay = numVisible * 200 * Math.pow(0.9, numVisible) + "ms"
         child.style.visibility = "visible"
-        child.style.animationDelay = numVisible * 200 + "ms"
-        child.style.webkitAnimationDelay = numVisible * 200 + "ms"
-        child.style.animationDuration = "750ms"
-        child.style.webkitAnimationDuration = "750ms"
-        child.className = "animate__animated animate__fadeIn"
+        child.style.animationDelay = delay
+        child.style.webkitAnimationDelay = delay
+        child.style.animationDuration = "500ms"
+        child.style.webkitAnimationDuration = "500ms"
+        ANIMATION_CLASSNAMES.forEach(animName => child.classList.add(animName))
+      }
+    }
+
+    // if we scrolled past too fast due to throttling, animate anyway
+    for (let i = 0; i < lastIndexAnimated; i++) {
+      let child = children[i]
+      if (child.style.visibility !== "visible") {
+        child.style.visibility = "visible"
+        child.style.animationDuration = "100ms"
+        child.style.webkitAnimationDuration = "100ms"
+        ANIMATION_CLASSNAMES.forEach(animName => child.classList.add(animName))
       }
     }
   }, [offset])
+  const debouncedScroll = useRef(_.throttle(checkScrollVisibility, 100)).current
 
   // animate visible children on mount
   useEffect(() => {
@@ -43,19 +63,19 @@ export default function HorizontalScroller(props) {
   useEffect(() => {
     const children = parentRef.current?.children
     for (let child of children) {
-      child.className = ""
+      ANIMATION_CLASSNAMES.forEach(animName => child.classList.remove(animName))
     }
     checkScrollVisibility()
   }, [checkScrollVisibility, memoChildren])
 
   return (
     <Scroller
-      onScroll={_ => checkScrollVisibility()}
+      onScroll={_ => debouncedScroll()}
       ref={parentRef}
       className={className}
     >
       {memoChildren.map((child, idx) => (
-        <div style={{ visibility: "hidden" }} key={idx}>
+        <div style={{ visibility: "hidden" }} className="scroll-item" key={idx}>
           {child}
         </div>
       ))}

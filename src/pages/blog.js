@@ -33,19 +33,21 @@ const Posts = styled(HorizontalScroller)`
   @media screen and (max-width: 576px) {
     margin-left: 20px;
   }
+
+  .scroll-item:last-child .blog-post {
+    margin-right: 0px;
+    @media screen and (max-width: 576px) {
+      margin-right: 20px;
+    }
+  }
 `
 
-const BlogPostWrapper = styled.div`
+const BlogPostWrapper = styled.div.attrs(_ => ({
+  className: "blog-post",
+}))`
   margin: 0px 30px 0px 0px;
   height: 100%;
   border-radius: 5px;
-
-  /* :last-child {
-    margin-right: 0px;
-    @media screen and (max-width: 576px) {
-      padding-right: 20px;
-    }
-  } */
 `
 
 export default function BlogHomePage() {
