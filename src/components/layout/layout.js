@@ -50,13 +50,6 @@ const Layout = props => {
             content="Lucia, Gomez, web, developer, full, stack, full-stack, Javascript, React, Cornell, Facebook, ASL, Meta, creative, technologist, creative technologist, artist"
           />
           <meta name="robots" content="index, follow" />
-          <meta
-            property="og:image"
-            content="https://ik.imagekit.io/5xtlzx2c3y/websitePreview.png?updatedAt=1681805864244"
-          />
-          <meta property="og:description" content="Creative Technologist" />
-          <meta property="og:url" content="https://lucia-gomez.dev" />
-          <meta property="og:title" content="Lucia Gomez" />
           <script
             src="https://kit.fontawesome.com/9dd13a1052.js"
             crossOrigin="anonymous"
