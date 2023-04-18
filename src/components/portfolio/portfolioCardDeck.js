@@ -1,7 +1,7 @@
+import PortfolioCardButtons from "./portfolioCardButtons"
 import React from "react"
-import styled from "styled-components"
-import { IconLink } from "../externalButton"
 import { hexToRGB } from "../../style/theme"
+import styled from "styled-components"
 
 export const PortfolioCardDeck = styled.div`
   position: relative; // this affects animations, idk why, DON'T delete
@@ -80,11 +80,6 @@ const Header = styled.div`
   }
 `
 
-const PortfolioCardButtons = styled.div`
-  display: flex;
-  flex-direction: row;
-`
-
 const PortfolioCardTitle = styled.h5`
   width: fit-content;
   font-weight: bolder;
@@ -96,19 +91,14 @@ const PortfolioCardDate = styled.h5`
 `
 
 const PortfolioCardTag = styled.span`
-  border-radius: 5px;
-  background-color: ${props => hexToRGB(props.theme.accent, 0.4)};
-  color: ${props => props.theme.textInv};
-  padding: 0px 4px;
+  border-radius: 20px;
+  background-color: ${props => props.theme.medium};
+  color: ${props => props.theme.text};
+  padding: 0px 8px;
   margin-right: 8px;
   display: inline-block;
   width: max-content;
   font-size: 14px;
-`
-
-const GitLink = styled(IconLink)`
-  margin-bottom: 0.5rem;
-  margin-top: -2px;
 `
 
 export function makePortfolioCard(project) {
@@ -129,14 +119,6 @@ export function makePortfolioCard(project) {
 }
 
 const PortfolioCard = props => {
-  const githubIcon = props.git ? (
-    <GitLink href={props.git ?? ""}>
-      <div className="material-icons">
-        <i className="fa fa-github"></i>
-      </div>
-    </GitLink>
-  ) : null
-
   return (
     <PortfolioCardWrapper>
       <PortfolioCardImage image={props.image} centerImage={props.centerImage} />
@@ -146,10 +128,7 @@ const PortfolioCard = props => {
             <PortfolioCardTitle>{props.title}</PortfolioCardTitle>
             <PortfolioCardDate>{props.date}</PortfolioCardDate>
           </Header>
-          <PortfolioCardButtons>
-            {githubIcon}
-            {props.link}
-          </PortfolioCardButtons>
+          <PortfolioCardButtons git={props.git} link={props.link} />
         </Row>
         {props.children}
         <div>

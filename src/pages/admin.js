@@ -18,7 +18,7 @@ const BlogWrapper = styled.div`
 const DraftSection = styled.div`
   margin-top: 40px;
   padding-top: 40px;
-  border-top: 1px solid ${props => props.theme.textLight};
+  border-top: 1px solid ${props => props.theme.text};
 `
 
 const Drafts = styled.div`

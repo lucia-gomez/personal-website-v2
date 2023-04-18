@@ -6,16 +6,13 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   color: black;
 
-  @media screen and (max-width: 576px) {
-    align-items: flex-start;
+  align-items: flex-start;
 
-    h1,
-    h4 {
-      text-align: left;
-    }
+  h1,
+  h4 {
+    text-align: left;
   }
 `
 

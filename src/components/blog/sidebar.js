@@ -1,9 +1,9 @@
-import styled from "styled-components"
+import Back from "./back"
 import Like from "./like"
 import ProfileImage from "../../assets/images/profile-circle.png"
-import Back from "./back"
-import { hexToRGB } from "../../style/theme"
 import { gradient } from "../layout/gradient"
+import { hexToRGB } from "../../style/theme"
+import styled from "styled-components"
 
 const Wrapper = styled.div`
   background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
@@ -36,12 +36,13 @@ const SidebarContent = styled.div`
 
 const ProfilePicWrapper = styled.div`
   position: relative;
-  height: 150px;
-  width: 150px;
+  height: 160px;
+  width: 160px;
   border-radius: 300px;
   ::before {
     border-radius: 300px;
   }
+  margin-bottom: 8px;
 
   @media screen and (max-width: 768px) {
     ${gradient}
@@ -64,7 +65,7 @@ const Divider = styled.div`
   width: 90%;
   border-radius: 5px;
   background-color: ${props => props.theme.text};
-  margin-bottom: 1rem;
+  margin-bottom: 12px;
   opacity: 20%;
 `
 
@@ -86,16 +87,16 @@ const ShareRow = styled.div`
   align-items: baseline;
   width: fit-content;
   cursor: pointer;
+  font-size: 18px;
 `
 
 const Share = styled.i`
   color: ${props => props.theme.accent};
   padding-right: 3px;
-  transition: transform 150ms;
+  transition: color 150ms;
 
   :hover {
     color: ${props => props.theme.accentHover};
-    transform: scale(1.1);
   }
 `
 
@@ -158,7 +159,7 @@ const Sidebar = ({ post, className }) => {
           <ProfilePic src={ProfileImage} alt="profile picture" />
         </ProfilePicWrapper>
         <Name>Lucia Gomez</Name>
-        <p>Full-stack developer</p>
+        <p style={{ marginBottom: 12 }}>Creative Technologist</p>
         <Divider />
       </SidebarContent>
       <Row>

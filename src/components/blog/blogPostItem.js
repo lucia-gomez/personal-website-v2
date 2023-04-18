@@ -1,10 +1,11 @@
 import React, { useRef } from "react"
-import styled from "styled-components"
+
 import Delete from "./delete"
 import Like from "./like"
 import { Link } from "react-router-dom"
-import { useAuth0 } from "@auth0/auth0-react"
 import { hexToRGB } from "../../style/theme"
+import styled from "styled-components"
+import { useAuth0 } from "@auth0/auth0-react"
 
 const Wrapper = styled.div`
   height: 100%;
@@ -77,7 +78,7 @@ const Title = styled.h5`
 const Footer = styled.div`
   width: 100%;
   border-top: 1px solid ${props => hexToRGB(props.theme.text, 0.1)};
-  padding: 0px 20px;
+  padding: 8px 20px 0px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

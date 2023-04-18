@@ -25,7 +25,7 @@ const artList = [
     items: [
       {
         title: "Drawing of Mt. Rainier",
-        date: "April 2022",
+        date: "April 2023",
         slug: "mt-rainier",
         src: require("../assets/images/art/drawingMtRainier.jpg"),
         alt: "drawing of Mt. Rainier",
@@ -33,7 +33,7 @@ const artList = [
       },
       {
         title: "Sweet Dreams",
-        date: "March 2022",
+        date: "March 2023",
         slug: "sweet-dreams",
         src: require("../assets/images/art/collageSweetDreams.jpg"),
         alt: "collage sweet dreams",

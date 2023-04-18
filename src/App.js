@@ -1,14 +1,13 @@
-import React, { useEffect, useMemo, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styled, { useTheme } from "styled-components"
 
 import AnimationOnScroll from "react-animate-on-scroll"
 import { ButtonLink } from "./components/button"
+import FeaturedProject from "./components/banner/featuredProject"
 import Footer from "./components/layout/footer"
 import Name from "./components/banner/name"
 import { colorInterpolate } from "./scripts/util"
 import { featuredProjects } from "./scripts/projectList"
-import { hexToRGB } from "./style/theme.js"
-import { makePortfolioCard } from "./components/portfolio/portfolioCardDeck"
 
 const projects = featuredProjects([
   "In AR We Trust",
@@ -22,10 +21,24 @@ const LandingWrapper = styled.div`
   position: relative;
 `
 
+const TopSpacer = styled.div`
+  height: 40vh;
+  @media screen and (min-width: 576px) {
+    height: 60vh;
+  }
+`
+
 const Sticky = styled.div`
   position: sticky;
   top: 75px;
-  padding: 0 5vw;
+  padding: 0 20px;
+`
+
+const Spacer = styled.div`
+  height: 60vh;
+  @media screen and (min-width: 576px) {
+    height: 80vh;
+  }
 `
 
 function AnimatedSection(props) {
@@ -35,9 +48,7 @@ function AnimatedSection(props) {
     animateIn ? (
       <AnimationOnScroll
         animateIn="animate__zoomIn"
-        // animateOut="animate__zoomOut"
         animatePreScroll={false}
-        // animateOnce
         duration={1}
         offset={offset}
         scrollableParentSelector="#banner"
@@ -51,7 +62,7 @@ function AnimatedSection(props) {
   return parent(
     <section>
       <Sticky>{children}</Sticky>
-      <div style={{ height: "60vh" }} />
+      <Spacer />
     </section>
   )
 }
@@ -75,7 +86,7 @@ export default function App() {
 
   return (
     <LandingWrapper ref={pageRef} id="banner">
-      <div style={{ height: "40vh" }} />
+      <TopSpacer />
       <AnimatedSection animateIn={false}>
         <Name color={lerpColor} />
       </AnimatedSection>
@@ -86,28 +97,19 @@ export default function App() {
         </p>
       </AnimatedSection>
       {projects.map((project, idx) => (
-        <div style={{ padding: "24px 0" }}>
-          <AnimatedSection offset={-100} key={idx}>
-            {makePortfolioCard(project)}
-          </AnimatedSection>
-        </div>
-      ))}
-      <div style={{ padding: "50px 0" }}>
-        <AnimatedSection offset={50}>
-          <p>There's more where that came from...</p>
-          <Actions>
-            <ButtonLink to="/portfolio" sameTab={true}>
-              Full Portfolio
-            </ButtonLink>
-            <ButtonLink to="/about-me" sameTab={true}>
-              About Me
-            </ButtonLink>
-            <ButtonLink to="/blog" sameTab={true}>
-              Blog
-            </ButtonLink>
-          </Actions>
+        <AnimatedSection key={idx}>
+          <FeaturedProject project={project} />
         </AnimatedSection>
-      </div>
+      ))}
+      <AnimatedSection offset={-100}>
+        <Actions>
+          <p>There's more where that came from...</p>
+          <ButtonLink to="/portfolio" sameTab={true}>
+            Full Portfolio
+          </ButtonLink>
+        </Actions>
+      </AnimatedSection>
+      <Footer style={{ position: "unset" }} />
     </LandingWrapper>
   )
 }
@@ -115,27 +117,7 @@ export default function App() {
 const Actions = styled.div`
   display: flex;
   flex-direction: column;
-
-  a {
-    margin-bottom: 20px;
-  }
+  justify-content: center;
+  align-items: center;
+  height: calc(var(--doc-height) - 150px);
 `
-
-const FeaturedWrapper = styled.div`
-  padding: 0px 20px 50px;
-`
-
-// function FeaturedWork() {
-//   return (
-//     <FeaturedWrapper>
-//       {projects.map((project, idx) => {
-//         makePortfolioCard(project)
-//       })}
-//       <p>There's more where that came from...</p>
-//       <ArchiveButton to="/portfolio" sameTab={true}>
-//         Explore the Archive
-//       </ArchiveButton>
-//       <Footer />
-//     </FeaturedWrapper>
-//   )
-// }

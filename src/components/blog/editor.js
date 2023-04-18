@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react"
-import styled from "styled-components"
-import { Form, Row, Col } from "react-bootstrap"
+import "@nick4fake/react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
+
+import { Col, Form, Row } from "react-bootstrap"
+import { ContentState, EditorState, convertToRaw } from "draft-js"
+import React, { useEffect, useState } from "react"
 
 import BlogContent from "./blogContent"
 import { Editor as ReactDraft } from "@nick4fake/react-draft-wysiwyg"
-import { EditorState, ContentState, convertToRaw } from "draft-js"
 import draftToHtml from "draftjs-to-html"
 import htmlToDraft from "html-to-draftjs"
-import "@nick4fake/react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
+import styled from "styled-components"
 
 const ButtonRow = styled.div`
   display: flex;
@@ -166,7 +167,7 @@ const EditorWrapper = styled.div`
     color: ${props => props.theme.text};
     min-height: 200px;
     padding: 10px;
-    border: 1px solid ${props => props.theme.textLight};
+    border: 1px solid ${props => props.theme.text};
     border-radius: 0px 0px 5px 5px;
     border-top: none;
 
@@ -191,7 +192,7 @@ const EditorWrapper = styled.div`
   }
 
   .rdw-dropdown-optionwrapper {
-    border: 1px solid ${props => props.theme.textLight};
+    border: 1px solid ${props => props.theme.text};
     overflow-y: auto;
 
     :hover {

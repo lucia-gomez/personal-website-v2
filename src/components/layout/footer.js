@@ -8,6 +8,6 @@ const FooterStyle = styled.footer`
   bottom: 0;
 `
 
-export default function Footer() {
-  return <FooterStyle>© Lucia Gomez 2023</FooterStyle>
+export default function Footer(props) {
+  return <FooterStyle style={props.style}>© Lucia Gomez 2023</FooterStyle>
 }

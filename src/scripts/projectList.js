@@ -1,6 +1,6 @@
-import React from "react"
-import Link from "../components/link"
 import ExternalButton from "../components/externalButton"
+import Link from "../components/link"
+import React from "react"
 
 const category = {
   All: -1,
@@ -50,6 +50,11 @@ const projects = [
     date: "January 2023",
     tools: ["Spark AR", "Javascript", "Photoshop"],
     image: "inARWeTrust.gif",
+    featuredImageDesktop:
+      "https://ik.imagekit.io/5xtlzx2c3y/portfolio/inARWeTrustDemoDesktop.mp4?updatedAt=1681805039065",
+    featuredImageMobile:
+      "https://ik.imagekit.io/5xtlzx2c3y/portfolio/inARWeTrustDemoMobile.mp4?updatedAt=1681801282547",
+    featuredText: <p>An interactive Spark AR effect for a poster on my wall</p>,
     text: (
       <p>
         An interactive Spark AR effect for a poster on my wall from MoCo in
@@ -67,6 +72,10 @@ const projects = [
     date: "April 2022",
     tools: ["WebGL", "GLSL", "HTML/CSS"],
     image: "lavaLamp.png",
+    featuredImageDesktop:
+      "https://ik.imagekit.io/5xtlzx2c3y/portfolio/lavaLampDemoDesktop.mov?updatedAt=1681793331166",
+    featuredImageMobile:
+      "https://ik.imagekit.io/5xtlzx2c3y/portfolio/lavaLampDemoMobile.mov?updatedAt=1681793290879",
     text: (
       <p>
         I woke up one day and wanted to play with WebGL, so I made a lava lamp
@@ -82,10 +91,20 @@ const projects = [
     date: "May 2020, March 2022",
     tools: ["Javascript", "React"],
     image: "signSearch.png",
+    featuredImageDesktop:
+      "https://ik.imagekit.io/5xtlzx2c3y/portfolio/signSearchDemoDesktop.mov?updatedAt=1681804933145",
+    featuredImageMobile:
+      "https://ik.imagekit.io/5xtlzx2c3y/portfolio/signSearchDemoMobile.mov?updatedAt=1681804585883",
+    featuredText: (
+      <p>
+        A Google Chrome extension for providing a convenient way to look up
+        words in American Sign Language
+      </p>
+    ),
     link: "https://github.com/lucia-gomez/Sign-Search",
     text: (
       <p>
-        A Chrome extension for providing a convenient way to lookup words in
+        A Chrome extension for providing a convenient way to look up words in
         American Sign Language. Highlight a word on a page or enter a search
         directly into the extension to see multiple ways of signing the word.
       </p>

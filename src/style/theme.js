@@ -7,12 +7,11 @@ export const themes = {
   default: {
     bg: "#221a2a",
     medium: "#2F2939",
-    text: "#f7f0ff",
-    textLight: colors.white,
+    text: colors.white,
+    textInv: colors.black,
     accent: "#1ebf66",
     accentHover: "#f28034",
     accentLight: "#2f5741",
-    textInv: colors.black,
   },
 }
 

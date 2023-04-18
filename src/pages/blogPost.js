@@ -50,10 +50,6 @@ const Title = styled.h1`
   padding-right: 10px;
 `
 
-const Metadata = styled.div`
-  color: ${props => props.theme.textLight};
-`
-
 const EditWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -111,10 +107,10 @@ export default function BlogPostPage() {
               <Title>{post.title}</Title>
               {isAuthenticated ? <EditorPopup post={post} /> : null}
             </EditWrapper>
-            <Metadata>
+            <div>
               {post.dateString.substring(0, post.dateString.indexOf(","))}
               <p>Lucia Gomez</p>
-            </Metadata>
+            </div>
             <BlogContent content={post.content} />
           </Content>
         ) : (
