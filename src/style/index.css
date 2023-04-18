@@ -1,9 +1,42 @@
+html {
+  scrollbar-gutter: stable;
+  overflow-y: overlay;
+}
+
 body {
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
+  min-height: var(--doc-height);
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
   transition: all 0.25s linear;
+  font-family: "Nanum Gothic", sans-serif;
+  position: relative;
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Playfair Display", serif;
+}
+
+.animate__fadeInLeft {
+  animation-fill-mode: backwards;
+  -webkit-animation-fill-mode: backwards;
+}
+
+.animate__zoomIn {
+  animation-fill-mode: backwards;
+  -webkit-animation-fill-mode: backwards;
 }

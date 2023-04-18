@@ -1,53 +1,71 @@
-import { useEffect, useState } from 'react';
-import styled from 'styled-components'
-import Layout from "../components/layout"
-import Section from "../components/section"
+import { Redirect, useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
+
+import Back from "../components/blog/back"
+import BlogLoading from "../components/blog/blogLoading"
 import SectionTitle from "../components/sectionTitle"
-import Back from '../components/blog/back';
-import ZineFlipBook from '../components/zines/zineFlipBook';
-import { useParams, Redirect } from 'react-router-dom';
-import { getZineBySlug } from '../scripts/zineList';
-import Spinner from '../components/spinner';
+import ZineFlipBook from "../components/zines/zineFlipBook"
+import { getZineBySlug } from "../scripts/zineList"
+import styled from "styled-components"
+
+const Wrapper = styled.div`
+  padding: 75px 20px 50px 20px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+
+  @media screen and (min-width: 576px) {
+    max-height: var(--doc-height, 100vh);
+  }
+`
+
+const ZineTitle = styled(SectionTitle)`
+  margin: 0;
+
+  @media screen and (max-width: 576px) {
+    font-size: 30px;
+  }
+`
 
 const BackZine = styled(Back)`
-  width: fit-content;
-  margin: 0px 20px;
-`;
+  margin: 0px;
+`
 
 const Description = styled.p`
-  margin: 10px;
-`;
+  margin: 0;
+  margin-bottom: 12px;
+  display: flex;
+`
 
 export default function ZinePage() {
-  const { slug } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [zine, setZine] = useState(null);
+  const { slug } = useParams()
+  const [loading, setLoading] = useState(true)
+  const [zine, setZine] = useState(null)
 
   useEffect(() => {
-    setLoading(true);
+    setLoading(true)
     if (slug !== null) {
-      const zineData = getZineBySlug(slug);
-      setZine(zineData);
+      const zineData = getZineBySlug(slug)
+      setZine(zineData)
     }
-    setLoading(false);
+    setLoading(false)
   }, [slug])
 
   if (zine === null && !loading) {
     return <Redirect to="/404" />
   }
 
-  return (
-    <Layout>
-      <Section id="zine" index={0}>
-        {zine === null ? <Spinner /> :
-          <>
-            <BackZine link="/art" />
-            {SectionTitle(zine.title)}
-            <Description>{zine.description} | {zine.date}</Description>
-            <ZineFlipBook zine={zine} />
-          </>
-        }
-      </Section>
-    </Layout>
+  return zine == null ? (
+    <BlogLoading />
+  ) : (
+    <Wrapper>
+      <div>
+        <BackZine link="/art" />
+        <ZineTitle>{zine.title}</ZineTitle>
+        <Description>
+          {zine.description} | {zine.date}
+        </Description>
+      </div>
+      <ZineFlipBook zine={zine} />
+    </Wrapper>
   )
 }

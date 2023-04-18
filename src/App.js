@@ -1,27 +1,123 @@
-import Layout from "./components/layout"
-import Section from "./components/section"
+import React, { useEffect, useRef, useState } from "react"
+import styled, { useTheme } from "styled-components"
 
-import BannerContent from "./components/banner"
-import About from "./pages/about"
-import PortfolioSection from "./pages/portfolio"
-import ExperienceSection from "./pages/experience"
+import AnimationOnScroll from "react-animate-on-scroll"
+import { ButtonLink } from "./components/button"
+import FeaturedProject from "./components/banner/featuredProject"
+import Footer from "./components/layout/footer"
+import Name from "./components/banner/name"
+import { colorInterpolate } from "./scripts/util"
+import { featuredProjects } from "./scripts/projectList"
 
-export default function App() {
+const projects = featuredProjects([
+  "In AR We Trust",
+  "Sign Search",
+  "Lava Lamp Simulator",
+])
 
-  const sectionContents = [
-    [<BannerContent />, 'banner'],
-    [<About />, 'about'],
-    [<PortfolioSection />, 'portfolio'],
-    [<ExperienceSection />, 'experience']
-  ];
+const LandingWrapper = styled.div`
+  max-height: var(--doc-height);
+  overflow-y: scroll;
+  position: relative;
+`
 
-  return (
-    <Layout>
-      {sectionContents.map(([content, id], index) => (
-        <Section id={id} index={index} key={index}>
-          {content}
-        </Section>)
-      )}
-    </Layout>
+const TopSpacer = styled.div`
+  height: 40vh;
+  @media screen and (min-width: 576px) {
+    height: 60vh;
+  }
+`
+
+const Sticky = styled.div`
+  position: sticky;
+  top: 75px;
+  padding: 0 20px;
+`
+
+const Spacer = styled.div`
+  height: 60vh;
+  @media screen and (min-width: 576px) {
+    height: 80vh;
+  }
+`
+
+function AnimatedSection(props) {
+  const { animateIn = true, offset = -100, children } = props
+
+  const parent = child =>
+    animateIn ? (
+      <AnimationOnScroll
+        animateIn="animate__zoomIn"
+        animatePreScroll={false}
+        duration={1}
+        offset={offset}
+        scrollableParentSelector="#banner"
+      >
+        {child}
+      </AnimationOnScroll>
+    ) : (
+      <>{child}</>
+    )
+
+  return parent(
+    <section>
+      <Sticky>{children}</Sticky>
+      <Spacer />
+    </section>
   )
 }
+
+export default function App() {
+  const theme = useTheme()
+  const pageRef = useRef()
+  const [lerpColor, setLerpColor] = useState(0)
+
+  useEffect(() => {
+    pageRef.current.addEventListener("scroll", _ => {
+      const percentage = (2 * pageRef.current.scrollTop) / window.innerHeight
+      const lerp = colorInterpolate(
+        "rgb(0,0,0)",
+        "rgb(247, 240, 255)",
+        percentage
+      )
+      setLerpColor(lerp)
+    })
+  }, [theme.text])
+
+  return (
+    <LandingWrapper ref={pageRef} id="banner">
+      <TopSpacer />
+      <AnimatedSection animateIn={false}>
+        <Name color={lerpColor} />
+      </AnimatedSection>
+      <AnimatedSection offset={0}>
+        <p>
+          Hi, I'm Lucia. I build a lot of cool stuff, but here's some of my
+          favorite projects
+        </p>
+      </AnimatedSection>
+      {projects.map((project, idx) => (
+        <AnimatedSection key={idx}>
+          <FeaturedProject project={project} />
+        </AnimatedSection>
+      ))}
+      <AnimatedSection offset={-100}>
+        <Actions>
+          <p>There's more where that came from...</p>
+          <ButtonLink to="/portfolio" sameTab={true}>
+            Full Portfolio
+          </ButtonLink>
+        </Actions>
+      </AnimatedSection>
+      <Footer style={{ position: "unset" }} />
+    </LandingWrapper>
+  )
+}
+
+const Actions = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(var(--doc-height) - 150px);
+`
