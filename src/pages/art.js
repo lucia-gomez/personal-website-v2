@@ -1,102 +1,99 @@
-import styled from 'styled-components'
-import {useEffect, useState} from 'react';
-import Layout from "../components/layout"
-import Section from "../components/section"
+import { Link as LinkRouter, useHistory, useParams } from "react-router-dom"
+import artList, { getArtBySlug } from "../scripts/artList"
+import { useEffect, useMemo, useState } from "react"
+
+import ArtItem from "../components/art/artItem"
+import ArtModal from "../components/art/artModal"
+import HorizontalScroller from "../components/horizontalScroller"
+import Link from "../components/link"
 import SectionTitle from "../components/sectionTitle"
-import Subsection from "../components/subsection"
-import Link from '../components/link';
-import { Link as LinkRouter, useHistory, useParams } from 'react-router-dom';
-import ArtItem from '../components/art/artItem';
-import ZineItem from "../components/zines/zineItem";
-import { PortfolioCardDeck } from '../components/portfolioCardDeck'
-import zines from '../scripts/zineList';
-import artList, {getArtBySlug} from '../scripts/artList';
-import ArtModal from '../components/art/artModal';
-
-const SubsectionWrapper = styled(Subsection)`
-  h4 {
-    width: fit-content;
-  }
-`;
-
-const ZinePortfolioCardDeck = styled(PortfolioCardDeck)`
-  padding: 0px;
-
-  @media only screen and (min-width: 576px) {
-    justify-content: flex-start;
-  }
-
-  @media only screen and (max-width: 576px) {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: scroll;
-    justify-content: flex-start;
-  }
-`;
+import Subsection from "../components/layout/subsection"
+import ZineItem from "../components/zines/zineItem"
+import styled from "styled-components"
+import zines from "../scripts/zineList"
 
 const LinkWrapper = styled(LinkRouter)`
   :hover {
     color: unset;
     text-decoration: unset;
   }
-`;
+`
 
-const ArtList = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
-`;
+const ArtList = styled(HorizontalScroller)`
+  padding-left: 10px;
+`
 
 export default function ArtPage() {
-  const [modalItem, setModalItem] = useState(null);
-  const {slug} = useParams();
-  const history = useHistory();
+  const [modalItem, setModalItem] = useState(null)
+  const { slug } = useParams()
+  const history = useHistory()
 
   useEffect(() => {
-    const foundArt = getArtBySlug(slug);
+    const foundArt = getArtBySlug(slug)
     if (foundArt != null) {
-      setModalItem(foundArt); 
+      setModalItem(foundArt)
     }
-  }, [slug]);
+  }, [slug])
 
   const handleModalClose = () => {
-    setModalItem(null);
-    history.push("/art");
+    setModalItem(null)
+    history.push("/art")
   }
 
-  return (
-    <Layout>
-      <Section id="art" index={0}>
-        {SectionTitle("Art")}
-        <SubsectionWrapper title="Zines">
-          <p>Sometimes I make silly little <Link href="https://en.wikipedia.org/wiki/Zine">zines</Link>. Click on a zine to read it!</p>
-          <ZinePortfolioCardDeck>
-            {zines.map((zine, idx) =>
-              <ZineItem zine={zine} key={idx} />
-            )}
-          </ZinePortfolioCardDeck>
-        </SubsectionWrapper>
-      {artList.map((section, index) => 
-        <SubsectionWrapper title={section.sectionName} key={index}>
+  const memoZines = useMemo(
+    () => (
+      <Subsection title="Zines">
+        <p>
+          Sometimes I make silly little{" "}
+          <Link href="https://en.wikipedia.org/wiki/Zine">zines</Link>. Click on
+          a zine to read it!
+        </p>
+        <ArtList offset={50}>
+          {zines.map((zine, idx) => (
+            <ZineItem zine={zine} key={idx} />
+          ))}
+        </ArtList>
+      </Subsection>
+    ),
+    []
+  )
+
+  const memoSections = useMemo(
+    () =>
+      artList.map((section, index) => (
+        <Subsection title={section.sectionName} key={index}>
           <p>{section.description}</p>
-          <ArtList>
-          {section.items.map(item => <div key={item.title}>
-            <LinkWrapper to={`/art/${item.slug}`}>
-              <ArtItem 
-                title={item.title}
-                date={item.date}
-                src={item.src} 
-                alt={item.alt}
-              />
-            </LinkWrapper>
-          </div>)}
+          <ArtList offset={50}>
+            {section.items.map(item => (
+              <div key={item.title}>
+                <LinkWrapper to={`/art/${item.slug}`}>
+                  <ArtItem
+                    title={item.title}
+                    date={item.date}
+                    src={item.src}
+                    alt={item.alt}
+                  />
+                </LinkWrapper>
+              </div>
+            ))}
           </ArtList>
-        </SubsectionWrapper>
-      )}
-      <ArtModal modalItem={modalItem} isShowing={modalItem != null} handleClose={handleModalClose} />
-      </Section>
-    </Layout>
+        </Subsection>
+      )),
+    []
+  )
+
+  return (
+    <>
+      <div style={{ padding: "75px 20px 50px 20px" }}>
+        <SectionTitle>Art</SectionTitle>
+        {memoZines}
+        {memoSections}
+      </div>
+      <ArtModal
+        modalItem={modalItem}
+        isShowing={modalItem != null}
+        handleClose={handleModalClose}
+      />
+    </>
   )
 }
