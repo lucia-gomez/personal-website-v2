@@ -13,16 +13,7 @@ import { useAuth0 } from "@auth0/auth0-react"
 
 // nav, page content, footer
 const BlogWrapper = styled.div`
-  display: grid;
-
-  @media screen and (min-width: 768px) {
-    grid-template-rows: 75px calc(100vh - 75px);
-  }
-
-  @media screen and (max-width: 768px) {
-    display: block;
-    padding: 75px 20px 50px 20px;
-  }
+  padding: 50px 0px;
 `
 
 // side bar, blog content
@@ -40,7 +31,44 @@ const ContentWrapper = styled.div`
 const Content = styled.div`
   text-align: left;
   overflow-y: scroll;
-  padding-right: 20px;
+  padding: 0px 20px;
+
+  @media screen and (min-width: 576px) {
+    padding-left: 0px;
+  }
+`
+
+const Header = styled.div`
+  position: relative;
+  height: fit-content;
+  margin-bottom: 20px;
+  text-shadow: 0 0 20px ${props => props.theme.bg};
+
+  @media screen and (min-width: 576px) {
+    min-height: 310px;
+  }
+`
+
+const HeaderImage = styled.div`
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  background-image: url(${props => props.imageUrl});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  mix-blend-mode: darken;
+  filter: grayscale(1);
+
+  ::after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: linear-gradient(to bottom, transparent 70%, white 130%);
+  }
 `
 
 const Title = styled.h1`
@@ -51,11 +79,9 @@ const Title = styled.h1`
 `
 
 const EditWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
+  position: absolute;
+  right: 12px;
+  top: 12px;
 `
 
 const SidebarDesktop = styled(Sidebar)`
@@ -70,11 +96,9 @@ const SidebarMobile = styled(Sidebar)`
   }
 `
 
-const BackMobile = styled(Back)`
+const BackWrapper = styled(Back)`
   margin-left: 0px;
-  @media only screen and (min-width: 768px) {
-    display: none;
-  }
+  padding-top: 20px;
 `
 
 export default function BlogPostPage() {
@@ -97,29 +121,35 @@ export default function BlogPostPage() {
 
   return (
     <BlogWrapper>
-      <BackMobile link="/blog" />
-      <div />
-      <ContentWrapper>
-        <SidebarDesktop post={post} />
-        {!loading ? (
-          <>
-            <Content>
+      {!loading ? (
+        <>
+          <Header>
+            <HeaderImage imageUrl={post.imageUrl} />
+            <div style={{ padding: 20 }}>
+              <BackWrapper link="/blog" />
+              <Title>{post.title}</Title>
               <EditWrapper>
-                <Title>{post.title}</Title>
                 {isAuthenticated ? <EditorPopup post={post} /> : null}
               </EditWrapper>
               <div>
                 {post.dateString.substring(0, post.dateString.indexOf(","))}
                 <p>Lucia Gomez</p>
               </div>
-              <BlogContent content={post.content} />
-            </Content>
-            <SidebarMobile post={post} />
-          </>
-        ) : (
-          <BlogLoading />
-        )}
-      </ContentWrapper>
+            </div>
+          </Header>
+          <ContentWrapper>
+            <SidebarDesktop post={post} />
+            <>
+              <Content>
+                <BlogContent content={post.content} />
+              </Content>
+              <SidebarMobile post={post} />
+            </>
+          </ContentWrapper>
+        </>
+      ) : (
+        <BlogLoading />
+      )}
     </BlogWrapper>
   )
 }
