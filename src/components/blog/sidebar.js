@@ -1,4 +1,3 @@
-import Back from "./back"
 import Like from "./like"
 import ProfileImage from "../../assets/images/profile-circle.png"
 import { gradient } from "../layout/gradient"
@@ -19,8 +18,7 @@ const Wrapper = styled.div`
     position: relative;
     top: 0px;
     width: 100%;
-    margin: auto;
-    margin-top: 20px;
+    margin: 20px auto;
   }
 `
 
@@ -133,12 +131,6 @@ const Tooltip = styled.div`
   }
 `
 
-const BackWrapper = styled(Back)`
-  @media only screen and (max-width: 768px) {
-    display: none;
-  }
-`
-
 function copyToClipboard() {
   const url = window.location.href
   navigator.clipboard.writeText(url)
@@ -153,7 +145,6 @@ function copyToClipboard() {
 const Sidebar = ({ post, className }) => {
   return (
     <Wrapper className={className}>
-      <BackWrapper link="/blog" />
       <SidebarContent>
         <ProfilePicWrapper>
           <ProfilePic src={ProfileImage} alt="profile picture" />

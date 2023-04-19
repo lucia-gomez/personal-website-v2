@@ -23,7 +23,7 @@ const EditButton = styled.i.attrs(_ => ({
   className: "fas fa-pencil-alt",
 }))`
   color: ${props => props.theme.accent};
-  padding-right: 3px;
+  padding-top: 16px;
   cursor: pointer;
   font-size: 22px;
   text-shadow: 0 0 5px ${props => props.theme.bg};
