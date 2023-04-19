@@ -7,19 +7,14 @@ const Wrapper = styled.div`
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-
-  @media only screen and (min-width: 768px) {
-    :hover {
-      transform: scale(1.05);
-      transition: transform 200ms;
-    }
-  }
+  border-radius: 5px;
 
   img {
     width: 100%;
-    object-fit: contain;
+    object-fit: fill;
     object-position: left bottom;
     margin-bottom: 10px;
+    border-radius: 5px;
   }
 
   @media only screen and (max-width: 576px) {
