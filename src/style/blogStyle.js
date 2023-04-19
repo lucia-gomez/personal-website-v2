@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components"
+
 import { hexToRGB } from "./theme"
 
 const ul = css`
@@ -52,8 +53,7 @@ const BlogStyle = styled.div`
   }
   img {
     height: 100%;
-    width: 100%;
-    /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45); */
+    max-width: 100% !important;
     border-radius: 5px;
     margin-bottom: 20px;
   }

@@ -88,8 +88,7 @@ export default function BlogPostPage() {
       setPost(res.data[0] ?? null)
       setLoading(false)
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [slug])
 
   if (post === null && !loading) {
     return <Redirect to="/404" />
@@ -102,21 +101,23 @@ export default function BlogPostPage() {
       <ContentWrapper>
         <SidebarDesktop post={post} />
         {!loading ? (
-          <Content>
-            <EditWrapper>
-              <Title>{post.title}</Title>
-              {isAuthenticated ? <EditorPopup post={post} /> : null}
-            </EditWrapper>
-            <div>
-              {post.dateString.substring(0, post.dateString.indexOf(","))}
-              <p>Lucia Gomez</p>
-            </div>
-            <BlogContent content={post.content} />
-          </Content>
+          <>
+            <Content>
+              <EditWrapper>
+                <Title>{post.title}</Title>
+                {isAuthenticated ? <EditorPopup post={post} /> : null}
+              </EditWrapper>
+              <div>
+                {post.dateString.substring(0, post.dateString.indexOf(","))}
+                <p>Lucia Gomez</p>
+              </div>
+              <BlogContent content={post.content} />
+            </Content>
+            <SidebarMobile post={post} />
+          </>
         ) : (
           <BlogLoading />
         )}
-        <SidebarMobile post={post} />
       </ContentWrapper>
     </BlogWrapper>
   )
