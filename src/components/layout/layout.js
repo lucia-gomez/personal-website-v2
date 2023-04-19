@@ -41,14 +41,6 @@ const Layout = props => {
         <Helmet>
           <meta charSet="utf-8" />
           <title>Lucia Gomez</title>
-          <meta
-            name="description"
-            content="Portfolio website for Lucia Gomez, creative technologist"
-          />
-          <meta
-            name="keywords"
-            content="Lucia, Gomez, web, developer, full, stack, full-stack, Javascript, React, Cornell, Facebook, ASL, Meta, creative, technologist, creative technologist, artist"
-          />
           <meta name="robots" content="index, follow" />
           <script
             src="https://kit.fontawesome.com/9dd13a1052.js"
