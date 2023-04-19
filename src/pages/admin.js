@@ -11,7 +11,7 @@ import { getApiUrl } from "../scripts/util"
 import styled from "styled-components"
 
 const BlogWrapper = styled.div`
-  padding: 0px 30px;
+  padding: 75px 20px 50px 20px;
   text-align: left;
 `
 

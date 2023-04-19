@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react"
 import BlogContent from "./blogContent"
 import { Editor as ReactDraft } from "@nick4fake/react-draft-wysiwyg"
 import draftToHtml from "draftjs-to-html"
+import { hexToRGB } from "../../style/theme"
 import htmlToDraft from "html-to-draftjs"
 import styled from "styled-components"
 
@@ -14,6 +15,10 @@ const ButtonRow = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 30px;
+
+  button {
+    margin-right: 12px;
+  }
 `
 
 const PreviewButton = styled.div`
@@ -25,8 +30,6 @@ const PreviewButton = styled.div`
 
 export default function Editor(props) {
   const { post } = props
-
-  console.log(post)
 
   const [title, setTitle] = useState(post?.title ?? "")
   const [summary, setSummary] = useState(post?.summary ?? "")
@@ -157,19 +160,20 @@ const EditorWrapper = styled.div`
   margin-bottom: 20px;
 
   .rdw-editor-toolbar {
-    background-color: ${props => props.theme.accentLight};
+    background-color: ${props => props.theme.accent};
     border: none;
+    color: ${props => props.theme.textInv};
     margin-bottom: 0px;
   }
 
   .rdw-editor-main {
-    background-color: ${props => props.theme.bg};
+    background-color: ${props => hexToRGB(props.theme.medium, 0.4)};
     color: ${props => props.theme.text};
     min-height: 200px;
     padding: 10px;
     border: 1px solid ${props => props.theme.text};
     border-radius: 0px 0px 5px 5px;
-    border-top: none;
+    border: none;
 
     pre {
       background-color: ${props => props.theme.medium};
