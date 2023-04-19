@@ -121,6 +121,7 @@ export default function Editor(props) {
       {titleForm}
       {slugForm}
       {dateForm}
+      {imageUrlForm}
       {summaryForm}
     </Form>
   )

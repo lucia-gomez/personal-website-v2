@@ -1,13 +1,23 @@
 import React, { useState } from "react"
-import styled from "styled-components"
+
 import Axios from "axios"
-import { getApiUrl } from "../../scripts/util"
-import { Modal } from "react-bootstrap"
-import ModalWrapper from "../modalPopup"
-import Editor from "./editor"
 import { Button } from "../button"
 import Delete from "./delete"
+import Editor from "./editor"
+import { Modal } from "react-bootstrap"
+import ModalWrapper from "../modalPopup"
 import { colors } from "../../style/theme"
+import { getApiUrl } from "../../scripts/util"
+import styled from "styled-components"
+
+const EditorModal = styled(ModalWrapper)`
+  .modal-dialog {
+    @media screen and (max-width: 576px) {
+      top: 0;
+      transform: unset;
+    }
+  }
+`
 
 const EditButton = styled.i.attrs(_ => ({
   className: "fas fa-pencil-alt",
@@ -16,6 +26,12 @@ const EditButton = styled.i.attrs(_ => ({
   padding-right: 3px;
   cursor: pointer;
   font-size: 22px;
+  text-shadow: 0 0 5px ${props => props.theme.bg};
+  transition: color 150ms;
+
+  :hover {
+    color: ${props => props.theme.accentHover};
+  }
 `
 
 const DeleteButton = styled(Delete)`
@@ -70,19 +86,17 @@ export default function EditorPopup({ post }) {
   return (
     <>
       <EditButton onClick={handleShow} />
-      <ModalWrapper
+      <EditorModal
         show={show}
         onHide={handleClose}
         dialogClassName="modal-90w"
         animation={false}
       >
-        <Modal.Header closeButton>
-          <Modal.Title>Edit post</Modal.Title>
-        </Modal.Header>
+        <Modal.Header closeButton></Modal.Header>
         <div style={{ padding: "10px" }}>
           <Editor post={post} buttons={buttons} />
         </div>
-      </ModalWrapper>
+      </EditorModal>
     </>
   )
 }
