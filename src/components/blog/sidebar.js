@@ -1,6 +1,6 @@
 import Like from "./like"
 import ProfileImage from "../../assets/images/profile-circle.png"
-import { gradient } from "../layout/gradient"
+import { gradientWithoutBg } from "../layout/gradient"
 import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
 
@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   border-radius: 5px;
   height: 310px;
   top: 60px;
+  position: sticky;
   align-self: start;
   text-align: left;
   margin: 0px 20px;
@@ -34,17 +35,14 @@ const SidebarContent = styled.div`
 
 const ProfilePicWrapper = styled.div`
   position: relative;
-  height: 160px;
-  width: 160px;
+  height: 150px;
+  width: 150px;
   border-radius: 300px;
   ::before {
     border-radius: 300px;
   }
-  margin-bottom: 8px;
-
-  @media screen and (max-width: 768px) {
-    ${gradient}
-  }
+  margin: 20px;
+  ${gradientWithoutBg}
 `
 
 const ProfilePic = styled.img`
@@ -56,6 +54,7 @@ const ProfilePic = styled.img`
   filter: grayscale(1);
   mix-blend-mode: darken;
   margin-bottom: 10px;
+  border-radius: 160px;
 `
 
 const Divider = styled.div`
