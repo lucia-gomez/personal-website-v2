@@ -149,10 +149,10 @@ export default function BlogPostPage() {
               </div>
             </div>
           </Header>
-          <ContentWrapper className="animate__animated animate__fadeIn">
+          <ContentWrapper>
             <SidebarDesktop post={post} />
             <>
-              <Content>
+              <Content className="animate__animated animate__fadeIn">
                 <BlogContent content={post.content} />
                 <BlogNavButtons
                   nextSlug={
