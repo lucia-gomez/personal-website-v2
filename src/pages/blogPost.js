@@ -5,6 +5,7 @@ import Axios from "axios"
 import Back from "../components/blog/back"
 import BlogContent from "../components/blog/blogContent"
 import BlogLoading from "../components/blog/blogLoading"
+import BlogNavButtons from "../components/blog/blogNavButtons"
 import EditorPopup from "../components/blog/editorPopup"
 import Sidebar from "../components/blog/sidebar"
 import { getApiUrl } from "../scripts/util"
@@ -101,10 +102,15 @@ const BackWrapper = styled(Back)`
   padding-top: 20px;
 `
 
+const placeholderImageUrl =
+  "https://contenthub-static.grammarly.com/blog/wp-content/uploads/2017/11/how-to-write-a-blog-post.jpeg"
+
 export default function BlogPostPage() {
   const { isAuthenticated } = useAuth0()
   const { slug } = useParams()
   const [post, setPost] = useState(null)
+  const [nextPostSlug, setNextPostSlug] = useState(null)
+  const [prevPostSlug, setPrevPostSlug] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -112,6 +118,12 @@ export default function BlogPostPage() {
     Axios.get(getApiUrl() + "/api/get/" + slug).then(res => {
       setPost(res.data[0] ?? null)
       setLoading(false)
+    })
+    Axios.get(getApiUrl() + "/api/next/" + slug).then(res => {
+      setNextPostSlug(res.data[0] ?? null)
+    })
+    Axios.get(getApiUrl() + "/api/prev/" + slug).then(res => {
+      setPrevPostSlug(res.data[0] ?? null)
     })
   }, [slug])
 
@@ -124,7 +136,7 @@ export default function BlogPostPage() {
       {!loading ? (
         <>
           <Header>
-            <HeaderImage imageUrl={post.imageUrl} />
+            <HeaderImage imageUrl={post.imageUrl || placeholderImageUrl} />
             <div style={{ padding: 20 }}>
               <BackWrapper link="/blog" />
               <Title>{post.title}</Title>
@@ -142,6 +154,7 @@ export default function BlogPostPage() {
             <>
               <Content>
                 <BlogContent content={post.content} />
+                <BlogNavButtons {...{ nextPostSlug, prevPostSlug }} />
               </Content>
               <SidebarMobile post={post} />
             </>
