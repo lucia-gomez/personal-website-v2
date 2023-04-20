@@ -1,5 +1,9 @@
 import { Link as LinkRouter, useHistory, useParams } from "react-router-dom"
-import artList, { getArtBySlug } from "../scripts/artList"
+import artList, {
+  getArtBySlug,
+  getNextArtSlug,
+  getPreviousArtSlug,
+} from "../scripts/artList"
 import { useEffect, useMemo, useState } from "react"
 
 import ArtItem from "../components/art/artItem"
@@ -25,6 +29,8 @@ const ArtList = styled(HorizontalScroller)`
 
 export default function ArtPage() {
   const [modalItem, setModalItem] = useState(null)
+  const [nextModalSlug, setNextModalSlug] = useState(null)
+  const [prevModalSlug, setPrevModalSlug] = useState(null)
   const { slug } = useParams()
   const history = useHistory()
 
@@ -32,6 +38,8 @@ export default function ArtPage() {
     const foundArt = getArtBySlug(slug)
     if (foundArt != null) {
       setModalItem(foundArt)
+      setNextModalSlug(getNextArtSlug(foundArt.slug))
+      setPrevModalSlug(getPreviousArtSlug(foundArt.slug))
     }
   }, [slug])
 
@@ -93,6 +101,8 @@ export default function ArtPage() {
         modalItem={modalItem}
         isShowing={modalItem != null}
         handleClose={handleModalClose}
+        nextSlug={nextModalSlug != null ? `/art/${nextModalSlug}` : null}
+        prevSlug={prevModalSlug != null ? `/art/${prevModalSlug}` : null}
       />
     </>
   )

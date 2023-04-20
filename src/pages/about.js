@@ -101,7 +101,7 @@ export default function About() {
           {ProfileInfo("fas fa-map-marker-alt", "Seattle, WA")}
         </ProfileIconsWrapper>
       </ProfileWrapper>
-      <div>
+      <div className="animate__animated animate__fadeIn">
         <Subsection title="About Me">
           <p>
             By day, I'm a Software Engineer working on augmented reality glasses

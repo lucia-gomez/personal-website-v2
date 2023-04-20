@@ -22,23 +22,24 @@ const NavButton = styled(Link)`
 `
 
 /* Posts are in reverse chronological order. Previous is newer, next is older */
-export default function BlogNavButtons({ nextPostSlug, prevPostSlug }) {
+export default function BlogNavButtons(props) {
+  const { nextSlug, prevSlug, className } = props
   return (
-    <NavButtons>
-      {prevPostSlug != null ? (
-        <NavButton to={`/blog/${prevPostSlug.slug}/`}>
+    <NavButtons className={className}>
+      {prevSlug != null ? (
+        <NavButton to={prevSlug}>
           <i
             className="fas fa-chevron-left"
             style={{ paddingRight: "3px" }}
           ></i>
-          Previous post
+          Previous
         </NavButton>
       ) : (
         <div />
       )}
-      {nextPostSlug != null ? (
-        <NavButton to={`/blog/${nextPostSlug.slug}/`}>
-          Next post
+      {nextSlug != null ? (
+        <NavButton to={nextSlug}>
+          Next
           <i
             className="fas fa-chevron-right"
             style={{ paddingLeft: "3px" }}

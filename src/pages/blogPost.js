@@ -149,12 +149,19 @@ export default function BlogPostPage() {
               </div>
             </div>
           </Header>
-          <ContentWrapper>
+          <ContentWrapper className="animate__animated animate__fadeIn">
             <SidebarDesktop post={post} />
             <>
               <Content>
                 <BlogContent content={post.content} />
-                <BlogNavButtons {...{ nextPostSlug, prevPostSlug }} />
+                <BlogNavButtons
+                  nextSlug={
+                    nextPostSlug != null ? `/blog/${nextPostSlug.slug}/` : null
+                  }
+                  prevSlug={
+                    prevPostSlug != null ? `/blog/${prevPostSlug.slug}/` : null
+                  }
+                />
               </Content>
               <SidebarMobile post={post} />
             </>

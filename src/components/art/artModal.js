@@ -1,3 +1,4 @@
+import BlogNavButtons from "../blog/blogNavButtons"
 import { Modal } from "react-bootstrap"
 import ModalWrapper from "../modalPopup"
 import { hexToRGB } from "../../style/theme"
@@ -44,7 +45,7 @@ const ModalImg = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    margin: 20px;
+    margin: 8px;
   }
 `
 
@@ -60,7 +61,7 @@ const ModalDescription = styled.p`
 `
 
 export default function ArtModal(props) {
-  const { modalItem, isShowing, handleClose } = props
+  const { modalItem, isShowing, handleClose, nextSlug, prevSlug } = props
   return (
     modalItem != null && (
       <ArtModalWrapper show={isShowing} onHide={handleClose}>
@@ -78,6 +79,7 @@ export default function ArtModal(props) {
         <ModalImg>
           <img src={modalItem.src} alt={modalItem.alt} />
         </ModalImg>
+        <BlogNavButtons {...{ nextSlug, prevSlug }} />
       </ArtModalWrapper>
     )
   )

@@ -62,3 +62,14 @@ export function colorInterpolate(colorA, colorB, intval) {
     Math.round(rgbA[prop] * (1 - intval) + rgbB[prop] * intval)
   return `rgb(${colorVal("r")}, ${colorVal("g")}, ${colorVal("b")})`
 }
+
+export function resetAnimation(el) {
+  el.style.animationName = "none"
+  el.style.webkitAnimationName = "none"
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      el.style.animationName = ""
+      el.style.webkitAnimationName = ""
+    }, 0)
+  })
+}
