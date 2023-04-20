@@ -57,3 +57,35 @@ export function getArtBySlug(slug) {
   }
   return null
 }
+
+/**
+ * @param {*} slug the current slug
+ * @returns the slug for the next art item relative to current slug
+ */
+export function getNextArtSlug(slug) {
+  for (let section of artList) {
+    for (let i = 0; i < section.items.length; i++) {
+      let item = section.items[i]
+      if (item.slug === slug) {
+        return i < section.items.length - 1 ? section.items[i + 1].slug : null
+      }
+    }
+  }
+  return null
+}
+
+/**
+ * @param {*} slug the current slug
+ * @returns the slug for the previous art item relative to current slug
+ */
+export function getPreviousArtSlug(slug) {
+  for (let section of artList) {
+    for (let i = 0; i < section.items.length; i++) {
+      let item = section.items[i]
+      if (item.slug === slug) {
+        return i > 0 ? section.items[i - 1].slug : null
+      }
+    }
+  }
+  return null
+}

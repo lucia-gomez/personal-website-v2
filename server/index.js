@@ -64,14 +64,6 @@ app.post("/api/create", (req, res) => {
   const summary = req.body.summary
   const content = req.body.content
   const slug = req.body.slug
-<<<<<<< HEAD
-
-  const sql =
-    "INSERT INTO posts (date, dateString, title, summary, content, slug) VALUES (?, ?, ?, ?, ?, ?);"
-  db.query(
-    sql,
-    [datetime, dateString, title, summary, content, slug],
-=======
   const imageUrl = req.body.imageUrl
 
   const sql =
@@ -79,7 +71,6 @@ app.post("/api/create", (req, res) => {
   db.query(
     sql,
     [datetime, dateString, title, summary, content, slug, imageUrl],
->>>>>>> 04de9940825a1abecfc033983acafde4024fa003
     (err, result) => {
       if (err) console.error(err)
       res.send(result)
@@ -129,20 +120,12 @@ app.post("/api/update", (req, res) => {
   const summary = req.body.summary
   const newContent = req.body.content
   const newDateString = req.body.dateString
-<<<<<<< HEAD
-  const sql =
-    "UPDATE posts SET dateString = ?, content = ?, title = ?, summary = ? WHERE id = ?;"
-  db.query(
-    sql,
-    [newDateString, newContent, title, summary, id],
-=======
   const newImageUrl = req.body.imageUrl
   const sql =
     "UPDATE posts SET dateString = ?, content = ?, title = ?, summary = ?, imageUrl = ? WHERE id = ?;"
   db.query(
     sql,
     [newDateString, newContent, title, summary, newImageUrl, id],
->>>>>>> 04de9940825a1abecfc033983acafde4024fa003
     (err, result) => {
       if (err) console.error(err)
       res.send(result)
@@ -163,16 +146,10 @@ app.post("/api/draft/create", (req, res) => {
   const summary = req.body.summary
   const content = req.body.content
   const slug = req.body.slug
-<<<<<<< HEAD
-  const sql =
-    "INSERT INTO drafts (title, summary, content, slug) VALUES (?, ?, ?, ?);"
-  db.query(sql, [title, summary, content, slug], (err, result) => {
-=======
   const imageUrl = req.body.imageUrl
   const sql =
     "INSERT INTO drafts (title, summary, content, slug, imageUrl) VALUES (?, ?, ?, ?, ?);"
   db.query(sql, [title, summary, content, slug, imageUrl], (err, result) => {
->>>>>>> 04de9940825a1abecfc033983acafde4024fa003
     if (err) console.error(err)
     res.send(result)
   })
@@ -193,14 +170,6 @@ app.post("/api/draft/update", (req, res) => {
   const summary = req.body.summary
   const slug = req.body.slug
   const newContent = req.body.content
-<<<<<<< HEAD
-  const sql =
-    "UPDATE drafts SET content = ?, title = ?, summary = ?, slug = ? WHERE id = ?;"
-  db.query(sql, [newContent, title, summary, slug, id], (err, result) => {
-    if (err) console.error(err)
-    res.send(result)
-  })
-=======
   const imageUrl = req.body.imageUrl
   const sql =
     "UPDATE drafts SET content = ?, title = ?, summary = ?, slug = ?, imageUrl = ? WHERE id = ?;"
@@ -212,7 +181,26 @@ app.post("/api/draft/update", (req, res) => {
       res.send(result)
     }
   )
->>>>>>> 04de9940825a1abecfc033983acafde4024fa003
+})
+
+app.get("/api/next/:slug", (req, res) => {
+  const slug = req.params.slug
+  const sql =
+    "SELECT slug FROM posts where id = (SELECT max(id) FROM posts WHERE id < (SELECT id FROM posts WHERE slug = ?));"
+  db.query(sql, [slug], (err, result) => {
+    if (err) console.error(err)
+    res.send(result)
+  })
+})
+
+app.get("/api/prev/:slug", (req, res) => {
+  const slug = req.params.slug
+  const sql =
+    "SELECT slug FROM posts where id = (SELECT min(id) FROM posts WHERE id > (SELECT id FROM posts WHERE slug = ?));"
+  db.query(sql, [slug], (err, result) => {
+    if (err) console.error(err)
+    res.send(result)
+  })
 })
 
 const PORT = 3001

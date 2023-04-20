@@ -2,6 +2,7 @@ import "swiper/css"
 import "swiper/css/pagination"
 
 import { Swiper, SwiperSlide } from "swiper/react"
+import { useEffect, useRef } from "react"
 
 import { Pagination } from "swiper"
 import styled from "styled-components"
@@ -43,10 +44,22 @@ const SwiperWrapper = styled.div`
 `
 
 export default function ZineFlipBook({ zine }) {
+  const swiperRef = useRef()
+
+  useEffect(() => {
+    if (swiperRef.current != null) {
+      swiperRef.current.activeIndex = 0
+    }
+  }, [zine])
+
   const getZineSwiper = zine => {
     return (
       <SwiperWrapper>
-        <Swiper pagination={true} modules={[Pagination]}>
+        <Swiper
+          pagination={true}
+          modules={[Pagination]}
+          onSwiper={swiper => (swiperRef.current = swiper)}
+        >
           {zine.pages.map((page, i) => (
             <SwiperSlide key={i}>
               <img

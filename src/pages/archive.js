@@ -10,6 +10,7 @@ import SectionTitle from "../components/sectionTitle"
 import filterProject from "../scripts/searchPortfolio"
 import { isScrolledIntoViewVertical } from "../scripts/util"
 import projects from "../scripts/projectList"
+import { resetAnimation } from "../scripts/util"
 import styled from "styled-components"
 
 const Grid = styled.div`
@@ -23,15 +24,6 @@ const Grid = styled.div`
     height: 100%;
   }
 `
-
-function resetAnimation(element) {
-  element.style.animationName = "none"
-  requestAnimationFrame(() => {
-    setTimeout(() => {
-      element.style.animationName = ""
-    }, 0)
-  })
-}
 
 export default function ArchivePage() {
   const [results, setResults] = useState(projects)
