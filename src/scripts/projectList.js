@@ -51,9 +51,9 @@ const projects = [
     tools: ["Spark AR", "Javascript", "Photoshop"],
     image: "inARWeTrust.gif",
     featuredImageDesktop:
-      "https://ik.imagekit.io/5xtlzx2c3y/portfolio/inARWeTrustDemoDesktop.mp4?updatedAt=1681805039065",
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/inARWeTrustDemoDesktop.mp4",
     featuredImageMobile:
-      "https://ik.imagekit.io/5xtlzx2c3y/portfolio/inARWeTrustDemoMobile.mp4?updatedAt=1681801282547",
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/inARWeTrustDemoMobile.mp4",
     featuredText: <p>An interactive Spark AR effect for a poster on my wall</p>,
     text: (
       <p>
@@ -73,9 +73,9 @@ const projects = [
     tools: ["WebGL", "GLSL", "HTML/CSS"],
     image: "lavaLamp.png",
     featuredImageDesktop:
-      "https://ik.imagekit.io/5xtlzx2c3y/portfolio/lavaLampDemoDesktop.mov?updatedAt=1681793331166",
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/lavaLampDemoDesktop.mov",
     featuredImageMobile:
-      "https://ik.imagekit.io/5xtlzx2c3y/portfolio/lavaLampDemoMobile.mov?updatedAt=1681793290879",
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/lavaLampDemoMobile.mov",
     text: (
       <p>
         I woke up one day and wanted to play with WebGL, so I made a lava lamp
@@ -92,9 +92,9 @@ const projects = [
     tools: ["Javascript", "React"],
     image: "signSearch.png",
     featuredImageDesktop:
-      "https://ik.imagekit.io/5xtlzx2c3y/portfolio/signSearchDemoDesktop.mov?updatedAt=1681804933145",
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/signSearchDemoDesktop.mov",
     featuredImageMobile:
-      "https://ik.imagekit.io/5xtlzx2c3y/portfolio/signSearchDemoMobile.mov?updatedAt=1681804585883",
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/signSearchDemoMobile.mov",
     featuredText: (
       <p>
         A Google Chrome extension for providing a convenient way to look up
