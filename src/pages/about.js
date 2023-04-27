@@ -1,9 +1,9 @@
 import ExperienceSection from "../components/about/experience"
 import Link from "../components/link"
-import ProfileImage from "../assets/images/profile-circle.png"
 import React from "react"
 import Subsection from "../components/layout/subsection"
 import TechnologiesSection from "../components/about/technologies"
+import { profilePicUrl } from "../scripts/util"
 import styled from "styled-components"
 
 const AboutWrapper = styled.div`
@@ -90,7 +90,7 @@ export default function About() {
   return (
     <AboutWrapper>
       <ProfileWrapper>
-        <ProfilePic src={ProfileImage} alt="profile" />
+        <ProfilePic src={profilePicUrl} alt="profile" />
         <ProfileIconsWrapper>
           {ProfileInfo(
             "fab fa-github",

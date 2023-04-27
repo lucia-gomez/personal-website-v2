@@ -4,6 +4,11 @@ export function getApiUrl() {
     : process.env.REACT_APP_API_PROD
 }
 
+export const profilePicUrl =
+  "https://ik.imagekit.io/5xtlzx2c3y/website/profilePhoto.png"
+export const blogPlaceholderImageUrl =
+  "https://ik.imagekit.io/5xtlzx2c3y/website/blog/placeholder.jpeg"
+
 // https://stackoverflow.com/a/37285344
 export function isScrolledIntoViewVertical(container, element, partial) {
   let cTop = container.scrollTop

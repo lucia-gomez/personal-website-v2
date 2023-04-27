@@ -2,7 +2,6 @@ import { FaGithub, FaLinkedin } from "react-icons/fa"
 import { Link, useLocation } from "react-router-dom"
 import { Nav, Navbar } from "react-bootstrap"
 
-import Doc from "../../assets/resume.pdf"
 import React from "react"
 import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
@@ -78,7 +77,13 @@ const CustomNav = () => {
     { name: "Art", link: "/art" },
     { name: "Blog", link: "/blog" },
     ...(isAuthenticated ? [{ name: "Admin", link: "/admin" }] : []),
-    { name: "Resume", link: Doc, target: "_blank" },
+    {
+      name: "Resume",
+      link: {
+        pathname: "https://ik.imagekit.io/5xtlzx2c3y/website/resume.pdf",
+      },
+      target: "_blank",
+    },
   ]
 
   const icons = [
