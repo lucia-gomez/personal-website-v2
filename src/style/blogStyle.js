@@ -48,6 +48,7 @@ const BlogStyle = styled.div`
   }
   pre {
     background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
+    color: ${props => props.theme.text};
     padding: 10px;
     border-radius: 5px;
   }
