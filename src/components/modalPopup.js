@@ -1,4 +1,4 @@
-import { Modal } from "react-bootstrap"
+import Modal from "react-bootstrap/Modal"
 import { hexToRGB } from "../style/theme"
 import styled from "styled-components"
 

@@ -1,11 +1,13 @@
 import "@nick4fake/react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
-import { Col, Form, Row } from "react-bootstrap"
 import { ContentState, EditorState, convertToRaw } from "draft-js"
 import React, { useEffect, useState } from "react"
 
 import BlogContent from "./blogContent"
+import Col from "react-bootstrap/Col"
+import Form from "react-bootstrap/Form"
 import { Editor as ReactDraft } from "@nick4fake/react-draft-wysiwyg"
+import Row from "react-bootstrap/Row"
 import draftToHtml from "draftjs-to-html"
 import { hexToRGB } from "../../style/theme"
 import htmlToDraft from "html-to-draftjs"

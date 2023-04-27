@@ -1,7 +1,8 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa"
 import { Link, useLocation } from "react-router-dom"
-import { Nav, Navbar } from "react-bootstrap"
 
+import Nav from "react-bootstrap/Nav"
+import Navbar from "react-bootstrap/Navbar"
 import React from "react"
 import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"

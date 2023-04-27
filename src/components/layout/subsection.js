@@ -1,7 +1,8 @@
 import React, { useState } from "react"
-import { animated, useSpring } from "react-spring"
-import useMeasure from "react-use-measure"
+import { animated, useSpring } from "@react-spring/web"
+
 import styled from "styled-components"
+import useMeasure from "react-use-measure"
 
 const Wrapper = styled.div`
   display: flex;
@@ -34,7 +35,7 @@ const Title = styled.h3`
   margin: 0;
 `
 
-const Toggle = styled.i.attrs(props => ({
+const Toggle = styled.i.attrs(_ => ({
   className: "fas fa-chevron-down",
 }))`
   font-style: normal;

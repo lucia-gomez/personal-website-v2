@@ -1,7 +1,6 @@
 import React from "react"
-import PropTypes from "prop-types"
-import styled from "styled-components"
 import { a } from "../style/blogStyle"
+import styled from "styled-components"
 
 const LinkStyle = styled.a`
   ${a}
@@ -19,9 +18,4 @@ export default function Link(props) {
       {props.children}
     </LinkStyle>
   )
-}
-
-Link.propTypes = {
-  className: PropTypes.string,
-  href: PropTypes.string.isRequired,
 }

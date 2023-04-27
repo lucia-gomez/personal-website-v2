@@ -1,8 +1,9 @@
 import React, { useState } from "react"
+import { animated, useSpring } from "@react-spring/web"
+
+import PortfolioFilters from "./portfolioFilters"
 import styled from "styled-components"
 import useMeasure from "react-use-measure"
-import { animated, useSpring } from "react-spring"
-import PortfolioFilters from "./portfolioFilters"
 
 const Advanced = styled.div`
   color: ${props => props.theme.accent};

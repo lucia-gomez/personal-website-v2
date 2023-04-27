@@ -1,7 +1,12 @@
 import React, { useRef, useState } from "react"
-import styled from "styled-components"
-import { Tab, Row, Col, Nav, Container } from "react-bootstrap"
+
+import Col from "react-bootstrap/Col"
+import Container from "react-bootstrap/Container"
+import Nav from "react-bootstrap/Nav"
+import Row from "react-bootstrap/Row"
+import Tab from "react-bootstrap/Tab"
 import { hexToRGB } from "../style/theme"
+import styled from "styled-components"
 
 const TAB_MOBILE_WIDTH = 150
 const TAB_BORDER_THICKNESS = 4
