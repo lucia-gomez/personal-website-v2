@@ -3,6 +3,7 @@ import React, { useRef } from "react"
 import Delete from "./delete"
 import Like from "./like"
 import { Link } from "react-router-dom"
+import { blogPlaceholderImageUrl } from "../../scripts/util"
 import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
 import { useAuth0 } from "@auth0/auth0-react"
@@ -104,9 +105,6 @@ const ContentPreview = styled.p`
   column-width: 200px;
 `
 
-const placeholderImageUrl =
-  "https://contenthub-static.grammarly.com/blog/wp-content/uploads/2017/11/how-to-write-a-blog-post.jpeg"
-
 const BlogPostLink = ({ post }) => {
   const { isAuthenticated } = useAuth0()
   const previewDiv = useRef()
@@ -121,7 +119,7 @@ const BlogPostLink = ({ post }) => {
   return (
     <Wrapper>
       <ClickableCard to={`/blog/${post.slug}/`}>
-        <Image image={post.imageUrl || placeholderImageUrl} />
+        <Image image={post.imageUrl || blogPlaceholderImageUrl} />
         <Body>
           <div>
             <Title>{post.title}</Title>

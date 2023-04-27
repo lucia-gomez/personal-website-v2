@@ -107,7 +107,9 @@ export function makePortfolioCard(project) {
       title={project.title}
       date={project.date}
       tools={project.tools}
-      image={"https://ik.imagekit.io/5xtlzx2c3y/portfolio/" + project.image}
+      image={
+        "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/" + project.image
+      }
       centerImage={project.centerImage != null ? project.centerImage : true}
       git={project.link ?? null}
       link={project.extra ?? null}

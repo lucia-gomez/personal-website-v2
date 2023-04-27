@@ -1,7 +1,7 @@
 import Like from "./like"
-import ProfileImage from "../../assets/images/profile-circle.png"
 import { gradientWithoutBg } from "../layout/gradient"
 import { hexToRGB } from "../../style/theme"
+import { profilePicUrl } from "../../scripts/util"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -146,7 +146,7 @@ const Sidebar = ({ post, className }) => {
     <Wrapper className={className}>
       <SidebarContent>
         <ProfilePicWrapper>
-          <ProfilePic src={ProfileImage} alt="profile picture" />
+          <ProfilePic src={profilePicUrl} alt="profile picture" />
         </ProfilePicWrapper>
         <Name>Lucia Gomez</Name>
         <p style={{ marginBottom: 12 }}>Creative Technologist</p>

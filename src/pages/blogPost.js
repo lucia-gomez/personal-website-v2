@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Redirect, useParams } from "react-router-dom"
+import { blogPlaceholderImageUrl, getApiUrl } from "../scripts/util"
 
 import Axios from "axios"
 import Back from "../components/blog/back"
@@ -8,7 +9,6 @@ import BlogLoading from "../components/blog/blogLoading"
 import BlogNavButtons from "../components/blog/blogNavButtons"
 import EditorPopup from "../components/blog/editorPopup"
 import Sidebar from "../components/blog/sidebar"
-import { getApiUrl } from "../scripts/util"
 import styled from "styled-components"
 import { useAuth0 } from "@auth0/auth0-react"
 
@@ -102,9 +102,6 @@ const BackWrapper = styled(Back)`
   padding-top: 20px;
 `
 
-const placeholderImageUrl =
-  "https://contenthub-static.grammarly.com/blog/wp-content/uploads/2017/11/how-to-write-a-blog-post.jpeg"
-
 export default function BlogPostPage() {
   const { isAuthenticated } = useAuth0()
   const { slug } = useParams()
@@ -136,7 +133,7 @@ export default function BlogPostPage() {
       {!loading ? (
         <>
           <Header>
-            <HeaderImage imageUrl={post.imageUrl || placeholderImageUrl} />
+            <HeaderImage imageUrl={post.imageUrl || blogPlaceholderImageUrl} />
             <div style={{ padding: 20 }}>
               <BackWrapper link="/blog" />
               <Title>{post.title}</Title>
