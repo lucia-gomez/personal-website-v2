@@ -1,4 +1,3 @@
-import "../node_modules/bootstrap/dist/css/bootstrap.css"
 import "./style/index.css"
 
 import { BrowserRouter, Route, Switch } from "react-router-dom"
