@@ -1,5 +1,5 @@
 import BlogNavButtons from "../blog/blogNavButtons"
-import { Modal } from "react-bootstrap"
+import Modal from "react-bootstrap/Modal"
 import ModalWrapper from "../modalPopup"
 import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"

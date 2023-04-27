@@ -1,9 +1,10 @@
-import React from "react"
-import { Link } from "react-router-dom"
 import styled, { css } from "styled-components"
-import { colors } from "../style/theme"
-import { Button as BootstrapButton } from "react-bootstrap"
+
+import BootstrapButton from "react-bootstrap/Button"
 import { FaInstagram } from "react-icons/fa"
+import { Link } from "react-router-dom"
+import React from "react"
+import { colors } from "../style/theme"
 
 const buttonStyle = css`
   background-color: ${props => props.theme.accent};
