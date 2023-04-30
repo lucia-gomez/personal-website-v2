@@ -68,6 +68,7 @@ const BlogStyle = styled.div`
     max-height: 70vh;
     border-radius: 5px;
     margin-bottom: 20px;
+    margin-right: 20px;
   }
 `
 
