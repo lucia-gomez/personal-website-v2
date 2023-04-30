@@ -12,7 +12,6 @@ import styled from "styled-components"
 
 const EditorModal = styled(ModalWrapper)`
   .modal-dialog {
-    height: 90vh;
     @media screen and (max-width: 576px) {
       top: 0;
       transform: unset;

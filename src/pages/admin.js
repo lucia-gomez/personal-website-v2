@@ -15,6 +15,14 @@ const BlogWrapper = styled.div`
   text-align: left;
 `
 
+const AdminEditor = styled(Editor)`
+  max-height: 70vh;
+
+  .rc-md-editor.full {
+    margin-top: 60px;
+  }
+`
+
 const DraftSection = styled.div`
   margin-top: 40px;
   padding-top: 40px;
@@ -141,7 +149,7 @@ export default function BlogAdmin() {
   return (
     <BlogWrapper>
       <SectionTitle>Blog Admin</SectionTitle>
-      <Editor post={openDraft} buttons={buttons} />
+      <AdminEditor post={openDraft} buttons={buttons} />
       {drafts.length === 0 ? null : (
         <DraftSection>
           <h3>Drafts</h3>

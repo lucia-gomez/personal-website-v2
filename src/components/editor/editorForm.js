@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import Row from "react-bootstrap/Row"
 import { Toggle } from "../layout/subsection"
+import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
 import useMeasure from "react-use-measure"
 
@@ -32,6 +33,14 @@ const FormToggle = styled.div`
 
   i {
     color: ${props => props.theme.accent};
+  }
+`
+
+const FormWrapper = styled.div`
+  .form-control {
+    background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
+    color: ${props => props.theme.text};
+    border: 1px solid ${props => props.theme.text};
   }
 `
 
@@ -129,18 +138,18 @@ export default function EditorForm(props) {
     buttons(title, slug, date, imageUrl, summary, content)
 
   return (
-    <>
+    <div>
       <FormToggle onClick={() => setExpanded(!isExpanded)} {...{ isExpanded }}>
         <p>{isExpanded ? "Hide Form" : "Show Form"}</p>
         <Toggle isOpen={isExpanded} />
       </FormToggle>
       <Collapsible style={contentAnimatedStyle}>
-        <div ref={ref}>
+        <FormWrapper ref={ref}>
           {formDesktop}
           {formMobile}
-        </div>
+        </FormWrapper>
       </Collapsible>
       <ButtonRow>{formButtons()}</ButtonRow>
-    </>
+    </div>
   )
 }

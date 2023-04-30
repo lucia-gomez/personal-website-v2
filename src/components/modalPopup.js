@@ -35,12 +35,6 @@ const ModalWrapper = styled(Modal)`
     color: ${props => props.theme.text};
   }
 
-  .form-control {
-    background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
-    color: ${props => props.theme.text};
-    border: 1px solid ${props => props.theme.text};
-  }
-
   .close {
     color: ${props => props.theme.accent};
     opacity: unset;
