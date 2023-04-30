@@ -65,6 +65,7 @@ const BlogStyle = styled.div`
   img {
     height: 100%;
     max-width: 100% !important;
+    max-height: 70vh;
     border-radius: 5px;
     margin-bottom: 20px;
   }
