@@ -5,14 +5,9 @@ import { hexToRGB } from "./theme"
 const ul = css`
   padding-left: 0px;
   list-style: none;
-
-  ul {
-    padding-left: 20px;
-  }
 `
 
 const li = css`
-  padding-bottom: 5px;
   padding-left: 20px;
   position: relative;
 
@@ -36,7 +31,20 @@ const a = css`
   }
 `
 
+const blockquote = css`
+  background-color: ${props => hexToRGB(props.theme.medium, 0.5)};
+  border-left: 6px solid ${props => props.theme.accent};
+  border-radius: 0px 5px 5px 0px;
+  color: ${props => hexToRGB(props.theme.text, 0.5)};
+  padding: 8px;
+
+  p {
+    margin: 0;
+  }
+`
+
 const BlogStyle = styled.div`
+  padding-bottom: 20px;
   ul {
     ${ul}
   }
@@ -46,10 +54,12 @@ const BlogStyle = styled.div`
   a {
     ${a}
   }
+  blockquote {
+    ${blockquote}
+  }
   pre {
-    background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
+    background-color: ${props => hexToRGB(props.theme.medium, 0.5)};
     color: ${props => props.theme.text};
-    padding: 10px;
     border-radius: 5px;
   }
   img {
@@ -61,4 +71,4 @@ const BlogStyle = styled.div`
 `
 
 export default BlogStyle
-export { ul, li, a }
+export { ul, li, a, blockquote }

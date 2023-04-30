@@ -35,7 +35,7 @@ const Title = styled.h3`
   margin: 0;
 `
 
-const Toggle = styled.i.attrs(_ => ({
+export const Toggle = styled.i.attrs(_ => ({
   className: "fas fa-chevron-down",
 }))`
   font-style: normal;
