@@ -5,6 +5,7 @@ import Like from "./like"
 import { Link } from "react-router-dom"
 import { blogPlaceholderImageUrl } from "../../scripts/util"
 import { hexToRGB } from "../../style/theme"
+import { marked } from "marked"
 import styled from "styled-components"
 import { useAuth0 } from "@auth0/auth0-react"
 
@@ -112,7 +113,7 @@ const BlogPostLink = ({ post }) => {
 
   const previewText = () => {
     const tempDiv = document.createElement("div")
-    tempDiv.innerHTML = post.content
+    tempDiv.innerHTML = marked.parse(post.content)
     return tempDiv.innerText || tempDiv.textContent || ""
   }
 

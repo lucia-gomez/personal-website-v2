@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 import Axios from "axios"
 import { Button } from "../button"
-import Delete from "./delete"
+import Delete from "../blog/delete"
 import Editor from "./editor"
 import Modal from "react-bootstrap/Modal"
 import ModalWrapper from "../modalPopup"
@@ -12,10 +12,15 @@ import styled from "styled-components"
 
 const EditorModal = styled(ModalWrapper)`
   .modal-dialog {
+    height: 90vh;
     @media screen and (max-width: 576px) {
       top: 0;
       transform: unset;
     }
+  }
+
+  .modal-content {
+    height: 100%;
   }
 `
 
@@ -36,6 +41,8 @@ const EditButton = styled.i.attrs(_ => ({
 
 const DeleteButton = styled(Delete)`
   color: ${colors.white};
+  text-shadow: none;
+  margin-top: 4px;
 `
 
 export default function EditorPopup({ post }) {

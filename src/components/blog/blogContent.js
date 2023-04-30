@@ -1,25 +1,23 @@
-import React, { useEffect, useRef } from "react"
-
 import BlogStyle from "../../style/blogStyle"
+import React from "react"
+import { marked } from "marked"
+import prism from "prismjs"
+
+marked.setOptions({
+  highlight: function (code, lang) {
+    if (prism.languages[lang]) {
+      return prism.highlight(code, prism.languages[lang], lang)
+    } else {
+      return code
+    }
+  },
+})
 
 const BlogContent = ({ content, className }) => {
-  const contentRef = useRef()
-
-  useEffect(() => {
-    if (contentRef.current !== null) {
-      const nodes = contentRef.current.querySelectorAll("pre")
-      nodes.forEach(node => {
-        // hljs.highlightElement(node)
-      })
-    }
-  }, [content])
-
   return (
-    <BlogStyle
-      ref={contentRef}
-      dangerouslySetInnerHTML={{ __html: content }}
-      className={className}
-    />
+    <BlogStyle className={className}>
+      <div dangerouslySetInnerHTML={{ __html: marked.parse(content) }} />
+    </BlogStyle>
   )
 }
 
