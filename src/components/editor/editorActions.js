@@ -1,4 +1,3 @@
-import { Button, ButtonLink } from "../button"
 import {
   closeDraft,
   createDraft,
@@ -8,8 +7,10 @@ import {
   updatePost,
 } from "../../scripts/api"
 
+import { Button } from "../button"
 import Delete from "../blog/delete"
 import styled from "styled-components"
+import { useHistory } from "react-router-dom"
 
 const isButtonValid = payload => {
   const isValid = x => x !== undefined && x.length > 0
@@ -83,10 +84,11 @@ const DeleteIcon = styled(Delete)`
   margin-top: 4px;
 `
 const DeletePostButton = payload => {
+  const history = useHistory()
   return (
-    <ButtonLink to="/blog" sameTab={true} key={6}>
-      <DeleteIcon postID={payload.id} />
-    </ButtonLink>
+    <Button sameTab={true} key={6}>
+      <DeleteIcon postID={payload.id} callback={() => history.push("/blog")} />
+    </Button>
   )
 }
 

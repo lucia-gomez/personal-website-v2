@@ -1,6 +1,6 @@
-import Axios from "axios"
+import { deleteDraft, deletePost } from "../../scripts/api"
+
 import React from "react"
-import { getApiUrl } from "../../scripts/util"
 import styled from "styled-components"
 
 const Trash = styled.i.attrs(_ => ({
@@ -13,9 +13,22 @@ const Trash = styled.i.attrs(_ => ({
 `
 
 const Delete = ({ postID, callback, draft, className }) => {
-  const handleClick = () => {
-    Axios.delete(`${getApiUrl()}/api/${draft ? "draft" : "delete"}/${postID}`)
+  const handleDelete = () => {
+    if (draft) {
+      deleteDraft(postID)
+    } else {
+      deletePost(postID)
+    }
     if (callback !== undefined) callback(postID)
+  }
+
+  const handleClick = () => {
+    const result = window.confirm(
+      `Are you sure you want to delete this ${draft ? "draft" : "post"}?`
+    )
+    if (result) {
+      handleDelete()
+    }
   }
 
   return <Trash onClick={handleClick} className={className} />

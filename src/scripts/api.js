@@ -69,6 +69,8 @@ export const updatePost = payload => {
 }
 
 export const getDrafts = () => Axios.get(`${getApiUrl()}/api/draft/get`)
+export const deletePost = id => Axios.delete(`${getApiUrl()}/api/delete/${id}`)
+export const deleteDraft = id => Axios.delete(`${getApiUrl()}/api/draft/${id}`)
 
 export const resetLikes = id => {
   Axios.post(`${getApiUrl()}/api/likes/reset`, { id: id })
