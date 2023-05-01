@@ -52,7 +52,7 @@ const Collapsible = styled(animated.div)`
 
 export default function EditorForm(props) {
   const { actions, content, isDraft, isNew, post } = props
-  const [isExpanded, setExpanded] = useState(false)
+  const [isExpanded, setExpanded] = useState(isNew)
   const [ref, bounds] = useMeasure()
   const contentAnimatedStyle = useSpring({
     height: isExpanded ? bounds.height : 0,

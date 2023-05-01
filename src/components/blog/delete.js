@@ -15,7 +15,7 @@ const Delete = props => {
     }
     if (callback !== undefined) callback(postID)
     history.push({
-      pathname: "/blog",
+      pathname: draft ? "/admin" : "/blog",
       key: Math.random(),
       state: {
         applied: true,
