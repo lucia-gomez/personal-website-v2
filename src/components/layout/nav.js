@@ -107,17 +107,24 @@ const CustomNav = () => {
     >
       <Navbar.Toggle aria-controls="navbarCollapse" />
       <Navbar.Collapse id="navbarCollapse">
-        {sections.map((section, key) => (
-          <NavLink
-            onClick={collapseNav}
-            selected={pathname === section.link}
-            to={section.link}
-            target={section.target ?? null}
-            key={key}
-          >
-            {section.name}
-          </NavLink>
-        ))}
+        {sections.map((section, key) => {
+          let idxSecondSlash = pathname.indexOf("/", 1)
+          let activePath = pathname.substring(
+            pathname.indexOf("/"),
+            idxSecondSlash === -1 ? pathname.length : idxSecondSlash
+          )
+          return (
+            <NavLink
+              onClick={collapseNav}
+              selected={activePath === section.link}
+              to={section.link}
+              target={section.target ?? null}
+              key={key}
+            >
+              {section.name}
+            </NavLink>
+          )
+        })}
         <IconsNav>
           {icons.map((icon, key) => (
             <NavLink
