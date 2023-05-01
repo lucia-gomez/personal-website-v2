@@ -1,11 +1,4 @@
-import {
-  closeDraft,
-  createDraft,
-  createPost,
-  publishDraft,
-  resetLikes,
-  updatePost,
-} from "../../scripts/api"
+import { DraftApi, LikeApi, PostApi } from "../../scripts/api"
 
 import { Button } from "../button"
 import Delete from "../blog/delete"
@@ -23,7 +16,7 @@ const isButtonValid = payload => {
 
 const PublishPostButton = payload => (
   <Button
-    onClick={() => createPost(payload)}
+    onClick={() => PostApi.createPost(payload)}
     sameTab={true}
     disabled={isButtonValid(payload)}
     key={0}
@@ -34,7 +27,7 @@ const PublishPostButton = payload => (
 
 const PublishDraftButton = payload => (
   <Button
-    onClick={() => publishDraft(payload)}
+    onClick={() => DraftApi.publishDraft(payload)}
     sameTab={true}
     disabled={isButtonValid(payload)}
     href="/"
@@ -46,7 +39,7 @@ const PublishDraftButton = payload => (
 
 const SaveDraftButton = payload => (
   <Button
-    onClick={() => createDraft(payload)}
+    onClick={() => DraftApi.createDraft(payload)}
     disabled={isButtonValid(payload)}
     key={2}
   >
@@ -55,7 +48,8 @@ const SaveDraftButton = payload => (
 )
 
 const CloseDraftButton = (payload, setOpenDraft) => {
-  const onClick = () => closeDraft(payload).then(setOpenDraft(undefined))
+  const onClick = () =>
+    DraftApi.closeDraft(payload).then(setOpenDraft(undefined))
   return (
     <Button onClick={onClick} disabled={isButtonValid(payload)} key={3}>
       Close Draft
@@ -64,7 +58,7 @@ const CloseDraftButton = (payload, setOpenDraft) => {
 }
 
 const UpdatePostButton = (payload, closeEditor) => {
-  const onClick = () => updatePost(payload).then(closeEditor)
+  const onClick = () => PostApi.updatePost(payload).then(closeEditor)
   return (
     <Button onClick={onClick} disabled={isButtonValid(payload)} key={4}>
       Update post
@@ -72,11 +66,14 @@ const UpdatePostButton = (payload, closeEditor) => {
   )
 }
 
-const ResetLikesButton = payload => (
-  <Button onClick={() => resetLikes(payload.id)} key={5}>
-    Reset Likes
-  </Button>
-)
+const ResetLikesButton = payload => {
+  console.log(LikeApi)
+  return (
+    <Button onClick={() => LikeApi.reset(payload.id)} key={5}>
+      Reset Likes
+    </Button>
+  )
+}
 
 const DeleteIcon = styled(Delete)`
   color: ${props => props.theme.text};

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react"
 
-import Axios from "axios"
 import BlogLoading from "../components/blog/blogLoading"
 import BlogPostLink from "../components/blog/blogPostItem"
 import HorizontalScroller from "../components/horizontalScroller"
+import { PostApi } from "../scripts/api"
 import SearchBar from "../components/searchBar"
 import SectionTitle from "../components/sectionTitle"
 import filterPost from "../scripts/searchBlog"
-import { getApiUrl } from "../scripts/util"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -63,7 +62,7 @@ export default function BlogHomePage() {
 
   useEffect(() => {
     setLoading(true)
-    Axios.get(getApiUrl() + "/api/get").then(res => {
+    PostApi.getAllPosts().then(res => {
       const d = sortByDisplayDate(res.data)
       setPosts(d)
       setSearchResults(d)

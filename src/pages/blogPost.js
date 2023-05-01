@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react"
 import { Redirect, useParams } from "react-router-dom"
-import { blogPlaceholderImageUrl, getApiUrl } from "../scripts/util"
 
-import Axios from "axios"
 import Back from "../components/blog/back"
 import BlogContent from "../components/blog/blogContent"
 import BlogLoading from "../components/blog/blogLoading"
 import BlogNavButtons from "../components/blog/blogNavButtons"
 import EditorPopup from "../components/editor/editorPopup"
+import { PostApi } from "../scripts/api"
 import Sidebar from "../components/blog/sidebar"
+import { blogPlaceholderImageUrl } from "../scripts/util"
 import styled from "styled-components"
 import { useAuth0 } from "@auth0/auth0-react"
 
@@ -112,14 +112,14 @@ export default function BlogPostPage() {
 
   useEffect(() => {
     setLoading(true)
-    Axios.get(getApiUrl() + "/api/get/" + slug).then(res => {
+    PostApi.getPost(slug).then(res => {
       setPost(res.data[0] ?? null)
       setLoading(false)
     })
-    Axios.get(getApiUrl() + "/api/next/" + slug).then(res => {
+    PostApi.getNextPost(slug).then(res => {
       setNextPostSlug(res.data[0] ?? null)
     })
-    Axios.get(getApiUrl() + "/api/prev/" + slug).then(res => {
+    PostApi.getPrevPost(slug).then(res => {
       setPrevPostSlug(res.data[0] ?? null)
     })
   }, [slug])

@@ -1,5 +1,4 @@
-import { deleteDraft, deletePost } from "../../scripts/api"
-
+import { DraftApi } from "../../scripts/api"
 import React from "react"
 import styled from "styled-components"
 
@@ -15,9 +14,9 @@ const Trash = styled.i.attrs(_ => ({
 const Delete = ({ postID, callback, draft, className }) => {
   const handleDelete = () => {
     if (draft) {
-      deleteDraft(postID)
+      DraftApi.deleteDraft(postID)
     } else {
-      deletePost(postID)
+      DraftApi.deletePost(postID)
     }
     if (callback !== undefined) callback(postID)
   }

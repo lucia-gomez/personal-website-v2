@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 
 import BlogDraftItem from "../components/blog/blogDraftItem"
+import { DraftApi } from "../scripts/api"
 import Editor from "../components/editor/editor"
 import SectionTitle from "../components/sectionTitle"
-import { getDrafts } from "../scripts/api"
 import styled from "styled-components"
 
 const BlogWrapper = styled.div`
@@ -36,7 +36,7 @@ export default function BlogAdmin() {
   const [openDraft, setOpenDraft] = useState()
 
   useEffect(() => {
-    getDrafts().then(res => {
+    DraftApi.getDrafts().then(res => {
       setDrafts(res.data.reverse())
     })
   }, [openDraft])
