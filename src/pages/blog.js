@@ -8,6 +8,7 @@ import SearchBar from "../components/searchBar"
 import SectionTitle from "../components/sectionTitle"
 import filterPost from "../scripts/searchBlog"
 import styled from "styled-components"
+import { useLocation } from "react-router-dom"
 
 const Wrapper = styled.div`
   padding: 65px 20px 50px 20px;
@@ -49,6 +50,7 @@ const BlogPostWrapper = styled.div.attrs(_ => ({
 `
 
 export default function BlogHomePage() {
+  const location = useLocation()
   const [posts, setPosts] = useState([])
   const [searchResults, setSearchResults] = useState(posts)
   const [loading, setLoading] = useState(true)
@@ -68,7 +70,7 @@ export default function BlogHomePage() {
       setSearchResults(d)
       setLoading(false)
     })
-  }, [])
+  }, [location.key])
 
   const searchPosts = keywords => {
     if (keywords.length === 0) {

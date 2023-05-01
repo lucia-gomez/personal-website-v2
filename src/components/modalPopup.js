@@ -1,4 +1,5 @@
 import Modal from "react-bootstrap/Modal"
+import { a } from "../style/blogStyle"
 import { hexToRGB } from "../style/theme"
 import styled from "styled-components"
 
@@ -36,18 +37,12 @@ const ModalWrapper = styled(Modal)`
   }
 
   .close {
-    color: ${props => props.theme.accent};
+    ${a}
     opacity: unset;
     text-shadow: none;
     font-size: 32px;
     padding: 12px;
-    transition: color 150ms, transform 150ms;
-
-    :hover {
-      color: ${props => props.theme.accentHover};
-      transform: scale(1.05);
-      opacity: 1 !important;
-    }
+    display: inline;
   }
 `
 

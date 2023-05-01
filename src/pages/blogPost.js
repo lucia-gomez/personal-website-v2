@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Redirect, useParams } from "react-router-dom"
+import { Redirect, useLocation, useParams } from "react-router-dom"
 
 import Back from "../components/blog/back"
 import BlogContent from "../components/blog/blogContent"
@@ -105,6 +105,7 @@ const BackWrapper = styled(Back)`
 export default function BlogPostPage() {
   const { isAuthenticated } = useAuth0()
   const { slug } = useParams()
+  const location = useLocation()
   const [post, setPost] = useState(null)
   const [nextPostSlug, setNextPostSlug] = useState(null)
   const [prevPostSlug, setPrevPostSlug] = useState(null)
@@ -122,7 +123,7 @@ export default function BlogPostPage() {
     PostApi.getPrevPost(slug).then(res => {
       setPrevPostSlug(res.data[0] ?? null)
     })
-  }, [slug])
+  }, [slug, location.key])
 
   if (post === null && !loading) {
     return <Redirect to="/404" />

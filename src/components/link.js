@@ -1,21 +1,22 @@
 import React from "react"
+import { Link as RouterLink } from "react-router-dom"
 import { a } from "../style/blogStyle"
 import styled from "styled-components"
 
-const LinkStyle = styled.a`
+const LinkWrapper = styled(RouterLink)`
   ${a}
 `
 
 export default function Link(props) {
   return (
-    <LinkStyle
-      href={props.href}
+    <LinkWrapper
+      to={props.to ?? { pathname: props.href }}
       className={props.className ?? ""}
       style={props.style}
-      target="_blank"
-      rel="noopener noreferrer"
+      target={props.sameTab ? null : "_blank"}
+      rel={props.sameTab ? null : "noopener noreferrer"}
     >
       {props.children}
-    </LinkStyle>
+    </LinkWrapper>
   )
 }

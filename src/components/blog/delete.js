@@ -1,24 +1,26 @@
-import { DraftApi } from "../../scripts/api"
-import React from "react"
-import styled from "styled-components"
+import { DraftApi, PostApi } from "../../scripts/api"
 
-const Trash = styled.i.attrs(_ => ({
-  className: "fas fa-trash",
-}))`
-  color: ${props => props.theme.text};
-  cursor: pointer;
-  text-shadow: 0px 0px 14px black;
-  font-size: 20px;
-`
+import { IconButton } from "../iconButton"
+import { useHistory } from "react-router-dom"
 
-const Delete = ({ postID, callback, draft, className }) => {
-  const handleDelete = () => {
+const Delete = props => {
+  const history = useHistory()
+  const { postID, callback, draft, className } = props
+
+  const handleDelete = async () => {
     if (draft) {
-      DraftApi.deleteDraft(postID)
+      await DraftApi.deleteDraft(postID)
     } else {
-      DraftApi.deletePost(postID)
+      await PostApi.deletePost(postID)
     }
     if (callback !== undefined) callback(postID)
+    history.push({
+      pathname: "/blog",
+      key: Math.random(),
+      state: {
+        applied: true,
+      },
+    })
   }
 
   const handleClick = () => {
@@ -30,7 +32,9 @@ const Delete = ({ postID, callback, draft, className }) => {
     }
   }
 
-  return <Trash onClick={handleClick} className={className} />
+  return (
+    <IconButton onClick={handleClick} className={className + " fas fa-trash"} />
+  )
 }
 
 export default Delete

@@ -1,9 +1,10 @@
-import { IconLink } from "../externalButton"
+import { IconButtonLink } from "../iconButton"
 import styled from "styled-components"
 
-const GitLink = styled(IconLink)`
+const GitLink = styled(IconButtonLink)`
   margin-bottom: 0.5rem;
   margin-top: -2px;
+  font-size: 20px;
 `
 
 const Wrapper = styled.div`

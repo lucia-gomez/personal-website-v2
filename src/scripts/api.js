@@ -24,7 +24,7 @@ export const PostApi = {
         ? `${payload.date}, ${fakeTime}`
         : new Date().toLocaleString()
 
-    Axios.post(getApiUrl() + "/api/create", {
+    return Axios.post(getApiUrl() + "/api/create", {
       datetime: new Date().toISOString().slice(0, 19).replace("T", " "),
       dateString: dateString,
       title: payload.title,
@@ -49,19 +49,18 @@ export const PostApi = {
 }
 
 export const DraftApi = {
-  publishDraft: payload => {
-    PostApi.createPost(payload)
-    Axios.delete(`${getApiUrl()}/api/draft/${payload.id}`)
+  publishDraft: async payload => {
+    await PostApi.createPost(payload)
+    return Axios.delete(`${getApiUrl()}/api/draft/${payload.id}`)
   },
-  createDraft: payload => {
+  createDraft: payload =>
     Axios.post(getApiUrl() + "/api/draft/create", {
       title: payload.title,
       summary: payload.summary,
       content: payload.content,
       slug: payload.slug,
       imageUrl: payload.imageUrl,
-    })
-  },
+    }),
   closeDraft: payload =>
     Axios.post(`${getApiUrl()}/api/draft/update`, {
       id: payload.id,

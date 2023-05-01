@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react"
 import BlogDraftItem from "../components/blog/blogDraftItem"
 import { DraftApi } from "../scripts/api"
 import Editor from "../components/editor/editor"
-import SectionTitle from "../components/sectionTitle"
 import styled from "styled-components"
 
 const BlogWrapper = styled.div`
@@ -12,7 +11,7 @@ const BlogWrapper = styled.div`
 `
 
 const AdminEditor = styled(Editor)`
-  max-height: 70vh;
+  max-height: 80vh;
 
   .rc-md-editor.full {
     margin-top: 60px;
@@ -52,7 +51,6 @@ export default function BlogAdmin() {
 
   return (
     <BlogWrapper>
-      <SectionTitle>Blog Admin</SectionTitle>
       <AdminEditor
         post={openDraft}
         isDraft={openDraft != null}

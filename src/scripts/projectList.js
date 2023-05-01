@@ -1,4 +1,4 @@
-import ExternalButton from "../components/externalButton"
+import ExternalIconButton from "../components/iconButton"
 import Link from "../components/link"
 import React from "react"
 
@@ -24,7 +24,7 @@ const projects = [
       </p>
     ),
     link: "https://github.com/lucia-gomez/friendly-takeover-collage",
-    extra: ExternalButton(
+    extra: ExternalIconButton(
       "https://lucia-gomez.github.io/friendly-takeover-collage/"
     ),
     categories: [category.Web, category["Digital Art"]],
@@ -41,7 +41,7 @@ const projects = [
       </p>
     ),
     link: "https://github.com/lucia-gomez/bubble-blower",
-    extra: ExternalButton("https://lucia-gomez.github.io/bubble-blower/"),
+    extra: ExternalIconButton("https://lucia-gomez.github.io/bubble-blower/"),
     categories: [category.Web, category["Digital Art"]],
     centerImage: false,
   },
@@ -62,7 +62,7 @@ const projects = [
       </p>
     ),
     link: "https://github.com/lucia-gomez/in_AR_we_trust",
-    extra: ExternalButton(
+    extra: ExternalIconButton(
       "https://drive.google.com/file/d/14lz50ZaYcxSKhY3jSiiDJCBbJe2Ebeow/view?usp=sharing"
     ),
     categories: [category["AR/VR"], category["Digital Art"]],
@@ -83,7 +83,7 @@ const projects = [
       </p>
     ),
     link: "https://github.com/lucia-gomez/lava-lamp",
-    extra: ExternalButton("https://lucia-gomez.github.io/lava-lamp/"),
+    extra: ExternalIconButton("https://lucia-gomez.github.io/lava-lamp/"),
     categories: [category.Web, category["Digital Art"]],
   },
   {
@@ -109,7 +109,7 @@ const projects = [
         directly into the extension to see multiple ways of signing the word.
       </p>
     ),
-    extra: ExternalButton(
+    extra: ExternalIconButton(
       "https://chrome.google.com/webstore/detail/sign-search/gniinlnnpjdbeleojkghgdccpapkapma"
     ),
     categories: [category.Web],
@@ -129,10 +129,10 @@ const projects = [
       </p>
     ),
     extra: [
-      ExternalButton(
+      ExternalIconButton(
         "https://drive.google.com/file/d/1MvihpuFwkWgEcWhzmDE7TgnBCJccTWgr/view?usp=sharing"
       ),
-      ExternalButton(
+      ExternalIconButton(
         "https://www.instagram.com/ar/651996575775549/?ch=ZTU0MjBmNjQwYTNjNDJkM2QzNWRkYjk2Mzc2M2U3NGQ%3D"
       ),
     ],
@@ -150,7 +150,9 @@ const projects = [
         engine I made in 2019 (see below). (Work in progress)
       </p>
     ),
-    extra: ExternalButton("https://cards-against-cornellians.herokuapp.com/"),
+    extra: ExternalIconButton(
+      "https://cards-against-cornellians.herokuapp.com/"
+    ),
     categories: [category.Web],
     centerImage: false,
   },
@@ -168,7 +170,7 @@ const projects = [
         back, and drink when you hear the alarm.
       </p>
     ),
-    extra: ExternalButton("https://ourpowerhour.netlify.app/"),
+    extra: ExternalIconButton("https://ourpowerhour.netlify.app/"),
     categories: [category.Web],
   },
   {
@@ -185,7 +187,7 @@ const projects = [
         made things easier.
       </p>
     ),
-    extra: ExternalButton("http://howmanyhollabackgirls.com"),
+    extra: ExternalIconButton("http://howmanyhollabackgirls.com"),
     categories: [category.Web],
   },
   {
@@ -207,7 +209,7 @@ const projects = [
         progress)
       </p>
     ),
-    extra: ExternalButton("https://spotify-vibe-check.herokuapp.com/"),
+    extra: ExternalIconButton("https://spotify-vibe-check.herokuapp.com/"),
     categories: [category.Web],
     centerImage: false,
   },
@@ -217,7 +219,9 @@ const projects = [
     tools: ["D3", "Topojson", "Javascript", "HTML/CSS"],
     image: "langViz.png",
     link: "https://github.com/lucia-gomez/project2-3300-repl",
-    extra: ExternalButton("https://lucia-gomez.github.io/project2-3300-repl/"),
+    extra: ExternalIconButton(
+      "https://lucia-gomez.github.io/project2-3300-repl/"
+    ),
     text: (
       <p>
         Interactive data visualization using D3 and Topojson for an{" "}
@@ -263,7 +267,9 @@ const projects = [
         an excuse to play with Isomer JS.
       </p>
     ),
-    extra: ExternalButton("https://lucia-gomez.github.io/isometric-cornell/"),
+    extra: ExternalIconButton(
+      "https://lucia-gomez.github.io/isometric-cornell/"
+    ),
     categories: [category.Web],
   },
   {
@@ -272,7 +278,7 @@ const projects = [
     tools: ["D3", "Python", "Javascript", "HTML/CSS"],
     image: "vaxGraph.png",
     link: "https://github.com/lucia-gomez/3300-project-1",
-    extra: ExternalButton("https://lucia-gomez.github.io/3300-project-1/"),
+    extra: ExternalIconButton("https://lucia-gomez.github.io/3300-project-1/"),
     text: (
       <p>
         Static data visualizations using D3 for a{" "}
@@ -290,7 +296,7 @@ const projects = [
     date: "Sept-Dec 2020",
     tools: ["Figma"],
     image: "cliquebite.png",
-    extra: ExternalButton(
+    extra: ExternalIconButton(
       "https://www.figma.com/proto/pEJBpCmDtQ7fQg1QBUJFZs/CliqueBite?node-id=170%3A2&scaling=scale-down"
     ),
     text: (
@@ -316,7 +322,7 @@ const projects = [
         with <Link href="http://levareorg.com/">Levare</Link>.
       </p>
     ),
-    extra: ExternalButton("http://welcomepreemie.com"),
+    extra: ExternalIconButton("http://welcomepreemie.com"),
     categories: [category.Web],
   },
   {
@@ -347,10 +353,10 @@ const projects = [
       </p>
     ),
     extra: [
-      ExternalButton(
+      ExternalIconButton(
         "https://public.tableau.com/profile/lucia.gomez#!/vizhome/BubbleTeaBobaWordChoice/Sheet1"
       ),
-      ExternalButton(
+      ExternalIconButton(
         "https://public.tableau.com/profile/lucia.gomez#!/vizhome/BubbleTeaBobaWordChoice/Heatmaps"
       ),
     ],

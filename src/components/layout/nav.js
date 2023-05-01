@@ -1,6 +1,7 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa"
 import { Link, useLocation } from "react-router-dom"
 
+import { Button } from "../button"
 import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 import React from "react"
@@ -47,16 +48,11 @@ const NavLink = styled(Link).attrs(_ => ({
   }
 `
 
-const LogoutButton = styled.a.attrs(_ => ({
-  className: "btn",
-}))`
+const LogoutButton = styled(Button)`
   background-color: ${props => hexToRGB(props.theme.medium, 0.5)};
-  color: ${props => props.theme.text};
-  transition: background-color 200ms;
 
   :hover {
     background-color: ${props => props.theme.medium};
-    color: ${props => props.theme.text};
   }
 `
 

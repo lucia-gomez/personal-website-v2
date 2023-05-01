@@ -13,6 +13,7 @@ import useMeasure from "react-use-measure"
 const ButtonRow = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   margin: 12px 0px;
 
   button {

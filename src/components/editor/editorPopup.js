@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 
 import Editor from "./editor"
+import { IconButton } from "../iconButton"
 import Modal from "react-bootstrap/Modal"
 import ModalWrapper from "../modalPopup"
 import styled from "styled-components"
@@ -18,26 +19,18 @@ const EditorModal = styled(ModalWrapper)`
   }
 `
 
-const EditButton = styled.i.attrs(_ => ({
-  className: "fas fa-pencil-alt",
-}))`
-  color: ${props => props.theme.accent};
+const EditButton = styled(IconButton)`
   padding-top: 16px;
-  cursor: pointer;
-  font-size: 22px;
-  text-shadow: 0 0 5px ${props => props.theme.bg};
-  transition: color 150ms;
-
-  :hover {
-    color: ${props => props.theme.accentHover};
-  }
 `
 
 export default function EditorPopup({ post }) {
   const [show, setShow] = useState(false)
   return (
     <>
-      <EditButton onClick={() => setShow(true)} />
+      <EditButton
+        className={"fas fa-pencil-alt"}
+        onClick={() => setShow(true)}
+      />
       <EditorModal
         show={show}
         onHide={() => setShow(false)}
