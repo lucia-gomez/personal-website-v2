@@ -52,8 +52,8 @@ const BootstrapButtonStyled = styled(BootstrapButton)`
 export const ButtonLink = props => {
   return (
     <ButtonStyle
-      to={props.to}
-      onClick={props.onClick}
+      to={props.disabled ? "#" : props.to}
+      onClick={props.disabled ? () => {} : props.onClick}
       target={props.sameTab ? null : "_blank"}
       rel={props.sameTab ? null : "noopener noreferrer"}
       role="button"

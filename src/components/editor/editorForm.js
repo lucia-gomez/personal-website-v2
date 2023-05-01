@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import Row from "react-bootstrap/Row"
 import { Toggle } from "../layout/subsection"
+import getButtons from "./editorActions"
 import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
 import useMeasure from "react-use-measure"
@@ -49,7 +50,7 @@ const Collapsible = styled(animated.div)`
 `
 
 export default function EditorForm(props) {
-  const { buttons, content, post } = props
+  const { actions, content, isDraft, isNew, post } = props
   const [isExpanded, setExpanded] = useState(false)
   const [ref, bounds] = useMeasure()
   const contentAnimatedStyle = useSpring({
@@ -134,8 +135,15 @@ export default function EditorForm(props) {
     </Form>
   )
 
-  const formButtons = () =>
-    buttons(title, slug, date, imageUrl, summary, content)
+  const payload = {
+    title: title,
+    slug: slug,
+    date: date,
+    imageUrl: imageUrl,
+    summary: summary,
+    content: content,
+    id: post?.id,
+  }
 
   return (
     <div>
@@ -149,7 +157,7 @@ export default function EditorForm(props) {
           {formMobile}
         </FormWrapper>
       </Collapsible>
-      <ButtonRow>{formButtons()}</ButtonRow>
+      <ButtonRow>{getButtons(payload, isDraft, isNew, actions)}</ButtonRow>
     </div>
   )
 }

@@ -36,6 +36,8 @@ export default function Editor(props) {
   useEffect(() => {
     if (post !== undefined) {
       setEditorContent(post.content)
+    } else {
+      setEditorContent("")
     }
   }, [post])
 
