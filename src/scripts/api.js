@@ -61,7 +61,7 @@ export const DraftApi = {
       slug: payload.slug,
       imageUrl: payload.imageUrl,
     }),
-  closeDraft: payload =>
+  updateDraft: payload =>
     Axios.post(`${getApiUrl()}/api/draft/update`, {
       id: payload.id,
       title: payload.title,

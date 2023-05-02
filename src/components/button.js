@@ -82,6 +82,7 @@ export const Button = props => {
       onClick={props.onClick}
       disabled={props.disabled}
       className={props.className}
+      id={props.id}
     >
       <ButtonContent>
         <p>{props.children}</p>

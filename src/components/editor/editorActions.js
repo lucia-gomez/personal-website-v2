@@ -36,21 +36,24 @@ const PublishDraftButton = payload => (
   </ButtonLinkAsync>
 )
 
-const SaveDraftButton = (payload, setOpenDraft) => (
+const CreateDraftButton = (payload, setOpenDraft) => (
   <Button
     onClick={() =>
-      DraftApi.createDraft(payload).then(_ => setOpenDraft(payload))
+      DraftApi.createDraft(payload).then(result =>
+        setOpenDraft({ ...payload, id: result.data.insertId })
+      )
     }
     disabled={isButtonValid(payload)}
+    id="editor-create-draft"
     key={2}
   >
-    Save as Draft
+    Create Draft
   </Button>
 )
 
 const CloseDraftButton = (payload, setOpenDraft) => {
   const onClick = () =>
-    DraftApi.closeDraft(payload).then(setOpenDraft(undefined))
+    DraftApi.updateDraft(payload).then(setOpenDraft(undefined))
   return (
     <Button onClick={onClick} disabled={isButtonValid(payload)} key={3}>
       Close Draft
@@ -94,7 +97,7 @@ export default function getButtons(payload, isDraft, isNew, actions) {
   } else if (isNew) {
     return [
       PublishPostButton(payload),
-      SaveDraftButton(payload, actions.setOpenDraft),
+      CreateDraftButton(payload, actions.setOpenDraft),
     ]
   } else {
     return [

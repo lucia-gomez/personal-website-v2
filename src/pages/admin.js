@@ -55,7 +55,7 @@ export default function BlogAdmin() {
         post={openDraft}
         isDraft={openDraft != null}
         isNew={true}
-        actions={{ setOpenDraft: setOpenDraft }}
+        actions={{ setOpenDraft, setDrafts }}
       />
       {drafts.length === 0 ? null : (
         <DraftSection>
