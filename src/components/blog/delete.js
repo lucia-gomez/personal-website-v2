@@ -1,24 +1,40 @@
-import Axios from "axios"
-import React from "react"
-import { getApiUrl } from "../../scripts/util"
-import styled from "styled-components"
+import { DraftApi, PostApi } from "../../scripts/api"
 
-const Trash = styled.i.attrs(_ => ({
-  className: "fas fa-trash",
-}))`
-  color: ${props => props.theme.text};
-  cursor: pointer;
-  text-shadow: 0px 0px 14px black;
-  font-size: 20px;
-`
+import { IconButton } from "../iconButton"
+import { useHistory } from "react-router-dom"
 
-const Delete = ({ postID, callback, draft, className }) => {
-  const handleClick = () => {
-    Axios.delete(`${getApiUrl()}/api/${draft ? "draft" : "delete"}/${postID}`)
+const Delete = props => {
+  const history = useHistory()
+  const { postID, callback, draft, className } = props
+
+  const handleDelete = async () => {
+    if (draft) {
+      await DraftApi.deleteDraft(postID)
+    } else {
+      await PostApi.deletePost(postID)
+    }
     if (callback !== undefined) callback(postID)
+    history.push({
+      pathname: draft ? "/admin" : "/blog",
+      key: Math.random(),
+      state: {
+        applied: true,
+      },
+    })
   }
 
-  return <Trash onClick={handleClick} className={className} />
+  const handleClick = () => {
+    const result = window.confirm(
+      `Are you sure you want to delete this ${draft ? "draft" : "post"}?`
+    )
+    if (result) {
+      handleDelete()
+    }
+  }
+
+  return (
+    <IconButton onClick={handleClick} className={className + " fas fa-trash"} />
+  )
 }
 
 export default Delete

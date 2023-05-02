@@ -1,6 +1,7 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa"
 import { Link, useLocation } from "react-router-dom"
 
+import { Button } from "../button"
 import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 import React from "react"
@@ -47,16 +48,11 @@ const NavLink = styled(Link).attrs(_ => ({
   }
 `
 
-const LogoutButton = styled.a.attrs(_ => ({
-  className: "btn",
-}))`
+const LogoutButton = styled(Button)`
   background-color: ${props => hexToRGB(props.theme.medium, 0.5)};
-  color: ${props => props.theme.text};
-  transition: background-color 200ms;
 
   :hover {
     background-color: ${props => props.theme.medium};
-    color: ${props => props.theme.text};
   }
 `
 
@@ -107,17 +103,24 @@ const CustomNav = () => {
     >
       <Navbar.Toggle aria-controls="navbarCollapse" />
       <Navbar.Collapse id="navbarCollapse">
-        {sections.map((section, key) => (
-          <NavLink
-            onClick={collapseNav}
-            selected={pathname === section.link}
-            to={section.link}
-            target={section.target ?? null}
-            key={key}
-          >
-            {section.name}
-          </NavLink>
-        ))}
+        {sections.map((section, key) => {
+          let idxSecondSlash = pathname.indexOf("/", 1)
+          let activePath = pathname.substring(
+            pathname.indexOf("/"),
+            idxSecondSlash === -1 ? pathname.length : idxSecondSlash
+          )
+          return (
+            <NavLink
+              onClick={collapseNav}
+              selected={activePath === section.link}
+              to={section.link}
+              target={section.target ?? null}
+              key={key}
+            >
+              {section.name}
+            </NavLink>
+          )
+        })}
         <IconsNav>
           {icons.map((icon, key) => (
             <NavLink

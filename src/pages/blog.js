@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react"
 
-import Axios from "axios"
 import BlogLoading from "../components/blog/blogLoading"
 import BlogPostLink from "../components/blog/blogPostItem"
 import HorizontalScroller from "../components/horizontalScroller"
+import { PostApi } from "../scripts/api"
 import SearchBar from "../components/searchBar"
 import SectionTitle from "../components/sectionTitle"
 import filterPost from "../scripts/searchBlog"
-import { getApiUrl } from "../scripts/util"
 import styled from "styled-components"
+import { useLocation } from "react-router-dom"
 
 const Wrapper = styled.div`
   padding: 65px 20px 50px 20px;
@@ -50,6 +50,7 @@ const BlogPostWrapper = styled.div.attrs(_ => ({
 `
 
 export default function BlogHomePage() {
+  const location = useLocation()
   const [posts, setPosts] = useState([])
   const [searchResults, setSearchResults] = useState(posts)
   const [loading, setLoading] = useState(true)
@@ -63,13 +64,13 @@ export default function BlogHomePage() {
 
   useEffect(() => {
     setLoading(true)
-    Axios.get(getApiUrl() + "/api/get").then(res => {
+    PostApi.getAllPosts().then(res => {
       const d = sortByDisplayDate(res.data)
       setPosts(d)
       setSearchResults(d)
       setLoading(false)
     })
-  }, [])
+  }, [location.key])
 
   const searchPosts = keywords => {
     if (keywords.length === 0) {

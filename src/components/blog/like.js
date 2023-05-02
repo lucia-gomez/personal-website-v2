@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 
-import Axios from "axios"
-import { getApiUrl } from "../../scripts/util"
+import { LikeApi } from "../../scripts/api"
 import styled from "styled-components"
 
 const Row = styled.div`
@@ -29,9 +28,9 @@ const Like = ({ postID, count }) => {
   const handleClick = () => {
     if (postID == null) return
     if (!isLiked) {
-      Axios.post(getApiUrl() + "/api/like", { id: postID })
+      LikeApi.like(postID)
     } else {
-      Axios.post(getApiUrl() + "/api/unlike", { id: postID })
+      LikeApi.unlike(postID)
     }
     setLiked(!isLiked)
   }

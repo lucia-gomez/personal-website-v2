@@ -5,12 +5,15 @@ import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import Row from "react-bootstrap/Row"
 import { Toggle } from "../layout/subsection"
+import getButtons from "./editorActions"
+import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
 import useMeasure from "react-use-measure"
 
 const ButtonRow = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   margin: 12px 0px;
 
   button {
@@ -35,13 +38,21 @@ const FormToggle = styled.div`
   }
 `
 
+const FormWrapper = styled.div`
+  .form-control {
+    background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
+    color: ${props => props.theme.text};
+    border: 1px solid ${props => props.theme.text};
+  }
+`
+
 const Collapsible = styled(animated.div)`
   overflow: hidden;
 `
 
 export default function EditorForm(props) {
-  const { buttons, content, post } = props
-  const [isExpanded, setExpanded] = useState(false)
+  const { actions, content, isDraft, isNew, post } = props
+  const [isExpanded, setExpanded] = useState(isNew)
   const [ref, bounds] = useMeasure()
   const contentAnimatedStyle = useSpring({
     height: isExpanded ? bounds.height : 0,
@@ -125,22 +136,29 @@ export default function EditorForm(props) {
     </Form>
   )
 
-  const formButtons = () =>
-    buttons(title, slug, date, imageUrl, summary, content)
+  const payload = {
+    title: title,
+    slug: slug,
+    date: date,
+    imageUrl: imageUrl,
+    summary: summary,
+    content: content,
+    id: post?.id,
+  }
 
   return (
-    <>
+    <div>
       <FormToggle onClick={() => setExpanded(!isExpanded)} {...{ isExpanded }}>
         <p>{isExpanded ? "Hide Form" : "Show Form"}</p>
         <Toggle isOpen={isExpanded} />
       </FormToggle>
       <Collapsible style={contentAnimatedStyle}>
-        <div ref={ref}>
+        <FormWrapper ref={ref}>
           {formDesktop}
           {formMobile}
-        </div>
+        </FormWrapper>
       </Collapsible>
-      <ButtonRow>{formButtons()}</ButtonRow>
-    </>
+      <ButtonRow>{getButtons(payload, isDraft, isNew, actions)}</ButtonRow>
+    </div>
   )
 }
