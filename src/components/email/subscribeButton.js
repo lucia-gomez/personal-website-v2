@@ -10,14 +10,14 @@ export default function SubscribeButton(props) {
       <Button
         className="pas-button"
         onClick={() => {
-          setShowModal(true)
-          // window.parent.postMessage(
-          //   {
-          //     eventId: "openWidgetModal",
-          //     widgetId: "0r72l",
-          //   },
-          //   "*"
-          // )
+          // setShowModal(true)
+          window.parent.postMessage(
+            {
+              eventId: "openWidgetModal",
+              widgetId: "0r72l",
+            },
+            "*"
+          )
         }}
       >
         Subscribe
