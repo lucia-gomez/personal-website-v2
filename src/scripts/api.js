@@ -76,8 +76,15 @@ export const DraftApi = {
 
 export const LikeApi = {
   reset: id => {
-    Axios.post(`${getApiUrl()}/api/likes/reset`, { id: id })
+    Axios.post(`${getApiUrl()}/api/likes/reset`, { id })
   },
-  like: id => Axios.post(getApiUrl() + "/api/like", { id: id }),
-  unlike: id => Axios.post(getApiUrl() + "/api/unlike", { id: id }),
+  like: id => Axios.post(getApiUrl() + "/api/like", { id }),
+  unlike: id => Axios.post(getApiUrl() + "/api/unlike", { id }),
+}
+
+export const EmailApi = {
+  sendTest: () => Axios.post(`${getApiUrl()}/api/email/test`),
+  subscribe: email =>
+    Axios.post(`${getApiUrl()}/api/email/subscribe`, { email }),
+  getNumSubscribers: () => Axios.get(`${getApiUrl()}/api/email/subscribers`),
 }

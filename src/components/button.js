@@ -78,12 +78,7 @@ export const ButtonLink = props => (
 
 export const Button = props => {
   return (
-    <BootstrapButtonStyled
-      onClick={props.onClick}
-      disabled={props.disabled}
-      className={props.className}
-      id={props.id}
-    >
+    <BootstrapButtonStyled {...props}>
       <ButtonContent>
         <p>{props.children}</p>
       </ButtonContent>

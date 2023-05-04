@@ -15,10 +15,11 @@ const Wrapper = styled.div`
   margin: 0px 20px;
 
   @media only screen and (max-width: 768px) {
-    height: 290px;
+    background-color: ${props => hexToRGB(props.theme.medium, 0.4)};
+    height: 300px;
     position: relative;
     top: 0px;
-    width: 100%;
+    width: 95%;
     margin: 20px auto;
   }
 `
@@ -27,10 +28,6 @@ const SidebarContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  @media screen and (max-width: 768px) {
-    padding-top: 20px;
-  }
 `
 
 const ProfilePicWrapper = styled.div`

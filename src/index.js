@@ -3,11 +3,13 @@ import "./style/index.css"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 
 import About from "./pages/about"
+import Admin from "./pages/admin"
+import AdminBlog from "./pages/adminBlog"
+import AdminEmail from "./pages/adminEmail"
 import App from "./App"
 import ArchivePage from "./pages/archive"
 import ArtPage from "./pages/art"
 import Auth0ProviderWithHistory from "./components/layout/auth0-provider-with-history"
-import BlogAdmin from "./pages/admin"
 import BlogHomePage from "./pages/blog"
 import BlogPostPage from "./pages/blogPost"
 import Error404 from "./pages/404"
@@ -57,7 +59,9 @@ ReactDOM.render(
             <Route exact path="/blog/:slug">
               <BlogPostPage />
             </Route>
-            <ProtectedRoute path="/admin" component={BlogAdmin} />
+            <ProtectedRoute exact path="/admin" component={Admin} />
+            <ProtectedRoute exact path="/admin/blog" component={AdminBlog} />
+            <ProtectedRoute exact path="/admin/email" component={AdminEmail} />
             <Route exact path="/art">
               <ArtPage />
             </Route>
