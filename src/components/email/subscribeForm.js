@@ -3,14 +3,73 @@ import { useEffect, useState } from "react"
 import { Button } from "../button"
 import { EmailApi } from "../../scripts/api"
 import Form from "react-bootstrap/Form"
+import SectionTitle from "../sectionTitle"
+import { Spinner } from "react-bootstrap"
+import SubscribeFailed from "./subscribeFailed"
+import SubscribeSuccess from "./subscribeSuccess"
+import { hexToRGB } from "../../style/theme"
+import styled from "styled-components"
 
-export default function SubscribeForm({ setSuccess }) {
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  @media screen and (min-width: 840px) {
+    width: 600px;
+  }
+
+  h2 {
+    padding-bottom: 40px;
+    text-align: center;
+  }
+
+  input {
+    background-color: ${props => hexToRGB(props.theme.medium, 0.4)};
+    color: ${props => props.theme.text};
+    border-radius: 8px;
+    border: 2px solid
+      ${props =>
+        props.isActive ? props.theme.accentHover : props.theme.accent};
+    padding: 5px 10px 5px 10px;
+
+    :focus-visible {
+      outline: none;
+      border: 2px solid ${props => props.theme.accentHover};
+      box-shadow: none;
+      background-color: ${props => hexToRGB(props.theme.medium, 0.4)};
+      color: ${props => props.theme.text};
+    }
+  }
+
+  .custom-checkbox input {
+    accent-color: ${props => props.theme.accent};
+    transform: scale(1.1);
+  }
+`
+
+export default function SubscribeForm() {
+  const [success, setSuccess] = useState(null)
   const [validated, setValidated] = useState(false)
   const [email, setEmail] = useState()
 
   useEffect(() => {
     setValidated(false)
+    setSuccess(null)
   }, [])
+
+  const subscribeResult = () => {
+    if (success === "LOADING") {
+      return <Spinner />
+    } else if (success === "SUCCESS") {
+      return <SubscribeSuccess />
+    } else if (success === "FAILED") {
+      return <SubscribeFailed />
+    }
+  }
 
   const handleSubmit = event => {
     const form = event.currentTarget
@@ -33,58 +92,49 @@ export default function SubscribeForm({ setSuccess }) {
   }
 
   return (
-    <>
-      <h3>Sign up for my newsletter</h3>
-      <Form noValidate validated={validated} onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            onChange={e => setEmail(e.target.value)}
-            value={email}
-            type="email"
-            required
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Check
-            required
-            label="I agree to receive emails, with the understanding that I may easily opt-out of these communications at any time after signing up."
-            feedback="You must agree before submitting."
-          />
-        </Form.Group>
-        <Button type="submit">Sign Up</Button>
-      </Form>
-    </>
+    <Wrapper>
+      {success == null ? (
+        <>
+          <SectionTitle>Sign up for my newsletter</SectionTitle>
+          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <Form.Group>
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                onChange={e => setEmail(e.target.value)}
+                value={email}
+                type="email"
+                required
+              />
+            </Form.Group>
+            {/* <Form.Check
+              type="checkbox"
+              required
+              feedback="You must agree before submitting."
+              feedbackType="invalid"
+            >
+              <Form.Check.Input type="checkbox" />
+              <Form.Check.Label>
+                I agree to receive emails, with the understanding that I may
+                easily opt-out at any time after signing up.
+              </Form.Check.Label>
+            </Form.Check> */}
+            <Form.Group>
+              <Form.Check
+                required
+                label="I agree to receive emails, with the understanding that I may easily opt-out at any time after signing up."
+                feedback="You must agree before submitting."
+                feedbackType="invalid"
+                className="custom-checkbox"
+              />
+            </Form.Group>
+            <div style={{ textAlign: "center" }}>
+              <Button type="submit">Sign Up</Button>
+            </div>
+          </Form>
+        </>
+      ) : (
+        subscribeResult()
+      )}
+    </Wrapper>
   )
 }
-
-// postData('https://0r72l.mjt.lu/wgt/0r72l/zgu/subscribe?c=2ce8ce67', data)
-//         .then((response) => {
-//                 if(!response.ok) {
-//                     throw new Error('Server response is not ok.');
-//                 } else if (successDiv && formElement[0]) {
-//                 formElement[0].style.display = 'none';
-//                 successDiv.style.display = null;
-//               }
-//         }).catch(() => {
-//           if (errorDiv && formElement[0]) {
-//             formElement[0].style.display = 'none';
-//             errorDiv.style.display = null;
-//           }
-//         }).finally(() => {
-//           // Unlock button, hide loader and show text
-//           submitButton.removeAttribute('disabled');
-//           hideLoader();
-//         });
-//     };
-
-// async function postData(url = "", data = {}) {
-//   return fetch(url, {
-//     method: "POST",
-//     mode: "cors",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(data),
-//   })
-// }
