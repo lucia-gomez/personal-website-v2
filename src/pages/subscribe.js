@@ -1,4 +1,3 @@
-import SectionTitle from "../components/sectionTitle"
 import SubscribeForm from "../components/email/subscribeForm"
 import styled from "styled-components"
 
@@ -11,13 +10,13 @@ const Wrapper = styled.div`
   padding: 0 20px;
 `
 
-const MailjetForm = styled.iframe`
-  width: 100%;
+// const MailjetForm = styled.iframe`
+//   width: 100%;
 
-  @media screen and (min-width: 840px) {
-    width: 600px;
-  }
-`
+//   @media screen and (min-width: 840px) {
+//     width: 600px;
+//   }
+// `
 
 function setIFrameStyles() {
   const iframe = document.getElementById("successMessageDiv"[0])
