@@ -12,12 +12,14 @@ import ArtPage from "./pages/art"
 import Auth0ProviderWithHistory from "./components/layout/auth0-provider-with-history"
 import BlogHomePage from "./pages/blog"
 import BlogPostPage from "./pages/blogPost"
+import ConfirmationPage from "./pages/confirmation"
 import Error404 from "./pages/404"
 import Layout from "./components/layout/layout"
 import ProtectedRoute from "./components/layout/protectedRoute"
 import React from "react"
 import ReactDOM from "react-dom"
 import ScrollToTop from "./ScrollToTop"
+import SubscribePage from "./pages/subscribe"
 import ToadARPage from "./pages/projects/toadAR"
 import ZinePage from "./pages/zine"
 
@@ -70,6 +72,12 @@ ReactDOM.render(
             </Route>
             <Route path="/art/:slug">
               <ArtPage />
+            </Route>
+            <Route exact path="/confirmation">
+              <ConfirmationPage />
+            </Route>
+            <Route exact path="/subscribe">
+              <SubscribePage />
             </Route>
             <Route path="/toad-ar">
               <ToadARPage />
