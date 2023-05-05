@@ -20,10 +20,12 @@ const Wrapper = styled.div`
 
   @media screen and (min-width: 840px) {
     width: 600px;
+    h2 {
+      padding-bottom: 40px;
+    }
   }
 
   h2 {
-    padding-bottom: 40px;
     text-align: center;
   }
 
@@ -106,18 +108,6 @@ export default function SubscribeForm() {
                 required
               />
             </Form.Group>
-            {/* <Form.Check
-              type="checkbox"
-              required
-              feedback="You must agree before submitting."
-              feedbackType="invalid"
-            >
-              <Form.Check.Input type="checkbox" />
-              <Form.Check.Label>
-                I agree to receive emails, with the understanding that I may
-                easily opt-out at any time after signing up.
-              </Form.Check.Label>
-            </Form.Check> */}
             <Form.Group>
               <Form.Check
                 required
