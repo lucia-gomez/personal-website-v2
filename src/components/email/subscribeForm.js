@@ -113,7 +113,6 @@ export default function SubscribeForm() {
                 required
                 label="I agree to receive emails, with the understanding that I may easily opt-out at any time after signing up."
                 feedback="You must agree before submitting."
-                feedbackType="invalid"
                 className="custom-checkbox"
               />
             </Form.Group>

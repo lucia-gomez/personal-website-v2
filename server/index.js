@@ -4,6 +4,7 @@ const bodyParser = require("body-parser")
 const cors = require("cors")
 const dotenv = require("dotenv")
 const Mailjet = require("node-mailjet")
+const { fillTemplate } = require("./emailTemplate")
 
 dotenv.config()
 const app = express()
@@ -209,10 +210,6 @@ const mailjet = Mailjet.connect(
   process.env.MJ_APIKEY_PUBLIC,
   process.env.MJ_APIKEY_PRIVATE
 )
-// const mailjet = Mailjet.apiConnect(
-//   process.env.MJ_APIKEY_PUBLIC,
-//   process.env.MJ_APIKEY_PRIVATE
-// )
 
 app.post("/api/email/test", (req, res) => {
   const mailjetRequest = mailjet.post("send", { version: "v3.1" }).request({
@@ -260,11 +257,102 @@ app.post("/api/email/subscribe", (req, res) => {
     })
 })
 
+app.post("/api/email/sendTestCampaign", (req, res) => {
+  const subject = req.body.subject
+  const content = req.body.content
+  const draftRequest = mailjet.post("campaigndraft").request({
+    Locale: "en_US",
+    Sender: "Lucia Gomez",
+    SenderEmail: "lucia@lucia-gomez.dev",
+    Subject: subject,
+    ContactsListID: 10308539,
+  })
+  draftRequest
+    .then(async result => {
+      let draftId = result.body.Data[0].ID
+      console.log(draftId)
+
+      await mailjet
+        .post("campaigndraft", { version: "v3" })
+        .id(draftId)
+        .action("detailcontent")
+        .request({
+          Headers: "object",
+          "Html-part": fillTemplate(subject, content),
+          "Text-part": fillTemplate(subject, content),
+        })
+        .then(updateResult => console.log(updateResult.body))
+        .catch(err => console.error(err))
+
+      const sendTestRequest = mailjet
+        .post("campaigndraft", { version: "v3" })
+        .id(draftId)
+        .action("test")
+        .request({
+          Recipients: [
+            {
+              Email: "8thinmint@gmail.com",
+            },
+          ],
+        })
+      sendTestRequest
+        .then(sendResult => {
+          console.log(sendResult.body)
+          res.send(result.body)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    })
+    .catch(err => console.error(err))
+})
+
+app.post("/api/email/sendCampaign", (req, res) => {
+  const subject = req.body.subject
+  const content = req.body.content
+  const draftRequest = mailjet.post("campaigndraft").request({
+    Locale: "en_US",
+    Sender: "Lucia Gomez",
+    SenderEmail: "lucia@lucia-gomez.dev",
+    Subject: subject,
+    ContactsListID: 10308539,
+  })
+  draftRequest
+    .then(async result => {
+      let draftId = result.body.Data[0].ID
+      await mailjet
+        .post("campaigndraft", { version: "v3" })
+        .id(draftId)
+        .action("detailcontent")
+        .request({
+          Headers: "object",
+          "Html-part": fillTemplate(subject, content),
+          "Text-part": fillTemplate(subject, content),
+        })
+        .then(updateResult => console.log(updateResult.body))
+        .catch(err => console.error(err))
+
+      const sendTestRequest = mailjet
+        .post("campaigndraft", { version: "v3" })
+        .id(draftId)
+        .action("send")
+        .request()
+      sendTestRequest
+        .then(sendResult => {
+          console.log(sendResult.body)
+          res.send(result.body)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    })
+    .catch(err => console.error(err))
+})
+
 app.get("/api/email/subscribers", (req, res) => {
   const mailjetRequest = mailjet
     .get("contactslist", {
       version: "v3",
-      // proxyUrl: "https://peaceful-stream-10554.herokuapp.com",
     })
     .id(10308929)
     .request()

@@ -84,6 +84,16 @@ export const LikeApi = {
 
 export const EmailApi = {
   sendTest: () => Axios.post(`${getApiUrl()}/api/email/test`),
+  sendTestCampaign: (subject, content) =>
+    Axios.post(`${getApiUrl()}/api/email/sendTestCampaign`, {
+      subject,
+      content,
+    }),
+  sendCampaign: (subject, content) =>
+    Axios.post(`${getApiUrl()}/api/email/sendCampaign`, {
+      subject,
+      content,
+    }),
   subscribe: email =>
     Axios.post(`${getApiUrl()}/api/email/subscribe`, { email }),
   getNumSubscribers: () => Axios.get(`${getApiUrl()}/api/email/subscribers`),
