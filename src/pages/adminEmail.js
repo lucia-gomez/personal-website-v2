@@ -5,6 +5,7 @@ import { EmailApi } from "../scripts/api"
 import Form from "react-bootstrap/Form"
 import MdEditor from "react-markdown-editor-lite"
 import SubscribeButton from "../components/email/subscribeButton"
+import SubscriberList from "../components/email/subscriberList"
 import Toast from "../components/toast"
 import { marked } from "marked"
 import styled from "styled-components"
@@ -36,7 +37,8 @@ const EditorWrapper = styled.div`
 `
 
 export default function AdminEmail() {
-  const [numSubscribers, setNumSubscribers] = useState("--")
+  const [testSubscribers, setTestSubscribers] = useState(null)
+  const [subscribers, setSubscribers] = useState(null)
   const [editorContent, setEditorContent] = useState()
   const [subject, setSubject] = useState("")
   const [showToast, setShowToast] = useState(false)
@@ -48,17 +50,18 @@ export default function AdminEmail() {
     editorContent == null ||
     editorContent.trim().length === 0
 
-  const fetchNumSubscribers = useCallback(
-    () =>
-      EmailApi.getNumSubscribers().then(result => {
-        setNumSubscribers(result.data)
+  const fetchSubscribers = useCallback(
+    (tableName, setter) =>
+      EmailApi.getSubscribers(tableName).then(result => {
+        setter(result.data)
       }),
-    [setNumSubscribers]
+    []
   )
 
   useEffect(() => {
-    fetchNumSubscribers()
-  }, [fetchNumSubscribers])
+    fetchSubscribers("subscriberstest", setTestSubscribers)
+    fetchSubscribers("subscribers", setSubscribers)
+  }, [fetchSubscribers])
 
   const sendTest = () =>
     EmailApi.sendTest(subject, marked.parse(editorContent)).then(_ => {
@@ -82,12 +85,6 @@ export default function AdminEmail() {
 
   return (
     <AdminWrapper>
-      <p
-        onClick={fetchNumSubscribers}
-        style={{ cursor: "pointer", width: "fit-content" }}
-      >
-        Subscribers: {numSubscribers}
-      </p>
       <Buttons>
         <SubscribeButton />
         <Button onClick={sendTest} disabled={disableSend()}>
@@ -112,6 +109,18 @@ export default function AdminEmail() {
           onChange={({ _, text }) => setEditorContent(text)}
         />
       </EditorWrapper>
+
+      <SubscriberList
+        label="Subscribers"
+        data={subscribers}
+        refresh={() => fetchSubscribers("subscribers", setSubscribers)}
+      />
+      <SubscriberList
+        label="Subscribers - Test"
+        data={testSubscribers}
+        refresh={() => fetchSubscribers("subscriberstest", setTestSubscribers)}
+      />
+
       <Toast show={showToast} onClose={() => setShowToast(false)}>
         {toastMsg}
       </Toast>
