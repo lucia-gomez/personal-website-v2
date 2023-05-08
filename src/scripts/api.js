@@ -83,8 +83,15 @@ export const LikeApi = {
 }
 
 export const EmailApi = {
-  sendTest: () => Axios.post(`${getApiUrl()}/api/email/test`),
-  subscribe: email =>
-    Axios.post(`${getApiUrl()}/api/email/subscribe`, { email }),
-  getNumSubscribers: () => Axios.get(`${getApiUrl()}/api/email/subscribers`),
+  confirm: email => Axios.post(`${getApiUrl()}/api/email/confirm`, { email }),
+  getNumSubscribers: () =>
+    Axios.get(`${getApiUrl()}/api/email/subscriberCount`),
+  send: (subject, content) =>
+    Axios.post(`${getApiUrl()}/api/email/send`, { subject, content }),
+  sendTest: (subject, content) =>
+    Axios.post(`${getApiUrl()}/api/email/sendTest`, { subject, content }),
+  subscribe: emailHash =>
+    Axios.post(`${getApiUrl()}/api/email/subscribe/${emailHash}`),
+  unsubscribe: emailHash =>
+    Axios.delete(`${getApiUrl()}/api/email/unsubscribe/${emailHash}`),
 }

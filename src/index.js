@@ -21,6 +21,7 @@ import ReactDOM from "react-dom"
 import ScrollToTop from "./ScrollToTop"
 import SubscribePage from "./pages/subscribe"
 import ToadARPage from "./pages/projects/toadAR"
+import UnsubscribePage from "./pages/unsubscribe"
 import ZinePage from "./pages/zine"
 
 const _ = require("lodash")
@@ -73,11 +74,14 @@ ReactDOM.render(
             <Route path="/art/:slug">
               <ArtPage />
             </Route>
-            <Route exact path="/confirmation">
+            <Route path="/confirmation/:emailHash">
               <ConfirmationPage />
             </Route>
             <Route exact path="/subscribe">
               <SubscribePage />
+            </Route>
+            <Route path="/unsubscribe/:emailHash">
+              <UnsubscribePage />
             </Route>
             <Route path="/toad-ar">
               <ToadARPage />
