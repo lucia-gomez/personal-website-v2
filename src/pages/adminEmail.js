@@ -43,7 +43,7 @@ export default function AdminEmail(props) {
   const fetchNumSubscribers = useCallback(
     () =>
       EmailApi.getNumSubscribers().then(result => {
-        setNumSubscribers(result.data.Data[0].SubscriberCount)
+        setNumSubscribers(result.data)
       }),
     [setNumSubscribers]
   )

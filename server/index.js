@@ -1,10 +1,11 @@
-const express = require("express")
-const mysql = require("mysql")
 const bodyParser = require("body-parser")
 const cors = require("cors")
+const CryptoJS = require("crypto-js")
 const dotenv = require("dotenv")
+const express = require("express")
+const fs = require("fs")
 const Mailjet = require("node-mailjet")
-const { fillTemplate } = require("./emailTemplate")
+const mysql = require("mysql")
 
 dotenv.config()
 const app = express()
@@ -210,8 +211,9 @@ const mailjet = Mailjet.connect(
   process.env.MJ_APIKEY_PUBLIC,
   process.env.MJ_APIKEY_PRIVATE
 )
+const confTemplate = fs.readFileSync("./confirmationTemplate.html", "utf8")
 
-app.post("/api/email/test", (req, res) => {
+app.post("/api/email/test", (_, res) => {
   const mailjetRequest = mailjet.post("send", { version: "v3.1" }).request({
     Messages: [
       {
@@ -233,134 +235,74 @@ app.post("/api/email/test", (req, res) => {
   res.send(mailjetRequest)
 })
 
-app.post("/api/email/subscribe", (req, res) => {
+app.post("/api/email/confirm", (req, res) => {
   const email = req.body.email
-  fetch("https://0r72l.mjt.lu/wgt/0r72l/z96/subscribe?c=149a033f", {
-    method: "POST",
-    mode: "cors",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ Email: email, Fields: [] }),
+  const confLink =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000/confirmation/"
+      : "https://lucia-gomez.dev/confirmation/"
+  const emailHash = CryptoJS.AES.encrypt(email, process.env.ENCRYPT_KEY)
+  const mailjetRequest = mailjet.post("send", { version: "v3.1" }).request({
+    Messages: [
+      {
+        From: {
+          Email: "lucia@lucia-gomez.dev",
+          Name: "Lucia Gomez",
+        },
+        To: [
+          {
+            Email: email,
+          },
+        ],
+        Subject: "Confirm Subscription - lucia-gomez.dev",
+        TemplateLanguage: true,
+        HTMLPart: confTemplate,
+        Variables: {
+          confirmation_link: confLink + emailHash,
+        },
+      },
+    ],
   })
-    .then(result => {
-      if (!result.ok) {
-        res.status(400)
-        res.send("error")
+  res.send(mailjetRequest)
+})
+
+app.post("/api/email/subscribe/:emailHash", (req, res) => {
+  const emailHash = req.params.emailHash
+  const emailBytes = CryptoJS.AES.decrypt(emailHash, process.env.ENCRYPT_KEY)
+  const email = emailBytes.toString(CryptoJS.enc.Utf8)
+  const dateAdded = new Date().toISOString().slice(0, 19).replace("T", " ")
+
+  const sql = "INSERT INTO subscribers (email, dateAdded) VALUES (?, ?);"
+  db.query(sql, [email, dateAdded], (err, result) => {
+    if (err) {
+      if (err.code === "ER_DUP_ENTRY") {
+        res.status(409)
       } else {
-        res.send(result.body)
+        res.status(400)
       }
-    })
-    .catch(err => {
-      console.error(err)
-      res.status(400)
-    })
-})
-
-app.post("/api/email/sendTestCampaign", (req, res) => {
-  const subject = req.body.subject
-  const content = req.body.content
-  const draftRequest = mailjet.post("campaigndraft").request({
-    Locale: "en_US",
-    Sender: "Lucia Gomez",
-    SenderEmail: "lucia@lucia-gomez.dev",
-    Subject: subject,
-    ContactsListID: 10308539,
+    }
+    res.send(result)
   })
-  draftRequest
-    .then(async result => {
-      let draftId = result.body.Data[0].ID
-      console.log(draftId)
-
-      await mailjet
-        .post("campaigndraft", { version: "v3" })
-        .id(draftId)
-        .action("detailcontent")
-        .request({
-          Headers: "object",
-          "Html-part": fillTemplate(subject, content),
-          "Text-part": fillTemplate(subject, content),
-        })
-        .then(updateResult => console.log(updateResult.body))
-        .catch(err => console.error(err))
-
-      const sendTestRequest = mailjet
-        .post("campaigndraft", { version: "v3" })
-        .id(draftId)
-        .action("test")
-        .request({
-          Recipients: [
-            {
-              Email: "8thinmint@gmail.com",
-            },
-          ],
-        })
-      sendTestRequest
-        .then(sendResult => {
-          console.log(sendResult.body)
-          res.send(result.body)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    })
-    .catch(err => console.error(err))
 })
 
-app.post("/api/email/sendCampaign", (req, res) => {
-  const subject = req.body.subject
-  const content = req.body.content
-  const draftRequest = mailjet.post("campaigndraft").request({
-    Locale: "en_US",
-    Sender: "Lucia Gomez",
-    SenderEmail: "lucia@lucia-gomez.dev",
-    Subject: subject,
-    ContactsListID: 10308539,
+app.delete("/api/email/unsubscribe/:emailHash", (req, res) => {
+  const emailHash = req.params.emailHash
+  const emailBytes = CryptoJS.AES.decrypt(emailHash, process.env.ENCRYPT_KEY)
+  const email = emailBytes.toString(CryptoJS.enc.Utf8)
+
+  const sql = "DELETE FROM subscribers WHERE email = ?;"
+  db.query(sql, [email], (err, result) => {
+    if (err) console.error(err)
+    res.send(result)
   })
-  draftRequest
-    .then(async result => {
-      let draftId = result.body.Data[0].ID
-      await mailjet
-        .post("campaigndraft", { version: "v3" })
-        .id(draftId)
-        .action("detailcontent")
-        .request({
-          Headers: "object",
-          "Html-part": fillTemplate(subject, content),
-          "Text-part": fillTemplate(subject, content),
-        })
-        .then(updateResult => console.log(updateResult.body))
-        .catch(err => console.error(err))
-
-      const sendTestRequest = mailjet
-        .post("campaigndraft", { version: "v3" })
-        .id(draftId)
-        .action("send")
-        .request()
-      sendTestRequest
-        .then(sendResult => {
-          console.log(sendResult.body)
-          res.send(result.body)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    })
-    .catch(err => console.error(err))
 })
 
-app.get("/api/email/subscribers", (req, res) => {
-  const mailjetRequest = mailjet
-    .get("contactslist", {
-      version: "v3",
-    })
-    .id(10308929)
-    .request()
-  mailjetRequest
-    .then(result => {
-      res.send(result.body)
-    })
-    .catch(err => console.error(err))
+app.get("/api/email/subscriberCount", (_, res) => {
+  const sql = "SELECT COUNT(*) FROM subscribers;"
+  db.query(sql, (err, result) => {
+    if (err) console.error(err)
+    res.send(JSON.stringify(result[0]["COUNT(*)"]))
+  })
 })
 
 const PORT = 3001

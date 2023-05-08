@@ -73,7 +73,7 @@ ReactDOM.render(
             <Route path="/art/:slug">
               <ArtPage />
             </Route>
-            <Route exact path="/confirmation">
+            <Route path="/confirmation/:emailHash">
               <ConfirmationPage />
             </Route>
             <Route exact path="/subscribe">
