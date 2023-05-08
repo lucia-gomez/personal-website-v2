@@ -39,8 +39,6 @@ export default function SubscriberList(props) {
 
   const formatDate = dateAdded => {
     const date = new Date(dateAdded)
-    console.log(dateAdded, date)
-    date.setUTCHours(date.getUTCHours() - 7)
     return date.toLocaleString()
   }
 

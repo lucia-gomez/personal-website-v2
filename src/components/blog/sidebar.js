@@ -1,4 +1,5 @@
 import Like from "./like"
+import Link from "../link"
 import { gradientWithoutBg } from "../layout/gradient"
 import { hexToRGB } from "../../style/theme"
 import { profilePicUrl } from "../../scripts/util"
@@ -84,59 +85,9 @@ const ShareRow = styled.div`
   font-size: 18px;
 `
 
-const Share = styled.i`
-  color: ${props => props.theme.accent};
-  padding-right: 3px;
-  transition: color 150ms;
-
-  :hover {
-    color: ${props => props.theme.accentHover};
-  }
+const SubscribeIcon = styled.i`
+  padding-right: 4px;
 `
-
-const Tooltip = styled.div`
-  position: relative;
-  display: inline-block;
-
-  span {
-    width: 140px;
-    background-color: ${props => props.theme.accent};
-    color: ${props => props.theme.bg};
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 150%;
-    left: 50%;
-    margin-left: -75px;
-    opacity: 0;
-    transition: opacity 0.3s;
-
-    ::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      margin-left: -5px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: ${props => props.theme.accent} transparent transparent
-        transparent;
-    }
-  }
-`
-
-function copyToClipboard() {
-  const url = window.location.href
-  navigator.clipboard.writeText(url)
-
-  const tooltip = document.getElementById("tooltip")
-  tooltip.style.opacity = 1
-  setTimeout(() => {
-    tooltip.style.opacity = 0
-  }, 1500)
-}
 
 const Sidebar = ({ post, className }) => {
   return (
@@ -151,13 +102,12 @@ const Sidebar = ({ post, className }) => {
       </SidebarContent>
       <Row>
         <Like count={post != null ? post.likes : "--"} postID={post?.id} />
-        <Tooltip>
-          <ShareRow onClick={copyToClipboard}>
-            <Share className="fas fa-link" />
-            Share
-          </ShareRow>
-          <span id="tooltip">Link copied to clipboard</span>
-        </Tooltip>
+        <ShareRow>
+          <Link to="/subscribe" sameTab={true}>
+            <SubscribeIcon className="fas fa-envelope" />
+            Subscribe
+          </Link>
+        </ShareRow>
       </Row>
     </Wrapper>
   )
