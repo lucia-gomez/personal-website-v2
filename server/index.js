@@ -277,7 +277,7 @@ app.post("/api/email/sendTest", (req, res) => {
   const subject = req.body.subject
   const content = req.body.content
 
-  const sqlContacts = "SELECT email FROM subscribersTest;"
+  const sqlContacts = "SELECT email FROM subscriberstest;"
   db.query(sqlContacts, (err, result) => {
     if (err) {
       console.error(err)
