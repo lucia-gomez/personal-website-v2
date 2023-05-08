@@ -9,9 +9,9 @@ const LoadingWrapper = styled.div`
   align-items: center;
 `
 
-export default function BlogLoading() {
+export default function BlogLoading(props) {
   return (
-    <LoadingWrapper>
+    <LoadingWrapper className={props.className}>
       <Spinner />
     </LoadingWrapper>
   )

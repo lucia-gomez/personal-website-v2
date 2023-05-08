@@ -80,7 +80,7 @@ export default function SubscribeForm() {
       event.stopPropagation()
     } else {
       setSuccess("LOADING")
-      EmailApi.subscribe(email)
+      EmailApi.confirm(email)
         .then(result => {
           console.log(result)
           setSuccess("SUCCESS")
