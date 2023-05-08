@@ -5,6 +5,7 @@ import { EmailApi } from "../scripts/api"
 import Form from "react-bootstrap/Form"
 import MdEditor from "react-markdown-editor-lite"
 import SubscribeButton from "../components/email/subscribeButton"
+import Toast from "../components/toast"
 import { marked } from "marked"
 import styled from "styled-components"
 
@@ -34,11 +35,18 @@ const EditorWrapper = styled.div`
   }
 `
 
-export default function AdminEmail(props) {
-  const [editorContent, setEditorContent] = useState()
+export default function AdminEmail() {
   const [numSubscribers, setNumSubscribers] = useState("--")
-  const [subject, setSubject] = useState()
-  const [draftId, setDraftId] = useState()
+  const [editorContent, setEditorContent] = useState()
+  const [subject, setSubject] = useState("")
+  const [showToast, setShowToast] = useState(false)
+  const [toastMsg, setToastMsg] = useState("Sent test email")
+
+  const disableSend = () =>
+    subject == null ||
+    subject.trim().length === 0 ||
+    editorContent == null ||
+    editorContent.trim().length === 0
 
   const fetchNumSubscribers = useCallback(
     () =>
@@ -52,6 +60,26 @@ export default function AdminEmail(props) {
     fetchNumSubscribers()
   }, [fetchNumSubscribers])
 
+  const sendTest = () =>
+    EmailApi.sendTest(subject, marked.parse(editorContent)).then(_ => {
+      setToastMsg("Sent test email")
+      setShowToast(true)
+    })
+
+  const sendReal = () => {
+    const result = window.confirm(
+      "Are you sure you went to send this email to everyone?"
+    )
+    if (result) {
+      EmailApi.send(subject, marked.parse(editorContent)).then(_ => {
+        setToastMsg("Sent email to contact list")
+        setShowToast(true)
+        setSubject("")
+        setEditorContent("")
+      })
+    }
+  }
+
   return (
     <AdminWrapper>
       <p
@@ -62,29 +90,11 @@ export default function AdminEmail(props) {
       </p>
       <Buttons>
         <SubscribeButton />
-        <Button onClick={() => EmailApi.sendTest().then(console.log)}>
-          Send Test Email
+        <Button onClick={sendTest} disabled={disableSend()}>
+          Send Test
         </Button>
-        <Button
-          onClick={() =>
-            EmailApi.sendTestCampaign(
-              subject,
-              marked.parse(editorContent)
-            ).then(result => setDraftId(result.data.Data[0].ID))
-          }
-          disabled={subject == null || subject.trim().length === 0}
-        >
-          Send Test Campaign
-        </Button>
-        <Button
-          onClick={() =>
-            EmailApi.sendCampaign(subject, marked.parse(editorContent)).then(
-              console.log
-            )
-          }
-          disabled={draftId == null}
-        >
-          Send Campaign
+        <Button onClick={sendReal} disabled={disableSend()}>
+          Send Email
         </Button>
       </Buttons>
 
@@ -102,6 +112,9 @@ export default function AdminEmail(props) {
           onChange={({ _, text }) => setEditorContent(text)}
         />
       </EditorWrapper>
+      <Toast show={showToast} onClose={() => setShowToast(false)}>
+        {toastMsg}
+      </Toast>
     </AdminWrapper>
   )
 }

@@ -211,37 +211,115 @@ const mailjet = Mailjet.connect(
   process.env.MJ_APIKEY_PUBLIC,
   process.env.MJ_APIKEY_PRIVATE
 )
-const confTemplate = fs.readFileSync("./confirmationTemplate.html", "utf8")
 
-app.post("/api/email/test", (_, res) => {
-  const mailjetRequest = mailjet.post("send", { version: "v3.1" }).request({
-    Messages: [
-      {
-        From: {
-          Email: "lucia@lucia-gomez.dev",
-          Name: "Lucia Gomez",
-        },
-        To: [
+function isValidEmail(email) {
+  const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+  return regex.test(email)
+}
+
+function hashEmail(email) {
+  return encodeURIComponent(
+    CryptoJS.AES.encrypt(email, process.env.ENCRYPT_KEY)
+  )
+}
+
+function unhashEmail(emailHash) {
+  const decodedHash = decodeURIComponent(emailHash)
+  const emailBytes = CryptoJS.AES.decrypt(decodedHash, process.env.ENCRYPT_KEY)
+  return emailBytes.toString(CryptoJS.enc.Utf8)
+}
+
+function sendToList(contacts, subject, content, res) {
+  const unsubscribe =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000/unsubscribe/"
+      : "https://lucia-gomez.dev/unsubscribe/"
+  const newsletterTemplate = fs.readFileSync(
+    "./newsletterTemplate.html",
+    "utf8"
+  )
+  const emails = contacts
+    .map(contact => contact.email)
+    .filter(email => email != null && email.trim().length > 0)
+
+  Promise.all(
+    emails.map(email =>
+      mailjet.post("send", { version: "v3.1" }).request({
+        Messages: [
           {
-            Email: "ilg7@cornell.edu",
+            From: {
+              Email: "lucia@lucia-gomez.dev",
+              Name: "Lucia Gomez",
+            },
+            To: [
+              {
+                Email: email,
+              },
+            ],
+            Subject: subject,
+            TemplateLanguage: true,
+            HTMLPart: newsletterTemplate,
+            Variables: {
+              title: subject,
+              custom_unsubscribe: unsubscribe + hashEmail(email),
+              content,
+            },
           },
         ],
-        Subject: "My first Mailjet Email!",
-        HTMLPart:
-          '<h3>Dear passenger 1, welcome to <a href="https://www.mailjet.com/">Mailjet</a>!</h3><br />May the delivery force be with you!',
-      },
-    ],
+      })
+    )
+  )
+    .then(result => res.send(result))
+    .catch(err => console.error(err))
+}
+
+app.post("/api/email/sendTest", (req, res) => {
+  const subject = req.body.subject
+  const content = req.body.content
+
+  const sqlContacts = "SELECT email FROM subscribersTest;"
+  db.query(sqlContacts, (err, result) => {
+    if (err) {
+      console.error(err)
+      res.status(400)
+      res.send(err)
+    } else {
+      sendToList(result, subject, content, res)
+    }
   })
-  res.send(mailjetRequest)
+})
+
+app.post("/api/email/send", (req, res) => {
+  const subject = req.body.subject
+  const content = req.body.content
+
+  const sqlContacts = "SELECT email FROM subscribers;"
+  db.query(sqlContacts, (err, result) => {
+    if (err) {
+      console.error(err)
+      res.status(400)
+      res.send(err)
+    } else {
+      sendToList(result, subject, content, res)
+    }
+  })
 })
 
 app.post("/api/email/confirm", (req, res) => {
   const email = req.body.email
+  if (!isValidEmail(email)) {
+    res.status(400)
+    res.send(JSON.stringify({ error: "Error subscribing, invalid email" }))
+    return
+  }
+
   const confLink =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000/confirmation/"
       : "https://lucia-gomez.dev/confirmation/"
-  const emailHash = CryptoJS.AES.encrypt(email, process.env.ENCRYPT_KEY)
+  const emailHash = hashEmail(email)
+  const confTemplate = fs.readFileSync("./confirmationTemplate.html", "utf8")
+
   const mailjetRequest = mailjet.post("send", { version: "v3.1" }).request({
     Messages: [
       {
@@ -268,14 +346,20 @@ app.post("/api/email/confirm", (req, res) => {
 
 app.post("/api/email/subscribe/:emailHash", (req, res) => {
   const emailHash = req.params.emailHash
-  const emailBytes = CryptoJS.AES.decrypt(emailHash, process.env.ENCRYPT_KEY)
-  const email = emailBytes.toString(CryptoJS.enc.Utf8)
+  const email = unhashEmail(emailHash)
+  if (!isValidEmail(email)) {
+    res.status(400)
+    res.send(JSON.stringify({ error: "Error subscribing, invalid email" }))
+    return
+  }
+
   const dateAdded = new Date().toISOString().slice(0, 19).replace("T", " ")
 
   const sql = "INSERT INTO subscribers (email, dateAdded) VALUES (?, ?);"
   db.query(sql, [email, dateAdded], (err, result) => {
     if (err) {
       if (err.code === "ER_DUP_ENTRY") {
+        console.error(err)
         res.status(409)
       } else {
         res.status(400)
@@ -287,8 +371,12 @@ app.post("/api/email/subscribe/:emailHash", (req, res) => {
 
 app.delete("/api/email/unsubscribe/:emailHash", (req, res) => {
   const emailHash = req.params.emailHash
-  const emailBytes = CryptoJS.AES.decrypt(emailHash, process.env.ENCRYPT_KEY)
-  const email = emailBytes.toString(CryptoJS.enc.Utf8)
+  const email = unhashEmail(emailHash)
+  if (!isValidEmail(email)) {
+    res.status(400)
+    res.send(JSON.stringify({ error: "Error subscribing, invalid email" }))
+    return
+  }
 
   const sql = "DELETE FROM subscribers WHERE email = ?;"
   db.query(sql, [email], (err, result) => {
