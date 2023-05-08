@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 
 export default function SubscribePage(props) {
   return (
-    <Wrapper>
+    <Wrapper className="animate__animated animate__fadeIn">
       <SubscribeForm />
     </Wrapper>
   )
