@@ -53,7 +53,7 @@ export default function AdminEmail() {
   const fetchSubscribers = useCallback(
     (tableName, setter) =>
       EmailApi.getSubscribers(tableName).then(result => {
-        setter(result.data)
+        setter(result.data.reverse())
       }),
     []
   )
@@ -111,12 +111,12 @@ export default function AdminEmail() {
       </EditorWrapper>
 
       <SubscriberList
-        label="Subscribers"
+        label={"Subscribers: " + subscribers?.length}
         data={subscribers}
         refresh={() => fetchSubscribers("subscribers", setSubscribers)}
       />
       <SubscriberList
-        label="Subscribers - Test"
+        label={"SubscribersTest: " + testSubscribers?.length}
         data={testSubscribers}
         refresh={() => fetchSubscribers("subscriberstest", setTestSubscribers)}
       />

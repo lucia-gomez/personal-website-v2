@@ -52,7 +52,7 @@ export const Toggle = styled.i.attrs(_ => ({
 `
 
 const Collapsible = styled(animated.div)`
-  overflow: hidden;
+  overflow-y: hidden;
 `
 
 const Subsection = props => {
