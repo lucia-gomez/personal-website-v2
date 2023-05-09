@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState } from "react"
 import { Button } from "../components/button"
 import { EmailApi } from "../scripts/api"
 import Form from "react-bootstrap/Form"
+import Input from "../components/input"
 import MdEditor from "react-markdown-editor-lite"
 import SubscribeButton from "../components/email/subscribeButton"
 import SubscriberList from "../components/email/subscriberList"
@@ -97,10 +98,7 @@ export default function AdminEmail() {
 
       <Form.Group>
         <Form.Label>Subject</Form.Label>
-        <Form.Control
-          onChange={e => setSubject(e.target.value)}
-          value={subject}
-        />
+        <Input onChange={e => setSubject(e.target.value)} value={subject} />
       </Form.Group>
       <EditorWrapper>
         <MdEditor

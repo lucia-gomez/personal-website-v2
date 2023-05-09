@@ -3,10 +3,10 @@ import { animated, useSpring } from "@react-spring/web"
 
 import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
+import Input from "../input"
 import Row from "react-bootstrap/Row"
 import { Toggle } from "../layout/subsection"
 import getButtons from "./editorActions"
-import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
 import useMeasure from "react-use-measure"
 
@@ -35,14 +35,6 @@ const FormToggle = styled.div`
 
   i {
     color: ${props => props.theme.accent};
-  }
-`
-
-const FormWrapper = styled.div`
-  .form-control {
-    background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
-    color: ${props => props.theme.text};
-    border: 1px solid ${props => props.theme.text};
   }
 `
 
@@ -75,38 +67,35 @@ export default function EditorForm(props) {
   const titleForm = (
     <Form.Group>
       <Form.Label>Title</Form.Label>
-      <Form.Control onChange={e => setTitle(e.target.value)} value={title} />
+      <Input onChange={e => setTitle(e.target.value)} value={title} />
     </Form.Group>
   )
 
   const slugForm = (
     <Form.Group>
       <Form.Label>Slug</Form.Label>
-      <Form.Control onChange={e => setSlug(e.target.value)} value={slug} />
+      <Input onChange={e => setSlug(e.target.value)} value={slug} />
     </Form.Group>
   )
 
   const dateForm = (
     <Form.Group>
       <Form.Label>Date</Form.Label>
-      <Form.Control onChange={e => setDate(e.target.value)} value={date} />
+      <Input onChange={e => setDate(e.target.value)} value={date} />
     </Form.Group>
   )
 
   const imageUrlForm = (
     <Form.Group>
       <Form.Label>Image</Form.Label>
-      <Form.Control
-        onChange={e => setImageUrl(e.target.value)}
-        value={imageUrl}
-      />
+      <Input onChange={e => setImageUrl(e.target.value)} value={imageUrl} />
     </Form.Group>
   )
 
   const summaryForm = (
     <Form.Group>
       <Form.Label>Summary</Form.Label>
-      <Form.Control
+      <Input
         onChange={e => setSummary(e.target.value)}
         value={summary}
         as="textarea"
@@ -153,10 +142,10 @@ export default function EditorForm(props) {
         <Toggle isOpen={isExpanded} />
       </FormToggle>
       <Collapsible style={contentAnimatedStyle}>
-        <FormWrapper ref={ref}>
+        <div ref={ref}>
           {formDesktop}
           {formMobile}
-        </FormWrapper>
+        </div>
       </Collapsible>
       <ButtonRow>{getButtons(payload, isDraft, isNew, actions)}</ButtonRow>
     </div>
