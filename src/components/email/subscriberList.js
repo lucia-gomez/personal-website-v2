@@ -126,25 +126,27 @@ export default function SubscriberList(props) {
 
   return data != null ? (
     <SubsectionWrapper openByDefault={false} title={label}>
-      <TableWrapper striped hover>
-        <thead>
-          <tr>
-            <th>
-              <b>ID</b>
-            </th>
-            <th>
-              <b>Email</b>
-            </th>
-            <th>
-              <b>Date Added</b>
-            </th>
-            <th>
-              <IconButton className="fas fa-rotate-right" onClick={refresh} />
-            </th>
-          </tr>
-        </thead>
-        <tbody>{getItems()}</tbody>
-      </TableWrapper>
+      <div style={{ overflowX: "scroll" }}>
+        <TableWrapper striped hover>
+          <thead>
+            <tr>
+              <th>
+                <b>ID</b>
+              </th>
+              <th>
+                <b>Email</b>
+              </th>
+              <th>
+                <b>Date Added</b>
+              </th>
+              <th>
+                <IconButton className="fas fa-rotate-right" onClick={refresh} />
+              </th>
+            </tr>
+          </thead>
+          <tbody>{getItems()}</tbody>
+        </TableWrapper>
+      </div>
       {data.length > NUM_ROWS && (
         <PaginationWrapper size="sm">
           {getPaginationArrow("<", () => setPaginationActive(1))}
