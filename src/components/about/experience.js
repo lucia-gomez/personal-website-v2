@@ -1,11 +1,15 @@
-import React from "react"
-import styled from "styled-components"
-import TabbedContent from "../tabbedContent"
+import { li, ul } from "../../style/blogStyle"
+
 import Link from "../link"
-import { ul, li } from "../../style/blogStyle"
+import React from "react"
+import TabbedContent from "../tabbedContent"
+import styled from "styled-components"
 
 const BulletPoints = styled.ul`
   ${ul}
+  ul {
+    padding-left: 30px;
+  }
 `
 const Bullet = styled.li`
   ${li}

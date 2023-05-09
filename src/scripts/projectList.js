@@ -270,7 +270,7 @@ const projects = [
     extra: ExternalIconButton(
       "https://lucia-gomez.github.io/isometric-cornell/"
     ),
-    categories: [category.Web],
+    categories: [category.Web, category["Digital Art"]],
   },
   {
     title: "COVID-19 Vaccination Data Viz",

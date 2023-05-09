@@ -16,7 +16,6 @@ const ArtModalWrapper = styled(ModalWrapper)`
     .modal-dialog {
       img {
         width: 100%;
-        border-radius: 0px 0px 5px 5px;
       }
 
       .h3,

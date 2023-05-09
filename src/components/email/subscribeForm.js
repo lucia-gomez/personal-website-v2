@@ -3,11 +3,11 @@ import { useEffect, useState } from "react"
 import { Button } from "../button"
 import { EmailApi } from "../../scripts/api"
 import Form from "react-bootstrap/Form"
+import Input from "../input"
 import SectionTitle from "../sectionTitle"
 import { Spinner } from "react-bootstrap"
 import SubscribeFailed from "./subscribeFailed"
 import SubscribeSuccess from "./subscribeSuccess"
-import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -27,24 +27,6 @@ const Wrapper = styled.div`
 
   h2 {
     text-align: center;
-  }
-
-  input {
-    background-color: ${props => hexToRGB(props.theme.medium, 0.4)};
-    color: ${props => props.theme.text};
-    border-radius: 8px;
-    border: 2px solid
-      ${props =>
-        props.isActive ? props.theme.accentHover : props.theme.accent};
-    padding: 5px 10px 5px 10px;
-
-    :focus-visible {
-      outline: none;
-      border: 2px solid ${props => props.theme.accentHover};
-      box-shadow: none;
-      background-color: ${props => hexToRGB(props.theme.medium, 0.4)};
-      color: ${props => props.theme.text};
-    }
   }
 
   .custom-checkbox input {
@@ -101,7 +83,7 @@ export default function SubscribeForm() {
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label>Email</Form.Label>
-              <Form.Control
+              <Input
                 onChange={e => setEmail(e.target.value)}
                 value={email}
                 type="email"
