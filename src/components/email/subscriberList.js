@@ -77,7 +77,7 @@ export default function SubscriberList(props) {
   }
 
   const maxPages = useMemo(
-    () => Math.ceil(data?.length ?? 0 / NUM_ROWS),
+    () => Math.ceil((data?.length ?? 0) / NUM_ROWS),
     [data]
   )
 
