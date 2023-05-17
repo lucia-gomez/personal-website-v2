@@ -1,16 +1,11 @@
-import {
-  PortfolioCardDeck,
-  makePortfolioCard,
-} from "../components/portfolio/portfolioCardDeck"
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useState } from "react"
 
-import AnimationOnScroll from "react-animate-on-scroll"
 import PortfolioFiltersSection from "../components/portfolio/portfolioFiltersSection"
+import ScrollList from "../components/scrollList"
 import SectionTitle from "../components/sectionTitle"
 import filterProject from "../scripts/searchPortfolio"
-import { isScrolledIntoViewVertical } from "../scripts/util"
+import { makePortfolioCard } from "../components/portfolio/portfolioCardDeck"
 import projects from "../scripts/projectList"
-import { resetAnimation } from "../scripts/util"
 import styled from "styled-components"
 
 const Grid = styled.div`
@@ -29,44 +24,10 @@ export default function ArchivePage() {
   const [results, setResults] = useState(projects)
   const [searchKeywords, setSearchKeywords] = useState([])
   const [activeFilter, setActiveFilter] = useState(-1) // all
-  const [isMobile] = useState(window.innerWidth <= 576)
-  const cardDeckRef = useRef()
 
   const searchProjects = keywords => {
     setSearchKeywords(keywords)
   }
-
-  useEffect(() => {
-    if (cardDeckRef.current == null) return
-    const cards = cardDeckRef?.current.children
-    let numVisible = 0
-    for (let card of cards) {
-      if (
-        !(isMobile && numVisible > 3) &&
-        isScrolledIntoViewVertical(cardDeckRef.current, card, true)
-      ) {
-        const delay = ++numVisible * 500 * Math.pow(0.9, numVisible)
-        card.style.animationDelay = delay + "ms"
-        card.style.animationDuration = "1s"
-        // reset animation delay when done
-        setTimeout(() => {
-          card.style.animationDelay = "unset"
-        }, delay + 1000)
-      }
-    }
-  }, [isMobile])
-
-  useEffect(() => {
-    if (cardDeckRef.current == null) return
-    const cards = cardDeckRef.current.children
-    for (let card of cards) {
-      resetAnimation(card)
-    }
-
-    // MASSIVE hack, trigger a scroll to forece new elements animateIn
-    cardDeckRef.current.scrollBy(0, 1)
-    cardDeckRef.current.scrollBy(0, -1)
-  }, [results])
 
   useEffect(() => {
     // filter by selected category
@@ -88,25 +49,6 @@ export default function ArchivePage() {
     }
   }, [activeFilter, searchKeywords])
 
-  const animatedCard = (project, idx) => {
-    const innerStyle = results.includes(project)
-      ? { height: "initial", display: "initial" }
-      : { height: 0, display: "none" }
-    return (
-      <AnimationOnScroll
-        animateIn="animate__fadeInLeft"
-        duration={0.2}
-        animateOnce
-        animatePreScroll
-        offset={-50}
-        scrollableParentSelector={isMobile ? "" : "#card-deck"}
-        key={idx}
-      >
-        <div style={innerStyle}>{makePortfolioCard(project)}</div>
-      </AnimationOnScroll>
-    )
-  }
-
   return (
     <Grid>
       <div>
@@ -119,9 +61,9 @@ export default function ArchivePage() {
           {...{ activeFilter, setActiveFilter, searchProjects }}
         />
       </div>
-      <PortfolioCardDeck id="card-deck" ref={cardDeckRef}>
-        {projects.map((project, idx) => animatedCard(project, idx))}
-      </PortfolioCardDeck>
+      <ScrollList id="card-deck">
+        {results.map(project => makePortfolioCard(project))}
+      </ScrollList>
     </Grid>
   )
 }

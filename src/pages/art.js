@@ -8,8 +8,8 @@ import { useEffect, useMemo, useState } from "react"
 
 import ArtItem from "../components/art/artItem"
 import ArtModal from "../components/art/artModal"
-import HorizontalScroller from "../components/horizontalScroller"
 import Link from "../components/link"
+import ScrollList from "../components/scrollList"
 import SectionTitle from "../components/sectionTitle"
 import Subsection from "../components/layout/subsection"
 import ZineItem from "../components/zines/zineItem"
@@ -21,10 +21,6 @@ const LinkWrapper = styled(LinkRouter)`
     color: unset;
     text-decoration: unset;
   }
-`
-
-const ArtList = styled(HorizontalScroller)`
-  padding-left: 10px;
 `
 
 export default function ArtPage() {
@@ -56,11 +52,11 @@ export default function ArtPage() {
           <Link href="https://en.wikipedia.org/wiki/Zine">zines</Link>. Click on
           a zine to read it!
         </p>
-        <ArtList offset={50}>
+        <ScrollList horizontal={true}>
           {zines.map((zine, idx) => (
             <ZineItem zine={zine} key={idx} />
           ))}
-        </ArtList>
+        </ScrollList>
       </Subsection>
     ),
     []
@@ -71,7 +67,7 @@ export default function ArtPage() {
       artList.map((section, index) => (
         <Subsection title={section.sectionName} key={index}>
           <p>{section.description}</p>
-          <ArtList offset={50}>
+          <ScrollList horizontal={true}>
             {section.items.map(item => (
               <div key={item.title}>
                 <LinkWrapper to={`/art/${item.slug}`}>
@@ -84,7 +80,7 @@ export default function ArtPage() {
                 </LinkWrapper>
               </div>
             ))}
-          </ArtList>
+          </ScrollList>
         </Subsection>
       )),
     []

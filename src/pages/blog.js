@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react"
 
 import BlogLoading from "../components/blog/blogLoading"
 import BlogPostLink from "../components/blog/blogPostItem"
-import HorizontalScroller from "../components/horizontalScroller"
 import { PostApi } from "../scripts/api"
+import ScrollList from "../components/scrollList"
 import SearchBar from "../components/searchBar"
 import SectionTitle from "../components/sectionTitle"
 import filterPost from "../scripts/searchBlog"
@@ -24,7 +24,7 @@ const BlogSearchBar = styled(SearchBar)`
   }
 `
 
-const Posts = styled(HorizontalScroller)`
+const Posts = styled(ScrollList)`
   margin-top: 20px;
   padding-bottom: 20px;
   overflow-y: hidden;
@@ -96,7 +96,7 @@ export default function BlogHomePage() {
       {!loading && searchResults.length === 0 ? (
         <p style={{ padding: "20px 0px" }}>No posts found :(</p>
       ) : (
-        <Posts>
+        <Posts horizontal={true}>
           {searchResults.map((post, idx) => (
             <BlogPostWrapper key={idx}>
               <BlogPostLink post={post} />
