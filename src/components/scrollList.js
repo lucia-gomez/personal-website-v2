@@ -1,7 +1,7 @@
 import { animated, useTransition } from "@react-spring/web"
-import { useCallback, useMemo, useRef } from "react"
+import styled, { css } from "styled-components"
+import { useMemo, useRef, useState } from "react"
 
-import styled from "styled-components"
 import { useInView } from "react-intersection-observer"
 
 const Scroller = styled.div`
@@ -9,7 +9,8 @@ const Scroller = styled.div`
   flex-wrap: nowrap;
   ${props =>
     props.horizontal ? "flex-direction: row;" : "flex-direction: column;"}
-  ${props => (props.horizontal ? "overflow-x: scroll;" : "overflow-y: scroll;")}
+  ${props => (props.horizontal ? "overflow-x: scroll;" : "overflow: auto;")}
+  height: 100%;
 `
 
 const ScrollChild = styled.div`
@@ -18,26 +19,27 @@ const ScrollChild = styled.div`
   }
 `
 
-function ScrollItem({ children }) {
-  const ref = useRef()
-  const { ref: inViewRef, inView } = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
+function ScrollItem({ children, setFirstVisible, setLastVisible }) {
+  const hasBeenInView = useRef()
+  const { ref, inView } = useInView({
+    onChange: (inView, _) => {
+      if (inView) {
+        hasBeenInView.current = true
+      }
+      setFirstVisible(inView)
+      setLastVisible(inView)
+    },
   })
 
-  const setRefs = useCallback(
-    node => {
-      ref.current = node
-      inViewRef(node)
-    },
-    [inViewRef]
-  )
+  const getClassNames = () => {
+    if (!hasBeenInView.current) {
+      return inView ? "animate__animated animate__fadeIn" : "hidden"
+    }
+    return "animate__animated animate__fadeIn"
+  }
 
   return (
-    <ScrollChild
-      ref={setRefs}
-      className={inView ? "animate__animated animate__fadeIn" : "hidden"}
-    >
+    <ScrollChild ref={ref} className={getClassNames()}>
       {children}
     </ScrollChild>
   )
@@ -46,6 +48,11 @@ function ScrollItem({ children }) {
 export default function ScrollList(props) {
   const { children, className, horizontal = false } = props
   const memoChildren = useMemo(() => children, [children])
+  const scrollRef = useRef()
+
+  const [showLeftScrollIndicator, setShowLeftScrollIndicator] = useState(false)
+  const [showRightScrollIndicator, setShowRightScrollIndicator] =
+    useState(false)
 
   const trans = useTransition(memoChildren, {
     from: { opacity: 0 },
@@ -56,13 +63,52 @@ export default function ScrollList(props) {
     },
   })
 
+  const setFirstVisible = val => setShowLeftScrollIndicator(!val)
+  const setLastVisible = val => setShowRightScrollIndicator(!val)
+
   return (
-    <Scroller className={className} horizontal={horizontal}>
-      {trans((style, child) => (
-        <animated.div style={style}>
-          <ScrollItem>{child}</ScrollItem>
-        </animated.div>
-      ))}
-    </Scroller>
+    <div style={{ position: "relative", overflow: "hidden" }}>
+      <Scroller {...{ className, horizontal }} ref={scrollRef}>
+        {trans((style, item, _, index) => (
+          <animated.div style={style}>
+            <ScrollItem
+              setFirstVisible={index === 0 ? setFirstVisible : () => {}}
+              setLastVisible={
+                index === memoChildren.length - 1 ? setLastVisible : () => {}
+              }
+            >
+              {item}
+            </ScrollItem>
+          </animated.div>
+        ))}
+      </Scroller>
+      {horizontal && showLeftScrollIndicator && <ScrollIndicatorLeft />}
+      {horizontal && showRightScrollIndicator && <ScrollIndicatorRight />}
+    </div>
   )
 }
+
+const scrollIndicator = css`
+  position: absolute;
+  top: 50%;
+  height: 70%;
+  width: 75px;
+  border-radius: 100px;
+`
+
+const ScrollIndicatorLeft = styled.div.attrs(_ => ({
+  className: "scroll-indicator scroll-indicator-left",
+}))`
+  ${scrollIndicator}
+  transform: translate(-100%, -50%);
+  left: 0;
+  box-shadow: 20px 0px 40px 0px #000000ba;
+`
+const ScrollIndicatorRight = styled.div.attrs(_ => ({
+  className: "scroll-indicator scroll-indicator-right",
+}))`
+  ${scrollIndicator}
+  transform: translate(100%, -50%);
+  right: 0;
+  box-shadow: -20px 0px 40px 0px #000000ba;
+`

@@ -39,6 +39,13 @@ const Posts = styled(ScrollList)`
       margin-right: 20px;
     }
   }
+
+  ~ .scroll-indicator-left {
+    box-shadow: 20px 0px 80px 0px #000000ba;
+  }
+  ~ .scroll-indicator-right {
+    box-shadow: -20px 0px 80px 0px #000000ba;
+  }
 `
 
 const BlogPostWrapper = styled.div.attrs(_ => ({

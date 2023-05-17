@@ -23,6 +23,16 @@ const LinkWrapper = styled(LinkRouter)`
   }
 `
 
+const ZineList = styled(ScrollList)`
+  ~ .scroll-indicator {
+    top: 40%;
+    @media screen and (max-width: 576px) {
+      height: 50%;
+      top: 25%;
+    }
+  }
+`
+
 export default function ArtPage() {
   const [modalItem, setModalItem] = useState(null)
   const [nextModalSlug, setNextModalSlug] = useState(null)
@@ -52,11 +62,11 @@ export default function ArtPage() {
           <Link href="https://en.wikipedia.org/wiki/Zine">zines</Link>. Click on
           a zine to read it!
         </p>
-        <ScrollList horizontal={true}>
+        <ZineList horizontal={true}>
           {zines.map((zine, idx) => (
             <ZineItem zine={zine} key={idx} />
           ))}
-        </ScrollList>
+        </ZineList>
       </Subsection>
     ),
     []
