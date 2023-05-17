@@ -27,8 +27,8 @@ const ZineList = styled(ScrollList)`
   ~ .scroll-indicator {
     top: 40%;
     @media screen and (max-width: 576px) {
-      height: 50%;
-      top: 25%;
+      height: 55%;
+      top: 30%;
     }
   }
 `
