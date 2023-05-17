@@ -104,7 +104,7 @@ const ScrollIndicatorLeft = styled.div.attrs(_ => ({
   ${scrollIndicator}
   transform: translate(-100%, -50%);
   left: 0;
-  box-shadow: 20px 0px 40px 0px #000000ba;
+  box-shadow: 20px 20px 40px 0px #000000ba;
 `
 const ScrollIndicatorRight = styled.div.attrs(_ => ({
   className: "scroll-indicator scroll-indicator-right",
@@ -112,5 +112,5 @@ const ScrollIndicatorRight = styled.div.attrs(_ => ({
   ${scrollIndicator}
   transform: translate(100%, -50%);
   right: 0;
-  box-shadow: -20px 0px 40px 0px #000000ba;
+  box-shadow: -20px 20px 40px 0px #000000ba;
 `
