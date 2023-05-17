@@ -46,7 +46,7 @@ function ScrollItem({ children, setFirstVisible, setLastVisible }) {
 }
 
 export default function ScrollList(props) {
-  const { children, className, horizontal = false } = props
+  const { children, className, containerStyle, horizontal = false } = props
   const memoChildren = useMemo(() => children, [children])
   const scrollRef = useRef()
 
@@ -67,7 +67,9 @@ export default function ScrollList(props) {
   const setLastVisible = val => setShowRightScrollIndicator(!val)
 
   return (
-    <div style={{ position: "relative", overflow: "hidden" }}>
+    <div
+      style={{ position: "relative", overflow: "hidden", ...containerStyle }}
+    >
       <Scroller {...{ className, horizontal }} ref={scrollRef}>
         {trans((style, item, _, index) => (
           <animated.div style={style}>
