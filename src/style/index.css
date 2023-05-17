@@ -31,7 +31,7 @@ h3 {
   font-family: "Playfair Display", serif;
 }
 
-.animate__fadeInLeft {
+.animate__fadeIn {
   animation-fill-mode: backwards;
   -webkit-animation-fill-mode: backwards;
 }

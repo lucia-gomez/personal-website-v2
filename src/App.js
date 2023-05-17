@@ -107,6 +107,9 @@ export default function App() {
           <ButtonLink to="/portfolio" sameTab={true}>
             Full Portfolio
           </ButtonLink>
+          <ButtonLink to="/subscribe" sameTab={true}>
+            Subscribe
+          </ButtonLink>
         </Actions>
       </AnimatedSection>
       <Footer style={{ position: "unset" }} />
@@ -120,4 +123,8 @@ const Actions = styled.div`
   justify-content: center;
   align-items: center;
   height: calc(var(--doc-height) - 150px);
+
+  button {
+    margin-bottom: 8px;
+  }
 `

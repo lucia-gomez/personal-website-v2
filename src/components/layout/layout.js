@@ -4,6 +4,7 @@ import { ThemeProvider, createGlobalStyle } from "styled-components"
 import CustomNav from "./nav.js"
 import Footer from "./footer.js"
 import GradientBackground from "./gradient.js"
+import SubscribeButtonPinned from "./subscribeButtonPinned.js"
 import { themes } from "../../style/theme.js"
 import { useLocation } from "react-router-dom"
 
@@ -33,10 +34,19 @@ const Layout = props => {
   }
   const [theme] = useState(themes[currentTheme])
 
+  const hideSubscribeButton = () =>
+    pathname === "/subscribe" ||
+    pathname === "/" ||
+    pathname.includes("/admin") ||
+    pathname.includes("/blog/") ||
+    pathname.includes("/unsubscribe") ||
+    pathname.includes("/confirmation")
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle theme={theme} />
       <CustomNav />
+      {!hideSubscribeButton() && <SubscribeButtonPinned />}
       {gradientEnabled && <GradientBackground />}
       <main>{children}</main>
       {pathname !== "/" && <Footer />}

@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   position: relative;
   display: grid;
   min-height: 0;
-  grid-template-rows: 1fr 30px;
+  grid-template-rows: 1fr 40px;
 
   a {
     color: ${props => props.theme.text};
@@ -28,10 +28,6 @@ const Wrapper = styled.div`
   a:hover {
     color: ${props => props.theme.text};
     text-decoration: none;
-  }
-
-  @media screen and (max-width: 576px) {
-    max-width: 80vw;
   }
 `
 
@@ -52,7 +48,6 @@ const Image = styled.div`
   mix-blend-mode: hard-light;
 
   @media screen and (max-width: 576px) {
-    max-width: 80vw;
     opacity: 0.8;
   }
 `
@@ -80,7 +75,7 @@ const Title = styled.h5`
 const Footer = styled.div`
   width: 100%;
   border-top: 1px solid ${props => hexToRGB(props.theme.text, 0.1)};
-  padding: 8px 20px 0px;
+  padding: 8px 20px 8px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -106,7 +101,7 @@ const ContentPreview = styled.p`
   column-width: 200px;
 `
 
-const BlogPostLink = ({ post }) => {
+const BlogPostLink = ({ isMobile = false, post }) => {
   const { isAuthenticated } = useAuth0()
   const previewDiv = useRef()
   const date = post.dateString
@@ -126,7 +121,9 @@ const BlogPostLink = ({ post }) => {
             <Title>{post.title}</Title>
             <p>{post.summary}</p>
           </div>
-          <ContentPreview ref={previewDiv}>{previewText()}</ContentPreview>
+          {!isMobile && (
+            <ContentPreview ref={previewDiv}>{previewText()}</ContentPreview>
+          )}
         </Body>
       </ClickableCard>
       <Footer>

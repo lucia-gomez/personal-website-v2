@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react"
 
 import BlogLoading from "../components/blog/blogLoading"
 import BlogPostLink from "../components/blog/blogPostItem"
-import HorizontalScroller from "../components/horizontalScroller"
 import { PostApi } from "../scripts/api"
+import ScrollList from "../components/scrollList"
 import SearchBar from "../components/searchBar"
 import SectionTitle from "../components/sectionTitle"
 import filterPost from "../scripts/searchBlog"
@@ -11,40 +11,36 @@ import styled from "styled-components"
 import { useLocation } from "react-router-dom"
 
 const Wrapper = styled.div`
-  padding: 65px 20px 50px 20px;
   max-height: var(--doc-height);
   display: grid;
   grid-template-rows: auto 1fr;
 `
 
-const BlogSearchBar = styled(SearchBar)`
-  @media screen and (max-width: 576px) {
-    width: fit-content;
-    margin: auto;
-  }
+const TopSection = styled.div`
+  padding: 65px 20px 0px;
 `
 
-const Posts = styled(HorizontalScroller)`
+const Posts = styled(ScrollList)`
+  margin: ${props => (props.horizontal ? "0px 20px" : "")};
   margin-top: 20px;
   padding-bottom: 20px;
-  overflow-y: hidden;
 
-  @media screen and (max-width: 576px) {
-    margin-left: 20px;
+  ${props => (props.horizontal ? "" : "margin: 20px 8px 0px 8px;")}
+  ${props => (props.horizontal ? "" : "align-items: center;")}
+
+  ~ .scroll-indicator-left {
+    box-shadow: 20px 0px 80px 0px #000000ba;
   }
-
-  .scroll-item:last-child .blog-post {
-    margin-right: 0px;
-    @media screen and (max-width: 576px) {
-      margin-right: 20px;
-    }
+  ~ .scroll-indicator-right {
+    box-shadow: -20px 0px 80px 0px #000000ba;
   }
 `
 
 const BlogPostWrapper = styled.div.attrs(_ => ({
   className: "blog-post",
 }))`
-  margin: 0px 30px 0px 0px;
+  margin: ${props =>
+    props.horizontal ? "0px 30px 0px 0px" : "0px 0px 30px 0px"};
   height: 100%;
   border-radius: 5px;
 `
@@ -54,6 +50,7 @@ export default function BlogHomePage() {
   const [posts, setPosts] = useState([])
   const [searchResults, setSearchResults] = useState(posts)
   const [loading, setLoading] = useState(true)
+  const [isMobile, setMobile] = useState(window.innerWidth <= 576)
 
   const sortByDisplayDate = posts =>
     posts.sort((a, b) => {
@@ -72,6 +69,12 @@ export default function BlogHomePage() {
     })
   }, [location.key])
 
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setMobile(window.innerWidth <= 576)
+    })
+  }, [])
+
   const searchPosts = keywords => {
     if (keywords.length === 0) {
       setSearchResults(posts)
@@ -82,24 +85,24 @@ export default function BlogHomePage() {
   }
 
   return (
-    <Wrapper>
-      <div>
+    <Wrapper horizontal={!isMobile}>
+      <TopSection horizontal={!isMobile}>
         <SectionTitle>Blog</SectionTitle>
         {loading && <BlogLoading />}
         {!loading && (
-          <BlogSearchBar
+          <SearchBar
             callback={searchPosts}
             placeholder="Ex: Heroku, database"
           />
         )}
-      </div>
+      </TopSection>
       {!loading && searchResults.length === 0 ? (
         <p style={{ padding: "20px 0px" }}>No posts found :(</p>
       ) : (
-        <Posts>
+        <Posts horizontal={!isMobile} containerStyle={{ marginBottom: 50 }}>
           {searchResults.map((post, idx) => (
-            <BlogPostWrapper key={idx}>
-              <BlogPostLink post={post} />
+            <BlogPostWrapper key={idx} horizontal={!isMobile}>
+              <BlogPostLink post={post} isMobile={isMobile} />
             </BlogPostWrapper>
           ))}
         </Posts>
