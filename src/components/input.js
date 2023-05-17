@@ -16,7 +16,7 @@ const Wrapper = styled(Form.Control).attrs(_ => ({
   border: 2px solid
     ${props => (props.isActive ? props.theme.accentHover : props.theme.accent)};
   padding: 5px 10px 5px 10px;
-  ${props => (props.hasIcon ? "padding-left: 28px;" : "")}
+  ${props => (props.$hasIcon ? "padding-left: 28px;" : "")}
 
   :focus-visible {
     outline: none;
@@ -61,13 +61,13 @@ const Icon = styled.i`
 `
 
 export default function Input(props) {
-  const { iconClassName, width } = props
+  const { isActive, iconClassName, width, ...otherProps } = props
   return (
     <div style={{ position: "relative" }}>
       <Icon isActive={props.isActive} className={iconClassName} />
       <Wrapper
-        {...props}
-        hasIcon={iconClassName != null}
+        {...otherProps}
+        $hasIcon={iconClassName != null}
         style={width != null ? { width: 300 } : {}}
       />
     </div>
