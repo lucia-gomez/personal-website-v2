@@ -10,6 +10,9 @@ const ul = css`
 const li = css`
   padding-left: 20px;
   position: relative;
+  :not(li li) {
+    padding-bottom: 12px;
+  }
 
   :not(ol)::before {
     font-family: "FontAwesome";
@@ -72,6 +75,9 @@ const BlogStyle = styled.div`
     border-radius: 5px;
     margin-bottom: 20px;
     margin-right: 20px;
+  }
+  h4 {
+    padding-top: 12px;
   }
 `
 
