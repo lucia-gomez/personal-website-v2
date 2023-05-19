@@ -45,7 +45,7 @@ const Image = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   filter: grayscale(1);
-  mix-blend-mode: hard-light;
+  mix-blend-mode: luminosity;
 
   @media screen and (max-width: 576px) {
     opacity: 0.8;
