@@ -62,6 +62,9 @@ const BlogStyle = styled.div`
     color: ${props => props.theme.text};
     border-radius: 5px;
   }
+  code {
+    color: ${props => hexToRGB(props.theme.text, 0.6)};
+  }
   img {
     height: 100%;
     max-width: 100% !important;
