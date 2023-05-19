@@ -39,6 +39,7 @@ const Layout = props => {
     pathname === "/" ||
     pathname.includes("/admin") ||
     pathname.includes("/blog/") ||
+    pathname.includes("/art/zine/") ||
     pathname.includes("/unsubscribe") ||
     pathname.includes("/confirmation")
 

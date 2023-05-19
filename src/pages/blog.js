@@ -11,7 +11,6 @@ import styled from "styled-components"
 import { useLocation } from "react-router-dom"
 
 const Wrapper = styled.div`
-  max-height: var(--doc-height);
   display: grid;
   grid-template-rows: auto 1fr;
 `
