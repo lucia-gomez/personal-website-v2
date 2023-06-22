@@ -39,7 +39,7 @@ const PortfolioCardImage = styled.div`
   border-radius: 5px 0px 0px 5px;
   background-image: url(${props => props.image});
   background-position: ${props =>
-    props.centerImage ? "top center" : "top left"};
+    props.centerImage ? "top center" : "bottom left"};
   background-size: cover;
   background-repeat: no-repeat;
   filter: grayscale(1);

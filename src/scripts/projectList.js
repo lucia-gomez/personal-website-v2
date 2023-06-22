@@ -13,6 +13,22 @@ const category = {
 
 const projects = [
   {
+    title: "Threadbare",
+    date: "June 2023",
+    tools: ["p5.js", "Javascript"],
+    image: "threadbareScreenshot.png?updatedAt=1687415315007",
+    text: (
+      <p>
+        Aesthetic geometric drawing tool. Inspired by a worn-out tag on a pair
+        of pajama pants
+      </p>
+    ),
+    link: "https://github.com/lucia-gomez/threadbare",
+    extra: ExternalIconButton("https://lucia-gomez.github.io/threadbare"),
+    categories: [category.Web, category["Digital Art"]],
+    // centerImage: false,
+  },
+  {
     title: "Friendly Takeover",
     date: "April 2023",
     tools: ["Javascript", "HTML/CSS"],
