@@ -111,7 +111,15 @@ const CustomNav = () => {
           )
           return (
             <NavLink
-              onClick={collapseNav}
+              onClick={() => {
+                collapseNav()
+                if (section.name === "Resume") {
+                  window.gtag("event", "page_view", {
+                    page_location: "/resume",
+                    page_title: "Resume",
+                  })
+                }
+              }}
               selected={activePath === section.link}
               to={section.link}
               target={section.target ?? null}
