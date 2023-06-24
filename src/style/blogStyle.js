@@ -25,7 +25,7 @@ const li = css`
 
 const a = css`
   color: ${props => props.theme.accent};
-  display: contents;
+  /* display: contents; */
   transition: color 200ms;
 
   :hover {
@@ -76,6 +76,10 @@ const BlogStyle = styled.div`
     margin-bottom: 20px;
     margin-right: 20px;
     display: block;
+
+    @media screen and (max-width: 576px) {
+      width: 100%;
+    }
   }
   h4 {
     padding-top: 12px;
