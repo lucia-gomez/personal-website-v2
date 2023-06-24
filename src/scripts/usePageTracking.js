@@ -6,7 +6,7 @@ const usePageTracking = () => {
 
   useEffect(() => {
     window.gtag("event", "page_view", {
-      page_path: location.pathname + location.search,
+      page_location: location.pathname + location.search,
     })
   }, [location])
 }
