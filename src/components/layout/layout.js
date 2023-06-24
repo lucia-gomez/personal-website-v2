@@ -7,6 +7,7 @@ import GradientBackground from "./gradient.js"
 import SubscribeButtonPinned from "./subscribeButtonPinned.js"
 import { themes } from "../../style/theme.js"
 import { useLocation } from "react-router-dom"
+import usePageTracking from "../../scripts/usePageTracking.js"
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -33,6 +34,7 @@ const Layout = props => {
     currentTheme = storedTheme
   }
   const [theme] = useState(themes[currentTheme])
+  usePageTracking()
 
   const hideSubscribeButton = () =>
     pathname === "/subscribe" ||
