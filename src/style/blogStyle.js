@@ -75,6 +75,7 @@ const BlogStyle = styled.div`
     border-radius: 5px;
     margin-bottom: 20px;
     margin-right: 20px;
+    display: block;
   }
   h4 {
     padding-top: 12px;
