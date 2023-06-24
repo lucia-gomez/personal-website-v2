@@ -6,7 +6,6 @@ const usePageTracking = () => {
   const location = useLocation()
 
   useEffect(() => {
-    console.log(pagePathnameToTitle(location.pathname))
     window.gtag("event", "page_view", {
       page_location: location.pathname,
       page_title: pagePathnameToTitle(location.pathname),

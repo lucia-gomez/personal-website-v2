@@ -10,9 +10,9 @@ import { colorInterpolate } from "./scripts/util"
 import { featuredProjects } from "./scripts/projectList"
 
 const projects = featuredProjects([
+  "Threadbare",
   "In AR We Trust",
   "Sign Search",
-  "Lava Lamp Simulator",
 ])
 
 const LandingWrapper = styled.div`
@@ -92,7 +92,7 @@ export default function App() {
       </AnimatedSection>
       <AnimatedSection offset={0}>
         <p>
-          Hi, I'm Lucia. I build a lot of cool stuff, but here's some of my
+          Hi, I'm Lucia. I build a lot of cool stuff, but here are some of my
           favorite projects
         </p>
       </AnimatedSection>

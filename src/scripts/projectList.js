@@ -26,7 +26,17 @@ const projects = [
     link: "https://github.com/lucia-gomez/threadbare",
     extra: ExternalIconButton("https://lucia-gomez.github.io/threadbare"),
     categories: [category.Web, category["Digital Art"]],
-    // centerImage: false,
+    featuredImageDesktop:
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/threadbareDemoDesktop.mov?updatedAt=1687584735438",
+    featuredImageMobile:
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/threadbareDemoMobile.mov?updatedAt=1687588033093",
+    featuredText: (
+      <p>
+        A geometric drawing tool made with p5.js, inspired by a pair of worn-out
+        pajama pants. Brush over the threads and mess with the controls to
+        create unique patterns
+      </p>
+    ),
   },
   {
     title: "Friendly Takeover",
