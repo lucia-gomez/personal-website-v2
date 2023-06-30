@@ -31,6 +31,7 @@ const SwiperWrapper = styled.div`
 
   .swiper-pagination-bullets {
     bottom: unset;
+    top: 0;
   }
 
   .swiper-pagination-bullet {
