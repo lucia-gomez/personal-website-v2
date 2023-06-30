@@ -28,6 +28,8 @@ const db = mysql.createPool({
 
 app.use(cors(), function (req, res, next) {
   const allowedOrigins = [
+    "https://lucia-gomez.dev",
+    "https://www.lucia-gomez.dev",
     "https://lucia-gomez.netlify.app",
     "http://localhost:3000",
   ]

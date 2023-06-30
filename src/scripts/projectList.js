@@ -149,7 +149,7 @@ const projects = [
       <p>
         I turned 2D artwork into a 3D augmented reality experience with Spark
         AR. The poster comes to life when viewed through the AR camera effect.{" "}
-        <Link href="https://lucia-gomez.netlify.app/blog/spark-ar-hand-poster/">
+        <Link href="https://lucia-gomez.dev/blog/spark-ar-hand-poster/">
           Read more
         </Link>
       </p>
