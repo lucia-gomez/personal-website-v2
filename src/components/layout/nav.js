@@ -77,7 +77,8 @@ const CustomNav = () => {
     {
       name: "Resume",
       link: {
-        pathname: "https://ik.imagekit.io/5xtlzx2c3y/website/resume.pdf",
+        pathname:
+          "https://ik.imagekit.io/5xtlzx2c3y/website/resume.pdf?updatedAt=1689129405683",
       },
       target: "_blank",
     },
