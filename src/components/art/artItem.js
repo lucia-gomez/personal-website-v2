@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 5px;
+  min-width: 200px;
 
   img {
     max-width: 300px;
