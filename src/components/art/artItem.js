@@ -2,7 +2,6 @@ import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
-  width: 400px;
   margin-right: 20px;
   margin-bottom: 20px;
   display: flex;
@@ -10,7 +9,8 @@ const Wrapper = styled.div`
   border-radius: 5px;
 
   img {
-    width: 100%;
+    max-width: 300px;
+    max-height: 300px;
     object-fit: fill;
     object-position: left bottom;
     margin-bottom: 10px;

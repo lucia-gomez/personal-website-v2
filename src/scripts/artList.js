@@ -4,6 +4,27 @@ const artList = [
     description: "Getting practice with a drawing tablet. Click to enlarge",
     items: [
       {
+        title: "Fruit Rainbow",
+        date: "June 2023",
+        slug: "fruit-rainbow",
+        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/fruitRainbow.gif",
+        alt: "fruit rainbow gif",
+      },
+      {
+        title: "Seedy",
+        date: "June 2023",
+        slug: "seedy",
+        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/seedless.png",
+        alt: "strawberry seeds drawing",
+      },
+      {
+        title: "Succulents",
+        date: "January 2023",
+        slug: "succlents",
+        src: " https://ik.imagekit.io/5xtlzx2c3y/website/art/succulents.jpeg",
+        alt: "succulents drawing",
+      },
+      {
         title: "Sushi",
         date: "December 2022",
         slug: "sushi",
