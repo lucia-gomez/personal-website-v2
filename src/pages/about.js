@@ -97,8 +97,8 @@ export default function About() {
             <Link href="https://github.com/lucia-gomez">lucia-gomez</Link>
           )}
           {ProfileInfo("fas fa-briefcase", "SWE, Meta")}
-          {ProfileInfo("fas fa-graduation-cap", "Cornell University")}
-          {ProfileInfo("fas fa-map-marker-alt", "Seattle, WA")}
+          {ProfileInfo("fas fa-graduation-cap", "NYU Tisch")}
+          {ProfileInfo("fas fa-map-marker-alt", "Brooklyn, NY")}
         </ProfileIconsWrapper>
       </ProfileWrapper>
       <div className="animate__animated animate__fadeIn">
@@ -115,19 +115,16 @@ export default function About() {
             <li>Zines</li>
             <li>Combinations of all of the above</li>
           </ul>
-          ...Or whatever shiny, new technology piques my interest tomorrow. I'm
-          also an incoming graduate student at the{" "}
+          ...Or whatever shiny, new technology captures my interest tomorrow.
+          I'm also an incoming graduate student at the{" "}
           <Link href="https://tisch.nyu.edu/itp/admissions/itp-mps">
             Interactive Telecommunications Program
           </Link>{" "}
           through the NYU Tisch School of the Arts! I'm excited to be returning
           to New York for school, after graduating from Cornell in 2021 with a
           B.A. in Computer Science and Linguistics. I enjoy making use of my
-          background in Linguistics;{" "}
-          <Link href="https://www.leadwithlanguages.org/2019/03/14/ask-away-5-questions-cornell-computer-science-linguistics-major-mixing-asl-innovation/">
-            I've always been interested in the intersection of American Sign
-            Language and technology.
-          </Link>
+          background in Linguistics; I've always been interested in machine
+          translation of American Sign Language.
           <br></br>
           <br></br>I have at least one ABBA song stuck in my head at any given
           time.

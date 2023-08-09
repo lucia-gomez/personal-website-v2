@@ -1,11 +1,18 @@
-import React from "react"
-import styled from "styled-components"
-import TabbedContent from "../tabbedContent"
+import { li, ul } from "../../style/blogStyle"
 
-import { ul, li } from "../../style/blogStyle"
+import React from "react"
+import TabbedContent from "../tabbedContent"
+import styled from "styled-components"
 
 const BulletPoints = styled.ul`
   ${ul}
+  @media screen and (max-width: 576px) {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 40px;
+    justify-content: start;
+  }
+
   height: 90px;
   display: flex;
   flex-direction: column;
@@ -55,5 +62,5 @@ export default function TechnologiesSection() {
     Hosting: hosting,
   }
 
-  return <TabbedContent {...{ tabs }} horizontal fixedHeight={90} />
+  return <TabbedContent {...{ tabs }} horizontal />
 }
