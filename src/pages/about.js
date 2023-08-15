@@ -96,6 +96,10 @@ export default function About() {
             "fab fa-github",
             <Link href="https://github.com/lucia-gomez">lucia-gomez</Link>
           )}
+          {ProfileInfo(
+            "fab fa-instagram",
+            <Link href="https://www.instagram.com/lugoo.dev/">lugoo.dev</Link>
+          )}
           {ProfileInfo("fas fa-briefcase", "SWE, Meta")}
           {ProfileInfo("fas fa-graduation-cap", "NYU Tisch")}
           {ProfileInfo("fas fa-map-marker-alt", "Brooklyn, NY")}
