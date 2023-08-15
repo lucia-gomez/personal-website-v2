@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 
+import BlogLoading from "../blog/blogLoading"
 import { Button } from "../button"
 import { EmailApi } from "../../scripts/api"
 import Form from "react-bootstrap/Form"
 import Input from "../input"
 import SectionTitle from "../sectionTitle"
-import { Spinner } from "react-bootstrap"
 import SubscribeFailed from "./subscribeFailed"
 import SubscribeSuccess from "./subscribeSuccess"
 import styled from "styled-components"
@@ -47,7 +47,7 @@ export default function SubscribeForm() {
 
   const subscribeResult = () => {
     if (success === "LOADING") {
-      return <Spinner />
+      return <BlogLoading />
     } else if (success === "SUCCESS") {
       return <SubscribeSuccess />
     } else if (success === "FAILED") {
