@@ -1,5 +1,35 @@
 const artList = [
   {
+    sectionName: "3D",
+    description: "3D objects I've modeled. Click to enlarge",
+    items: [
+      {
+        title: "Tangela",
+        date: "August 2023",
+        slug: "tangela",
+        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/tangela.gif?updatedAt=1693154813179",
+        alt: "tangela pokemon",
+        description: "Made with Womp 3D",
+      },
+      {
+        title: "Emoji - 🤪",
+        date: "August 2023",
+        slug: "emoji1",
+        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/emoji1.png?updatedAt=1693154678498",
+        alt: "🤪 emoji",
+        description: "Made with Womp 3D",
+      },
+      {
+        title: "Balloon Animal",
+        date: "August 2023",
+        slug: "balloon-animal",
+        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/balloonAnimal.png?updatedAt=1693154795865",
+        alt: "blue balloon dog animal",
+        description: "Made with Womp 3D",
+      },
+    ],
+  },
+  {
     sectionName: "Digital",
     description: "Getting practice with a drawing tablet. Click to enlarge",
     items: [
