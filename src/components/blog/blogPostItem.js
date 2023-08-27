@@ -11,7 +11,7 @@ import { useAuth0 } from "@auth0/auth0-react"
 
 const Wrapper = styled.div`
   height: 100%;
-  max-height: 60vh;
+  max-height: 66vh;
   width: 350px;
   border-radius: 5px;
   background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
@@ -57,6 +57,7 @@ const Body = styled.div`
   display: grid;
   grid-template-rows: auto 1fr;
   min-height: 0;
+  overflow: hidden;
 `
 
 const Date = styled.p`
@@ -97,8 +98,8 @@ const ContentPreview = styled.p`
   overflow: hidden;
   color: ${props => hexToRGB(props.theme.text, 0.5)};
   max-height: 40vh;
-  height: 100%;
   column-width: 200px;
+  margin-bottom: 0;
 `
 
 const BlogPostLink = ({ isMobile = false, post }) => {

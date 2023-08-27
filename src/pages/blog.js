@@ -21,10 +21,9 @@ const TopSection = styled.div`
 
 const Posts = styled(ScrollList)`
   margin: ${props => (props.horizontal ? "0px 20px" : "")};
-  margin-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 0px;
 
-  ${props => (props.horizontal ? "" : "margin: 20px 8px 0px 8px;")}
+  ${props => (props.horizontal ? "" : "margin: 0px 8px;")}
   ${props => (props.horizontal ? "" : "align-items: center;")}
 
   ~ .scroll-indicator-left {
