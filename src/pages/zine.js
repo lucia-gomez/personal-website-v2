@@ -1,4 +1,4 @@
-import { Redirect, useParams } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 import {
   getNextZineSlug,
   getPreviousZineSlug,
@@ -78,7 +78,7 @@ export default function ZinePage() {
   }, [slug])
 
   if (zine === null && !loading) {
-    return <Redirect to="/404" />
+    return <Navigate to="/404" />
   }
 
   return zine == null ? (

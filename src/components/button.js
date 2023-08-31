@@ -1,4 +1,4 @@
-import { Link, useHistory } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import styled, { css } from "styled-components"
 
 import BootstrapButton from "react-bootstrap/Button"
@@ -88,11 +88,11 @@ export const Button = props => {
 
 export const ButtonLinkAsync = props => {
   const { onClick, to, ...buttonProps } = props
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const onClickAsync = () =>
     onClick().then(_ => {
-      history.push({
+      navigate({
         pathname: to,
         key: Math.random(),
         state: {

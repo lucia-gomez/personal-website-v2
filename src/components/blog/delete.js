@@ -1,10 +1,10 @@
 import { DraftApi, PostApi } from "../../scripts/api"
 
 import { IconButton } from "../iconButton"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const Delete = props => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { postID, callback, draft, className } = props
 
   const handleDelete = async () => {
@@ -14,7 +14,7 @@ const Delete = props => {
       await PostApi.deletePost(postID)
     }
     if (callback !== undefined) callback(postID)
-    history.push({
+    navigate({
       pathname: draft ? "/admin" : "/blog",
       key: Math.random(),
       state: {
