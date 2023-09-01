@@ -5,6 +5,8 @@
   "dependencies": {
     "@auth0/auth0-react": "^2.2.1",
     "@react-spring/web": "^9.2.4",
+    "@react-three/drei": "^9.80.9",
+    "@react-three/fiber": "^8.13.7",
     "axios": "^0.21.1",
     "html-to-draftjs": "^1.5.0",
     "lodash": "^4.17.21",
@@ -21,7 +23,8 @@
     "react-scripts": "^5.0.1",
     "react-use-measure": "^2.1.1",
     "styled-components": "^5.3.0",
-    "swiper": "^8.1.4"
+    "swiper": "^8.1.4",
+    "three": "^0.156.0"
   },
   "scripts": {
     "start": "react-scripts start",

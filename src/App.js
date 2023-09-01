@@ -16,6 +16,7 @@ import Layout from "./components/layout/layout"
 import ProtectedRoute from "./components/layout/protectedRoute"
 import ScrollToTop from "./ScrollToTop"
 import SubscribePage from "./pages/subscribe"
+import ThreeJsObjectPage from "./pages/projects/waffle"
 import ToadARPage from "./pages/projects/toadAR"
 import UnsubscribePage from "./pages/unsubscribe"
 import ZinePage from "./pages/zine"
@@ -49,6 +50,7 @@ export default function App() {
             />
             <Route exact path="/art" element={<ArtPage />}></Route>
             <Route exact path="/art/zine/:slug" element={<ZinePage />} />
+            <Route path="/art/waffle" element={<ThreeJsObjectPage />}></Route>
             <Route path="/art/:slug" element={<ArtPage />}></Route>
             <Route
               path="/confirmation/:emailHash"
