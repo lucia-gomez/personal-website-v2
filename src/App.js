@@ -28,6 +28,7 @@ export default function App() {
         <ScrollToTop />
         <Layout>
           <Routes>
+            <Route path="*" element={<Error404 />} />
             <Route exact path="/" element={<LandingPage />}></Route>
             <Route exact path="/about-me" element={<About />}></Route>
             <Route path="/portfolio" element={<ArchivePage />}></Route>
@@ -62,7 +63,6 @@ export default function App() {
               element={<UnsubscribePage />}
             ></Route>
             <Route path="/toad-ar" element={<ToadARPage />}></Route>
-            <Route element={Error404} />
           </Routes>
         </Layout>
       </Auth0ProviderWithHistory>
