@@ -22,6 +22,7 @@ import ScrollToTop from "./ScrollToTop"
 import SubscribePage from "./pages/subscribe"
 import ToadARPage from "./pages/projects/toadAR"
 import UnsubscribePage from "./pages/unsubscribe"
+import WordpressRedirect from "./pages/wordpress"
 import ZinePage from "./pages/zine"
 
 const _ = require("lodash")
@@ -85,6 +86,9 @@ ReactDOM.render(
             </Route>
             <Route path="/toad-ar">
               <ToadARPage />
+            </Route>
+            <Route path="/classBlog">
+              <WordpressRedirect />
             </Route>
             <Route component={Error404} />
           </Switch>
