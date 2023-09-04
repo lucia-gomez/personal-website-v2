@@ -1,31 +1,267 @@
+import BallonDogModel from "../components/art/models/balloonDogModel"
+import { HeartFaceEmojiModel } from "../components/art/models/heartFaceEmoji"
+import Link from "../components/link"
+import RingpopModel from "../components/art/models/ringpopModel"
+
 const artList = [
   {
     sectionName: "3D",
-    description: "3D objects I've modeled. Click to enlarge",
+    description:
+      "3D objects I've modeled. Click to interact with the objects in 3D",
     items: [
+      {
+        title: "Waffle",
+        date: "September 2023",
+        slug: "3d/waffle",
+        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/waffle.png?updatedAt=1693624781899",
+        alt: "waffle pokemon",
+        pageContent: {
+          meshSrc:
+            "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/meshes/waffle.glb?updatedAt=1693525628231",
+          cameraPosition: [0, 4, 8],
+          lights: (
+            <>
+              <ambientLight intensity={0.8} color={"red"} />
+            </>
+          ),
+          description: (
+            <>
+              <h2>🧇 🧇 🧇</h2>
+              <p>
+                This is a 3D model of the iOS waffle emoji, made with{" "}
+                <Link to="https://womp.com/">Womp 3D</Link>. Use your cursor to
+                interact with the model below.
+              </p>
+            </>
+          ),
+          media: [
+            {
+              type: "img",
+              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/waffleWide.png?updatedAt=1693629974292",
+              alt: "3d model of a round belgian waffle emoji",
+            },
+            {
+              type: "video",
+              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/waffle.mp4?updatedAt=1693629978693",
+            },
+          ],
+        },
+      },
+      {
+        title: "Ring Pop",
+        date: "September 2023",
+        slug: "3d/ringpop",
+        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/ringpopSquare__UN-vqGjY.png?updatedAt=1693795711338",
+        alt: "3d model of a red ringpop",
+        pageContent: {
+          meshSrc: <RingpopModel />,
+          cameraPosition: [0, 3, 5],
+          lights: (
+            <>
+              <directionalLight color="pink" position={[-5, 5, 5]} />
+              <directionalLight color="pink" position={[-5, 5, -5]} />
+            </>
+          ),
+          description: (
+            <>
+              <p>
+                3D model of a cherry Ring Pop, made with{" "}
+                <Link to="https://womp.com/">Womp 3D</Link>. The reflective
+                properties of this material were crucial to making it look real.
+                Light needs to bounce around inside the hard candy surface. This
+                was easy to do with Womp, but that material doesn't export well
+                to Three.js, which renders the interactive 3D model on this
+                page. Use your cursor to interact with the 3D model below.
+              </p>
+            </>
+          ),
+          media: [
+            {
+              type: "img",
+              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/ringpop_CCmnWetsL.png?updatedAt=1693795681536",
+            },
+            {
+              type: "text",
+              value:
+                "I created the candy's shape with a Womp cube-based curve, which smoothly interpolates a surface between points. Changing the density and rotation settings for this curve resulted in some trippy effects!",
+            },
+            {
+              type: "img",
+              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/ringpopBars1.png?updatedAt=1693795681717",
+            },
+            {
+              type: "img",
+              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/ringpopBars2.png?updatedAt=1693795681481",
+            },
+            {
+              type: "video",
+              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/ringpopDensity.mp4?updatedAt=1693798894491",
+            },
+            {
+              type: "video",
+              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/ringpopTwist.mp4?updatedAt=1693798894943",
+            },
+          ],
+        },
+      },
       {
         title: "Tangela",
         date: "August 2023",
-        slug: "tangela",
-        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/tangela.gif?updatedAt=1693154813179",
+        slug: "3d/tangela",
+        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/tangelaSquare.png?updatedAt=1693799566752",
         alt: "tangela pokemon",
-        description: "Made with Womp 3D",
+        pageContent: {
+          meshSrc:
+            "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/meshes/tangela.glb?updatedAt=1693799125339",
+          lights: (
+            <>
+              <ambientLight intensity={0.8} color={"pink"} />
+              <directionalLight color="white" position={[-20, 5, 5]} />
+              <directionalLight color="white" position={[-5, 5, -5]} />
+            </>
+          ),
+          description: (
+            <>
+              <p>
+                Tangela is my favorite Pokemon! I made this model with{" "}
+                <Link to="https://womp.com/">Womp 3D</Link>. Womp has a helpful
+                UI for modeling smooth curves, which came in handy for Tangela's
+                mess of blue vines. It's also easy to interpolate colors between
+                points on these curves, so I could select multiple shades of
+                blue for the vines. Use your cursor to interact with the model
+                below.
+              </p>
+            </>
+          ),
+          media: [
+            {
+              type: "img",
+              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/tangelaFront.png?updatedAt=1693633223182",
+              alt: "blue tangela pokemon facing the front",
+            },
+            {
+              type: "img",
+              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/tangelaSide.png?updatedAt=1693633223016",
+              alt: "blue tangela pokemon facing the left",
+            },
+          ],
+        },
       },
       {
-        title: "Emoji - 🤪",
+        title: "Emoji - 🥳",
         date: "August 2023",
-        slug: "emoji1",
-        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/emoji1.png?updatedAt=1693154678498",
-        alt: "🤪 emoji",
-        description: "Made with Womp 3D",
+        slug: "3d/emoji2",
+        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/partyHatEmoji.png?updatedAt=1693625012864",
+        alt: "🥳 emoji",
+        pageContent: {
+          meshSrc:
+            "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/meshes/partyHatEmoji.glb?updatedAt=1693800835538",
+          description: (
+            <>
+              <h2>🥳 🥳 🥳</h2>
+              <p>
+                This is a 3D model of the iOS party face emoji, made with{" "}
+                <Link to="https://womp.com/">Womp 3D</Link>. Use your cursor to
+                interact with the model below.
+              </p>
+            </>
+          ),
+          lights: (
+            <>
+              <directionalLight color="pink" position={[0, 0, 3]} />
+              <directionalLight
+                color="pink"
+                position={[-1, 2, 1]}
+                intensity={2}
+              />
+            </>
+          ),
+          media: [
+            {
+              type: "img",
+              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/partyHatEmojiWide.png?updatedAt=1693801470866",
+            },
+            {
+              type: "video",
+              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/partyHatEmoji.mp4?updatedAt=1693801399947",
+            },
+          ],
+        },
       },
+      {
+        title: "Emoji - 🥰",
+        date: "August 2023",
+        slug: "3d/emoji3",
+        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/loveEmoji.png?updatedAt=1693625002430",
+        alt: "🥰 emoji",
+        pageContent: {
+          meshSrc: <HeartFaceEmojiModel />,
+          description: (
+            <>
+              <h2>🥰 🥰 🥰</h2>
+              <p>
+                This is a 3D model of the iOS loving face emoji, made with{" "}
+                <Link to="https://womp.com/">Womp 3D</Link>. Use your cursor to
+                interact with the model below.
+              </p>
+            </>
+          ),
+          lights: (
+            <>
+              <ambientLight intensity={1.5} color={"red"} />
+              <directionalLight
+                color="black"
+                position={[0, 10, 5]}
+                intensity={2}
+              />
+            </>
+          ),
+          media: [
+            {
+              type: "img",
+              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/heartEyesEmojiWide.png?updatedAt=1693806568231",
+            },
+            {
+              type: "video",
+              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/heartEyesEmoji_xRZ7VYXTb.mp4?updatedAt=1693806571911",
+            },
+          ],
+        },
+      },
+      // {
+      //   title: "Emoji - 🤪",
+      //   date: "August 2023",
+      //   slug: "3d/emoji1",
+      //   src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/emoji1.png?updatedAt=1693154678498",
+      //   alt: "🤪 emoji",
+      //   pageContent: {
+      //     meshSrc:
+      //       "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/meshes/zanyEmoji.glb?updatedAt=1693795366278",
+      //   },
+      // },
       {
         title: "Balloon Animal",
         date: "August 2023",
-        slug: "balloon-animal",
+        slug: "3d/balloon-animal",
         src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/balloonAnimal.png?updatedAt=1693154795865",
         alt: "blue balloon dog animal",
-        description: "Made with Womp 3D",
+        pageContent: {
+          meshSrc: <BallonDogModel />,
+          cameraPosition: [0, 0, 10],
+          lights: (
+            <>
+              <ambientLight intensity={0.8} color={"white"} />
+              <directionalLight color="white" position={[-20, 5, 5]} />
+              <directionalLight color="white" position={[-5, 5, -5]} />
+            </>
+          ),
+          media: [
+            {
+              type: "img",
+              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/balloonAnimalWide.png?updatedAt=1693801644766",
+            },
+          ],
+        },
       },
     ],
   },
