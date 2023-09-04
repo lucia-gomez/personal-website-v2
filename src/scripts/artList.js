@@ -67,11 +67,9 @@ const artList = [
               <p>
                 3D model of a cherry Ring Pop, made with{" "}
                 <Link to="https://womp.com/">Womp 3D</Link>. The reflective
-                properties of this material were crucial to making it look real.
-                Light needs to bounce around inside the hard candy surface. This
-                was easy to do with Womp, but that material doesn't export well
-                to Three.js, which renders the interactive 3D model on this
-                page. Use your cursor to interact with the 3D model below.
+                properties of this material were crucial to making it look real-
+                light needs to bounce around inside the hard candy surface. Use
+                your cursor to interact with the 3D model below.
               </p>
             </>
           ),

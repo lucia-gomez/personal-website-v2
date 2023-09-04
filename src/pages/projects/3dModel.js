@@ -100,7 +100,17 @@ export default function ThreeDObjectPage() {
           if (media.type === "img") {
             return <img src={media.src} alt={media.alt} key={media.src} />
           } else if (media.type === "video") {
-            return <video src={media.src} key={media.src} autoPlay loop muted />
+            return (
+              <video
+                src={media.src}
+                key={media.src}
+                autoPlay
+                loop
+                muted
+                webkit-playsinline
+                playsinline
+              />
+            )
           } else if (media.type === "text") {
             return <p key={media.value}>{media.value}</p>
           }
