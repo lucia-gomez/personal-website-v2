@@ -7,9 +7,9 @@ const BackButton = styled(Link)`
   display: block;
 `
 
-const Back = ({ className, link }) => {
+const Back = ({ className, link, ...props }) => {
   return (
-    <BackButton to={link} sameTab={true} className={className}>
+    <BackButton to={link} sameTab={true} className={className} {...props}>
       <i className="fas fa-chevron-left" style={{ paddingRight: "3px" }} />
       Back
     </BackButton>

@@ -3,6 +3,7 @@ import { Navigate, useParams } from "react-router-dom"
 import { OrbitControls, Stage } from "@react-three/drei"
 import { useEffect, useState } from "react"
 
+import Back from "../../components/blog/back"
 import BlogLoading from "../../components/blog/blogLoading"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import React from "react"
@@ -77,6 +78,7 @@ export default function ThreeDObjectPage() {
 
   return (
     <Wrapper>
+      <Back link="/art" style={{ margin: "0px" }} />
       <SectionTitle>{art.title}</SectionTitle>
       <Date>{art.date}</Date>
       {art.pageContent.description}
@@ -107,8 +109,7 @@ export default function ThreeDObjectPage() {
                 autoPlay
                 loop
                 muted
-                webkit-playsinline
-                playsinline
+                playsInline
               />
             )
           } else if (media.type === "text") {
