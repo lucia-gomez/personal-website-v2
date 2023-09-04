@@ -76,10 +76,7 @@ const CustomNav = () => {
     ...(isAuthenticated ? [{ name: "Admin", link: "/admin" }] : []),
     {
       name: "Resume",
-      link: {
-        pathname:
-          "https://ik.imagekit.io/5xtlzx2c3y/website/resume.pdf?updatedAt=1689129405683",
-      },
+      link: "https://ik.imagekit.io/5xtlzx2c3y/website/resume.pdf?updatedAt=1689129405683",
       target: "_blank",
     },
   ]
@@ -146,7 +143,7 @@ const CustomNav = () => {
               href="#logout"
               onClick={e => {
                 logout({
-                  returnTo: window.location.origin,
+                  returnTo: "https://lucia-gomez.dev",
                 })
                 e.preventDefault()
               }}

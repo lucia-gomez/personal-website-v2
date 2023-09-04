@@ -10,7 +10,7 @@ const LinkWrapper = styled(RouterLink)`
 export default function Link(props) {
   return (
     <LinkWrapper
-      to={props.to ?? { pathname: props.href }}
+      to={props.to ?? props.href}
       className={props.className ?? ""}
       style={props.style}
       target={props.sameTab ? null : "_blank"}

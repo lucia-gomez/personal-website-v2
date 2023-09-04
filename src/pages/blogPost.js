@@ -1,5 +1,5 @@
+import { Navigate, useLocation, useParams } from "react-router-dom"
 import React, { useEffect, useState } from "react"
-import { Redirect, useLocation, useParams } from "react-router-dom"
 
 import Back from "../components/blog/back"
 import BlogContent from "../components/blog/blogContent"
@@ -126,7 +126,7 @@ export default function BlogPostPage() {
   }, [slug, location.key])
 
   if (post === null && !loading) {
-    return <Redirect to="/404" />
+    return <Navigate to="/404" />
   }
 
   return (

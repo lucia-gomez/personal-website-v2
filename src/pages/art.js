@@ -1,4 +1,4 @@
-import { Link as LinkRouter, useHistory, useParams } from "react-router-dom"
+import { Link as LinkRouter, useNavigate, useParams } from "react-router-dom"
 import artList, {
   getArtBySlug,
   getNextArtSlug,
@@ -38,7 +38,7 @@ export default function ArtPage() {
   const [nextModalSlug, setNextModalSlug] = useState(null)
   const [prevModalSlug, setPrevModalSlug] = useState(null)
   const { slug } = useParams()
-  const history = useHistory()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const foundArt = getArtBySlug(slug)
@@ -51,7 +51,7 @@ export default function ArtPage() {
 
   const handleModalClose = () => {
     setModalItem(null)
-    history.push("/art")
+    navigate("/art")
   }
 
   const memoZines = useMemo(

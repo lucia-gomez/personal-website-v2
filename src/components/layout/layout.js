@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const Layout = props => {
+export default function Layout(props) {
   const { children, gradientEnabled = true } = props
   const { pathname } = useLocation()
   let currentTheme = "default"
@@ -56,5 +56,3 @@ const Layout = props => {
     </ThemeProvider>
   )
 }
-
-export default Layout
