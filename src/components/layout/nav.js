@@ -76,7 +76,7 @@ const CustomNav = () => {
     ...(isAuthenticated ? [{ name: "Admin", link: "/admin" }] : []),
     {
       name: "Resume",
-      link: "https://ik.imagekit.io/5xtlzx2c3y/website/resume.pdf?updatedAt=1689129405683",
+      link: "https://ik.imagekit.io/5xtlzx2c3y/website/resume.pdf?updatedAt=1695747003980",
       target: "_blank",
     },
   ]

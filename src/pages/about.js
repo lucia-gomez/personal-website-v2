@@ -100,35 +100,34 @@ export default function About() {
             "fab fa-instagram",
             <Link href="https://www.instagram.com/lugoo.dev/">lugoo.dev</Link>
           )}
-          {ProfileInfo("fas fa-briefcase", "SWE, Meta")}
-          {ProfileInfo("fas fa-graduation-cap", "NYU Tisch")}
+          {ProfileInfo("fas fa-graduation-cap", "NYU ITP")}
           {ProfileInfo("fas fa-map-marker-alt", "Brooklyn, NY")}
         </ProfileIconsWrapper>
       </ProfileWrapper>
       <div className="animate__animated animate__fadeIn">
         <Subsection title="About Me">
           <p>
-            By day, I'm a Software Engineer working on augmented reality glasses
-            at Meta. By night, I'm a Creative Technologist bouncing from project
-            to project. Right now I'm focused on
+            I'm a first year graduate student at NYU Tisch's{" "}
+            <Link href="https://itp.nyu.edu/itp/">
+              Interactive Telecommunications Program
+            </Link>
+            . My background is in software engineering but right now I'm focused
+            on
           </p>
           <ul>
             <li>Augmented reality</li>
+            <li>Physical computing</li>
             <li>Interactive web experiences</li>
             <li>Digital art</li>
             <li>Zines</li>
             <li>Combinations of all of the above</li>
           </ul>
           ...Or whatever shiny, new technology captures my interest tomorrow.
-          I'm also an incoming graduate student at the{" "}
-          <Link href="https://tisch.nyu.edu/itp/admissions/itp-mps">
-            Interactive Telecommunications Program
-          </Link>{" "}
-          through the NYU Tisch School of the Arts! I'm excited to be returning
-          to New York for school, after graduating from Cornell in 2021 with a
-          B.A. in Computer Science and Linguistics. I enjoy making use of my
-          background in Linguistics; I've always been interested in machine
-          translation of American Sign Language.
+          Before grad school, I studied Computer Science and Linguistics at
+          Cornell University, and was a Senior Software Engineer at Meta working
+          on AR glasses. I enjoy making use of my background in Linguistics;
+          I've always been interested in machine translation of American Sign
+          Language.
           <br></br>
           <br></br>I have at least one ABBA song stuck in my head at any given
           time.

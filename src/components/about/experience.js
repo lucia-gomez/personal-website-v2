@@ -76,9 +76,9 @@ export default function ExperienceSection() {
     "Software Engineer",
     "Meta",
     "https://www.metacareers.com/",
-    "Aug 2021 - present, June - Aug 2020, June - Aug 2019",
+    "Aug 2021 - Aug 2023, June - Aug 2020, June - Aug 2019",
     [
-      "Present: SWE working on AR glasses",
+      "2023: SWE working on full-stack software for system level user experiences on AR glasses",
       "2020 (internship): Full-stack web development on the Marketplace ML Foundations team",
       [
         "Created a series of internal UI tools to empower logging interactions on Facebook Marketplace",
@@ -115,7 +115,27 @@ export default function ExperienceSection() {
     ]
   )
 
+  const nyu = ExperienceItem(
+    "Graduate Student",
+    "NYU Tisch, Interactive Telecommunications Program",
+    "https://itp.nyu.edu/itp/",
+    "Sept 2023 - present",
+    [
+      "Graduate Assistant",
+      [
+        "Graduate teaching assistant for an NYU IMA class, ReCode",
+        "Helping undergraduate students learn about HTML/CSS, vanilla Javascript, and APIs",
+      ],
+      "Coding Lab Mentor",
+      [
+        "Holding weekly office hours to provide programming advice",
+        "Working as a general resource for my peers with all levels of programming experience",
+      ],
+    ]
+  )
+
   const tabs = {
+    NYU: nyu,
     Meta: meta,
     "Juni Learning": juni,
     "Cornell CIS": ta,
