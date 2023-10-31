@@ -68,7 +68,8 @@ const BlogStyle = styled.div`
   code {
     color: ${props => hexToRGB(props.theme.text, 0.6)};
   }
-  img {
+  img,
+  video {
     height: 100%;
     max-width: 100% !important;
     max-height: 70vh;
@@ -80,6 +81,9 @@ const BlogStyle = styled.div`
     @media screen and (max-width: 576px) {
       width: 100%;
     }
+  }
+  video {
+    object-fit: cover;
   }
   h4 {
     padding-top: 24px;
