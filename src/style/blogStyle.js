@@ -73,7 +73,7 @@ const BlogStyle = styled.div`
     max-width: 100% !important;
     max-height: 70vh;
     border-radius: 5px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     margin-right: 20px;
     display: block;
 
@@ -82,7 +82,13 @@ const BlogStyle = styled.div`
     }
   }
   h4 {
-    padding-top: 12px;
+    padding-top: 24px;
+  }
+  iframe {
+    margin-bottom: 24px;
+    @media screen and (max-width: 576px) {
+      width: 100%;
+    }
   }
 `
 
