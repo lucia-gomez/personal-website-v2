@@ -74,13 +74,15 @@ const BlogStyle = styled.div`
     max-width: 100% !important;
     max-height: 70vh;
     border-radius: 5px;
-    /* margin-bottom: 20px; */
     margin-right: 20px;
     display: block;
 
     @media screen and (max-width: 576px) {
       width: 100%;
     }
+  }
+  img + img {
+    margin-top: 20px;
   }
   video {
     object-fit: cover;
