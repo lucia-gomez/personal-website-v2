@@ -78,14 +78,14 @@ const UpdatePostButton = (payload, closeEditor) => {
 
 const ResetLikesButton = payload => {
   return (
-    <Button onClick={() => LikeApi.reset(payload.id)} key={5}>
+    <Button onClick={() => LikeApi.reset(payload._id)} key={5}>
       Reset Likes
     </Button>
   )
 }
 
 const DeletePostButton = payload => {
-  return <Delete postID={payload.id} key={6} />
+  return <Delete postID={payload._id} key={6} />
 }
 
 export default function getButtons(payload, isDraft, isNew, actions) {

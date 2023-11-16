@@ -114,9 +114,9 @@ export default function SubscriberList(props) {
       const row = data[i]
       rows.push(
         <tr key={i}>
-          <td>{i < data.length ? row.id : ""}</td>
           <td>{i < data.length ? row.email : ""}</td>
           <td>{i < data.length ? formatDate(row.dateAdded) : ""}</td>
+          <td>{i < data.length ? row._id : ""}</td>
           <td />
         </tr>
       )

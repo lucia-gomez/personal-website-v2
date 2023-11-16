@@ -36,7 +36,7 @@ const BlogDraftItem = ({ post, handleOpenDraft, handleDeleteDraft }) => {
         <p>{post.summary}</p>
       </Body>
       <DeleteWrapper>
-        <Delete postID={post.id} callback={handleDeleteDraft} draft />
+        <Delete postID={post._id} callback={handleDeleteDraft} draft />
       </DeleteWrapper>
     </Wrapper>
   )

@@ -128,12 +128,12 @@ const BlogPostLink = ({ isMobile = false, post }) => {
         </Body>
       </ClickableCard>
       <Footer>
-        <Like count={post.likes} postID={post.id} />
+        <Like count={post.likes} postID={post._id} />
         <Date>{date.substring(0, date.indexOf(","))}</Date>
       </Footer>
       {isAuthenticated ? (
         <DeleteWrapper>
-          <Delete postID={post.id} />
+          <Delete postID={post._id} />
         </DeleteWrapper>
       ) : null}
     </Wrapper>

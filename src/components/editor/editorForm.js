@@ -132,7 +132,7 @@ export default function EditorForm(props) {
     imageUrl: imageUrl,
     summary: summary,
     content: content,
-    id: post?.id,
+    _id: post?._id,
   }
 
   return (

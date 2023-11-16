@@ -114,7 +114,7 @@ export default function BlogPostPage() {
   useEffect(() => {
     setLoading(true)
     PostApi.getPost(slug).then(res => {
-      setPost(res.data[0] ?? null)
+      setPost(res.data ?? null)
       setLoading(false)
     })
     PostApi.getNextPost(slug).then(res => {

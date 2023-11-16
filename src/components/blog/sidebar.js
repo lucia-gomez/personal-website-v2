@@ -101,7 +101,7 @@ const Sidebar = ({ post, className }) => {
         <Divider />
       </SidebarContent>
       <Row>
-        <Like count={post != null ? post.likes : "--"} postID={post?.id} />
+        <Like count={post != null ? post.likes : "--"} postID={post?._id} />
         <ShareRow>
           <Link to="/subscribe" sameTab={true}>
             <SubscribeIcon className="fas fa-envelope" />

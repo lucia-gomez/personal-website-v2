@@ -5,26 +5,18 @@ const dotenv = require("dotenv")
 const express = require("express")
 const fs = require("fs")
 const Mailjet = require("node-mailjet")
-const mysql = require("mysql")
+const {
+  connectDB,
+  getId,
+  DraftsModel,
+  PostsModel,
+  SubscribersModel,
+  SubscribersTestModel,
+} = require("./db")
 
 dotenv.config()
 const app = express()
-
-const db = mysql.createPool({
-  host:
-    process.env.NODE_ENV === "development"
-      ? "localhost"
-      : "us-cdbr-east-04.cleardb.com",
-  user: process.env.NODE_ENV === "development" ? "root" : "b1601efb83fa98",
-  password:
-    process.env.NODE_ENV === "development"
-      ? process.env.REACT_APP_DB_PASSWORD_DEV
-      : process.env.REACT_APP_DB_PASSWORD_PROD,
-  database:
-    process.env.NODE_ENV === "development"
-      ? "WebsiteBlog"
-      : "heroku_a0f43feca6ab6ff",
-})
+connectDB()
 
 app.use(cors(), function (req, res, next) {
   const allowedOrigins = [
@@ -47,19 +39,24 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get("/api/get", (req, res) => {
-  const sql = "SELECT * FROM posts;"
-  db.query(sql, (err, result) => {
-    res.send(result)
-  })
+  PostsModel.find({})
+    .then(docs => {
+      res.send(docs)
+    })
+    .catch(e => {
+      res.status(400)
+      console.error(e)
+    })
 })
 
 app.get("/api/get/:slug", (req, res) => {
   const slug = req.params.slug
-  const sql = "SELECT * FROM posts WHERE slug = ?;"
-  db.query(sql, slug, (err, result) => {
-    res.send(result)
-    if (err) console.error(err)
-  })
+  PostsModel.findOne({ slug })
+    .then(doc => res.send(doc))
+    .catch(e => {
+      res.status(400)
+      console.error(e)
+    })
 })
 
 app.post("/api/create", (req, res) => {
@@ -71,79 +68,101 @@ app.post("/api/create", (req, res) => {
   const slug = req.body.slug
   const imageUrl = req.body.imageUrl
 
-  const sql =
-    "INSERT INTO posts (date, dateString, title, summary, content, slug, imageUrl) VALUES (?, ?, ?, ?, ?, ?, ?);"
-  db.query(
-    sql,
-    [datetime, dateString, title, summary, content, slug, imageUrl],
-    (err, result) => {
-      if (err) console.error(err)
-      res.send(result)
-    }
-  )
+  PostsModel.create({
+    _id: getId(),
+    title,
+    summary,
+    content,
+    slug,
+    imageUrl,
+    dateString,
+    date: datetime,
+    likes: 0,
+  })
+    .then(result => res.send(result))
+    .catch(e => {
+      res.status(400)
+      console.error(e)
+    })
 })
 
 app.post("/api/like", (req, res) => {
   const id = req.body.id
-  const update = "UPDATE posts SET likes = likes + 1 WHERE id = ?;"
-  db.query(update, [id], (err, result) => {
-    if (err) console.error(err)
-    res.send(result)
-  })
+  PostsModel.updateOne({ _id: id }, { $inc: { likes: 1 } })
+    .then(result => {
+      res.send(result)
+    })
+    .catch(error => {
+      console.error(error)
+      res.status(400)
+    })
 })
 
 app.post("/api/unlike", (req, res) => {
   const id = req.body.id
-  const update = "UPDATE posts SET likes = likes - 1 WHERE id = ?;"
-  db.query(update, [id], (err, result) => {
-    if (err) console.error(err)
-    res.send(result)
-  })
+  PostsModel.updateOne({ _id: id }, { $inc: { likes: -1 } })
+    .then(result => {
+      res.send(result)
+    })
+    .catch(error => {
+      console.error(error)
+      res.status(400)
+    })
 })
 
 app.post("/api/likes/reset", (req, res) => {
   const id = req.body.id
-  const update = "UPDATE posts SET likes = 0 WHERE id = ?;"
-  db.query(update, [id], (err, result) => {
-    if (err) console.error(err)
-    res.send(result)
-  })
+  PostsModel.updateOne({ _id: id }, { $set: { likes: 0 } })
+    .then(result => {
+      res.send(result)
+    })
+    .catch(error => {
+      console.error(error)
+      res.status(400)
+    })
 })
 
 app.delete("/api/delete/:id", (req, res) => {
   const id = req.params.id
-  const sql = "DELETE FROM posts WHERE id = ?;"
-  db.query(sql, [id], (err, result) => {
-    if (err) console.error(err)
-    res.send(result)
-  })
+  PostsModel.deleteOne({ _id: id })
+    .then(result => {
+      res.send(result)
+    })
+    .catch(error => {
+      console.error(error)
+      res.status(400)
+    })
 })
 
 app.post("/api/update", (req, res) => {
   const id = req.body.id
   const title = req.body.title
   const summary = req.body.summary
-  const newContent = req.body.content
-  const newDateString = req.body.dateString
-  const newImageUrl = req.body.imageUrl
-  const sql =
-    "UPDATE posts SET dateString = ?, content = ?, title = ?, summary = ?, imageUrl = ? WHERE id = ?;"
-  db.query(
-    sql,
-    [newDateString, newContent, title, summary, newImageUrl, id],
-    (err, result) => {
-      if (err) console.error(err)
-      res.send(result)
-    }
+  const content = req.body.content
+  const dateString = req.body.dateString
+  const imageUrl = req.body.imageUrl
+  PostsModel.updateOne(
+    { _id: id },
+    { $set: { title, summary, content, dateString, imageUrl } }
   )
+    .then(result => {
+      res.send(result)
+    })
+    .catch(error => {
+      console.error(error)
+      res.status(400)
+    })
 })
 
 app.get("/api/draft/get", (req, res) => {
-  const sql = "SELECT * from drafts;"
-  db.query(sql, (err, result) => {
-    if (err) console.error(err)
-    res.send(result)
-  })
+  DraftsModel.find({})
+    .then(docs => {
+      res.send(docs)
+    })
+    .catch(e => {
+      res.status(400)
+      console.error(e)
+    })
 })
 
 app.post("/api/draft/create", (req, res) => {
@@ -152,21 +171,31 @@ app.post("/api/draft/create", (req, res) => {
   const content = req.body.content
   const slug = req.body.slug
   const imageUrl = req.body.imageUrl
-  const sql =
-    "INSERT INTO drafts (title, summary, content, slug, imageUrl) VALUES (?, ?, ?, ?, ?);"
-  db.query(sql, [title, summary, content, slug, imageUrl], (err, result) => {
-    if (err) console.error(err)
-    res.send(result)
+  DraftsModel.create({
+    _id: getId(),
+    title,
+    summary,
+    content,
+    slug,
+    imageUrl,
   })
+    .then(result => {
+      res.send(result)
+    })
+    .catch(error => {
+      console.error(error)
+      res.status(400)
+    })
 })
 
 app.delete("/api/draft/:id", (req, res) => {
   const id = req.params.id
-  const sql = "DELETE FROM drafts WHERE id = ?;"
-  db.query(sql, [id], (err, result) => {
-    if (err) console.error(err)
-    res.send(result)
-  })
+  DraftsModel.deleteOne({ _id: id })
+    .then(doc => res.send(doc))
+    .catch(e => {
+      res.status(400)
+      console.error(e)
+    })
 })
 
 app.post("/api/draft/update", (req, res) => {
@@ -174,38 +203,67 @@ app.post("/api/draft/update", (req, res) => {
   const title = req.body.title
   const summary = req.body.summary
   const slug = req.body.slug
-  const newContent = req.body.content
+  const content = req.body.content
   const imageUrl = req.body.imageUrl
-  const sql =
-    "UPDATE drafts SET content = ?, title = ?, summary = ?, slug = ?, imageUrl = ? WHERE id = ?;"
-  db.query(
-    sql,
-    [newContent, title, summary, slug, imageUrl, id],
-    (err, result) => {
-      if (err) console.error(err)
-      res.send(result)
-    }
+  DraftsModel.updateOne(
+    { _id: id },
+    { $set: { title, summary, slug, content, imageUrl } }
   )
+    .then(result => {
+      res.send(result)
+    })
+    .catch(error => {
+      console.error(error)
+      res.status(400)
+    })
 })
 
 app.get("/api/next/:slug", (req, res) => {
   const slug = req.params.slug
-  const sql =
-    "SELECT slug FROM posts where id = (SELECT max(id) FROM posts WHERE id < (SELECT id FROM posts WHERE slug = ?));"
-  db.query(sql, [slug], (err, result) => {
-    if (err) console.error(err)
-    res.send(result)
-  })
+  PostsModel.findOne({ slug })
+    .then(doc => {
+      if (doc) {
+        PostsModel.findOne({ _id: { $gt: doc._id } })
+          .sort({ _id: 1 })
+          .then(nextDoc => res.send(nextDoc))
+          .catch(e => {
+            console.error(e)
+            res.status(400)
+          })
+      } else {
+        console.error("Couldn't find doc with given slug")
+        res.status(400)
+        res.send(null)
+      }
+    })
+    .catch(e => {
+      console.error(e)
+      res.status(400)
+    })
 })
 
 app.get("/api/prev/:slug", (req, res) => {
   const slug = req.params.slug
-  const sql =
-    "SELECT slug FROM posts where id = (SELECT min(id) FROM posts WHERE id > (SELECT id FROM posts WHERE slug = ?));"
-  db.query(sql, [slug], (err, result) => {
-    if (err) console.error(err)
-    res.send(result)
-  })
+  PostsModel.findOne({ slug })
+    .then(doc => {
+      if (doc) {
+        PostsModel.findOne({ _id: { $lt: doc._id } })
+          .sort({ _id: -1 })
+          .then(nextDoc => res.send(nextDoc))
+          .catch(e => {
+            console.error(e)
+            res.status(400)
+          })
+      } else {
+        console.error("Couldn't find doc with given slug")
+        res.status(400)
+        res.send(null)
+      }
+    })
+    .catch(e => {
+      console.error(e)
+      res.status(400)
+    })
 })
 
 /************* MAILJET *************/
@@ -278,33 +336,30 @@ function sendToList(contacts, subject, content, res) {
 app.post("/api/email/sendTest", (req, res) => {
   const subject = req.body.subject
   const content = req.body.content
-
-  const sqlContacts = "SELECT email FROM subscriberstest;"
-  db.query(sqlContacts, (err, result) => {
-    if (err) {
-      console.error(err)
+  SubscribersTestModel.find({})
+    .then(contacts => {
+      sendToList(contacts, subject, content, res)
+    })
+    .catch(e => {
+      console.error(e)
       res.status(400)
-      res.send(err)
-    } else {
-      sendToList(result, subject, content, res)
-    }
-  })
+      res.send(e)
+    })
 })
 
 app.post("/api/email/send", (req, res) => {
   const subject = req.body.subject
   const content = req.body.content
 
-  const sqlContacts = "SELECT email FROM subscribers;"
-  db.query(sqlContacts, (err, result) => {
-    if (err) {
-      console.error(err)
+  SubscribersModel.find({})
+    .then(contacts => {
+      sendToList(contacts, subject, content, res)
+    })
+    .catch(e => {
+      console.error(e)
       res.status(400)
-      res.send(err)
-    } else {
-      sendToList(result, subject, content, res)
-    }
-  })
+      res.send(e)
+    })
 })
 
 app.post("/api/email/confirm", (req, res) => {
@@ -357,18 +412,18 @@ app.post("/api/email/subscribe/:emailHash", (req, res) => {
 
   const dateAdded = new Date().toISOString().slice(0, 19).replace("T", " ")
 
-  const sql = "INSERT INTO subscribers (email, dateAdded) VALUES (?, ?);"
-  db.query(sql, [email, dateAdded], (err, result) => {
-    if (err) {
-      if (err.code === "ER_DUP_ENTRY") {
-        console.error(err)
+  SubscribersModel.create({ _id: getId(), email, dateAdded })
+    .then(result => res.send(result))
+    .catch(error => {
+      console.error(error)
+      if (error.code === 11000 || error.code === 11001) {
         res.status(409)
+        res.send("Error: email already subscribed")
       } else {
         res.status(400)
+        res.send("Error: can't add email")
       }
-    }
-    res.send(result)
-  })
+    })
 })
 
 app.delete("/api/email/unsubscribe/:emailHash", (req, res) => {
@@ -380,11 +435,12 @@ app.delete("/api/email/unsubscribe/:emailHash", (req, res) => {
     return
   }
 
-  const sql = "DELETE FROM subscribers WHERE email = ?;"
-  db.query(sql, [email], (err, result) => {
-    if (err) console.error(err)
-    res.send(result)
-  })
+  SubscribersModel.deleteOne({ email })
+    .then(result => res.send(result))
+    .catch(e => {
+      res.status(400)
+      res.send(e)
+    })
 })
 
 app.get("/api/email/subscribers/:tableName", (req, res) => {
@@ -395,14 +451,15 @@ app.get("/api/email/subscribers/:tableName", (req, res) => {
     return
   }
 
-  const sql =
-    tableName === "subscribers"
-      ? "SELECT * FROM subscribers;"
-      : "SELECT * FROM subscriberstest;"
-  db.query(sql, (err, result) => {
-    if (err) console.error(err)
-    res.send(result)
-  })
+  const model =
+    tableName === "subscribers" ? SubscribersModel : SubscribersTestModel
+  model
+    .find({})
+    .then(contacts => res.send(contacts))
+    .catch(e => {
+      res.status(400)
+      res.send(e)
+    })
 })
 
 const PORT = 3001

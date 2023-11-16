@@ -36,7 +36,7 @@ export const PostApi = {
   },
   updatePost: payload => {
     const args = {
-      id: payload.id,
+      id: payload._id,
       title: payload.title,
       dateString: payload.date,
       imageUrl: payload.imageUrl,
@@ -50,8 +50,9 @@ export const PostApi = {
 
 export const DraftApi = {
   publishDraft: async payload => {
+    console.log(payload)
     await PostApi.createPost(payload)
-    return Axios.delete(`${getApiUrl()}/api/draft/${payload.id}`)
+    return Axios.delete(`${getApiUrl()}/api/draft/${payload._id}`)
   },
   createDraft: payload =>
     Axios.post(getApiUrl() + "/api/draft/create", {
@@ -63,7 +64,7 @@ export const DraftApi = {
     }),
   updateDraft: payload =>
     Axios.post(`${getApiUrl()}/api/draft/update`, {
-      id: payload.id,
+      id: payload._id,
       title: payload.title,
       summary: payload.summary,
       slug: payload.slug,
