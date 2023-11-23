@@ -9,6 +9,7 @@ const BulletPoints = styled.ul`
   @media screen and (max-width: 576px) {
     display: grid;
     grid-template-columns: auto auto;
+    height: unset;
     column-gap: 40px;
     justify-content: start;
   }
@@ -46,19 +47,42 @@ export default function TechnologiesSection() {
     "Materialize",
   ])
   const frameworks = Item(["React", "React Native", "Flutter"])
-  const backend = Item(["Express", "Flask", "MySQL", "PostgreSQL", "Postman"])
-  const langs = Item(["Javascript", "Java", "Python", "OCaml", "Dart", "PHP"])
+  const backend = Item([
+    "Express",
+    "Flask",
+    "MongoDB",
+    "MySQL",
+    "PostgreSQL",
+    "Postman",
+  ])
+  const langs = Item([
+    "Javascript",
+    "Java",
+    "Python",
+    "OCaml",
+    "Dart",
+    "PHP",
+    "Arduino",
+  ])
   const graphics = Item(["threeJS", "p5.js", "D3", "WebGL"])
-  const creative = Item(["Spark AR", "Blender", "Photoshop", "Figma"])
+  const creative = Item([
+    "Spark AR",
+    "Blender",
+    "Womp 3D",
+    "Max/MSP/Jitter",
+    "Photoshop",
+    "After Effects",
+    "Figma",
+  ])
   const hosting = Item(["Heroku", "Netlify", "GitHub", "AWS", "Squarespace"])
 
   const tabs = {
+    Creative: creative,
+    Graphics: graphics,
     Frontend: frontend,
     "UI Frameworks": frameworks,
     Backend: backend,
     Languages: langs,
-    Graphics: graphics,
-    Creative: creative,
     Hosting: hosting,
   }
 
