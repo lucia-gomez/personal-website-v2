@@ -230,8 +230,8 @@ app.get("/api/next/:slug", (req, res) => {
   PostsModel.findOne({ slug })
     .then(doc => {
       if (doc) {
-        PostsModel.findOne({ _id: { $gt: doc._id } })
-          .sort({ _id: 1 })
+        PostsModel.findOne({ _id: { $lt: doc._id } })
+          .sort({ _id: -1 })
           .then(nextDoc => res.send(nextDoc))
           .catch(e => {
             console.error(e)
@@ -254,8 +254,8 @@ app.get("/api/prev/:slug", (req, res) => {
   PostsModel.findOne({ slug })
     .then(doc => {
       if (doc) {
-        PostsModel.findOne({ _id: { $lt: doc._id } })
-          .sort({ _id: -1 })
+        PostsModel.findOne({ _id: { $gt: doc._id } })
+          .sort({ _id: 1 })
           .then(nextDoc => res.send(nextDoc))
           .catch(e => {
             console.error(e)

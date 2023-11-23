@@ -118,10 +118,10 @@ export default function BlogPostPage() {
       setLoading(false)
     })
     PostApi.getNextPost(slug).then(res => {
-      setNextPostSlug(res.data ?? null)
+      setNextPostSlug(res.data || null)
     })
     PostApi.getPrevPost(slug).then(res => {
-      setPrevPostSlug(res.data ?? null)
+      setPrevPostSlug(res.data || null)
     })
   }, [slug, location.key])
 
