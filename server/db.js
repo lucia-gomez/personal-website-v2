@@ -4,9 +4,7 @@ const mongoose = require("mongoose")
 const connectDB = async () => {
   try {
     const database =
-      process.env.NODE_ENV === "development"
-        ? "personalWebsiteDev"
-        : "personalWebsite"
+      process.env.NODE_ENV === "de" ? "personalWebsiteDev" : "personalWebsite"
     const uri = `mongodb+srv://admin:${process.env.REACT_APP_MONGO_PASSWORD}@luciagomez.xykba6v.mongodb.net/${database}?retryWrites=true&w=majority`
     await mongoose.connect(uri)
     console.log("Connected to MongoDB")

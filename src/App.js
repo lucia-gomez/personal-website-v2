@@ -9,6 +9,7 @@ import ArtPage from "./pages/art"
 import Auth0ProviderWithHistory from "./components/layout/auth0-provider-with-history"
 import BlogHomePage from "./pages/blog"
 import BlogPostPage from "./pages/blogPost"
+import Collagescape from "./pages/projects/collagescape"
 import ConfirmationPage from "./pages/confirmation"
 import Error404 from "./pages/404"
 import LandingPage from "./pages/landing"
@@ -66,6 +67,14 @@ export default function App() {
               element={<UnsubscribePage />}
             ></Route>
             <Route path="/toad-ar" element={<ToadARPage />}></Route>
+            <Route
+              path="/project/collagescape"
+              element={<Collagescape />}
+            ></Route>
+            <Route
+              path="/project/collagescape/:id"
+              element={<Collagescape />}
+            ></Route>
             <Route path="/classBlog" element={<WordpressRedirect />}></Route>
           </Routes>
         </Layout>

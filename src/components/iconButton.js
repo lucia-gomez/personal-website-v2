@@ -27,9 +27,9 @@ const ExternalWrapper = styled(IconButtonLink)`
   }
 `
 
-export default function ExternalIconButton(link) {
+export default function ExternalIconButton(link, sameTab = false) {
   return (
-    <ExternalWrapper href={link ?? ""} key={link}>
+    <ExternalWrapper href={link ?? ""} key={link} sameTab={sameTab}>
       <i className="material-icons">launch</i>
     </ExternalWrapper>
   )

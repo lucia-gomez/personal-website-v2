@@ -13,6 +13,21 @@ const category = {
 
 const projects = [
   {
+    title: "Collagescape",
+    date: "October 2023",
+    tools: ["Max/MSP/Jitter", "Photoshop"],
+    image: "collagescape.png?updatedAt=1697050834660",
+    text: (
+      <p>
+        I turned photos on my bedroom wall into an interactive experience that
+        generates digital collages.
+      </p>
+    ),
+    link: "https://github.com/lucia-gomez/collagescape",
+    extra: ExternalIconButton("/project/collagescape", true),
+    categories: [category["Digital Art"]],
+  },
+  {
     title: "Threadbare",
     date: "June 2023",
     tools: ["p5.js", "Javascript"],
