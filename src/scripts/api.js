@@ -96,3 +96,7 @@ export const EmailApi = {
   unsubscribe: emailHash =>
     Axios.delete(`${getApiUrl()}/api/email/unsubscribe/${emailHash}`),
 }
+
+export const ImageKitApi = {
+  getImagesFromPath: path => Axios.post(`${getApiUrl()}/api/image`, { path }),
+}
