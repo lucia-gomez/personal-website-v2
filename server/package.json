@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "startDev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "copy": "cp -r ./* /Users/luciagomez/Desktop/projects/lucia-gomez-server"
   },
   "author": "",
   "license": "ISC",
