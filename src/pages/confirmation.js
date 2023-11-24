@@ -26,7 +26,7 @@ export default function ConfirmationPage(props) {
 
   useEffect(() => {
     setSuccess(null)
-    EmailApi.subscribe(emailHash)
+    EmailApi.subscribe(encodeURIComponent(emailHash))
       .then(_ => {
         setSuccess(true)
       })
