@@ -21,8 +21,8 @@ const bannerText = css`
   opacity: 0;
   margin: 0;
 
-  animation-duration: 500ms;
-  --webkit-animation-duration: 500ms;
+  animation-duration: 1s;
+  --webkit-animation-duration: 1s;
   text-shadow: 0px 0px 20px ${props => props.theme.bg};
 `
 
@@ -32,13 +32,13 @@ const Title = styled.h1`
   font-size: 70px;
   margin-bottom: 12px;
 
-  animation-delay: 500ms;
-  --webkit-animation-delay: 500ms;
+  animation-delay: 1s;
+  --webkit-animation-delay: 1s;
 `
 
 const JobTitle = styled.h4`
   ${bannerText}
-  height: 10vh;
+  height: 6vh;
 
   animation-delay: 1s;
   --webkit-animation-delay: 1s;

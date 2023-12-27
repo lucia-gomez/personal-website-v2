@@ -1,31 +1,42 @@
 import { ReactP5Wrapper } from "@p5-wrapper/react"
+import { useEffect } from "react"
 
 export default function InteractiveDrawing() {
+  useEffect(() => {
+    setTimeout(() => {
+      document.elementFromPoint(0, 0).click()
+    }, 0)
+  }, [])
   return <ReactP5Wrapper sketch={sketch} />
 }
 
 function sketch(p5) {
   let img
   let pixelation = 4
+  let dotSize
   let cells = [] // Array to store cell information
+  let numClicks = 0
+
   let time = 0
-  let seedOffset = 0
+  const timeIncrement = 0.0005
+  let seedOffset = 866 //711
+
   let isTransitioning = false
   let transitionSpeed = 0.2
   let transitionStartTime
 
   // Define the minimum and maximum values for the p5.noise scale
   let minNoiseScale = 0.0005
-  let maxNoiseScale = 0.004
-  let noiseScale = maxNoiseScale
-
-  const timeIncrement = 0.0005
+  let maxNoiseScale = 0.003
+  let noiseScale = 0.001
 
   let repelStrengthIncrement = 0.5
   let repelStrengthMax = 2.0
   let repelStrength = repelStrengthMax
 
   let centerX, centerY, maxDistanceFromCenter
+
+  let offsetX, offsetY
 
   p5.preload = () => {
     img = p5.loadImage("aurora.jpg")
@@ -36,16 +47,22 @@ function sketch(p5) {
 
     let heightScale = 2,
       widthScale = 2
+    dotSize = 3
+    offsetX = 100
+    offsetY = 50
     if (p5.windowWidth < 450) {
-      widthScale = 3
-      heightScale = 3
+      dotSize = 2
+      widthScale = 2.5
+      heightScale = 2.5
+      offsetX = -50
+      offsetY = -100
     }
     let canvasWidth = p5.windowWidth * widthScale
-    let canvasHeight = p5.min(1200, p5.windowHeight * heightScale)
+    let canvasHeight = p5.windowHeight * heightScale
 
     p5.createCanvas(canvasWidth, canvasHeight).position(
-      (p5.windowWidth - canvasWidth) / 2,
-      (p5.windowHeight - canvasHeight) / 1.5
+      (p5.windowWidth - canvasWidth) / widthScale,
+      (p5.windowHeight - canvasHeight) / heightScale
     )
     p5.noSmooth()
 
@@ -65,7 +82,6 @@ function sketch(p5) {
 
   p5.draw = () => {
     p5.clear()
-
     if (isMouseInBounds()) {
       let distanceFromCenter = p5.dist(p5.mouseX, p5.mouseY, centerX, centerY)
       noiseScale = p5.map(
@@ -124,16 +140,17 @@ function sketch(p5) {
   }
 
   p5.mouseClicked = () => {
-    seedOffset = Math.floor(p5.random() * 1000)
+    seedOffset = numClicks < 2 ? 711 : Math.floor(p5.random() * 1000)
     transitionStartTime = p5.millis()
     isTransitioning = true
     repelStrength = 0
+    numClicks++
   }
 
   function displayCells() {
     for (let cell of cells) {
       p5.fill(cell.color)
-      p5.ellipse(cell.x + 100, cell.y + 100, 3, 3)
+      p5.ellipse(cell.x + offsetX, cell.y + offsetY, dotSize, dotSize)
     }
   }
 

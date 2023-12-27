@@ -1,8 +1,7 @@
 import React, { useRef } from "react"
 import styled, { useTheme } from "styled-components"
 
-import { AnimationOnScroll } from "react-animation-on-scroll"
-import { ButtonLink } from "../components/button"
+import ActionButtons from "../components/banner/actionButtons"
 import FeaturedProject from "../components/banner/featuredProject"
 import Footer from "../components/layout/footer"
 import InteractiveDrawing from "../components/interactiveDrawing"
@@ -16,22 +15,26 @@ const projects = featuredProjects([
 ])
 
 const LandingWrapper = styled.div`
-  max-height: var(--doc-height);
-  overflow-y: scroll;
+  width: 100%;
+  height: 100svh;
+  overflow-y: clip;
   overflow-x: clip;
   position: relative;
 `
 
-const TopSpacer = styled.div`
-  height: 40vh;
-  @media screen and (min-width: 576px) {
-    height: 60vh;
-  }
-`
+// const TopSpacer = styled.div`
+//   height: 40vh;
+//   @media screen and (min-width: 576px) {
+//     height: 60vh;
+//   }
+// `
 
-const Sticky = styled.div`
-  position: sticky;
-  top: 75px;
+const Section = styled.div`
+  position: absolute;
+  top: 35vh;
+  @media screen and (min-width: 576px) {
+    top: 50vh;
+  }
   padding: 0 20px;
 `
 
@@ -46,36 +49,9 @@ const DrawingWrapper = styled.div`
 const Spacer = styled.div`
   height: 30vh;
   @media screen and (min-width: 576px) {
-    height: 30vh;
+    height: ${props => props.height};
   }
 `
-
-function AnimatedSection(props) {
-  const { animateIn = true, offset = -100, children } = props
-
-  const parent = child =>
-    animateIn ? (
-      <AnimationOnScroll
-        animateIn="animate__fadeInUp"
-        animatePreScroll={false}
-        duration={0.5}
-        offset={offset}
-        animateOnce={true}
-        scrollableParentSelector="#banner"
-      >
-        {child}
-      </AnimationOnScroll>
-    ) : (
-      <>{child}</>
-    )
-
-  return parent(
-    <section>
-      <Sticky>{children}</Sticky>
-      {/* <Spacer /> */}
-    </section>
-  )
-}
 
 export default function LandingPage() {
   const theme = useTheme()
@@ -87,42 +63,20 @@ export default function LandingPage() {
         <DrawingWrapper>
           <InteractiveDrawing />
         </DrawingWrapper>
-        <TopSpacer />
-        <AnimatedSection animateIn={false}>
+        <Section>
           <Name color={theme.text} />
-          <Spacer />
-        </AnimatedSection>
+          <ActionButtons />
+          <Spacer height={"20vh"} />
+        </Section>
         {/* <AnimatedSection offset={0}></AnimatedSection>
       {projects.map((project, idx) => (
         <AnimatedSection key={idx}>
           <FeaturedProject project={project} />
         </AnimatedSection>
       ))}
-      <AnimatedSection offset={-100}>
-        <Actions>
-          <p>There's more where that came from...</p>
-          <ButtonLink to="/portfolio" sameTab={true}>
-            Full Portfolio
-          </ButtonLink>
-          <ButtonLink to="/subscribe" sameTab={true}>
-            Subscribe
-          </ButtonLink>
-        </Actions>
-      </AnimatedSection> */}
+      */}
       </LandingWrapper>
       <Footer style={{ position: "absolute", bottom: 0 }} />
     </>
   )
 }
-
-const Actions = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: calc(var(--doc-height) - 150px);
-
-  button {
-    margin-bottom: 8px;
-  }
-`
