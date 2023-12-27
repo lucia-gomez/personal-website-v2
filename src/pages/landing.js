@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useRef } from "react"
 import styled, { useTheme } from "styled-components"
 
 import { AnimationOnScroll } from "react-animation-on-scroll"
@@ -7,7 +7,6 @@ import FeaturedProject from "../components/banner/featuredProject"
 import Footer from "../components/layout/footer"
 import InteractiveDrawing from "../components/interactiveDrawing"
 import Name from "../components/banner/name"
-import { colorInterpolate } from "../scripts/util"
 import { featuredProjects } from "../scripts/projectList"
 
 const projects = featuredProjects([
@@ -36,10 +35,18 @@ const Sticky = styled.div`
   padding: 0 20px;
 `
 
+const DrawingWrapper = styled.div`
+  canvas {
+    --mask: linear-gradient(white 60%, transparent 80%);
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+  }
+`
+
 const Spacer = styled.div`
-  height: 60vh;
+  height: 30vh;
   @media screen and (min-width: 576px) {
-    height: 80vh;
+    height: 30vh;
   }
 `
 
@@ -49,10 +56,11 @@ function AnimatedSection(props) {
   const parent = child =>
     animateIn ? (
       <AnimationOnScroll
-        animateIn="animate__zoomIn"
+        animateIn="animate__fadeInUp"
         animatePreScroll={false}
-        duration={1}
+        duration={0.5}
         offset={offset}
+        animateOnce={true}
         scrollableParentSelector="#banner"
       >
         {child}
@@ -64,7 +72,7 @@ function AnimatedSection(props) {
   return parent(
     <section>
       <Sticky>{children}</Sticky>
-      <Spacer />
+      {/* <Spacer /> */}
     </section>
   )
 }
@@ -72,33 +80,19 @@ function AnimatedSection(props) {
 export default function LandingPage() {
   const theme = useTheme()
   const pageRef = useRef()
-  // const [lerpColor, setLerpColor] = useState(0)
-
-  // useEffect(() => {
-  //   pageRef.current.addEventListener("scroll", _ => {
-  //     const percentage = (2 * pageRef.current.scrollTop) / window.innerHeight
-  //     const lerp = colorInterpolate(
-  //       "rgb(0,0,0)",
-  //       "rgb(247, 240, 255)",
-  //       percentage
-  //     )
-  //     setLerpColor(lerp)
-  //   })
-  // }, [theme.text])
 
   return (
-    <LandingWrapper ref={pageRef} id="banner">
-      <InteractiveDrawing />
-      <TopSpacer />
-      <AnimatedSection animateIn={false}>
-        <Name color={theme.text} />
-      </AnimatedSection>
-      <AnimatedSection offset={0}>
-        <p>
-          Hi, I'm Lucia. I build a lot of cool stuff, but here are some of my
-          favorite projects
-        </p>
-      </AnimatedSection>
+    <>
+      <LandingWrapper ref={pageRef} id="banner">
+        <DrawingWrapper>
+          <InteractiveDrawing />
+        </DrawingWrapper>
+        <TopSpacer />
+        <AnimatedSection animateIn={false}>
+          <Name color={theme.text} />
+          <Spacer />
+        </AnimatedSection>
+        {/* <AnimatedSection offset={0}></AnimatedSection>
       {projects.map((project, idx) => (
         <AnimatedSection key={idx}>
           <FeaturedProject project={project} />
@@ -114,9 +108,10 @@ export default function LandingPage() {
             Subscribe
           </ButtonLink>
         </Actions>
-      </AnimatedSection>
-      <Footer style={{ position: "unset" }} />
-    </LandingWrapper>
+      </AnimatedSection> */}
+      </LandingWrapper>
+      <Footer style={{ position: "absolute", bottom: 0 }} />
+    </>
   )
 }
 

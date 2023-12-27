@@ -35,16 +35,17 @@ function sketch(p5) {
     p5.noiseSeed(47552.60000002384)
 
     let heightScale = 2,
-      widthScale = heightScale
+      widthScale = 2
     if (p5.windowWidth < 450) {
       widthScale = 3
+      heightScale = 3
     }
     let canvasWidth = p5.windowWidth * widthScale
-    let canvasHeight = p5.windowHeight * heightScale
+    let canvasHeight = p5.min(1200, p5.windowHeight * heightScale)
 
     p5.createCanvas(canvasWidth, canvasHeight).position(
       (p5.windowWidth - canvasWidth) / 2,
-      (p5.windowHeight - canvasHeight) / 2
+      (p5.windowHeight - canvasHeight) / 1.5
     )
     p5.noSmooth()
 
