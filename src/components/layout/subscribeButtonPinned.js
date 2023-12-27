@@ -18,6 +18,11 @@ const RoundButton = styled(ButtonLink)`
   :hover {
     transform: scale(1.1);
   }
+
+  animation-duration: 500ms;
+  --webkit-animation-duration: 500ms;
+  animation-delay: 1.5s;
+  --webkit-animation-delay: 1.5s;
 `
 
 const Icon = styled.i`
@@ -27,7 +32,11 @@ const Icon = styled.i`
 
 export default function SubscribeButtonPinned() {
   return (
-    <RoundButton to="/subscribe" sameTab={true}>
+    <RoundButton
+      to="/subscribe"
+      sameTab={true}
+      className="animate__animated animate__fadeInUp"
+    >
       <Icon className="fas fa-envelope" />
     </RoundButton>
   )

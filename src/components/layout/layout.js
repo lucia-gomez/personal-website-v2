@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ::-webkit-scrollbar-thumb {
-    background: ${props => props.theme.accent};
+    background: ${props => props.theme.accentLight};
   }
 
   main {
@@ -38,7 +38,6 @@ export default function Layout(props) {
 
   const hideSubscribeButton = () =>
     pathname === "/subscribe" ||
-    pathname === "/" ||
     pathname.includes("/admin") ||
     pathname.includes("/blog/") ||
     pathname.includes("/art/zine/") ||

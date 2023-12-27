@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^2.2.1",
+    "@p5-wrapper/react": "^4.3.2",
     "@react-spring/web": "^9.2.4",
     "@react-three/drei": "^9.73.0",
     "@react-three/fiber": "^8.13.7",

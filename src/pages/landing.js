@@ -5,6 +5,7 @@ import { AnimationOnScroll } from "react-animation-on-scroll"
 import { ButtonLink } from "../components/button"
 import FeaturedProject from "../components/banner/featuredProject"
 import Footer from "../components/layout/footer"
+import InteractiveDrawing from "../components/interactiveDrawing"
 import Name from "../components/banner/name"
 import { colorInterpolate } from "../scripts/util"
 import { featuredProjects } from "../scripts/projectList"
@@ -18,6 +19,7 @@ const projects = featuredProjects([
 const LandingWrapper = styled.div`
   max-height: var(--doc-height);
   overflow-y: scroll;
+  overflow-x: clip;
   position: relative;
 `
 
@@ -70,25 +72,26 @@ function AnimatedSection(props) {
 export default function LandingPage() {
   const theme = useTheme()
   const pageRef = useRef()
-  const [lerpColor, setLerpColor] = useState(0)
+  // const [lerpColor, setLerpColor] = useState(0)
 
-  useEffect(() => {
-    pageRef.current.addEventListener("scroll", _ => {
-      const percentage = (2 * pageRef.current.scrollTop) / window.innerHeight
-      const lerp = colorInterpolate(
-        "rgb(0,0,0)",
-        "rgb(247, 240, 255)",
-        percentage
-      )
-      setLerpColor(lerp)
-    })
-  }, [theme.text])
+  // useEffect(() => {
+  //   pageRef.current.addEventListener("scroll", _ => {
+  //     const percentage = (2 * pageRef.current.scrollTop) / window.innerHeight
+  //     const lerp = colorInterpolate(
+  //       "rgb(0,0,0)",
+  //       "rgb(247, 240, 255)",
+  //       percentage
+  //     )
+  //     setLerpColor(lerp)
+  //   })
+  // }, [theme.text])
 
   return (
     <LandingWrapper ref={pageRef} id="banner">
+      <InteractiveDrawing />
       <TopSpacer />
       <AnimatedSection animateIn={false}>
-        <Name color={lerpColor} />
+        <Name color={theme.text} />
       </AnimatedSection>
       <AnimatedSection offset={0}>
         <p>

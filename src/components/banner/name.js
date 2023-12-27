@@ -23,6 +23,7 @@ const bannerText = css`
 
   animation-duration: 500ms;
   --webkit-animation-duration: 500ms;
+  text-shadow: 0px 0px 20px ${props => props.theme.bg};
 `
 
 const Title = styled.h1`

@@ -72,7 +72,6 @@ const Row = styled.div`
 
 const Name = styled.h5`
   color: ${props => props.theme.text};
-  font-weight: 900;
   margin: 0px;
 `
 

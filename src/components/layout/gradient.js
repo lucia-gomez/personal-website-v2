@@ -47,7 +47,6 @@ const GradientBg = styled.div`
   height: var(--doc-height);
   width: 100%;
   z-index: -1;
-  ${gradientWithBg}
 `
 
 export default function GradientBackground() {

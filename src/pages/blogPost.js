@@ -60,7 +60,7 @@ const HeaderImage = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position-y: center;
-  mix-blend-mode: darken;
+  mix-blend-mode: overlay;
   filter: grayscale(1);
 
   ::after {
@@ -68,7 +68,6 @@ const HeaderImage = styled.div`
     height: 100%;
     width: 100%;
     position: absolute;
-    background: linear-gradient(to bottom, transparent 70%, white 130%);
   }
 `
 

@@ -34,10 +34,11 @@ const ProfilePic = styled.img`
   height: 25vw;
   width: 25vw;
   filter: grayscale(1);
-  mix-blend-mode: darken;
+  mix-blend-mode: luminosity;
   margin: auto;
   max-height: 300px;
   max-width: 300px;
+  background: white;
 
   @media only screen and (max-width: 850px) {
     height: 30vh;
