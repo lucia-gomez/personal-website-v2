@@ -36,6 +36,7 @@ const Section = styled.div`
     top: 50vh;
   }
   padding: 0 20px;
+  z-index: 1;
 `
 
 const DrawingWrapper = styled.div`
