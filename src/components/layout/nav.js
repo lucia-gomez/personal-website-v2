@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin } from "react-icons/fa"
+import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa"
 import { Link, useLocation } from "react-router-dom"
 
 import { Button } from "../button"
@@ -83,11 +83,15 @@ const CustomNav = () => {
 
   const icons = [
     {
-      icon: <FaGithub size="20px" />,
+      icon: <FaInstagram size="24px" />,
+      link: "https://www.instagram.com/lugoo.dev",
+    },
+    {
+      icon: <FaGithub size="24px" />,
       link: "https://github.com/lucia-gomez",
     },
     {
-      icon: <FaLinkedin size="20px" />,
+      icon: <FaLinkedin size="24px" />,
       link: "https://www.linkedin.com/in/lucia-g-22115110b/",
     },
   ]
@@ -131,7 +135,7 @@ const CustomNav = () => {
           {icons.map((icon, key) => (
             <NavLink
               key={key}
-              to={{ pathname: icon.link }}
+              to={icon.link}
               target="_blank"
               rel="noopener noreferrer"
             >
