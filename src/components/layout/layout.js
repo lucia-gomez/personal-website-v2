@@ -39,7 +39,8 @@ export default function Layout(props) {
   const hideSubscribeButton = () =>
     pathname === "/subscribe" ||
     pathname === "/" ||
-    pathname.includes("/admin") ||
+    pathname.includes("/portfolio")
+  pathname.includes("/admin") ||
     pathname.includes("/blog/") ||
     pathname.includes("/art/zine/") ||
     pathname.includes("/unsubscribe") ||

@@ -67,9 +67,7 @@ export default function ScrollList(props) {
   const setLastVisible = val => setShowRightScrollIndicator(!val)
 
   return (
-    <div
-      style={{ position: "relative", overflow: "hidden", ...containerStyle }}
-    >
+    <div style={{ position: "relative", ...containerStyle }}>
       <Scroller {...{ className, horizontal }} ref={scrollRef}>
         {trans((style, item, _, index) => (
           <animated.div style={style}>

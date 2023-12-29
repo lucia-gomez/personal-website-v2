@@ -31,8 +31,8 @@ const ProfileWrapper = styled.div`
 
 const ProfilePic = styled.img`
   border-radius: 300px;
-  height: 25vw;
-  width: 25vw;
+  height: 20vw;
+  width: 20vw;
   filter: grayscale(1);
   mix-blend-mode: luminosity;
   margin: auto;
@@ -41,8 +41,8 @@ const ProfilePic = styled.img`
   background: white;
 
   @media only screen and (max-width: 850px) {
-    height: 30vh;
-    width: 30vh;
+    height: 25vh;
+    width: 25vh;
   }
 `
 
