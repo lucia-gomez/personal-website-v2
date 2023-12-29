@@ -2,6 +2,7 @@ import FeaturedVideo from "./featuredProjectVideo"
 import FeaturedVideoCaption from "./featuredProjectCaption"
 import styled from "styled-components"
 import { useInView } from "react-intersection-observer"
+import { useRef } from "react"
 
 const FeaturedWrapper = styled.div`
   max-height: 70vh;
@@ -35,11 +36,22 @@ export default function FeaturedProject(props) {
     triggerOnce: true,
     rootMargin: `${window.innerWidth > 800 ? -400 : 0}px 0px`,
   })
+  const videoRef = useRef()
 
   return (
     <FeaturedWrapper idx={index}>
-      <FeaturedVideoCaption {...props} scrollRef={ref} inView={inView} />
-      <FeaturedVideo {...props} scrollRef={ref} inView={inView} />
+      <FeaturedVideoCaption
+        {...props}
+        videoRef={videoRef}
+        scrollRef={ref}
+        inView={inView}
+      />
+      <FeaturedVideo
+        {...props}
+        videoRef={videoRef}
+        scrollRef={ref}
+        inView={inView}
+      />
     </FeaturedWrapper>
   )
 }

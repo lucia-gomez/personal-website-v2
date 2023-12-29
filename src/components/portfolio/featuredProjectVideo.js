@@ -1,4 +1,3 @@
-import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -76,7 +75,7 @@ const Video = styled.video`
 `
 
 export default function FeaturedVideo(props) {
-  const { project, index, scrollRef, inView } = props
+  const { project, index, scrollRef, inView, videoRef } = props
 
   const getClassName = () => {
     if (!inView) return "hidden"
@@ -93,6 +92,7 @@ export default function FeaturedVideo(props) {
       <Video
         src={project.featuredImageMobile}
         idx={index}
+        ref={videoRef}
         className="d-lg-none d-md-block"
         autoPlay
         playsInline
@@ -103,6 +103,7 @@ export default function FeaturedVideo(props) {
       <Video
         src={project.featuredImageDesktop}
         idx={index}
+        ref={videoRef}
         className="d-none d-lg-block"
         autoPlay
         playsInline

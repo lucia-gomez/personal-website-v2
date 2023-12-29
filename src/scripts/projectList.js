@@ -32,6 +32,7 @@ const projects = [
     link: "https://github.com/lucia-gomez/djello",
     extra: ExternalIconButton("/project/djello", true),
     categories: [category.Installation, category["Physical Computing"]],
+    featuredHasAudio: true,
     featuredImageDesktop:
       "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/djelloDemoDesktop.mp4?updatedAt=1703728553307",
     featuredImageMobile:

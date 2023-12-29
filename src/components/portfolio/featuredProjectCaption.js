@@ -1,4 +1,5 @@
 import FeaturedProjectActionButton from "./featuredProjectActionButton"
+import FeaturedProjectAudioButton from "./featuredProjectAudioButton"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -42,7 +43,7 @@ const Content = styled.div`
 `
 
 export default function FeaturedVideoCaption(props) {
-  const { project, index, scrollRef, inView } = props
+  const { project, index, scrollRef, inView, videoRef } = props
 
   const getClassName = () => {
     if (!inView) return "hidden"
@@ -58,8 +59,10 @@ export default function FeaturedVideoCaption(props) {
       <Content idx={index}>
         <h2>{project.title}</h2>
         {project.featuredText ?? project.text}
-        {/* {project.featuredButton} */}
         <FeaturedProjectActionButton {...{ project, index }} />
+        {project.featuredHasAudio === true && (
+          <FeaturedProjectAudioButton {...{ index, videoRef }} />
+        )}
       </Content>
     </Wrapper>
   )
