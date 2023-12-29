@@ -1,6 +1,5 @@
-import { RoundButton } from "../button"
+import FeaturedProjectActionButton from "./featuredProjectActionButton"
 import styled from "styled-components"
-import { useInView } from "react-intersection-observer"
 
 const Wrapper = styled.div`
   position: absolute;
@@ -19,7 +18,8 @@ const Wrapper = styled.div`
   @media screen and (max-width: 870px) {
     position: relative;
     width: 82vw;
-    ${props => (props.idx % 2 === 0 ? "left: 0%" : "right: 0%")};
+    right: unset;
+    ${props => (props.idx % 2 === 0 ? "left: 0%" : "left: 0%")};
     z-index: 0;
   }
 `
@@ -41,29 +41,8 @@ const Content = styled.div`
   }
 `
 
-const ActionButton = styled(RoundButton)`
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 2;
-  width: 75px;
-  height: 75px;
-  margin: 0 !important;
-  transform: skewY(${props => (props.idx % 2 === 0 ? 4 : -4)}deg)
-    translate(30%, -50%);
-
-  :hover {
-    transform: skewY(${props => (props.idx % 2 === 0 ? 4 : -4)}deg)
-      translate(30%, -50%) scale(1.1);
-  }
-`
-
 export default function FeaturedVideoCaption(props) {
-  const { project, index } = props
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    rootMargin: "-300px 0px",
-  })
+  const { project, index, scrollRef, inView } = props
 
   const getClassName = () => {
     if (!inView) return "hidden"
@@ -73,16 +52,14 @@ export default function FeaturedVideoCaption(props) {
   return (
     <Wrapper
       className={`animate__animated ${getClassName()}`}
-      ref={ref}
+      ref={scrollRef}
       idx={index}
     >
       <Content idx={index}>
         <h2>{project.title}</h2>
         {project.featuredText ?? project.text}
         {/* {project.featuredButton} */}
-        <ActionButton to="/subscribe" sameTab={false} idx={index}>
-          <i className="fas fa-envelope" />
-        </ActionButton>
+        <FeaturedProjectActionButton {...{ project, index }} />
       </Content>
     </Wrapper>
   )

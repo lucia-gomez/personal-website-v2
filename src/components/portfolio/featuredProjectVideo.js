@@ -1,6 +1,5 @@
 import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
-import { useInView } from "react-intersection-observer"
 
 const Wrapper = styled.div`
   margin: 20px;
@@ -13,7 +12,7 @@ const Wrapper = styled.div`
 
   @media screen and (max-width: 870px) {
     position: absolute;
-    ${props => (props.idx % 2 === 0 ? "right: 0%" : "left: 0%")};
+    right: 0;
     top: 97%;
     margin: 0px;
   }
@@ -72,11 +71,7 @@ const Video = styled.video`
 `
 
 export default function FeaturedVideo(props) {
-  const { project, index } = props
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    rootMargin: "-300px 0px",
-  })
+  const { project, index, scrollRef, inView } = props
 
   const getClassName = () => {
     if (!inView) return "hidden"
@@ -86,7 +81,7 @@ export default function FeaturedVideo(props) {
   return (
     <Wrapper
       className={`animate__animated ${getClassName()}`}
-      ref={ref}
+      ref={scrollRef}
       idx={index}
     >
       {/* mobile/tablet */}

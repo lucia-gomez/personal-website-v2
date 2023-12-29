@@ -1,6 +1,7 @@
 import FeaturedVideo from "./featuredProjectVideo"
 import FeaturedVideoCaption from "./featuredProjectCaption"
 import styled from "styled-components"
+import { useInView } from "react-intersection-observer"
 
 const FeaturedWrapper = styled.div`
   max-height: 70vh;
@@ -17,8 +18,7 @@ const FeaturedWrapper = styled.div`
     max-width: 80vw;
     margin-bottom: 300px;
     margin-top: 100px;
-    justify-content: ${props =>
-      props.idx % 2 === 0 ? "flex-start" : "flex-end"};
+    justify-content: flex-start;
   }
 
   @media screen and (max-width: 576px) {
@@ -31,11 +31,15 @@ const FeaturedWrapper = styled.div`
 
 export default function FeaturedProject(props) {
   const { index } = props
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    rootMargin: `${window.innerWidth > 800 ? -400 : 0}px 0px`,
+  })
 
   return (
     <FeaturedWrapper idx={index}>
-      <FeaturedVideoCaption {...props} />
-      <FeaturedVideo {...props} />
+      <FeaturedVideoCaption {...props} scrollRef={ref} inView={inView} />
+      <FeaturedVideo {...props} scrollRef={ref} inView={inView} />
     </FeaturedWrapper>
   )
 }
