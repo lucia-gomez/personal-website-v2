@@ -26,6 +26,10 @@ const Grid = styled.div`
   }
 `
 
+const NoResults = styled.p`
+  color: ${props => props.theme.medium};
+`
+
 const featuredProjects = featuredProjectsFinder([
   "DJELLO",
   "Lights, Camera, Magnets",
@@ -78,6 +82,7 @@ export default function ArchivePage() {
         />
       </div>
       <ScrollList id="card-deck">
+        {results.length === 0 && <NoResults>No results</NoResults>}
         {results.map(project => makePortfolioCard(project))}
       </ScrollList>
     </Grid>

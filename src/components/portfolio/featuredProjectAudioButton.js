@@ -26,7 +26,7 @@ export default function FeaturedProjectAudioButton(props) {
     toggleMuted(prev => !prev)
   }, [videoRef])
 
-  const getIcon = () => (muted ? "fa-volume-mute" : "fa-volume-up")
+  const getIcon = () => (!muted ? "fa-volume-mute" : "fa-volume-up")
 
   return (
     <AudioButton
