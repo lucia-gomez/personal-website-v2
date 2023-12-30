@@ -1,13 +1,14 @@
 import ExperienceSection from "../components/about/experience"
 import Link from "../components/link"
+import ProfilePic from "../components/about/profilePic"
 import React from "react"
 import Subsection from "../components/layout/subsection"
 import TechnologiesSection from "../components/about/technologies"
-import { profilePicUrl } from "../scripts/util"
 import styled from "styled-components"
 
 const AboutWrapper = styled.div`
   padding: 56px 20px 50px 20px;
+  margin-right: 4px; // scrollbar
   display: flex;
   flex-direction: row;
   h4 {
@@ -26,23 +27,6 @@ const ProfileWrapper = styled.div`
   height: fit-content;
   @media only screen and (max-width: 850px) {
     margin: auto;
-  }
-`
-
-const ProfilePic = styled.img`
-  border-radius: 300px;
-  height: 20vw;
-  width: 20vw;
-  filter: grayscale(1);
-  mix-blend-mode: luminosity;
-  margin: auto;
-  max-height: 300px;
-  max-width: 300px;
-  background: white;
-
-  @media only screen and (max-width: 850px) {
-    height: 25vh;
-    width: 25vh;
   }
 `
 
@@ -91,7 +75,7 @@ export default function About() {
   return (
     <AboutWrapper>
       <ProfileWrapper>
-        <ProfilePic src={profilePicUrl} alt="profile" />
+        <ProfilePic />
         <ProfileIconsWrapper>
           {ProfileInfo(
             "fab fa-github",
