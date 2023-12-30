@@ -1,24 +1,28 @@
-import React, { useState } from "react"
+import React, { useCallback, useRef, useState } from "react"
 import { animated, useSpring } from "@react-spring/web"
 
+import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
 import useMeasure from "react-use-measure"
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 30px 30px 5px 30px;
+  margin: 20px 20px 5px 20px;
+  padding: 16px;
+  background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
+  border-radius: 5px;
+
   p {
     text-align: left;
   }
 
   @media screen and (max-width: 576px) {
-    padding: 30px 0px 5px 0px;
+    margin: 20px 0px 5px 0px;
   }
 `
 
 const Row = styled.div`
-  width: fit-content;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -57,16 +61,34 @@ const Collapsible = styled(animated.div)`
 
 const Subsection = props => {
   const { openByDefault = true, collapsible = true } = props
+
   const [isOpen, setOpen] = useState(collapsible ? openByDefault : true)
+  const [shouldScroll, setShouldScroll] = useState(false) // prevent autoscroll on mount
   const [ref, bounds] = useMeasure()
+  const sectionRef = useRef()
+
+  const scroll = useCallback(() => {
+    if (isOpen && shouldScroll) {
+      const offsetTop = sectionRef.current.offsetTop - 75
+      window.scrollTo({ top: offsetTop, behavior: "smooth" })
+    }
+    setShouldScroll(false)
+  }, [isOpen, shouldScroll])
+
   const contentAnimatedStyle = useSpring({
     height: isOpen ? bounds.height : 0,
+    config: { duration: 250 },
+    onRest: scroll,
   })
 
   return (
-    <Wrapper className={props.className}>
+    <Wrapper
+      className={props.className}
+      ref={sectionRef}
+      onClick={() => setShouldScroll(true)}
+    >
       <Row
-        onClick={collapsible ? () => setOpen(!isOpen) : () => {}}
+        onClick={collapsible ? () => setOpen(prev => !prev) : () => {}}
         collapsible={collapsible}
       >
         <Title>{props.title}</Title>
