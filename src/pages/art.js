@@ -99,7 +99,6 @@ export default function ArtPage() {
   return (
     <>
       <div style={{ padding: "75px 20px 50px 20px" }}>
-        <SectionTitle>Art</SectionTitle>
         {memoZines}
         {memoSections}
       </div>
