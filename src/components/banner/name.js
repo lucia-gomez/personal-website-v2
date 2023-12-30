@@ -2,11 +2,10 @@ import styled, { css } from "styled-components"
 
 const Wrapper = styled.div`
   width: 100%;
-
+  color: ${props => props.theme.text};
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: black;
 
   align-items: flex-start;
 
@@ -44,9 +43,9 @@ const JobTitle = styled.h4`
   --webkit-animation-delay: 1s;
 `
 
-export default function Name(props) {
+export default function Name() {
   return (
-    <Wrapper style={{ color: props.color }}>
+    <Wrapper>
       <Title className="animate__animated animate__fadeInDown">
         Lucia Gomez
       </Title>

@@ -3,7 +3,6 @@ import { ThemeProvider, createGlobalStyle } from "styled-components"
 
 import CustomNav from "./nav.js"
 import Footer from "./footer.js"
-import GradientBackground from "./gradient.js"
 import SubscribeButtonPinned from "./subscribeButtonPinned.js"
 import { themes } from "../../style/theme.js"
 import { useLocation } from "react-router-dom"
@@ -26,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
 `
 
 export default function Layout(props) {
-  const { children, gradientEnabled = true } = props
+  const { children } = props
   const { pathname } = useLocation()
   let currentTheme = "default"
   const storedTheme = window.localStorage.getItem("lucia-gomez-theme")
@@ -51,7 +50,6 @@ export default function Layout(props) {
       <GlobalStyle theme={theme} />
       <CustomNav />
       {!hideSubscribeButton() && <SubscribeButtonPinned />}
-      {gradientEnabled && <GradientBackground />}
       <main>{children}</main>
       {pathname !== "/" && <Footer />}
     </ThemeProvider>

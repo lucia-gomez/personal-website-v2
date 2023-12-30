@@ -5,7 +5,7 @@ export const colors = {
 
 export const themes = {
   default: {
-    bg: "#141520",
+    bg: "#101119",
     medium: "#707793",
     text: colors.white,
     textInv: colors.black,
