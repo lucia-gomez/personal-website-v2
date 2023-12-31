@@ -14,7 +14,7 @@ const Row = styled.div`
 
 const Heart = styled.i`
   color: ${props => props.theme.accent};
-  padding-right: 3px;
+  padding-right: 5px;
   transition: color 150ms;
 
   :hover {

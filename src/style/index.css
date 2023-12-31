@@ -58,3 +58,9 @@ h3 {
     transform: translateY(-50%) !important;
   }
 }
+
+/* prismjs theme override */
+code[class*="language-"],
+pre[class*="language-"] {
+  background: unset;
+}

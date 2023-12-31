@@ -1,3 +1,7 @@
+import {
+  BlogPostMetadata,
+  BlogPostMetadataLarge,
+} from "../components/blog/blogPostMetadata"
 import { Navigate, useLocation, useParams } from "react-router-dom"
 import React, { useEffect, useState } from "react"
 
@@ -7,7 +11,6 @@ import BlogLoading from "../components/blog/blogLoading"
 import BlogNavButtons from "../components/blog/blogNavButtons"
 import EditorPopup from "../components/editor/editorPopup"
 import { PostApi } from "../scripts/api"
-import Sidebar from "../components/blog/sidebar"
 import { blogPlaceholderImageUrl } from "../scripts/util"
 import styled from "styled-components"
 import { useAuth0 } from "@auth0/auth0-react"
@@ -17,12 +20,8 @@ const BlogWrapper = styled.div`
   padding: 50px 0px;
 `
 
-// side bar, blog content
 const ContentWrapper = styled.div`
   position: relative;
-  display: grid;
-  grid-template-columns: 250px minmax(0, 1fr);
-
   @media only screen and (max-width: 768px) {
     display: block;
     padding: 0px;
@@ -33,9 +32,12 @@ const Content = styled.div`
   text-align: left;
   overflow-y: scroll;
   padding: 0px 20px;
+  margin: auto;
+  width: 100%;
 
   @media screen and (min-width: 576px) {
     padding-left: 0px;
+    width: 70%;
   }
 `
 
@@ -71,9 +73,17 @@ const HeaderImage = styled.div`
   }
 `
 
+const HeaderContent = styled.div`
+  width: 50%;
+  padding: 20px;
+
+  @media screen and (max-width: 576px) {
+    width: 100%;
+  }
+`
+
 const Title = styled.h1`
   color: ${props => props.theme.text};
-  font-weight: 900;
   margin: 0px;
   padding-right: 10px;
 `
@@ -82,18 +92,6 @@ const EditWrapper = styled.div`
   position: absolute;
   right: 12px;
   top: 12px;
-`
-
-const SidebarDesktop = styled(Sidebar)`
-  @media only screen and (max-width: 768px) {
-    display: none;
-  }
-`
-
-const SidebarMobile = styled(Sidebar)`
-  @media only screen and (min-width: 768px) {
-    display: none;
-  }
 `
 
 const BackWrapper = styled(Back)`
@@ -134,23 +132,20 @@ export default function BlogPostPage() {
         <>
           <Header>
             <HeaderImage imageUrl={post.imageUrl || blogPlaceholderImageUrl} />
-            <div style={{ padding: 20 }}>
+            <HeaderContent>
               <BackWrapper link="/blog" />
               <Title>{post.title}</Title>
               <EditWrapper>
                 {isAuthenticated ? <EditorPopup post={post} /> : null}
               </EditWrapper>
-              <div>
-                {post.dateString.substring(0, post.dateString.indexOf(","))}
-                <p>Lucia Gomez</p>
-              </div>
-            </div>
+              <BlogPostMetadata post={post} />
+            </HeaderContent>
           </Header>
           <ContentWrapper>
-            <SidebarDesktop post={post} />
             <>
               <Content className="animate__animated animate__fadeIn">
                 <BlogContent content={post.content} />
+                <BlogPostMetadataLarge post={post} />
                 <BlogNavButtons
                   nextSlug={
                     nextPostSlug != null ? `/blog/${nextPostSlug.slug}/` : null
@@ -160,7 +155,6 @@ export default function BlogPostPage() {
                   }
                 />
               </Content>
-              <SidebarMobile post={post} />
             </>
           </ContentWrapper>
         </>
