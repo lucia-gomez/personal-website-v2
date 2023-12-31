@@ -7,11 +7,12 @@ import React, { useEffect, useState } from "react"
 
 import Back from "../components/blog/back"
 import BlogContent from "../components/blog/blogContent"
+import BlogGradientBanner from "../components/blog/blogGradientBanner"
 import BlogLoading from "../components/blog/blogLoading"
 import BlogNavButtons from "../components/blog/blogNavButtons"
 import EditorPopup from "../components/editor/editorPopup"
 import { PostApi } from "../scripts/api"
-import { blogPlaceholderImageUrl } from "../scripts/util"
+import { hexToRGB } from "../style/theme"
 import styled from "styled-components"
 import { useAuth0 } from "@auth0/auth0-react"
 
@@ -52,33 +53,31 @@ const Header = styled.div`
   }
 `
 
-const HeaderImage = styled.div`
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-  background-image: url(${props => props.imageUrl});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position-y: center;
-  mix-blend-mode: overlay;
-  filter: grayscale(1);
-
+const HeaderImage = styled(BlogGradientBanner)`
   ::after {
-    content: "";
-    height: 100%;
-    width: 100%;
-    position: absolute;
+    height: 120%;
+    bottom: -2px;
+    background: linear-gradient(
+      to top,
+      ${props => hexToRGB(props.theme.bg, 0.95)} 0%,
+      ${props => hexToRGB(props.theme.bg, 0.2)} 100%
+    );
+  }
+
+  .image {
+    background-position-y: center;
   }
 `
 
 const HeaderContent = styled.div`
   width: 50%;
   padding: 20px;
+  position: absolute;
+  bottom: 0;
 
   @media screen and (max-width: 576px) {
     width: 100%;
+    position: relative;
   }
 `
 
@@ -135,7 +134,7 @@ export default function BlogPostPage() {
       {!loading ? (
         <>
           <Header>
-            <HeaderImage imageUrl={post.imageUrl || blogPlaceholderImageUrl} />
+            <HeaderImage post={post} />
             <HeaderContent>
               <BackWrapper link="/blog" />
               <Title>{post.title}</Title>

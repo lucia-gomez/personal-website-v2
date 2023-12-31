@@ -1,6 +1,7 @@
 import Like from "./like"
 import Link from "../link"
 import ProfilePic from "../about/profilePic"
+import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
 
 const Row = styled.div`
@@ -11,7 +12,7 @@ const Row = styled.div`
 
   p {
     margin: 0;
-    color: ${props => props.theme.medium};
+    color: ${props => hexToRGB(props.theme.text, 0.75)};
   }
 `
 
