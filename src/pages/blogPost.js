@@ -110,10 +110,14 @@ export default function BlogPostPage() {
 
   useEffect(() => {
     setLoading(true)
-    PostApi.getPost(slug).then(res => {
-      setPost(res.data ?? null)
-      setLoading(false)
-    })
+    PostApi.getPost(slug)
+      .then(res => {
+        setPost(res.data ?? null)
+        setLoading(false)
+      })
+      .catch(_ => {
+        setLoading(false)
+      })
     PostApi.getNextPost(slug).then(res => {
       setNextPostSlug(res.data || null)
     })
