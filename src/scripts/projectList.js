@@ -1,4 +1,3 @@
-import { ButtonLink } from "../components/button"
 import ExternalIconButton from "../components/iconButton"
 import Link from "../components/link"
 import React from "react"
@@ -18,7 +17,7 @@ const projects = [
   {
     title: "DJELLO",
     date: "October-December 2023",
-    tools: ["Arduino", "MIDI", "C++", "Ableton Live"],
+    tools: ["Arduino", "MIDI", "C++", "Ableton Live", "Illustrator", "Womp 3D"],
     image: "djello.png?updatedAt=1703728680851",
     text: (
       <p>
@@ -37,11 +36,8 @@ const projects = [
       "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/djelloDemoDesktop.mp4?updatedAt=1703728553307",
     featuredImageMobile:
       "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/djelloDemoDesktop.mp4?updatedAt=1703705620588",
-    featuredButton: (
-      <ButtonLink to="/project/djello" sameTab={true}>
-        Read more
-      </ButtonLink>
-    ),
+    featuredLink: "/project/djello",
+    featuredSameTab: true,
   },
   {
     title: "Lights, Camera, Magnets",
@@ -50,7 +46,7 @@ const projects = [
     image: "lightsCameraMagnets.jpeg?updatedAt=1703730225831",
     text: (
       <p>
-        As the name suggests, this is an installation involving ...lights,
+        As the name suggests, this is an installation involving... lights,
         cameras, and magnets. (And a projector)
         <br />
         <br />
@@ -66,6 +62,8 @@ const projects = [
       "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/lightsCameraMagnetsDesktop.mp4?updatedAt=1703727689339",
     featuredImageMobile:
       "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/lightsCameraMagnetsDesktop.mp4?updatedAt=1703727689339",
+    featuredLink: "/project/lights-camera-magnets",
+    featuredSameTab: true,
   },
   {
     title: "Arcade Arcade",
@@ -256,17 +254,12 @@ const projects = [
         Results are queried from multiple online ASL dictionaries.
         <br />
         <br />
-        Currently installed by 800+ users in 20+ countries!
+        Currently at ~800 daily users!
       </p>
     ),
-    featuredButton: (
-      <ButtonLink
-        to="https://chrome.google.com/webstore/detail/sign-search/gniinlnnpjdbeleojkghgdccpapkapma"
-        sameTab={false}
-      >
-        Chrome Web Store
-      </ButtonLink>
-    ),
+    featuredLink:
+      "https://chrome.google.com/webstore/detail/sign-search/gniinlnnpjdbeleojkghgdccpapkapma",
+    featuredSameTab: false,
     link: "https://github.com/lucia-gomez/Sign-Search",
     text: (
       <p>

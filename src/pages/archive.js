@@ -24,6 +24,14 @@ const Grid = styled.div`
   @media screen and (max-width: 870px) {
     padding-top: 0;
   }
+
+  @media screen and (max-width: 576px) {
+    h1,
+    h2,
+    h3 {
+      font-size: 44px;
+    }
+  }
 `
 
 const NoResults = styled.p`
@@ -32,8 +40,8 @@ const NoResults = styled.p`
 
 const featuredProjects = featuredProjectsFinder([
   "DJELLO",
-  "Lights, Camera, Magnets",
   "Sign Search",
+  "Lights, Camera, Magnets",
 ])
 
 export default function ArchivePage() {

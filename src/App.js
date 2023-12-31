@@ -11,9 +11,11 @@ import BlogHomePage from "./pages/blog"
 import BlogPostPage from "./pages/blogPost"
 import Collagescape from "./pages/projects/collagescape"
 import ConfirmationPage from "./pages/confirmation"
+import DJello from "./pages/projects/djello"
 import Error404 from "./pages/404"
 import LandingPage from "./pages/landing"
 import Layout from "./components/layout/layout"
+import LightsCameraMagnets from "./pages/projects/lights-camera-magnets"
 import ProtectedRoute from "./components/layout/protectedRoute"
 import ScrollToTop from "./ScrollToTop"
 import SubscribePage from "./pages/subscribe"
@@ -79,6 +81,11 @@ export default function App() {
           </Routes>
         </Layout>
       </Auth0ProviderWithHistory>
+          <Route path="/project/djello" element={<DJello />}></Route>
+          <Route
+            path="/project/lights-camera-magnets"
+            element={<LightsCameraMagnets />}
+          ></Route>
     </BrowserRouter>
   )
 }
