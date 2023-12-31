@@ -1,141 +1,103 @@
-import React, { useRef } from "react"
-
-import Delete from "./delete"
-import Like from "./like"
+import BlogPostItemMetadata from "./blogPostItemMetadata"
 import { Link } from "react-router-dom"
+import React from "react"
 import { blogPlaceholderImageUrl } from "../../scripts/util"
-import { hexToRGB } from "../../style/theme"
-import { marked } from "marked"
 import styled from "styled-components"
-import { useAuth0 } from "@auth0/auth0-react"
 
-const Wrapper = styled.div`
-  height: 100%;
-  max-height: 66vh;
-  width: 350px;
-  border-radius: 5px;
-  background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
-  text-align: left;
-  position: relative;
+const Wrapper = styled(Link)`
   display: grid;
-  min-height: 0;
-  grid-template-rows: 1fr 40px;
-
-  a {
-    color: ${props => props.theme.text};
-  }
-
-  a:hover {
-    color: ${props => props.theme.text};
-    text-decoration: none;
-  }
-`
-
-const ClickableCard = styled(Link)`
-  grid-template-rows: 150px 1fr;
-  display: grid;
-  min-height: 0;
-`
-
-const Image = styled.div`
-  background-image: url(${props => props.image});
+  grid-template-columns: 150px 1fr;
+  min-height: 100px;
+  margin: 32px 4px;
   width: 100%;
-  border-radius: 5px 5px 0px 0px;
-  background-position: bottom;
-  background-size: cover;
-  background-repeat: no-repeat;
-  filter: grayscale(1);
-  mix-blend-mode: luminosity;
+  max-width: 1000px;
+  position: relative;
 
-  @media screen and (max-width: 576px) {
-    opacity: 0.8;
+  @media screen and (max-width: 1300px) {
+    width: 100%;
+  }
+
+  :hover {
+    text-decoration: none;
+    transition: transform 300ms;
+  }
+
+  @media screen and (max-width: 870px) {
+    grid-template-columns: 100px 1fr;
+    margin: 16px 4px;
+    width: 100%;
+    max-width: 100vw;
+
+    :hover {
+      transform: unset;
+    }
   }
 `
 
 const Body = styled.div`
-  padding: 20px;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  min-height: 0;
-  overflow: hidden;
+  padding: 0px 12px;
+  p {
+    color: ${props => props.theme.medium};
+  }
 `
 
-const Date = styled.p`
-  font-size: 12px;
+const ImageWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  max-height: 100px;
+  border-radius: 5px;
+  position: relative;
+
+  ::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(
+      to left bottom,
+      ${props => props.theme.accentHover},
+      #0886ea,
+      ${props => props.theme.accent}
+    );
+    opacity: 0.5;
+    filter: contrast(1.5);
+  }
+`
+
+const Image = styled.div`
+  background-image: url(${props => props.image});
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  filter: contrast(1.5) grayscale(1);
 `
 
 const Title = styled.h5`
-  color: ${props => props.theme.accent};
+  color: ${props => props.theme.text};
   width: fit-content;
 
-  :hover {
-    color: ${props => props.theme.accentHover};
+  @media screen and (max-width: 576px) {
+    font-size: 18px;
   }
 `
 
-const Footer = styled.div`
-  width: 100%;
-  border-top: 1px solid ${props => hexToRGB(props.theme.text, 0.1)};
-  padding: 8px 20px 8px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  color: ${props => hexToRGB(props.theme.text, 0.3)};
-
-  p {
-    margin: 0;
-  }
-`
-
-const DeleteWrapper = styled.div`
-  position: absolute;
-  top: 20px;
-  right: 20px;
-`
-
-const ContentPreview = styled.p`
-  overflow: hidden;
-  color: ${props => hexToRGB(props.theme.text, 0.5)};
-  max-height: 40vh;
-  column-width: 200px;
-  margin-bottom: 0;
-`
-
-const BlogPostLink = ({ isMobile = false, post }) => {
-  const { isAuthenticated } = useAuth0()
-  const previewDiv = useRef()
-  const date = post.dateString
-
-  const previewText = () => {
-    const tempDiv = document.createElement("div")
-    tempDiv.innerHTML = marked.parse(post.content)
-    return tempDiv.innerText || tempDiv.textContent || ""
-  }
-
+const BlogPostLink = ({ post }) => {
   return (
-    <Wrapper>
-      <ClickableCard to={`/blog/${post.slug}/`}>
+    <Wrapper to={`/blog/${post.slug}/`}>
+      <ImageWrapper>
         <Image image={post.imageUrl || blogPlaceholderImageUrl} />
-        <Body>
-          <div>
-            <Title>{post.title}</Title>
-            <p>{post.summary}</p>
-          </div>
-          {!isMobile && (
-            <ContentPreview ref={previewDiv}>{previewText()}</ContentPreview>
-          )}
-        </Body>
-      </ClickableCard>
-      <Footer>
-        <Like count={post.likes} postID={post._id} />
-        <Date>{date.substring(0, date.indexOf(","))}</Date>
-      </Footer>
-      {isAuthenticated ? (
-        <DeleteWrapper>
-          <Delete postID={post._id} />
-        </DeleteWrapper>
-      ) : null}
+      </ImageWrapper>
+      <Body>
+        <BlogPostItemMetadata post={post} />
+        <Title>{post.title}</Title>
+        <p>{post.summary}</p>
+      </Body>
     </Wrapper>
   )
 }

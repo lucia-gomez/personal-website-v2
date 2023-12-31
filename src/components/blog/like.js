@@ -14,8 +14,9 @@ const Row = styled.div`
 
 const Heart = styled.i`
   color: ${props => props.theme.accent};
-  padding-right: 5px;
+  padding-right: 4px;
   transition: color 150ms;
+  font-size: 16px;
 
   :hover {
     color: ${props => props.theme.accentHover};
@@ -25,7 +26,8 @@ const Heart = styled.i`
 const Like = ({ postID, count }) => {
   const [isLiked, setLiked] = useState(false)
 
-  const handleClick = () => {
+  const handleClick = e => {
+    e.preventDefault()
     if (postID == null) return
     if (!isLiked) {
       LikeApi.like(postID)

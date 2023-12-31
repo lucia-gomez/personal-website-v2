@@ -10,7 +10,7 @@ const placeholderStyle = css`
 const Wrapper = styled(Form.Control).attrs(_ => ({
   className: "form-control",
 }))`
-  background-color: ${props => hexToRGB(props.theme.medium, 0.4)};
+  background-color: ${props => props.theme.bg};
   color: ${props => props.theme.text};
   border-radius: 8px;
   border: 2px solid
@@ -22,7 +22,7 @@ const Wrapper = styled(Form.Control).attrs(_ => ({
     outline: none;
     border: 2px solid ${props => props.theme.accentHover};
     box-shadow: none;
-    background-color: ${props => hexToRGB(props.theme.medium, 0.4)};
+    background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
     color: ${props => props.theme.text};
   }
 
