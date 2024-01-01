@@ -41,7 +41,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 const imagekit = new ImageKit({
   publicKey: "public_CJFqG4/4bWXjKN1kfmDaT7UlKC4=",
-  privateKey: process.env.REACT_APP_IMAGEKIT_PRIVATE,
+  privateKey: process.env.IMAGEKIT_PRIVATE,
   urlEndpoint: "https://ik.imagekit.io/5xtlzx2c3y",
 })
 
