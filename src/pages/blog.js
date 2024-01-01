@@ -78,7 +78,7 @@ export default function BlogHomePage() {
         {!loading && <BlogSearchBar searchPosts={searchPosts} />}
       </TopSection>
       {!loading && searchResults.length === 0 ? (
-        <p style={{ padding: "20px 0px" }}>No posts found</p>
+        <p style={{ padding: "20px 0px 100px 16px" }}>No posts found</p>
       ) : (
         <Posts>
           {postsToShow().map((post, idx) => (

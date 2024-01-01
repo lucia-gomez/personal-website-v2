@@ -1,9 +1,11 @@
 import React, { useState } from "react"
 import { ThemeProvider, createGlobalStyle } from "styled-components"
 
+import BackgroundSketch from "./backgroundSketch.js"
 import CustomNav from "./nav.js"
 import Footer from "./footer.js"
 import SubscribeButtonPinned from "./subscribeButtonPinned.js"
+import styled from "styled-components"
 import { themes } from "../../style/theme.js"
 import { useLocation } from "react-router-dom"
 import usePageTracking from "../../scripts/usePageTracking.js"
@@ -21,6 +23,25 @@ const GlobalStyle = createGlobalStyle`
   main {
     min-height: 100vh;
     min-height: var(--doc-height);
+  }
+`
+
+const SketchWrapper = styled.div`
+  height: 100%;
+  width: 100%;
+  overflow: clip;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+
+  canvas {
+    mask-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.1) 15%,
+        rgba(0, 0, 0, 0.5) 50%,
+        rgba(0, 0, 0, 0.1) 90%
+      ),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0) 10%, white 30%);
   }
 `
 
@@ -45,12 +66,23 @@ export default function Layout(props) {
     pathname.includes("/unsubscribe") ||
     pathname.includes("/confirmation")
 
+  const showSketchBg = () => pathname === "/subscribe"
+
+  console.log(showSketchBg())
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle theme={theme} />
       <CustomNav />
       {!hideSubscribeButton() && <SubscribeButtonPinned />}
-      <main>{children}</main>
+      <main>
+        {children}
+        {showSketchBg() && (
+          <SketchWrapper>
+            <BackgroundSketch />
+          </SketchWrapper>
+        )}
+      </main>
       {pathname !== "/" && <Footer />}
     </ThemeProvider>
   )
