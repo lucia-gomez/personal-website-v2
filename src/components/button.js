@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom"
 import styled, { css } from "styled-components"
 
-import BootstrapButton from "react-bootstrap/Button"
 import { FaInstagram } from "react-icons/fa"
 import React from "react"
 
@@ -9,8 +8,8 @@ const buttonStyle = css`
   background-color: ${props => props.theme.accent};
   border: none;
   color: ${props => props.theme.text};
-  width: fit-content;
   padding: 0;
+  border-radius: 5px;
 
   .disabled,
   :disabled {
@@ -24,11 +23,9 @@ const buttonStyle = css`
     }
   }
 
-  :hover,
   :focus,
-  :not(:disabled):not(.disabled):active,
-  btn-primary:not(:disabled):not(.disabled).active {
-    background-color: ${props => props.theme.accentHover};
+  :not(:disabled):not(.disabled):active {
+    background-color: ${props => props.theme.accentLight};
     border: none;
     box-shadow: none;
     color: ${props => props.theme.text};
@@ -36,6 +33,15 @@ const buttonStyle = css`
 
   :active:focus {
     box-shadow: none !important;
+  }
+
+  @media (any-hover: hover) {
+    :hover {
+      background-color: ${props => props.theme.accentHover};
+      border: none;
+      box-shadow: none;
+      color: ${props => props.theme.text};
+    }
   }
 `
 const ButtonContent = styled.div`
@@ -49,7 +55,7 @@ const ButtonContent = styled.div`
     text-decoration: unset;
   }
 `
-const BootstrapButtonStyled = styled(BootstrapButton)`
+const BootstrapButtonStyled = styled.button`
   ${buttonStyle}
 `
 
@@ -77,8 +83,21 @@ export const ButtonLink = props => (
 )
 
 export const Button = props => {
+  const handleTouchStart = () => {
+    console.log("start")
+    // setButtonColor("purple")
+  }
+
+  const handleTouchEnd = () => {
+    // setButtonColor("green")
+  }
+
   return (
-    <BootstrapButtonStyled {...props}>
+    <BootstrapButtonStyled
+      {...props}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <ButtonContent>
         <p>{props.children}</p>
       </ButtonContent>

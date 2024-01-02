@@ -68,8 +68,6 @@ export default function Layout(props) {
 
   const showSketchBg = () => pathname === "/subscribe"
 
-  console.log(showSketchBg())
-
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle theme={theme} />

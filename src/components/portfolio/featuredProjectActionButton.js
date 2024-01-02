@@ -40,12 +40,13 @@ export const RoundActionButton = styled(RoundButton)`
 `
 
 export default function FeaturedProjectActionButton(props) {
-  const { project, index } = props
+  const { project, index, className } = props
   return (
     <RoundActionButton
       to={project.featuredLink}
       sameTab={project.featuredSameTab}
       idx={index}
+      className={className}
     >
       <i className="material-icons">launch</i>
     </RoundActionButton>
