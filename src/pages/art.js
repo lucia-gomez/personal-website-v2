@@ -10,7 +10,6 @@ import ArtItem from "../components/art/artItem"
 import ArtModal from "../components/art/artModal"
 import Link from "../components/link"
 import ScrollList from "../components/scrollList"
-import SectionTitle from "../components/sectionTitle"
 import Subsection from "../components/layout/subsection"
 import ZineItem from "../components/zines/zineItem"
 import styled from "styled-components"
@@ -99,7 +98,6 @@ export default function ArtPage() {
   return (
     <>
       <div style={{ padding: "75px 20px 50px 20px" }}>
-        <SectionTitle>Art</SectionTitle>
         {memoZines}
         {memoSections}
       </div>

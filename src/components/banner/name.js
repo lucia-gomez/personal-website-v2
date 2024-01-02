@@ -2,11 +2,10 @@ import styled, { css } from "styled-components"
 
 const Wrapper = styled.div`
   width: 100%;
-
+  color: ${props => props.theme.text};
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: black;
 
   align-items: flex-start;
 
@@ -21,8 +20,9 @@ const bannerText = css`
   opacity: 0;
   margin: 0;
 
-  animation-duration: 500ms;
-  --webkit-animation-duration: 500ms;
+  animation-duration: 1s;
+  --webkit-animation-duration: 1s;
+  text-shadow: 0px 0px 20px ${props => props.theme.bg};
 `
 
 const Title = styled.h1`
@@ -31,21 +31,21 @@ const Title = styled.h1`
   font-size: 70px;
   margin-bottom: 12px;
 
-  animation-delay: 500ms;
-  --webkit-animation-delay: 500ms;
+  animation-delay: 1s;
+  --webkit-animation-delay: 1s;
 `
 
 const JobTitle = styled.h4`
   ${bannerText}
-  height: 10vh;
+  height: 6vh;
 
   animation-delay: 1s;
   --webkit-animation-delay: 1s;
 `
 
-export default function Name(props) {
+export default function Name() {
   return (
-    <Wrapper style={{ color: props.color }}>
+    <Wrapper>
       <Title className="animate__animated animate__fadeInDown">
         Lucia Gomez
       </Title>

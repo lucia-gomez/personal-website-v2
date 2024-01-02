@@ -2,6 +2,7 @@ import { animated, useTransition } from "@react-spring/web"
 import styled, { css } from "styled-components"
 import { useMemo, useRef, useState } from "react"
 
+import { hexToRGB } from "../style/theme"
 import { useInView } from "react-intersection-observer"
 
 const Scroller = styled.div`
@@ -67,9 +68,7 @@ export default function ScrollList(props) {
   const setLastVisible = val => setShowRightScrollIndicator(!val)
 
   return (
-    <div
-      style={{ position: "relative", overflow: "hidden", ...containerStyle }}
-    >
+    <div style={{ position: "relative", ...containerStyle }}>
       <Scroller {...{ className, horizontal }} ref={scrollRef}>
         {trans((style, item, _, index) => (
           <animated.div style={style}>
@@ -104,7 +103,7 @@ const ScrollIndicatorLeft = styled.div.attrs(_ => ({
   ${scrollIndicator}
   transform: translate(-100%, -50%);
   left: 0;
-  box-shadow: 20px 20px 40px 0px #000000ba;
+  box-shadow: 20px 20px 40px 0px ${props => hexToRGB(props.theme.bg, 0.9)};
 `
 const ScrollIndicatorRight = styled.div.attrs(_ => ({
   className: "scroll-indicator scroll-indicator-right",
@@ -112,5 +111,5 @@ const ScrollIndicatorRight = styled.div.attrs(_ => ({
   ${scrollIndicator}
   transform: translate(100%, -50%);
   right: 0;
-  box-shadow: -20px 20px 40px 0px #000000ba;
+  box-shadow: -20px 20px 40px 0px ${props => hexToRGB(props.theme.bg, 0.9)};
 `

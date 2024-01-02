@@ -11,7 +11,10 @@ body {
   margin: 0;
   padding: 0;
   transition: all 0.25s linear;
-  font-family: "Nanum Gothic", sans-serif;
+  font-family: "neue-haas-grotesk-display", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  word-spacing: 1px;
   position: relative;
 }
 
@@ -28,7 +31,9 @@ body {
 h1,
 h2,
 h3 {
-  font-family: "Playfair Display", serif;
+  font-family: "neue-haas-grotesk-text", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
 .animate__fadeIn {
@@ -52,4 +57,14 @@ h3 {
   .modal.fade .modal-dialog {
     transform: translateY(-50%) !important;
   }
+}
+
+/* prismjs theme override */
+code[class*="language-"],
+pre[class*="language-"] {
+  background: unset;
+}
+
+.custom-html-style {
+  padding-bottom: 100px;
 }

@@ -33,7 +33,6 @@ const SearchBar = ({ callback, placeholder, className }) => {
         onMouseOut={() => setHovered(false)}
         isActive={isFocused || isHovered}
         iconClassName="fas fa-search"
-        width={300}
       />
     </div>
   )

@@ -1,8 +1,7 @@
 import Like from "./like"
 import Link from "../link"
-import { gradientWithoutBg } from "../layout/gradient"
+import ProfilePic from "../about/profilePic"
 import { hexToRGB } from "../../style/theme"
-import { profilePicUrl } from "../../scripts/util"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -31,28 +30,10 @@ const SidebarContent = styled.div`
   align-items: center;
 `
 
-const ProfilePicWrapper = styled.div`
-  position: relative;
+const ProfilePicBlog = styled(ProfilePic)`
   height: 150px;
   width: 150px;
-  border-radius: 300px;
-  ::before {
-    border-radius: 300px;
-  }
   margin: 20px;
-  ${gradientWithoutBg}
-`
-
-const ProfilePic = styled.img`
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  filter: grayscale(1);
-  mix-blend-mode: darken;
-  margin-bottom: 10px;
-  border-radius: 160px;
 `
 
 const Divider = styled.div`
@@ -72,7 +53,6 @@ const Row = styled.div`
 
 const Name = styled.h5`
   color: ${props => props.theme.text};
-  font-weight: 900;
   margin: 0px;
 `
 
@@ -93,9 +73,7 @@ const Sidebar = ({ post, className }) => {
   return (
     <Wrapper className={className}>
       <SidebarContent>
-        <ProfilePicWrapper>
-          <ProfilePic src={profilePicUrl} alt="profile picture" />
-        </ProfilePicWrapper>
+        <ProfilePicBlog />
         <Name>Lucia Gomez</Name>
         <p style={{ marginBottom: 12 }}>Creative Technologist</p>
         <Divider />

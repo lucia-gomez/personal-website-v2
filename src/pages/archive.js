@@ -1,24 +1,48 @@
 import React, { useEffect, useState } from "react"
 
+import FeaturedProject from "../components/portfolio/featuredProject"
 import PortfolioFiltersSection from "../components/portfolio/portfolioFiltersSection"
 import ScrollList from "../components/scrollList"
 import SectionTitle from "../components/sectionTitle"
+import { featuredProjects as featuredProjectsFinder } from "../scripts/projectList"
 import filterProject from "../scripts/searchPortfolio"
 import { makePortfolioCard } from "../components/portfolio/portfolioCardDeck"
 import projects from "../scripts/projectList"
 import styled from "styled-components"
 
 const Grid = styled.div`
-  height: 100vh;
-  padding: 75px 10px 50px 20px;
+  padding: 95px 10px 50px 20px;
   display: grid;
   grid-template-rows: auto 1fr;
+  overflow-x: hidden;
 
   @media screen and (max-width: 576px) {
     padding-right: 20px;
     height: 100%;
   }
+
+  @media screen and (max-width: 870px) {
+    padding-top: 0;
+  }
+
+  @media screen and (max-width: 576px) {
+    h1,
+    h2,
+    h3 {
+      font-size: 44px;
+    }
+  }
 `
+
+const NoResults = styled.p`
+  color: ${props => props.theme.medium};
+`
+
+const featuredProjects = featuredProjectsFinder([
+  "DJELLO",
+  "Sign Search",
+  "Lights, Camera, Magnets",
+])
 
 export default function ArchivePage() {
   const [results, setResults] = useState(projects)
@@ -52,16 +76,21 @@ export default function ArchivePage() {
   return (
     <Grid>
       <div>
-        <SectionTitle>Things I've Made</SectionTitle>
+        {featuredProjects.map((fp, idx) => (
+          <FeaturedProject project={fp} key={idx} index={idx} />
+        ))}
+        <SectionTitle>Project Archive</SectionTitle>
         <p>
-          Dive into my project archive. Use the filters to help sift through the
-          chaos
+          I've been documenting my projects for ~10 years. Some are good, some
+          are not so good, but they're all here. Use the filters to help sift
+          through the chaos
         </p>
         <PortfolioFiltersSection
           {...{ activeFilter, setActiveFilter, searchProjects }}
         />
       </div>
       <ScrollList id="card-deck">
+        {results.length === 0 && <NoResults>No results</NoResults>}
         {results.map(project => makePortfolioCard(project))}
       </ScrollList>
     </Grid>

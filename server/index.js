@@ -41,7 +41,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 const imagekit = new ImageKit({
   publicKey: "public_CJFqG4/4bWXjKN1kfmDaT7UlKC4=",
-  privateKey: process.env.REACT_APP_IMAGEKIT_PRIVATE,
+  privateKey: process.env.IMAGEKIT_PRIVATE,
   urlEndpoint: "https://ik.imagekit.io/5xtlzx2c3y",
 })
 
@@ -59,7 +59,13 @@ app.get("/api/get", (req, res) => {
 app.get("/api/get/:slug", (req, res) => {
   const slug = req.params.slug
   PostsModel.findOne({ slug })
-    .then(doc => res.send(doc))
+    .then(doc => {
+      if (doc) {
+        res.send(doc)
+      } else {
+        res.status(404).json({ error: "Item not found" })
+      }
+    })
     .catch(e => {
       res.status(400)
       console.error(e)
@@ -239,8 +245,7 @@ app.get("/api/next/:slug", (req, res) => {
           })
       } else {
         console.error("Couldn't find doc with given slug")
-        res.status(400)
-        res.send(null)
+        res.status(200).json(null)
       }
     })
     .catch(e => {
@@ -263,8 +268,7 @@ app.get("/api/prev/:slug", (req, res) => {
           })
       } else {
         console.error("Couldn't find doc with given slug")
-        res.status(400)
-        res.send(null)
+        res.status(200).json(null)
       }
     })
     .catch(e => {
