@@ -18,8 +18,8 @@ const Wrapper = styled.div`
   max-height: 300px;
   max-width: 300px;
   @media only screen and (max-width: 850px) {
-    height: 25vh;
-    width: 25vh;
+    height: 40vw;
+    width: 40vw;
   }
 
   ::after {
