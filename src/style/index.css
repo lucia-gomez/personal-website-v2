@@ -64,3 +64,7 @@ code[class*="language-"],
 pre[class*="language-"] {
   background: unset;
 }
+
+.custom-html-style {
+  padding-bottom: 100px;
+}

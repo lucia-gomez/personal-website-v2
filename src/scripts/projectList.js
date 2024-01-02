@@ -42,7 +42,7 @@ const projects = [
   {
     title: "Lights, Camera, Magnets",
     date: "November-December 2023",
-    tools: ["Arduino", "C++", "Max/MSP/Jitter"],
+    tools: ["Arduino", "C++", "Max/MSP/Jitter", "Blender"],
     image: "lightsCameraMagnets.jpeg?updatedAt=1703730225831",
     text: (
       <p>
@@ -56,13 +56,16 @@ const projects = [
       </p>
     ),
     link: "https://github.com/lucia-gomez/light-table-installation",
-    extra: ExternalIconButton("/projects/lights-camera-magnets"),
+    extra: ExternalIconButton(
+      "https://www.lucia-gomez.dev/blog/lights-camera-magnets/",
+      true
+    ),
     categories: [category.Installation, category["Physical Computing"]],
     featuredImageDesktop:
       "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/lightsCameraMagnetsDesktop.mp4?updatedAt=1703727689339",
     featuredImageMobile:
       "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/lightsCameraMagnetsDesktop.mp4?updatedAt=1703727689339",
-    featuredLink: "/project/lights-camera-magnets",
+    featuredLink: "https://www.lucia-gomez.dev/blog/lights-camera-magnets/",
     featuredSameTab: true,
   },
   {
