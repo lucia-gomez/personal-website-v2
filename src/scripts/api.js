@@ -50,7 +50,6 @@ export const PostApi = {
 
 export const DraftApi = {
   publishDraft: async payload => {
-    console.log(payload)
     await PostApi.createPost(payload)
     return Axios.delete(`${getApiUrl()}/api/draft/${payload._id}`)
   },

@@ -134,13 +134,14 @@ export default function BlogPostPage() {
       {!loading ? (
         <>
           <Header>
+            <EditWrapper>
+              {isAuthenticated ? <EditorPopup post={post} /> : null}
+            </EditWrapper>
             <HeaderImage post={post} />
             <HeaderContent>
               <BackWrapper link="/blog" />
               <Title>{post.title}</Title>
-              <EditWrapper>
-                {isAuthenticated ? <EditorPopup post={post} /> : null}
-              </EditWrapper>
+
               <BlogPostMetadata post={post} />
             </HeaderContent>
           </Header>

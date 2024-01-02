@@ -26,7 +26,6 @@ const Row = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 8px;
   cursor: ${props => (props.collapsible ? "pointer" : "unset")};
   @media screen and (max-width: 576px) {
     justify-content: space-between;
@@ -95,7 +94,9 @@ const Subsection = props => {
         {collapsible && <Toggle isOpen={isOpen} />}
       </Row>
       <Collapsible style={contentAnimatedStyle}>
-        <div ref={ref}>{props.children}</div>
+        <div ref={ref} style={{ marginTop: "8px" }}>
+          {props.children}
+        </div>
       </Collapsible>
     </Wrapper>
   )

@@ -39,8 +39,10 @@ export default function BlogPostItemMetadata({ post, className }) {
           {date.substring(0, date.indexOf(","))}
         </p>
       </div>
-      <Like count={post.likes} postID={post._id} />
-      {isAuthenticated ? <Delete postID={post._id} /> : null}
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <Like count={post.likes} postID={post._id} />
+        {isAuthenticated ? <Delete postID={post._id} /> : null}
+      </div>
     </Wrapper>
   )
 }

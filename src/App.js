@@ -69,6 +69,11 @@ export default function App() {
               element={<UnsubscribePage />}
             ></Route>
             <Route path="/toad-ar" element={<ToadARPage />}></Route>
+            <Route path="/project/djello" element={<DJello />}></Route>
+            <Route
+              path="/project/lights-camera-magnets"
+              element={<LightsCameraMagnets />}
+            ></Route>
             <Route
               path="/project/collagescape"
               element={<Collagescape />}
@@ -81,11 +86,6 @@ export default function App() {
           </Routes>
         </Layout>
       </Auth0ProviderWithHistory>
-          <Route path="/project/djello" element={<DJello />}></Route>
-          <Route
-            path="/project/lights-camera-magnets"
-            element={<LightsCameraMagnets />}
-          ></Route>
     </BrowserRouter>
   )
 }

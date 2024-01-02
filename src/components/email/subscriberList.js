@@ -4,16 +4,11 @@ import { IconButton } from "../iconButton"
 import Pagination from "react-bootstrap/Pagination"
 import Subsection from "../layout/subsection"
 import Table from "react-bootstrap/Table"
+import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
 
 const SubsectionWrapper = styled(Subsection)`
-  padding: 0;
-  padding-top: 20px;
-
-  h3 {
-    font-family: "Nanum Gothic";
-    font-size: 20px;
-  }
+  margin-left: 0;
 `
 
 const TableWrapper = styled(Table)`
@@ -34,7 +29,7 @@ const TableWrapper = styled(Table)`
   }
 
   tbody tr:nth-of-type(odd) {
-    background-color: ${props => props.theme.medium};
+    background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
   }
 
   tbody tr:hover {
