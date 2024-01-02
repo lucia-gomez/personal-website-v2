@@ -11,6 +11,7 @@ const AdminWrapper = styled.div`
 const Buttons = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   button {
     margin-top: 12px;
   }

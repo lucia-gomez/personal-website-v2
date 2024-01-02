@@ -8,10 +8,122 @@ const category = {
   "AR/VR": 1,
   "Data Visualization": 2,
   "Digital Art": 3,
+  "Physical Computing": 4,
+  Installation: 5,
   Other: 99,
 }
 
 const projects = [
+  {
+    title: "DJELLO",
+    date: "October-December 2023",
+    tools: ["Arduino", "MIDI", "C++", "Ableton Live", "Illustrator", "Womp 3D"],
+    image: "djello.png?updatedAt=1703728680851",
+    text: (
+      <p>
+        DJELLO is a DJ controller with a bouncy gelatin interface, set in an
+        acrylic housing. These tactile inputs lend themselves to playful
+        experimentation while creating music. Experiment with duration,
+        pressure, and location of your finger on the jello controls to produce
+        squishy, gelatinous sounds
+      </p>
+    ),
+    link: "https://github.com/lucia-gomez/djello",
+    extra: ExternalIconButton("/project/djello", true),
+    categories: [category.Installation, category["Physical Computing"]],
+    featuredHasAudio: true,
+    featuredImageDesktop:
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/djelloDemoDesktop.mp4?updatedAt=1703728553307",
+    featuredImageMobile:
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/djelloDemoDesktop.mp4?updatedAt=1703705620588",
+    featuredLink: "/project/djello",
+    featuredSameTab: true,
+  },
+  {
+    title: "Lights, Camera, Magnets",
+    date: "November-December 2023",
+    tools: ["Arduino", "C++", "Max/MSP/Jitter", "Blender"],
+    image: "lightsCameraMagnets.jpeg?updatedAt=1703730225831",
+    text: (
+      <p>
+        As the name suggests, this is an installation involving... lights,
+        cameras, and magnets. (And a projector)
+        <br />
+        <br />
+        Participants make collaborative art by manipulating a neon tube of light
+        via magnetic paddles. A camera observes this movement and a motion trail
+        of light is projected onto the tube and table surface in realtime
+      </p>
+    ),
+    link: "https://github.com/lucia-gomez/light-table-installation",
+    extra: ExternalIconButton(
+      "https://www.lucia-gomez.dev/blog/lights-camera-magnets/",
+      true
+    ),
+    categories: [category.Installation, category["Physical Computing"]],
+    featuredImageDesktop:
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/lightsCameraMagnetsDesktop.mp4?updatedAt=1703727689339",
+    featuredImageMobile:
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/lightsCameraMagnetsDesktop.mp4?updatedAt=1703727689339",
+    featuredLink: "https://www.lucia-gomez.dev/blog/lights-camera-magnets/",
+    featuredSameTab: true,
+  },
+  {
+    title: "Arcade Arcade",
+    date: "December 2023",
+    tools: ["Unity", "Blender", "C#"],
+    image: "arcadeArcade.png?updatedAt=1703731586496",
+    text: (
+      <p>
+        A 3D mini-game of a room-scale arcade claw machine. The player must
+        manipulate the claw to pick up other arcade game cabinets to restore the
+        overgrown, abandoned arcade to its former glory
+      </p>
+    ),
+    link: "https://github.com/lucia-gomez/arcadeArcade",
+    extra: ExternalIconButton("/projects/arcade-arcade"),
+    categories: [category["AR/VR"]],
+  },
+  {
+    title: "Over the Moon",
+    date: "October-November 2023",
+    tools: ["Max/MSP/Jitter", "Green screen"],
+    image: "moonLanding.png?updatedAt=1703730589615",
+    text: (
+      <p>
+        An interactive installation to revitalize the cultural memory of man's
+        first walk on the moon. Participants are green-screened into the
+        original NASA footage of the Apollo 11 moon landing, where they see
+        their virtual avatar appear and disappear around the lunar surface
+      </p>
+    ),
+    extra: ExternalIconButton("https://www.youtube.com/watch?v=sXBPK3GXt8A"),
+    categories: [category.Installation],
+  },
+  {
+    title: "Simon Signs",
+    date: "October-November 2023",
+    tools: ["Pico XR", "Procreate"],
+    image: "simonSigns.png?updatedAt=1703731377482",
+    text: (
+      <p>
+        Design concept and pitch for an educational mixed reality app for
+        providing instant, individualized feedback to American Sign Language
+        students. Winner of the{" "}
+        <Link to="https://pico-dev-jam-2023.devpost.com/project-gallery">
+          2023 Pico XR Dev Jam
+        </Link>
+        ! (4th Prize North America market, Best Hand Tracking)
+      </p>
+    ),
+    extra: [
+      ExternalIconButton("https://devpost.com/software/simon-signs"),
+      ExternalIconButton(
+        "https://docs.google.com/presentation/d/1OFnDyZgGY2vX9B2auveLm7ro6yf3wyLxM-K0ps9tne4/edit?usp=sharing"
+      ),
+    ],
+    categories: [category["AR/VR"], category.Other],
+  },
   {
     title: "Collagescape",
     date: "October 2023",
@@ -20,7 +132,7 @@ const projects = [
     text: (
       <p>
         I turned photos on my bedroom wall into an interactive experience that
-        generates digital collages.
+        generates digital collages
       </p>
     ),
     link: "https://github.com/lucia-gomez/collagescape",
@@ -135,13 +247,22 @@ const projects = [
     featuredImageDesktop:
       "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/signSearchDemoDesktop.mov",
     featuredImageMobile:
-      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/signSearchDemoMobile.mov",
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/signSearchDemoDesktop.mov",
+    // "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/signSearchDemoMobile.mov",
     featuredText: (
       <p>
-        A Google Chrome extension for providing a convenient way to look up
-        words in American Sign Language
+        A Chrome extension for providing a convenient way to look up words in
+        American Sign Language. Highlight a word on a page or enter a search
+        directly into the extension to see multiple ways of signing the word.
+        Results are queried from multiple online ASL dictionaries.
+        <br />
+        <br />
+        Currently at ~800 daily users!
       </p>
     ),
+    featuredLink:
+      "https://chrome.google.com/webstore/detail/sign-search/gniinlnnpjdbeleojkghgdccpapkapma",
+    featuredSameTab: false,
     link: "https://github.com/lucia-gomez/Sign-Search",
     text: (
       <p>

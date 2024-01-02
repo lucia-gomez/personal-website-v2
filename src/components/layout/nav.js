@@ -69,7 +69,7 @@ const CustomNav = () => {
   const { isAuthenticated } = useAuth0()
   const sections = [
     { name: "Home", link: "/" },
-    { name: "About Me", link: "/about-me" },
+    { name: "About", link: "/about-me" },
     { name: "Portfolio", link: "/portfolio" },
     { name: "Art", link: "/art" },
     { name: "Blog", link: "/blog" },

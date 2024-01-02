@@ -1,46 +1,30 @@
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 
+import BlogFeaturedSection from "../components/blog/blogFeaturedSection"
 import BlogLoading from "../components/blog/blogLoading"
 import BlogPostLink from "../components/blog/blogPostItem"
+import BlogSearchBar from "../components/blog/blogSearchBar"
 import { PostApi } from "../scripts/api"
 import ScrollList from "../components/scrollList"
-import SearchBar from "../components/searchBar"
-import SectionTitle from "../components/sectionTitle"
 import filterPost from "../scripts/searchBlog"
 import styled from "styled-components"
 import { useLocation } from "react-router-dom"
 
-const Wrapper = styled.div`
-  display: grid;
-  grid-template-rows: auto 1fr;
-`
-
 const TopSection = styled.div`
-  padding: 65px 20px 0px;
+  padding: 65px 8px 0px;
 `
 
 const Posts = styled(ScrollList)`
-  margin: ${props => (props.horizontal ? "0px 20px" : "")};
   padding: 20px 0px;
+  margin: 0px 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 32px;
+  overflow-x: clip;
 
-  ${props => (props.horizontal ? "" : "margin: 0px 8px;")}
-  ${props => (props.horizontal ? "" : "align-items: center;")}
-
-  ~ .scroll-indicator-left {
-    box-shadow: 20px 0px 80px 0px #000000ba;
+  @media screen and (max-width: 576px) {
+    grid-template-columns: repeat(auto-fill, 95vw);
   }
-  ~ .scroll-indicator-right {
-    box-shadow: -20px 0px 80px 0px #000000ba;
-  }
-`
-
-const BlogPostWrapper = styled.div.attrs(_ => ({
-  className: "blog-post",
-}))`
-  margin: ${props =>
-    props.horizontal ? "0px 30px 0px 0px" : "0px 0px 30px 0px"};
-  height: 100%;
-  border-radius: 5px;
 `
 
 export default function BlogHomePage() {
@@ -48,7 +32,7 @@ export default function BlogHomePage() {
   const [posts, setPosts] = useState([])
   const [searchResults, setSearchResults] = useState(posts)
   const [loading, setLoading] = useState(true)
-  const [isMobile, setMobile] = useState(window.innerWidth <= 576)
+  const [isSearch, toggleSearch] = useState(false)
 
   const sortByDisplayDate = posts =>
     posts.sort((a, b) => {
@@ -67,44 +51,41 @@ export default function BlogHomePage() {
     })
   }, [location.key])
 
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      setMobile(window.innerWidth <= 576)
-    })
-  }, [])
-
   const searchPosts = keywords => {
     if (keywords.length === 0) {
+      toggleSearch(false)
       setSearchResults(posts)
     } else {
       const filtered = posts.filter(post => filterPost(post, keywords))
       setSearchResults(filtered)
+      toggleSearch(true)
     }
   }
 
+  const postsToShow = useCallback(() => {
+    if (isSearch) {
+      return searchResults
+    } else {
+      return posts.slice(3)
+    }
+  }, [isSearch, posts, searchResults])
+
   return (
-    <Wrapper horizontal={!isMobile}>
-      <TopSection horizontal={!isMobile}>
-        <SectionTitle>Blog</SectionTitle>
+    <>
+      <TopSection>
         {loading && <BlogLoading />}
-        {!loading && (
-          <SearchBar
-            callback={searchPosts}
-            placeholder="Ex: Heroku, database"
-          />
-        )}
+        {posts.length > 0 && <BlogFeaturedSection posts={posts} />}
+        {!loading && <BlogSearchBar searchPosts={searchPosts} />}
       </TopSection>
       {!loading && searchResults.length === 0 ? (
-        <p style={{ padding: "20px 0px" }}>No posts found :(</p>
+        <p style={{ padding: "20px 0px 100px 16px" }}>No posts found</p>
       ) : (
-        <Posts horizontal={!isMobile} containerStyle={{ marginBottom: 50 }}>
-          {searchResults.map((post, idx) => (
-            <BlogPostWrapper key={idx} horizontal={!isMobile}>
-              <BlogPostLink post={post} isMobile={isMobile} />
-            </BlogPostWrapper>
+        <Posts>
+          {postsToShow().map((post, idx) => (
+            <BlogPostLink post={post} key={idx} />
           ))}
         </Posts>
       )}
-    </Wrapper>
+    </>
   )
 }

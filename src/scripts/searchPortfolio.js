@@ -4,7 +4,7 @@ function toStringRec(obj) {
   if (typeof obj === "string") return obj
   else if (typeof obj.props.children === "string") return obj.props.children
   else {
-    return obj.props.children.map(o => toStringRec(o)).join(" ")
+    return obj.props.children?.map(o => toStringRec(o)).join(" ")
   }
 }
 

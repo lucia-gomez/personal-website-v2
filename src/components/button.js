@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom"
 import styled, { css } from "styled-components"
 
-import BootstrapButton from "react-bootstrap/Button"
 import { FaInstagram } from "react-icons/fa"
 import React from "react"
 
@@ -9,8 +8,8 @@ const buttonStyle = css`
   background-color: ${props => props.theme.accent};
   border: none;
   color: ${props => props.theme.text};
-  width: fit-content;
   padding: 0;
+  border-radius: 5px;
 
   .disabled,
   :disabled {
@@ -24,11 +23,9 @@ const buttonStyle = css`
     }
   }
 
-  :hover,
   :focus,
-  :not(:disabled):not(.disabled):active,
-  btn-primary:not(:disabled):not(.disabled).active {
-    background-color: ${props => props.theme.accentHover};
+  :not(:disabled):not(.disabled):active {
+    background-color: ${props => props.theme.accentLight};
     border: none;
     box-shadow: none;
     color: ${props => props.theme.text};
@@ -36,6 +33,15 @@ const buttonStyle = css`
 
   :active:focus {
     box-shadow: none !important;
+  }
+
+  @media (any-hover: hover) {
+    :hover {
+      background-color: ${props => props.theme.accentHover};
+      border: none;
+      box-shadow: none;
+      color: ${props => props.theme.text};
+    }
   }
 `
 const ButtonContent = styled.div`
@@ -49,7 +55,7 @@ const ButtonContent = styled.div`
     text-decoration: unset;
   }
 `
-const BootstrapButtonStyled = styled(BootstrapButton)`
+const BootstrapButtonStyled = styled.button`
   ${buttonStyle}
 `
 
@@ -77,8 +83,21 @@ export const ButtonLink = props => (
 )
 
 export const Button = props => {
+  const handleTouchStart = () => {
+    console.log("start")
+    // setButtonColor("purple")
+  }
+
+  const handleTouchEnd = () => {
+    // setButtonColor("green")
+  }
+
   return (
-    <BootstrapButtonStyled {...props}>
+    <BootstrapButtonStyled
+      {...props}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <ButtonContent>
         <p>{props.children}</p>
       </ButtonContent>
@@ -121,4 +140,37 @@ export const InstagramButton = props => {
       </Row>
     </ButtonLink>
   )
+}
+
+const SIZE = 75
+const RoundButtonStyle = styled(ButtonLink)`
+  height: ${SIZE}px;
+  width: ${SIZE}px;
+  border-radius: ${SIZE}px;
+
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  box-shadow: 0px 6px 10px 0 rgba(0, 0, 0, 0.14),
+    0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+  transition: transform 200ms;
+
+  :hover {
+    transform: scale(1.1);
+  }
+
+  animation-duration: 1s;
+  --webkit-animation-duration: 1s;
+  animation-delay: 1s;
+  --webkit-animation-delay: 1s;
+
+  i {
+    color: ${props => props.theme.text};
+    font-size: 30px;
+  }
+`
+
+export function RoundButton(props) {
+  return <RoundButtonStyle {...props}>{props.children}</RoundButtonStyle>
 }

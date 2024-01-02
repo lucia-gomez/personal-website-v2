@@ -40,7 +40,11 @@ const CreateDraftButton = (payload, setOpenDraft) => (
   <Button
     onClick={() =>
       DraftApi.createDraft(payload).then(result =>
-        setOpenDraft({ ...payload, id: result.data.insertId })
+        setOpenDraft({
+          ...payload,
+          id: result.data._id,
+          _id: result.data._id,
+        })
       )
     }
     disabled={isButtonValid(payload)}

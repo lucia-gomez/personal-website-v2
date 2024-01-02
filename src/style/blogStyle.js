@@ -25,7 +25,6 @@ const li = css`
 
 const a = css`
   color: ${props => props.theme.accent};
-  /* display: contents; */
   transition: color 200ms;
 
   :hover {
@@ -61,7 +60,7 @@ const BlogStyle = styled.div`
     ${blockquote}
   }
   pre {
-    background-color: ${props => hexToRGB(props.theme.medium, 0.5)};
+    background-color: ${props => hexToRGB(props.theme.medium, 0.1)};
     color: ${props => props.theme.text};
     border-radius: 5px;
   }
@@ -84,6 +83,9 @@ const BlogStyle = styled.div`
   img + img {
     margin-top: 20px;
   }
+  img + em {
+    color: ${props => props.theme.medium};
+  }
   video {
     object-fit: cover;
   }
@@ -100,4 +102,3 @@ const BlogStyle = styled.div`
 
 export default BlogStyle
 export { ul, li, a, blockquote }
-// hi!

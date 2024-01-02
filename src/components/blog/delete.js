@@ -1,7 +1,16 @@
 import { DraftApi, PostApi } from "../../scripts/api"
 
-import { IconButton } from "../iconButton"
+import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
+
+const Icon = styled.i.attrs(_ => ({
+  className: "delete",
+}))`
+  color: ${props => props.theme.accent};
+  :hover {
+    color: ${props => props.theme.accentHover};
+  }
+`
 
 const Delete = props => {
   const navigate = useNavigate()
@@ -23,7 +32,8 @@ const Delete = props => {
     })
   }
 
-  const handleClick = () => {
+  const handleClick = e => {
+    e.preventDefault()
     const result = window.confirm(
       `Are you sure you want to delete this ${draft ? "draft" : "post"}?`
     )
@@ -32,9 +42,7 @@ const Delete = props => {
     }
   }
 
-  return (
-    <IconButton onClick={handleClick} className={className + " fas fa-trash"} />
-  )
+  return <Icon onClick={handleClick} className={className + " fas fa-trash"} />
 }
 
 export default Delete

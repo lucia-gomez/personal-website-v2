@@ -1,14 +1,18 @@
+import {
+  BlogPostMetadata,
+  BlogPostMetadataLarge,
+} from "../components/blog/blogPostMetadata"
 import { Navigate, useLocation, useParams } from "react-router-dom"
 import React, { useEffect, useState } from "react"
 
 import Back from "../components/blog/back"
 import BlogContent from "../components/blog/blogContent"
+import BlogGradientBanner from "../components/blog/blogGradientBanner"
 import BlogLoading from "../components/blog/blogLoading"
 import BlogNavButtons from "../components/blog/blogNavButtons"
 import EditorPopup from "../components/editor/editorPopup"
 import { PostApi } from "../scripts/api"
-import Sidebar from "../components/blog/sidebar"
-import { blogPlaceholderImageUrl } from "../scripts/util"
+import { hexToRGB } from "../style/theme"
 import styled from "styled-components"
 import { useAuth0 } from "@auth0/auth0-react"
 
@@ -17,12 +21,8 @@ const BlogWrapper = styled.div`
   padding: 50px 0px;
 `
 
-// side bar, blog content
 const ContentWrapper = styled.div`
   position: relative;
-  display: grid;
-  grid-template-columns: 250px minmax(0, 1fr);
-
   @media only screen and (max-width: 768px) {
     display: block;
     padding: 0px;
@@ -33,9 +33,12 @@ const Content = styled.div`
   text-align: left;
   overflow-y: scroll;
   padding: 0px 20px;
+  margin: auto;
+  width: 100%;
 
   @media screen and (min-width: 576px) {
     padding-left: 0px;
+    width: 70%;
   }
 `
 
@@ -50,31 +53,36 @@ const Header = styled.div`
   }
 `
 
-const HeaderImage = styled.div`
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-  background-image: url(${props => props.imageUrl});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position-y: center;
-  mix-blend-mode: darken;
-  filter: grayscale(1);
-
+const HeaderImage = styled(BlogGradientBanner)`
   ::after {
-    content: "";
-    height: 100%;
+    height: 120%;
+    bottom: -2px;
+    background: linear-gradient(
+      to top,
+      ${props => hexToRGB(props.theme.bg, 0.95)} 0%,
+      ${props => hexToRGB(props.theme.bg, 0.2)} 100%
+    );
+  }
+
+  .image {
+    background-position-y: center;
+  }
+`
+
+const HeaderContent = styled.div`
+  width: 50%;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+
+  @media screen and (max-width: 576px) {
     width: 100%;
-    position: absolute;
-    background: linear-gradient(to bottom, transparent 70%, white 130%);
+    position: relative;
   }
 `
 
 const Title = styled.h1`
   color: ${props => props.theme.text};
-  font-weight: 900;
   margin: 0px;
   padding-right: 10px;
 `
@@ -83,18 +91,6 @@ const EditWrapper = styled.div`
   position: absolute;
   right: 12px;
   top: 12px;
-`
-
-const SidebarDesktop = styled(Sidebar)`
-  @media only screen and (max-width: 768px) {
-    display: none;
-  }
-`
-
-const SidebarMobile = styled(Sidebar)`
-  @media only screen and (min-width: 768px) {
-    display: none;
-  }
 `
 
 const BackWrapper = styled(Back)`
@@ -113,10 +109,14 @@ export default function BlogPostPage() {
 
   useEffect(() => {
     setLoading(true)
-    PostApi.getPost(slug).then(res => {
-      setPost(res.data ?? null)
-      setLoading(false)
-    })
+    PostApi.getPost(slug)
+      .then(res => {
+        setPost(res.data ?? null)
+        setLoading(false)
+      })
+      .catch(_ => {
+        setLoading(false)
+      })
     PostApi.getNextPost(slug).then(res => {
       setNextPostSlug(res.data || null)
     })
@@ -134,24 +134,22 @@ export default function BlogPostPage() {
       {!loading ? (
         <>
           <Header>
-            <HeaderImage imageUrl={post.imageUrl || blogPlaceholderImageUrl} />
-            <div style={{ padding: 20 }}>
+            <EditWrapper>
+              {isAuthenticated ? <EditorPopup post={post} /> : null}
+            </EditWrapper>
+            <HeaderImage post={post} />
+            <HeaderContent>
               <BackWrapper link="/blog" />
               <Title>{post.title}</Title>
-              <EditWrapper>
-                {isAuthenticated ? <EditorPopup post={post} /> : null}
-              </EditWrapper>
-              <div>
-                {post.dateString.substring(0, post.dateString.indexOf(","))}
-                <p>Lucia Gomez</p>
-              </div>
-            </div>
+
+              <BlogPostMetadata post={post} />
+            </HeaderContent>
           </Header>
           <ContentWrapper>
-            <SidebarDesktop post={post} />
             <>
               <Content className="animate__animated animate__fadeIn">
                 <BlogContent content={post.content} />
+                <BlogPostMetadataLarge post={post} />
                 <BlogNavButtons
                   nextSlug={
                     nextPostSlug != null ? `/blog/${nextPostSlug.slug}/` : null
@@ -161,7 +159,6 @@ export default function BlogPostPage() {
                   }
                 />
               </Content>
-              <SidebarMobile post={post} />
             </>
           </ContentWrapper>
         </>
