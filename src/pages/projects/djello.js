@@ -22,6 +22,10 @@ const Wrapper = styled.div`
   ol {
     padding-left: 12px;
   }
+
+  ul {
+    margin-left: 8px;
+  }
 `
 
 const VideoContainer = styled.div`
@@ -67,13 +71,29 @@ const Metadata = styled.p`
 
 const Header = styled.h3`
   margin-top: 10svh;
+  width: fit-content;
 `
 
 const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  flex-wrap: wrap;
+
+  @media screen and (max-width: 576px) {
+    flex-wrap: wrap;
+  }
+`
+
+const DoubleTextRow = styled(Row)`
+  p {
+    max-width: 70%;
+  }
+
+  @media screen and (max-width: 576px) {
+    p {
+      max-width: 100%;
+    }
+  }
 `
 
 export default function DJello() {
@@ -176,6 +196,79 @@ export default function DJello() {
         <Image src="https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/djello/cardboard.jpeg" />
         <Image src="https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/djello/prototype.jpeg" />
       </Row>
+
+      <Header>Software</Header>
+      <Row>
+        <p>
+          The software was the easy part for me. I wrote an Arduino script to
+          read input from the various sensors, and made those sensors trigger
+          MIDI commands, such as "play a middle-C note on channel 5". I set up
+          Ableton Live, music-making software, to read these MIDI commands and
+          turn them into squishy sounds.
+          <br />
+          <br />I asked some of my classmates with more musical backgrounds for
+          advice on what my controls should do. Most controls play a single
+          note, but some more "advanced" ones play ranges of notes or apply
+          filters.
+        </p>
+        <Image src="https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/djello/ableton.png" />
+      </Row>
+
+      <Header>Finished Product</Header>
+      <Row>
+        <p>
+          After learning from my prototypes, I assembled the final version. Some
+          changes from the earlier versions:
+          <ul>
+            <li>White acrylic instead of clear, to hide the internal wiring</li>
+            <li>
+              Conductive copper tape instead of normal wires, to fit flat
+              between acrylic layers
+            </li>
+            <li>Updated design for the bendy flex sensor control</li>
+            <li>Tighter fitting legs for the base</li>
+          </ul>
+        </p>
+        <Image src="https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/djello/final.jpeg" />
+      </Row>
+
+      <DoubleTextRow>
+        <div>
+          <Header>Skills Learned</Header>
+          <p>
+            <ul>
+              <li>
+                This was my first time using a laser cutter. Aside from learning
+                how to design cut templates with Adobe Illustrator, I learned
+                how to use some advanced controls like manually adjusting the
+                height of the bed.
+              </li>
+              <li>What MIDI is and how it works</li>
+              <li>Ableton Live basics, basic music-making skills</li>
+              <li>Iterating on user interface design</li>
+            </ul>
+          </p>
+        </div>
+
+        <div>
+          <Header>Challenges</Header>
+          <p>
+            <ul>
+              <li>
+                Arranging the wires inside of the acrylic layers. Normal wires
+                are thick enough that they can't sit flat between two hard
+                layers of acrylic, creating a gap
+              </li>
+              <li>
+                Fabricating the base legs. I had to individually laser cut faces
+                on a hollow rectangular tube
+              </li>
+              <li>Finding specific MIDI command codes for Ableton</li>
+              <li>Designing an intuitive control using a flex sensor</li>
+            </ul>
+          </p>
+        </div>
+      </DoubleTextRow>
     </Wrapper>
   )
 }
