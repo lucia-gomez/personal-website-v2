@@ -4,12 +4,28 @@ export default function InteractiveDrawing() {
   const canvasRef = useRef()
   const p5Instance = useRef()
 
+  const initialize = () => {
+    p5Instance.current = new window.p5(p5 => sketch(p5, canvasRef.current))
+    setTimeout(() => {
+      document.elementFromPoint(0, 0).click()
+    }, 0)
+  }
+
   useEffect(() => {
+    if (!window.p5) {
+      console.error("p5 not loaded. loading it...")
+      const script = document.createElement("script")
+      script.src =
+        "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"
+      script.async = true
+      document.body.appendChild(script)
+      script.addEventListener("load", () => {
+        initialize()
+      })
+    }
+
     if (window.p5) {
-      p5Instance.current = new window.p5(p5 => sketch(p5, canvasRef.current))
-      setTimeout(() => {
-        document.elementFromPoint(0, 0).click()
-      }, 0)
+      initialize()
     } else {
       console.error("p5 not loaded")
     }
