@@ -83,7 +83,9 @@ const BlogStyle = styled.div`
   img + img {
     margin-top: 20px;
   }
-  img + em {
+  img + em,
+  video + em,
+  em:only-child {
     color: ${props => props.theme.medium};
   }
   video {
