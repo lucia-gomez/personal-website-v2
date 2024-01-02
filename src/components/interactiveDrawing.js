@@ -6,6 +6,7 @@ export default function InteractiveDrawing() {
 
   const initialize = () => {
     p5Instance.current = new window.p5(p5 => sketch(p5, canvasRef.current))
+
     setTimeout(() => {
       document.elementFromPoint(0, 0).click()
     }, 0)
@@ -81,7 +82,7 @@ function sketch(p5, parent) {
     if (p5.windowWidth < 450) {
       dotSize = 2
       widthScale = 2.5
-      heightScale = 2.5
+      heightScale = 2
       offsetX = -50
       offsetY = -100
     }
