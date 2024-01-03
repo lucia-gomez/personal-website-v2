@@ -1,6 +1,7 @@
 import BallonDogModel from "../components/art/models/balloonDogModel"
 import { HeartFaceEmojiModel } from "../components/art/models/heartFaceEmoji"
 import Link from "../components/link"
+import ReverseLavaLampModel from "../components/art/models/reverseLavaLampModel"
 import RingpopModel from "../components/art/models/ringpopModel"
 
 const artList = [
@@ -9,6 +10,40 @@ const artList = [
     description:
       "3D objects I've modeled. Click to interact with the objects in 3D",
     items: [
+      {
+        title: "Reverse Lava Lamp",
+        date: "October 2023",
+        slug: "3d/reverse-lava-lamp",
+        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/lavaLamp.jpeg?updatedAt=1704249817058",
+        alt: "reverse lava lamp",
+        pageContent: {
+          meshSrc: <ReverseLavaLampModel />,
+          cameraPosition: [200, 100, 500],
+          lights: (
+            <>
+              <directionalLight color="red" position={[-500, 100, -500]} />
+              <directionalLight color="red" position={[200, 100, 200]} />
+            </>
+          ),
+          description: (
+            <p>
+              I modeled this odd lava lamp for{" "}
+              <Link to="https://www.instagram.com/womp3d/reel/CyjHVI9x7Hw/">
+                Wompathon 2023.
+              </Link>
+              . The prompt was to model an object with a material other than
+              what it has in real life, so I switched the lava lamp blobs to be
+              in the top and bottom sections
+            </p>
+          ),
+          media: [
+            {
+              type: "img",
+              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/lavaLampWide.png?updatedAt=1704249943328",
+            },
+          ],
+        },
+      },
       {
         title: "Waffle",
         date: "September 2023",
