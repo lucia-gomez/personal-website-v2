@@ -65,7 +65,7 @@ export default function Collagescape() {
 
   const handleModalClose = () => {
     setModalItem(null)
-    navigate("/project/collagescape")
+    navigate("/art/series/collagescape")
   }
 
   const handleModalOpen = idx => {
@@ -82,7 +82,10 @@ export default function Collagescape() {
       {photos.length === 0 && <Spinner />}
       <PhotoGrid>
         {photos.map((photo, idx) => (
-          <LinkWrapper to={`/project/collagescape/${idx + 1}`} key={photo.id}>
+          <LinkWrapper
+            to={`/art/series/collagescape/${idx + 1}`}
+            key={photo.id}
+          >
             <Photo src={photo.src} onClick={() => handleModalOpen(idx)} />
           </LinkWrapper>
         ))}
@@ -145,10 +148,12 @@ export default function Collagescape() {
           handleClose={handleModalClose}
           nextSlug={
             id < photos.length
-              ? `/project/collagescape/${Number(id) + 1}`
+              ? `/art/series/collagescape/${Number(id) + 1}`
               : null
           }
-          prevSlug={id > 1 ? `/project/collagescape/${Number(id) - 1}` : null}
+          prevSlug={
+            id > 1 ? `/art/series/collagescape/${Number(id) - 1}` : null
+          }
         />
       )}
     </Wrapper>

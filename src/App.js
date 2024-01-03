@@ -17,6 +17,7 @@ import LandingPage from "./pages/landing"
 import Layout from "./components/layout/layout"
 import LightsCameraMagnets from "./pages/projects/lights-camera-magnets"
 import ProtectedRoute from "./components/layout/protectedRoute"
+import RisoWoodles from "./pages/projects/risoWoodles"
 import ScrollToTop from "./ScrollToTop"
 import SubscribePage from "./pages/subscribe"
 import ThreeDObjectPage from "./pages/projects/3dModel"
@@ -60,6 +61,14 @@ export default function App() {
             <Route path="/art/waffle" element={<ThreeJsObjectPage />}></Route>
             <Route path="/art/:slug" element={<ArtPage />}></Route>
             <Route
+              path="/art/series/riso-woodles"
+              element={<RisoWoodles />}
+            ></Route>
+            <Route
+              path="/art/series/riso-woodles/:id"
+              element={<RisoWoodles />}
+            ></Route>
+            <Route
               path="/confirmation/:emailHash"
               element={<ConfirmationPage />}
             ></Route>
@@ -75,11 +84,11 @@ export default function App() {
               element={<LightsCameraMagnets />}
             ></Route>
             <Route
-              path="/project/collagescape"
+              path="/art/series/collagescape"
               element={<Collagescape />}
             ></Route>
             <Route
-              path="/project/collagescape/:id"
+              path="/art/series/collagescape/:id"
               element={<Collagescape />}
             ></Route>
             <Route path="/classBlog" element={<WordpressRedirect />}></Route>

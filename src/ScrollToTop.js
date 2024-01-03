@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useLocation } from "react-router-dom"
 
-const skipList = [new RegExp("/art/*")]
+const skipList = [new RegExp("/art/[^/]+/?$")]
 
 export default function ScrollToTop() {
   const { pathname } = useLocation()

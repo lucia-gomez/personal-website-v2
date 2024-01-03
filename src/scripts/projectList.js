@@ -136,7 +136,7 @@ const projects = [
       </p>
     ),
     link: "https://github.com/lucia-gomez/collagescape",
-    extra: ExternalIconButton("/project/collagescape", true),
+    extra: ExternalIconButton("/art/series/collagescape", true),
     categories: [category["Digital Art"]],
   },
   {

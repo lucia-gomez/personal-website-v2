@@ -33,7 +33,8 @@ const artList = [
               </Link>
               . The prompt was to model an object with a material other than
               what it has in real life, so I switched the lava lamp blobs to be
-              in the top and bottom sections
+              in the top and bottom sections. Use your cursor to interact with
+              the 3D model below.
             </p>
           ),
           media: [
@@ -299,7 +300,27 @@ const artList = [
     ],
   },
   {
-    sectionName: "Digital",
+    sectionName: "Series",
+    description: "",
+    items: [
+      {
+        title: "Riso Woodle Series",
+        date: "December 2023",
+        slug: "series/riso-woodles",
+        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/risoWoodle.png?updatedAt=1704266504737",
+        alt: "Riso Woodle curve",
+      },
+      {
+        title: "Collagescape Series",
+        date: "October 2023",
+        slug: "series/collagescape",
+        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/screenshot-1786714.217667.png?updatedAt=1704267702022",
+        alt: "collagescape",
+      },
+    ],
+  },
+  {
+    sectionName: "Digital Drawing",
     description: "Getting practice with a drawing tablet. Click to enlarge",
     items: [
       {
