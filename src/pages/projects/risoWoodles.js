@@ -102,7 +102,7 @@ export default function RisoWoodles() {
     <Wrapper>
       <SectionTitle>Riso Woodles</SectionTitle>
       <p>
-        What's a Riso Noodle? A little 3D noodle-y curve modeled with{" "}
+        What's a Riso Woodle? A little 3D noodle-y curve modeled with{" "}
         <Link to="https://alpha.womp.com/">Womp</Link> and color-separated for{" "}
         <Link to="https://risottostudio.com/pages/what-is-risograph-printing">
           risograph printing.
