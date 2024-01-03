@@ -50,7 +50,7 @@ export default function ArtPage() {
 
   const handleModalClose = () => {
     setModalItem(null)
-    navigate("/art")
+    navigate("/art/home")
   }
 
   const memoZines = useMemo(
