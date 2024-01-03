@@ -26,7 +26,7 @@ const Advanced = styled.div`
 
 export default function PortfolioFiltersSection(props) {
   const { activeFilter, setActiveFilter, searchProjects } = props
-  const [isExpanded, setExpanded] = useState(true)
+  const [isExpanded, setExpanded] = useState(false)
 
   const [ref, bounds] = useMeasure()
   const collapseAnimatedStyle = useSpring({

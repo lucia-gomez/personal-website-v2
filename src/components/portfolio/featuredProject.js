@@ -17,14 +17,16 @@ const FeaturedWrapper = styled.div`
   @media screen and (max-width: 850px) {
     max-height: 80svh;
     max-width: 80vw;
-    margin-bottom: 300px;
-    margin-top: 100px;
+    margin-bottom: 400px;
+    margin-top: 150px;
     justify-content: flex-start;
   }
 
   @media screen and (max-width: 576px) {
     width: 100%;
     height: auto;
+    margin-bottom: 300px;
+    margin-top: 100px;
     max-height: 75svh;
     max-width: unset;
   }

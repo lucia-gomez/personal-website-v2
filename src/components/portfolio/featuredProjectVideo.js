@@ -12,9 +12,14 @@ const Wrapper = styled.div`
 
   @media screen and (max-width: 870px) {
     position: absolute;
-    right: 0;
-    top: 97%;
+    right: -15%;
+    top: ${props => (props.idx % 2 === 0 ? 97 : 75)}%;
     margin: 0px;
+  }
+
+  @media screen and (max-width: 576px) {
+    right: 0;
+    top: ${props => (props.idx % 2 === 0 ? 97 : 94)}%;
   }
 
   // color overlay
@@ -36,27 +41,10 @@ const Wrapper = styled.div`
     max-width: 70vw;
     max-height: 70vh;
 
-    @media screen and (max-width: 870px) {
+    @media screen and (max-width: 576px) {
       height: calc(100% - 6px);
     }
   }
-
-  /* ::after {
-    content: "";
-    width: 150px;
-    height: 150px;
-    border-radius: 100px;
-    background-color: ${props => props.theme.accent};
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%)
-      skewY(${props => (props.idx % 2 === 0 ? 4 : -4)}deg);
-  }
-
-  :hover::after {
-    background-color: ${props => props.theme.accentHover};
-  } */
 `
 
 const Video = styled.video`
@@ -69,8 +57,12 @@ const Video = styled.video`
   transform: skewY(${props => (props.idx % 2 === 0 ? 4 : -4)}deg);
 
   @media screen and (max-width: 870px) {
-    max-width: 70vw;
+    max-width: 50vw;
     box-shadow: none;
+  }
+
+  @media screen and (max-width: 576px) {
+    max-width: 70vw;
   }
 `
 

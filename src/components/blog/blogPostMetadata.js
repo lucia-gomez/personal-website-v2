@@ -1,3 +1,4 @@
+import { FaCalendarDay } from "react-icons/fa"
 import Like from "./like"
 import Link from "../link"
 import ProfilePic from "../about/profilePic"
@@ -10,8 +11,10 @@ const Row = styled.div`
   align-items: flex-end;
   margin: 20px 0px;
 
-  p {
+  p,
+  svg {
     margin: 0;
+    font-size: 16px;
     color: ${props => hexToRGB(props.theme.text, 0.75)};
   }
 `
@@ -36,7 +39,12 @@ export function BlogPostMetadata({ post }) {
       <ProfilePicBlog />
       <div>
         <p>Lucia Gomez</p>
-        <p>{post.dateString.substring(0, post.dateString.indexOf(","))}</p>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <FaCalendarDay size="14px" />
+          <p style={{ marginLeft: "4px" }}>
+            {post.dateString.substring(0, post.dateString.indexOf(","))}
+          </p>
+        </div>
       </div>
       <Dot />
       <Like count={post != null ? post.likes : "--"} postID={post?._id} />

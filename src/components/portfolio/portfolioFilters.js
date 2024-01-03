@@ -1,8 +1,7 @@
 import React from "react"
-import styled from "styled-components"
-import { hexToRGB } from "../../style/theme"
-import { category } from "../../scripts/projectList"
 import SearchBar from "../searchBar"
+import { category } from "../../scripts/projectList"
+import styled from "styled-components"
 
 const FilterRow = styled.div`
   display: flex;
@@ -19,21 +18,24 @@ const FilterRow = styled.div`
 
 const FilterItem = styled.div`
   border-radius: 8px;
+  border: ${props =>
+    props.active === "true" ? "none" : `1px solid ${props.theme.accent}`};
   background-color: ${props =>
-    props.active === "true"
-      ? props.theme.accent
-      : hexToRGB(props.theme.medium, 0.5)};
+    props.active === "true" ? props.theme.accent : props.theme.bg};
   color: ${props =>
-    props.active === "true" ? props.theme.textInv : props.theme.text};
+    props.active === "true" ? props.theme.textInv : props.theme.accent};
   padding: 2px 8px;
   margin: 4px 8px 4px 0px;
   cursor: pointer;
-  transition: background-color 150ms, color 150ms, transform 150ms;
+  transition: background-color 150ms, color 150ms;
 
   :hover {
-    background-color: ${props => props.theme.accentHover};
-    color: ${props => props.theme.text};
-    transform: scale(1.05);
+    border: ${props =>
+      props.active === "true"
+        ? "none"
+        : `1px solid ${props.theme.accentHover}`};
+    color: ${props =>
+      props.active === "true" ? props.theme.bg : props.theme.accentHover};
   }
 `
 

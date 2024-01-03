@@ -12,9 +12,9 @@ const Wrapper = styled.div`
   flex-direction: row;
 `
 
-export default function PortfolioCardButtons(props) {
-  const githubIcon = props.git ? (
-    <GitLink href={props.git ?? ""}>
+export default function PortfolioCardButtons({ git, extra, className }) {
+  const githubIcon = git ? (
+    <GitLink href={git ?? ""}>
       <div className="material-icons">
         <i className="fa fa-github"></i>
       </div>
@@ -22,9 +22,9 @@ export default function PortfolioCardButtons(props) {
   ) : null
 
   return (
-    <Wrapper className={props.className}>
+    <Wrapper className={className}>
+      {extra}
       {githubIcon}
-      {props.link}
     </Wrapper>
   )
 }
