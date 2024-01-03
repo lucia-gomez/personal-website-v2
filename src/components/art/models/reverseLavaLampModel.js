@@ -7,7 +7,7 @@ import React from "react"
 import { useGLTF } from "@react-three/drei"
 
 export default function ReverseLavaLampModel(props) {
-  const { nodes, materials } = useGLTF(
+  const { nodes } = useGLTF(
     "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/meshes/reverseLavaLamp.glb?updatedAt=1704249440319"
   )
   const capMaterial = new MeshPhysicalMaterial({
