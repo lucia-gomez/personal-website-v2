@@ -13,13 +13,18 @@ const Wrapper = styled.div`
   padding: 56px 20px 50px 20px;
 
   ol,
-  ul {
-    padding-left: 12px;
+  ul,
+  p {
     max-width: 70%;
 
     @media screen and (max-width: 576px) {
       max-width: 100%;
     }
+  }
+
+  ol,
+  ul {
+    padding-left: 12px;
   }
 `
 
@@ -102,7 +107,8 @@ export default function RisoWoodles() {
         <Link to="https://risottostudio.com/pages/what-is-risograph-printing">
           risograph printing.
         </Link>{" "}
-        Click on a photo to enlarge.
+        Risograph prints have a unique look and feel, so I wanted to pair that
+        with the weirdness of my Womp shapes. Click on a photo to enlarge
       </p>
       {photos.length === 0 && <Spinner />}
       <PhotoGrid>
