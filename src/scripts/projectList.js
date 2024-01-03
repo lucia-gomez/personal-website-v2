@@ -166,6 +166,28 @@ const projects = [
     ),
   },
   {
+    title: "Personal Website",
+    date: "Sept 2020-present",
+    tools: [
+      "React",
+      "MySQL",
+      "Express",
+      "Auth0",
+      "Styled Components",
+      "Heroku",
+      "ImageKit",
+    ],
+    image: "website.jpg",
+    link: "https://github.com/lucia-gomez/personal-website-v2",
+    text: (
+      <p>
+        You're looking at it! This is v4, I tend to start from scratch when I'm
+        bored or when I've learned something new.
+      </p>
+    ),
+    categories: [category.Web],
+  },
+  {
     title: "Friendly Takeover",
     date: "April 2023",
     tools: ["Javascript", "HTML/CSS"],
@@ -321,7 +343,7 @@ const projects = [
   {
     title: "Our Power Hour",
     date: "February 2021-present",
-    tools: ["React", "Styled Components", "Netlify"],
+    tools: ["React", "Styled Components", "Netlify", "YouTube API"],
     image: "powerHour.png",
     link: "https://github.com/lucia-gomez/our-power-hour",
     text: (
@@ -394,28 +416,6 @@ const projects = [
       </p>
     ),
     categories: [category.Web, category["Data Visualization"]],
-  },
-  {
-    title: "Personal Website",
-    date: "Sept 2020-present",
-    tools: [
-      "React",
-      "MySQL",
-      "Express",
-      "Auth0",
-      "Styled Components",
-      "Heroku",
-      "ImageKit",
-    ],
-    image: "website.jpg",
-    link: "https://github.com/lucia-gomez/personal-website-v2",
-    text: (
-      <p>
-        You're looking at it! This is v3, I tend to start from scratch when I'm
-        bored or when I've learned something new.
-      </p>
-    ),
-    categories: [category.Web],
   },
   {
     title: "Isometric Cornell",
