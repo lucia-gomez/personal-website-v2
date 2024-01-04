@@ -81,7 +81,9 @@ const projects = [
       </p>
     ),
     link: "https://github.com/lucia-gomez/arcadeArcade",
-    extra: ExternalIconButton("/projects/arcade-arcade"),
+    extra: ExternalIconButton(
+      "https://lucia-gomez.github.io/arcade-arcade-web/"
+    ),
     categories: [category["AR/VR"]],
   },
   {
@@ -97,7 +99,12 @@ const projects = [
         their virtual avatar appear and disappear around the lunar surface
       </p>
     ),
-    extra: ExternalIconButton("https://www.youtube.com/watch?v=sXBPK3GXt8A"),
+    extra: [
+      ExternalIconButton("https://www.youtube.com/watch?v=sXBPK3GXt8A"),
+      ExternalIconButton(
+        "https://goluciago.wordpress.com/2023/11/04/interactive-installations-midterm/"
+      ),
+    ],
     categories: [category.Installation],
   },
   {

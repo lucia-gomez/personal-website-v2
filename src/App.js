@@ -15,7 +15,6 @@ import DJello from "./pages/projects/djello"
 import Error404 from "./pages/404"
 import LandingPage from "./pages/landing"
 import Layout from "./components/layout/layout"
-import LightsCameraMagnets from "./pages/projects/lights-camera-magnets"
 import ProtectedRoute from "./components/layout/protectedRoute"
 import RisoWoodles from "./pages/projects/risoWoodles"
 import ScrollToTop from "./ScrollToTop"
@@ -79,10 +78,6 @@ export default function App() {
             ></Route>
             <Route path="/toad-ar" element={<ToadARPage />}></Route>
             <Route path="/project/djello" element={<DJello />}></Route>
-            <Route
-              path="/project/lights-camera-magnets"
-              element={<LightsCameraMagnets />}
-            ></Route>
             <Route
               path="/art/series/collagescape"
               element={<Collagescape />}
