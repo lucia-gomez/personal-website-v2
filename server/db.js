@@ -14,20 +14,16 @@ const connectDB = async () => {
 
     if (process.env.NODE_ENV === "test") {
       if (mongoServer) {
-        console.log("already exists")
         return mongoose.connection
       }
-      console.log("doesnt exist")
-      // from mongodb-memory-server
       mongoServer = await MongoMemoryServer.create()
       uri = mongoServer.getUri()
+      process.env.MONGO_TEST_URI = uri
+      return
     }
 
     await mongoose.connect(uri)
     console.log("Connected to MongoDB")
-
-    const db = mongoose.connection
-    return db
   } catch (error) {
     console.error("Error connecting to MongoDB:", error.message)
   }
@@ -36,7 +32,6 @@ const connectDB = async () => {
 const closeDB = async () => {
   if (process.env.NODE_ENV === "test") {
     if (mongoServer) {
-      console.log("has mongoserver")
       await mongoose.connection.close(true) // Pass 'true' to force close connections
       await mongoose.disconnect()
       await mongoServer.stop()
