@@ -1,5 +1,8 @@
 const { ObjectId } = require("mongodb")
 const mongoose = require("mongoose")
+const { MongoMemoryServer } = require("mongodb-memory-server")
+
+let mongoServer
 
 const connectDB = async () => {
   try {
@@ -7,11 +10,40 @@ const connectDB = async () => {
       process.env.NODE_ENV === "development"
         ? "personalWebsiteDev"
         : "personalWebsite"
-    const uri = `mongodb+srv://admin:${process.env.REACT_APP_MONGO_PASSWORD}@luciagomez.xykba6v.mongodb.net/${database}?retryWrites=true&w=majority`
+    let uri = `mongodb+srv://admin:${process.env.REACT_APP_MONGO_PASSWORD}@luciagomez.xykba6v.mongodb.net/${database}?retryWrites=true&w=majority`
+
+    if (process.env.NODE_ENV === "test") {
+      if (mongoServer) {
+        console.log("already exists")
+        return mongoose.connection
+      }
+      console.log("doesnt exist")
+      // from mongodb-memory-server
+      mongoServer = await MongoMemoryServer.create()
+      uri = mongoServer.getUri()
+    }
+
     await mongoose.connect(uri)
     console.log("Connected to MongoDB")
+
+    const db = mongoose.connection
+    return db
   } catch (error) {
     console.error("Error connecting to MongoDB:", error.message)
+  }
+}
+
+const closeDB = async () => {
+  if (process.env.NODE_ENV === "test") {
+    if (mongoServer) {
+      console.log("has mongoserver")
+      await mongoose.connection.close(true) // Pass 'true' to force close connections
+      await mongoose.disconnect()
+      await mongoServer.stop()
+      mongoServer = null
+    }
+  } else {
+    await mongoose.connection.close()
   }
 }
 
@@ -61,6 +93,7 @@ const getId = () => new mongoose.Types.ObjectId()
 
 module.exports = {
   connectDB,
+  closeDB,
   getId,
   DraftsModel,
   PostsModel,

@@ -491,3 +491,5 @@ const PORT = 3001
 app.listen(process.env.PORT || PORT, () => {
   console.log("server is running")
 })
+
+module.exports = app
