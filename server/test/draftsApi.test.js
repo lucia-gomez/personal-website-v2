@@ -1,9 +1,10 @@
 const chai = require("chai")
 const { expect } = chai
-const app = require("../index")
+const { app } = require("../index")
 const mongoose = require("mongoose")
+const testSimulateMongoError = require("./test")
 
-const { DraftsModel, PostsModel } = require("../db")
+const { DraftsModel } = require("../db")
 
 const draftData1 = {
   title: "Draft title",
@@ -21,6 +22,9 @@ const updateData1 = {
 }
 let draftId
 
+const mockError = async (fnToMock, apiRequest) =>
+  testSimulateMongoError(DraftsModel, fnToMock, apiRequest)
+
 describe("Drafts API/Model Tests", () => {
   it("get all drafts - empty", async () => {
     const res = await chai.request(app).get("/api/draft/get")
@@ -30,6 +34,9 @@ describe("Drafts API/Model Tests", () => {
     const drafts = await DraftsModel.find({})
     expect(drafts.length).to.equal(0)
   })
+
+  it("get all drafts - mongodb error", async () =>
+    await mockError("find", () => chai.request(app).get("/api/draft/get")))
 
   it("create draft", async () => {
     const res = await chai
@@ -51,6 +58,11 @@ describe("Drafts API/Model Tests", () => {
     expect(allDrafts.length).to.equal(1)
   })
 
+  it("create draft - mongodb error", async () =>
+    await mockError("create", () =>
+      chai.request(app).post("/api/draft/create")
+    ))
+
   it("delete draft by id", async () => {
     const res = await chai.request(app).delete("/api/draft/" + draftId)
     expect(res).to.have.status(200)
@@ -58,6 +70,11 @@ describe("Drafts API/Model Tests", () => {
     const drafts = await DraftsModel.find({})
     expect(drafts.length).to.equal(0)
   })
+
+  it("delete draft by id - mongodb error", async () =>
+    await mockError("deleteOne", () =>
+      chai.request(app).delete("/api/draft/1")
+    ))
 
   it("recreate and update draft", async () => {
     const res1 = await chai
@@ -82,4 +99,9 @@ describe("Drafts API/Model Tests", () => {
     expect(draft.slug).to.equal(updateData1.slug)
     expect(draft.imageUrl).to.equal(updateData1.imageUrl)
   })
+
+  it("update draft - mongodb error", async () =>
+    await mockError("updateOne", () =>
+      chai.request(app).post("/api/draft/update").send(updateData1)
+    ))
 })

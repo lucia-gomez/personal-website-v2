@@ -1,11 +1,14 @@
 const chai = require("chai")
 
 const { expect } = chai
-const app = require("../index")
+const { app } = require("../index")
 const mongoose = require("mongoose")
-const sinon = require("sinon")
+const testSimulateMongoError = require("./test")
 
 const { PostsModel } = require("../db")
+
+const mockError = async (fnToMock, apiRequest) =>
+  testSimulateMongoError(PostsModel, fnToMock, apiRequest)
 
 const postData1 = {
   title: "Test title",
@@ -37,7 +40,7 @@ describe("Posts API/Model Tests", () => {
     expect(posts.length).to.equal(0)
   })
 
-  it("create a post", async () => {
+  it("create post", async () => {
     const res = await chai.request(app).post("/api/create").send(postData1)
     expect(res).to.have.status(200)
     postId = res.body._id
@@ -57,13 +60,18 @@ describe("Posts API/Model Tests", () => {
     expect(allPosts.length).to.equal(1)
   })
 
-  it("get post by slug", async () => {
+  it("get post by slug - found", async () => {
     const res = await chai.request(app).get("/api/get/" + postData1.slug)
     expect(res).to.have.status(200)
     expect(res.body.slug).to.equal(postData1.slug)
 
     const foundPost = await PostsModel.findOne({ _id: res.body._id })
     expect(foundPost.slug).to.equal(postData1.slug)
+  })
+
+  it("get post by slug - not found", async () => {
+    const res = await chai.request(app).get("/api/get/fake-slug")
+    expect(res).to.have.status(404)
   })
 
   it("like post by id", async () => {
@@ -139,6 +147,38 @@ describe("Posts API/Model Tests", () => {
     expect(post.dateString).to.equal(updateData1.dateString)
     expect(post.imageUrl).to.equal(updateData1.imageUrl)
   })
+
+  it("get all posts - mongodb error", async () =>
+    await mockError("find", () => chai.request(app).get("/api/get/")))
+
+  it("get post by slug - mongodb error", async () =>
+    await mockError("findOne", () => chai.request(app).get("/api/get/post1")))
+
+  it("create post - mongodb error", async () =>
+    await mockError("create", () =>
+      chai.request(app).post("/api/create").send(postData1)
+    ))
+
+  it("like post - mongodb error", async () =>
+    await mockError("updateOne", () => chai.request(app).post("/api/like")))
+
+  it("unlike post - mongodb error", async () =>
+    await mockError("updateOne", () => chai.request(app).post("/api/unlike")))
+
+  it("reset likes - mongodb error", async () =>
+    await mockError("updateOne", () =>
+      chai.request(app).post("/api/likes/reset")
+    ))
+
+  it("delete post - mongodb error", async () =>
+    await mockError("deleteOne", () =>
+      chai.request(app).delete("/api/delete/1")
+    ))
+
+  it("update post - mongodb error", async () =>
+    await mockError("updateOne", () =>
+      chai.request(app).post("/api/update").send(updateData1)
+    ))
 })
 
 describe("Slug API Tests", () => {
@@ -158,6 +198,7 @@ describe("Slug API Tests", () => {
     const posts = await PostsModel.find({})
     expect(posts.length).to.equal(3)
   })
+
   it("get prev post by slug - has post", async () => {
     // previous post back in time
     const res = await chai.request(app).get("/api/prev/" + slugs[0])
@@ -165,34 +206,54 @@ describe("Slug API Tests", () => {
     expect(res.body).to.not.deep.equal({})
     expect(res.body.slug).to.equal(slugs[1])
   })
+
   it("get prev post by slug - no post", async () => {
     const res = await chai.request(app).get("/api/prev/" + slugs[2])
     expect(res).to.have.status(200)
     expect(res.body).to.deep.equal({})
   })
+
   it("get prev post by slug - invalid slug", async () => {
     const res = await chai.request(app).get("/api/prev/bad-slug")
     expect(res).to.have.status(404)
   })
+
   it("get prev post by slug - missing param", async () => {
     const res = await chai.request(app).get("/api/prev/")
     expect(res).to.have.status(404)
   })
-  it("get prev stub mongodb error", async () => {
-    const findOneStub = sinon.stub(PostsModel, "findOne")
-    const msg = "Simulated MongoDB error"
-    findOneStub.rejects(new Error(msg))
 
-    try {
-      const res = await chai.request(app).get("/api/prev/" + slugs[0])
-      if (res.status >= 400) {
-        throw new Error(`${res.status} ${res.error}`)
-      }
-      expect.fail("Expected the API call to fail, but it succeeded")
-    } catch (err) {
-      expect(err.message).to.contain(500)
-    } finally {
-      findOneStub.restore()
-    }
+  it("get next post by slug - has post", async () => {
+    // next post forward in time
+    const res = await chai.request(app).get("/api/next/" + slugs[2])
+    expect(res).to.have.status(200)
+    expect(res.body).to.not.deep.equal({})
+    expect(res.body.slug).to.equal(slugs[1])
   })
+
+  it("get next post by slug - no post", async () => {
+    const res = await chai.request(app).get("/api/next/" + slugs[0])
+    expect(res).to.have.status(200)
+    expect(res.body).to.deep.equal({})
+  })
+
+  it("get next post by slug - invalid slug", async () => {
+    const res = await chai.request(app).get("/api/next/bad-slug")
+    expect(res).to.have.status(404)
+  })
+
+  it("get next post by slug - missing param", async () => {
+    const res = await chai.request(app).get("/api/next/")
+    expect(res).to.have.status(404)
+  })
+
+  it("get prev stub - mongodb error", async () =>
+    await mockError("findOne", () =>
+      chai.request(app).get("/api/prev/" + slugs[0])
+    ))
+
+  it("get next stub - mongodb error", async () =>
+    await mockError("findOne", () =>
+      chai.request(app).get("/api/next/" + slugs[0])
+    ))
 })

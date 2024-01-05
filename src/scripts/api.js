@@ -85,7 +85,7 @@ export const LikeApi = {
 export const EmailApi = {
   confirm: email => Axios.post(`${getApiUrl()}/api/email/confirm`, { email }),
   getSubscribers: tableName =>
-    Axios.get(`${getApiUrl()}/api/email/subscribers/${tableName}`),
+    Axios.get(`${getApiUrl()}/api/email/${tableName}`),
   send: (subject, content) =>
     Axios.post(`${getApiUrl()}/api/email/send`, { subject, content }),
   sendTest: (subject, content) =>
