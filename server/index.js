@@ -113,7 +113,7 @@ app.post("/api/like", (req, res) => {
 
 app.post("/api/unlike", (req, res) => {
   const id = req.body.id
-  PostsModel.updateOne({ _id: id }, { $inc: { likes: -1 } })
+  PostsModel.updateOne({ _id: id, likes: { $gt: 0 } }, { $inc: { likes: -1 } })
     .then(result => {
       res.send(result)
     })
@@ -139,11 +139,15 @@ app.delete("/api/delete/:id", (req, res) => {
   const id = req.params.id
   PostsModel.deleteOne({ _id: id })
     .then(result => {
+      if (result.deletedCount === 0) {
+        return res.status(400).send("Post not found or already deleted.")
+      }
+
       res.send(result)
     })
     .catch(error => {
       console.error(error)
-      res.status(400)
+      res.status(500)
     })
 })
 
@@ -241,16 +245,16 @@ app.get("/api/next/:slug", (req, res) => {
           .then(nextDoc => res.send(nextDoc))
           .catch(e => {
             console.error(e)
-            res.status(400)
+            res.status(500)
           })
       } else {
         console.error("Couldn't find doc with given slug")
-        res.status(200).json(null)
+        res.status(404).send("Couldn't find doc with given slug")
       }
     })
     .catch(e => {
       console.error(e)
-      res.status(400)
+      res.status(500)
     })
 })
 
@@ -264,16 +268,16 @@ app.get("/api/prev/:slug", (req, res) => {
           .then(nextDoc => res.send(nextDoc))
           .catch(e => {
             console.error(e)
-            res.status(400)
+            res.status(500).send()
           })
       } else {
         console.error("Couldn't find doc with given slug")
-        res.status(200).json(null)
+        res.status(404).send("Couldn't find doc with given slug")
       }
     })
-    .catch(e => {
-      console.error(e)
-      res.status(400)
+    .catch(ex => {
+      console.error("MongoDB error in getting doc")
+      res.status(500).json({ error: "Internal Server Error" }).send()
     })
 })
 

@@ -7,9 +7,7 @@ let mongoServer
 const connectDB = async () => {
   try {
     const database =
-      process.env.NODE_ENV === "development"
-        ? "personalWebsiteDev"
-        : "personalWebsite"
+      process.env.NODE_ENV === "d" ? "personalWebsiteDev" : "personalWebsite"
     let uri = `mongodb+srv://admin:${process.env.REACT_APP_MONGO_PASSWORD}@luciagomez.xykba6v.mongodb.net/${database}?retryWrites=true&w=majority`
 
     if (process.env.NODE_ENV === "test") {

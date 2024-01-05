@@ -10,6 +10,7 @@ chai.use(chaiHttp)
 let db
 
 before(async () => {
+  process.env.NODE_ENV = "test"
   await connectDB()
   await mongoose.connect(process.env.MONGO_TEST_URI)
   db = mongoose.connection
