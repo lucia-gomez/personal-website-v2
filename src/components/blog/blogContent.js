@@ -1,12 +1,16 @@
 import BlogStyle from "../../style/blogStyle"
+import Prism from "prismjs"
 import React from "react"
 import { marked } from "marked"
-import prism from "prismjs"
+
+require("prismjs/components/prism-bash")
+
+console.log(Prism.languages)
 
 marked.setOptions({
   highlight: function (code, lang) {
-    if (prism.languages[lang]) {
-      return prism.highlight(code, prism.languages[lang], lang)
+    if (Prism.languages[lang]) {
+      return Prism.highlight(code, Prism.languages[lang], lang)
     } else {
       return code
     }
