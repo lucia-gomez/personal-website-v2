@@ -6,19 +6,18 @@ const express = require("express")
 const fs = require("fs")
 const ImageKit = require("imagekit")
 const Mailjet = require("node-mailjet")
+const { connectDB, getId } = require("./db")
+
+const PostsModel = require("./models/postModel")
+const DraftsModel = require("./models/draftModel")
 const {
-  connectDB,
-  getId,
-  DraftsModel,
-  PostsModel,
   SubscribersModel,
   SubscribersTestModel,
-} = require("./db")
-const { decode } = require("punycode")
+} = require("./models/subscriberModel")
 
 dotenv.config()
 const app = express()
-connectDB()
+process.env.NODE_ENV != "test" && connectDB()
 
 /* istanbul ignore next */
 app.use(cors(), function (req, res, next) {

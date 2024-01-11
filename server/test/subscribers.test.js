@@ -2,8 +2,12 @@ const chai = require("chai")
 const { expect } = chai
 const { app, hashEmail } = require("../index")
 const testSimulateMongoError = require("./test")
+const { getId } = require("../db")
 
-const { SubscribersModel, SubscribersTestModel, getId } = require("../db")
+const {
+  SubscribersModel,
+  SubscribersTestModel,
+} = require("../models/subscriberModel")
 
 const testEmail = "test@gmail.com"
 const title = "TITLEABC123"
@@ -167,7 +171,6 @@ describe("Subscribers API/Model Tests", () => {
       .request(app)
       .post("/api/email/sendTest")
       .send({ title, content })
-    console.log(res.body)
     expect(res).to.have.status(200)
   })
 })

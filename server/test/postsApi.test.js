@@ -5,7 +5,7 @@ const { app } = require("../index")
 const mongoose = require("mongoose")
 const testSimulateMongoError = require("./test")
 
-const { PostsModel } = require("../db")
+const PostsModel = require("../models/postModel")
 
 const mockError = async (fnToMock, apiRequest) =>
   testSimulateMongoError(PostsModel, fnToMock, apiRequest)

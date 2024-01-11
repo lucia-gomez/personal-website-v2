@@ -1,28 +1,45 @@
 const chai = require("chai")
 const chaiHttp = require("chai-http")
-const { expect } = chai
 const mongoose = require("mongoose")
 const sinon = require("sinon")
 const { mailjet } = require("../index")
+const { MongoMemoryServer } = require("mongodb-memory-server")
 
+const PostsModel = require("../models/postModel")
+const DraftsModel = require("../models/draftModel")
 const {
-  connectDB,
-  closeDB,
-  PostsModel,
-  DraftsModel,
   SubscribersModel,
   SubscribersTestModel,
-} = require("../db")
+} = require("../models/subscriberModel")
+
+const { expect } = chai
 
 chai.use(chaiHttp)
 
 let db
+let mongoServer
+
+async function connectDBTest() {
+  if (mongoServer) {
+    return mongoose.connection
+  }
+  mongoServer = await MongoMemoryServer.create()
+  await mongoose.connect(mongoServer.getUri())
+  return mongoose.connection
+}
+
+async function closeDBTest() {
+  if (mongoServer) {
+    await mongoose.connection.close(true)
+    await mongoose.disconnect()
+    await mongoServer.stop()
+    mongoServer = null
+  }
+}
 
 before(async () => {
   process.env.NODE_ENV = "test"
-  await connectDB()
-  await mongoose.connect(process.env.MONGO_TEST_URI)
-  db = mongoose.connection
+  db = await connectDBTest()
 
   // stub mailjet actions
   const sandbox = sinon.createSandbox()
@@ -40,7 +57,7 @@ after(async () => {
   await DraftsModel.deleteMany({})
   await SubscribersModel.deleteMany({})
   await SubscribersTestModel.deleteMany({})
-  await closeDB()
+  await closeDBTest()
 })
 
 describe("Database Tests", () => {

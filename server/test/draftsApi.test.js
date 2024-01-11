@@ -4,7 +4,7 @@ const { app } = require("../index")
 const mongoose = require("mongoose")
 const testSimulateMongoError = require("./test")
 
-const { DraftsModel } = require("../db")
+const DraftsModel = require("../models/draftModel")
 
 const draftData1 = {
   title: "Draft title",
