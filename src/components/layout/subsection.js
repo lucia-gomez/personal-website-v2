@@ -94,7 +94,7 @@ const Subsection = props => {
         {collapsible && <Toggle isOpen={isOpen} />}
       </Row>
       <Collapsible style={contentAnimatedStyle}>
-        <div ref={ref} style={{ marginTop: "8px" }}>
+        <div ref={ref} style={{ paddingTop: "8px" }}>
           {props.children}
         </div>
       </Collapsible>

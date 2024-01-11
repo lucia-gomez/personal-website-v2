@@ -126,13 +126,13 @@ export default function SubscriberList(props) {
           <thead>
             <tr>
               <th>
-                <b>ID</b>
-              </th>
-              <th>
                 <b>Email</b>
               </th>
               <th>
                 <b>Date Added</b>
+              </th>
+              <th>
+                <b>ID</b>
               </th>
               <th>
                 <IconButton className="fas fa-rotate-right" onClick={refresh} />

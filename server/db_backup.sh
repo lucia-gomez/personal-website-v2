@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Load the environment variables that have the super secret MongoDB password
 if [[ -f .env ]]; then
     source .env
 fi
