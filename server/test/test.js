@@ -18,6 +18,7 @@ chai.use(chaiHttp)
 
 let db
 let mongoServer
+let mailjetStub
 
 async function connectDBTest() {
   if (mongoServer) {
@@ -43,7 +44,7 @@ before(async () => {
 
   // stub mailjet actions
   const sandbox = sinon.createSandbox()
-  const mailjetStub = sandbox.stub(mailjet, "post")
+  mailjetStub = sandbox.stub(mailjet, "post")
   const mailjetResponse = {
     status: "success",
   }
@@ -53,6 +54,7 @@ before(async () => {
 })
 
 after(async () => {
+  mailjetStub.restore()
   await PostsModel.deleteMany({})
   await DraftsModel.deleteMany({})
   await SubscribersModel.deleteMany({})
@@ -84,4 +86,4 @@ async function testSimulateMongoError(model, fnToMock, apiRequest) {
   }
 }
 
-module.exports = testSimulateMongoError
+module.exports = { testSimulateMongoError }

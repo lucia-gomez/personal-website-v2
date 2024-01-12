@@ -17,7 +17,10 @@ const {
 
 dotenv.config()
 const app = express()
-process.env.NODE_ENV != "test" && connectDB()
+if (process.env.NODE_ENV != "test") {
+  /* istanbul ignore next */
+  connectDB()
+}
 
 /* istanbul ignore next */
 app.use(cors(), function (req, res, next) {
@@ -374,7 +377,12 @@ function sendToList(contacts, subject, content, res) {
     )
   )
     .then(result => res.send(result))
-    .catch(err => console.error(err))
+    .catch(e =>
+      res
+        .status(500)
+        .json({ error: "Internal Server Error" + e })
+        .send()
+    )
 }
 
 app.post("/api/email/sendTest", (req, res) => {
@@ -385,9 +393,10 @@ app.post("/api/email/sendTest", (req, res) => {
       sendToList(contacts, subject, content, res)
     })
     .catch(e => {
-      console.error(e)
-      res.status(400)
-      res.send(e)
+      res
+        .status(500)
+        .json({ error: "Internal Server Error" + e })
+        .send()
     })
 })
 
@@ -400,9 +409,10 @@ app.post("/api/email/send", (req, res) => {
       sendToList(contacts, subject, content, res)
     })
     .catch(e => {
-      console.error(e)
-      res.status(400)
-      res.send(e)
+      res
+        .status(500)
+        .json({ error: "Internal Server Error" + e })
+        .send()
     })
 })
 

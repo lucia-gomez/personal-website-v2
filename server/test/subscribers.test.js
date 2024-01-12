@@ -1,8 +1,10 @@
 const chai = require("chai")
 const { expect } = chai
 const { app, hashEmail } = require("../index")
-const testSimulateMongoError = require("./test")
+const { testSimulateMongoError } = require("./test")
 const { getId } = require("../db")
+const sinon = require("sinon")
+const { mailjet } = require("../index")
 
 const {
   SubscribersModel,
@@ -173,4 +175,20 @@ describe("Subscribers API/Model Tests", () => {
       .send({ title, content })
     expect(res).to.have.status(200)
   })
+
+  it("send test email - mongodb error", async () =>
+    await testSimulateMongoError(SubscribersTestModel, "find", () =>
+      chai.request(app).post("/api/email/sendTest")
+    ))
+
+  it("send email - success", async () => {
+    const res = await chai
+      .request(app)
+      .post("/api/email/send")
+      .send({ title, content })
+    expect(res).to.have.status(200)
+  })
+
+  it("send email - mongodb error", async () =>
+    await mockError("find", () => chai.request(app).post("/api/email/send")))
 })
