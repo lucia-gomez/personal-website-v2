@@ -32,7 +32,7 @@ let postId
 
 describe("Posts API/Model Tests", () => {
   it("get all posts - empty", async () => {
-    const res = await chai.request(app).get("/api/get")
+    const res = await chai.request(app).get("/api/posts")
     expect(res).to.have.status(200)
     expect(res.body.length).to.equal(0)
 
@@ -41,7 +41,7 @@ describe("Posts API/Model Tests", () => {
   })
 
   it("create post", async () => {
-    const res = await chai.request(app).post("/api/create").send(postData1)
+    const res = await chai.request(app).post("/api/posts").send(postData1)
     expect(res).to.have.status(200)
     postId = res.body._id
 
@@ -61,7 +61,7 @@ describe("Posts API/Model Tests", () => {
   })
 
   it("get post by slug - found", async () => {
-    const res = await chai.request(app).get("/api/get/" + postData1.slug)
+    const res = await chai.request(app).get("/api/posts/" + postData1.slug)
     expect(res).to.have.status(200)
     expect(res.body.slug).to.equal(postData1.slug)
 
@@ -70,12 +70,15 @@ describe("Posts API/Model Tests", () => {
   })
 
   it("get post by slug - not found", async () => {
-    const res = await chai.request(app).get("/api/get/fake-slug")
+    const res = await chai.request(app).get("/api/posts/:fake-slug")
     expect(res).to.have.status(404)
   })
 
   it("like post by id", async () => {
-    const res = await chai.request(app).post("/api/like").send({ id: postId })
+    const res = await chai
+      .request(app)
+      .put("/api/posts/likes")
+      .send({ id: postId, mode: 1 })
     expect(res).to.have.status(200)
 
     const post = await PostsModel.findOne({ _id: postId })
@@ -83,7 +86,10 @@ describe("Posts API/Model Tests", () => {
   })
 
   it("unlike post by id", async () => {
-    const res = await chai.request(app).post("/api/unlike").send({ id: postId })
+    const res = await chai
+      .request(app)
+      .put("/api/posts/likes")
+      .send({ id: postId, mode: -1 })
     expect(res).to.have.status(200)
 
     const post = await PostsModel.findOne({ _id: postId })
@@ -91,16 +97,22 @@ describe("Posts API/Model Tests", () => {
   })
 
   it("like twice then reset post likes", async () => {
-    await chai.request(app).post("/api/like").send({ id: postId })
-    await chai.request(app).post("/api/like").send({ id: postId })
+    await chai
+      .request(app)
+      .put("/api/posts/likes")
+      .send({ id: postId, mode: 1 })
+    await chai
+      .request(app)
+      .put("/api/posts/likes")
+      .send({ id: postId, mode: 1 })
 
     let post = await PostsModel.findOne({ _id: postId })
     expect(post.likes).to.equal(2)
 
     const res = await chai
       .request(app)
-      .post("/api/likes/reset")
-      .send({ id: postId })
+      .put("/api/posts/likes")
+      .send({ id: postId, mode: 0 })
     expect(res).to.have.status(200)
 
     post = await PostsModel.findOne({ _id: postId })
@@ -108,15 +120,40 @@ describe("Posts API/Model Tests", () => {
   })
 
   it("unlike with 0 likes", async () => {
-    const res = await chai.request(app).post("/api/unlike").send({ id: postId })
+    const res = await chai
+      .request(app)
+      .put("/api/posts/likes")
+      .send({ id: postId, mode: -1 })
     expect(res).to.have.status(200)
 
     const post = await PostsModel.findOne({ _id: postId })
     expect(post.likes).to.equal(0)
   })
 
+  it("invalid like mode", async () => {
+    const res = await chai
+      .request(app)
+      .put("/api/posts/likes")
+      .send({ id: postId, mode: 2 })
+    expect(res).to.have.status(400)
+
+    const post = await PostsModel.findOne({ _id: postId })
+    expect(post.likes).to.equal(0)
+  })
+
+  it("missing like mode", async () => {
+    const res = await chai
+      .request(app)
+      .put("/api/posts/likes")
+      .send({ id: postId })
+    expect(res).to.have.status(400)
+
+    const post = await PostsModel.findOne({ _id: postId })
+    expect(post.likes).to.equal(0)
+  })
+
   it("delete post by id", async () => {
-    const res = await chai.request(app).delete("/api/delete/" + postId)
+    const res = await chai.request(app).delete("/api/posts/" + postId)
     expect(res).to.have.status(200)
 
     const posts = await PostsModel.find({})
@@ -124,19 +161,19 @@ describe("Posts API/Model Tests", () => {
   })
 
   it("delete non-existent post", async () => {
-    const res = await chai.request(app).delete("/api/delete/" + postId)
+    const res = await chai.request(app).delete("/api/posts/" + postId)
     expect(res).to.have.status(400)
   })
 
   it("recreate and update post", async () => {
-    const res1 = await chai.request(app).post("/api/create").send(postData1)
+    const res1 = await chai.request(app).post("/api/posts").send(postData1)
     expect(res1).to.have.status(200)
     postId = res1.body._id
 
     const res2 = await chai
       .request(app)
-      .post("/api/update")
-      .send({ id: postId, ...updateData1 })
+      .put("/api/posts/" + postId)
+      .send(updateData1)
     expect(res2).to.have.status(200)
 
     const post = await PostsModel.findOne({ _id: postId })
@@ -149,35 +186,41 @@ describe("Posts API/Model Tests", () => {
   })
 
   it("get all posts - mongodb error", async () =>
-    await mockError("find", () => chai.request(app).get("/api/get/")))
+    await mockError("find", () => chai.request(app).get("/api/posts")))
 
   it("get post by slug - mongodb error", async () =>
-    await mockError("findOne", () => chai.request(app).get("/api/get/post1")))
+    await mockError("findOne", () =>
+      chai.request(app).get("/api/posts/:post1")
+    ))
 
   it("create post - mongodb error", async () =>
     await mockError("create", () =>
-      chai.request(app).post("/api/create").send(postData1)
+      chai.request(app).post("/api/posts").send(postData1)
     ))
 
   it("like post - mongodb error", async () =>
-    await mockError("updateOne", () => chai.request(app).post("/api/like")))
+    await mockError("updateOne", () =>
+      chai.request(app).put("/api/posts/likes").send({ id: postId, mode: 1 })
+    ))
 
   it("unlike post - mongodb error", async () =>
-    await mockError("updateOne", () => chai.request(app).post("/api/unlike")))
+    await mockError("updateOne", () =>
+      chai.request(app).put("/api/posts/likes").send({ id: postId, mode: -1 })
+    ))
 
   it("reset likes - mongodb error", async () =>
     await mockError("updateOne", () =>
-      chai.request(app).post("/api/likes/reset")
+      chai.request(app).put("/api/posts/likes").send({ id: postId, mode: 0 })
     ))
 
   it("delete post - mongodb error", async () =>
     await mockError("deleteOne", () =>
-      chai.request(app).delete("/api/delete/1")
+      chai.request(app).delete("/api/posts/1")
     ))
 
   it("update post - mongodb error", async () =>
     await mockError("updateOne", () =>
-      chai.request(app).post("/api/update").send(updateData1)
+      chai.request(app).put("/api/posts/1").send(updateData1)
     ))
 })
 
@@ -185,13 +228,13 @@ describe("Slug API Tests", () => {
   it("create several posts", async () => {
     let res = await chai
       .request(app)
-      .post("/api/create")
+      .post("/api/posts")
       .send({ ...postData1, slug: slugs[1] })
     expect(res).to.have.status(200)
 
     res = await chai
       .request(app)
-      .post("/api/create")
+      .post("/api/posts")
       .send({ ...postData1, slug: slugs[2] })
     expect(res).to.have.status(200)
 
@@ -201,59 +244,59 @@ describe("Slug API Tests", () => {
 
   it("get prev post by slug - has post", async () => {
     // previous post back in time
-    const res = await chai.request(app).get("/api/prev/" + slugs[0])
+    const res = await chai.request(app).get("/api/posts/prev/" + slugs[0])
     expect(res).to.have.status(200)
     expect(res.body).to.not.deep.equal({})
     expect(res.body.slug).to.equal(slugs[1])
   })
 
   it("get prev post by slug - no post", async () => {
-    const res = await chai.request(app).get("/api/prev/" + slugs[2])
+    const res = await chai.request(app).get("/api/posts/prev/" + slugs[2])
     expect(res).to.have.status(200)
     expect(res.body).to.deep.equal({})
   })
 
   it("get prev post by slug - invalid slug", async () => {
-    const res = await chai.request(app).get("/api/prev/bad-slug")
+    const res = await chai.request(app).get("/api/posts/prev/bad-slug")
     expect(res).to.have.status(404)
   })
 
   it("get prev post by slug - missing param", async () => {
-    const res = await chai.request(app).get("/api/prev/")
+    const res = await chai.request(app).get("/api/posts/prev/")
     expect(res).to.have.status(404)
   })
 
   it("get next post by slug - has post", async () => {
     // next post forward in time
-    const res = await chai.request(app).get("/api/next/" + slugs[2])
+    const res = await chai.request(app).get("/api/posts/next/" + slugs[2])
     expect(res).to.have.status(200)
     expect(res.body).to.not.deep.equal({})
     expect(res.body.slug).to.equal(slugs[1])
   })
 
   it("get next post by slug - no post", async () => {
-    const res = await chai.request(app).get("/api/next/" + slugs[0])
+    const res = await chai.request(app).get("/api/posts/next/" + slugs[0])
     expect(res).to.have.status(200)
     expect(res.body).to.deep.equal({})
   })
 
   it("get next post by slug - invalid slug", async () => {
-    const res = await chai.request(app).get("/api/next/bad-slug")
+    const res = await chai.request(app).get("/api/posts/next/bad-slug")
     expect(res).to.have.status(404)
   })
 
   it("get next post by slug - missing param", async () => {
-    const res = await chai.request(app).get("/api/next/")
+    const res = await chai.request(app).get("/api/posts/next/")
     expect(res).to.have.status(404)
   })
 
   it("get prev stub - mongodb error", async () =>
     await mockError("findOne", () =>
-      chai.request(app).get("/api/prev/" + slugs[0])
+      chai.request(app).get("/api/posts/prev/" + slugs[0])
     ))
 
   it("get next stub - mongodb error", async () =>
     await mockError("findOne", () =>
-      chai.request(app).get("/api/next/" + slugs[0])
+      chai.request(app).get("/api/posts/next/" + slugs[0])
     ))
 })

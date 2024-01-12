@@ -17,7 +17,7 @@ const {
 
 dotenv.config()
 const app = express()
-if (process.env.NODE_ENV != "test") {
+if (process.env.NODE_ENV != "testBackend") {
   /* istanbul ignore next */
   connectDB()
 }
@@ -49,7 +49,7 @@ const imagekit = new ImageKit({
   urlEndpoint: "https://ik.imagekit.io/5xtlzx2c3y",
 })
 
-app.get("/api/get", (req, res) => {
+app.get("/api/posts", (req, res) => {
   PostsModel.find({})
     .then(docs => {
       res.send(docs)
@@ -62,7 +62,7 @@ app.get("/api/get", (req, res) => {
     })
 })
 
-app.get("/api/get/:slug", (req, res) => {
+app.get("/api/posts/:slug", (req, res) => {
   const slug = req.params.slug
   PostsModel.findOne({ slug })
     .then(doc => {
@@ -80,7 +80,7 @@ app.get("/api/get/:slug", (req, res) => {
     })
 })
 
-app.post("/api/create", (req, res) => {
+app.post("/api/posts", (req, res) => {
   const datetime = req.body.datetime
   const dateString = req.body.dateString
   const title = req.body.title
@@ -109,9 +109,37 @@ app.post("/api/create", (req, res) => {
     })
 })
 
-app.post("/api/like", (req, res) => {
+app.put("/api/posts/likes", (req, res) => {
   const id = req.body.id
-  PostsModel.updateOne({ _id: id }, { $inc: { likes: 1 } })
+  const mode = req.body.mode
+
+  let op, sel
+  switch (mode) {
+    case -1: // unlike
+      sel = { _id: id, likes: { $gt: 0 } }
+      op = { $inc: { likes: -1 } }
+      break
+    case 0: // reset likes
+      sel = { _id: id }
+      op = { $set: { likes: 0 } }
+      break
+    case 1:
+      sel = { _id: id }
+      op = { $inc: { likes: 1 } }
+      break
+  }
+
+  if (op == null || sel == null) {
+    res
+      .status(400)
+      .json({
+        error:
+          "Invalid mode number: should be -1 to unlike, 1 to like, or 0 to reset likes",
+      })
+      .send()
+  }
+
+  PostsModel.updateOne(sel, op)
     .then(result => {
       res.send(result)
     })
@@ -123,35 +151,7 @@ app.post("/api/like", (req, res) => {
     })
 })
 
-app.post("/api/unlike", (req, res) => {
-  const id = req.body.id
-  PostsModel.updateOne({ _id: id, likes: { $gt: 0 } }, { $inc: { likes: -1 } })
-    .then(result => {
-      res.send(result)
-    })
-    .catch(e => {
-      res
-        .status(500)
-        .json({ error: "Internal Server Error" + e })
-        .send()
-    })
-})
-
-app.post("/api/likes/reset", (req, res) => {
-  const id = req.body.id
-  PostsModel.updateOne({ _id: id }, { $set: { likes: 0 } })
-    .then(result => {
-      res.send(result)
-    })
-    .catch(e => {
-      res
-        .status(500)
-        .json({ error: "Internal Server Error" + e })
-        .send()
-    })
-})
-
-app.delete("/api/delete/:id", (req, res) => {
+app.delete("/api/posts/:id", (req, res) => {
   const id = req.params.id
   PostsModel.deleteOne({ _id: id })
     .then(result => {
@@ -169,8 +169,8 @@ app.delete("/api/delete/:id", (req, res) => {
     })
 })
 
-app.post("/api/update", (req, res) => {
-  const id = req.body.id
+app.put("/api/posts/:id", (req, res) => {
+  const id = req.params.id
   const title = req.body.title
   const summary = req.body.summary
   const content = req.body.content
@@ -191,7 +191,7 @@ app.post("/api/update", (req, res) => {
     })
 })
 
-app.get("/api/draft/get", (req, res) => {
+app.get("/api/drafts", (req, res) => {
   DraftsModel.find({})
     .then(docs => {
       res.send(docs)
@@ -204,7 +204,7 @@ app.get("/api/draft/get", (req, res) => {
     })
 })
 
-app.post("/api/draft/create", (req, res) => {
+app.post("/api/drafts", (req, res) => {
   const title = req.body.title
   const summary = req.body.summary
   const content = req.body.content
@@ -229,7 +229,7 @@ app.post("/api/draft/create", (req, res) => {
     })
 })
 
-app.delete("/api/draft/:id", (req, res) => {
+app.delete("/api/drafts/:id", (req, res) => {
   const id = req.params.id
   DraftsModel.deleteOne({ _id: id })
     .then(doc => res.send(doc))
@@ -241,8 +241,8 @@ app.delete("/api/draft/:id", (req, res) => {
     })
 })
 
-app.post("/api/draft/update", (req, res) => {
-  const id = req.body.id
+app.put("/api/drafts/:id", (req, res) => {
+  const id = req.params.id
   const title = req.body.title
   const summary = req.body.summary
   const slug = req.body.slug
@@ -263,7 +263,7 @@ app.post("/api/draft/update", (req, res) => {
     })
 })
 
-app.get("/api/next/:slug", (req, res) => {
+app.get("/api/posts/next/:slug", (req, res) => {
   const slug = req.params.slug
   PostsModel.findOne({ slug })
     .then(doc => {
@@ -288,7 +288,7 @@ app.get("/api/next/:slug", (req, res) => {
     })
 })
 
-app.get("/api/prev/:slug", (req, res) => {
+app.get("/api/posts/prev/:slug", (req, res) => {
   const slug = req.params.slug
   PostsModel.findOne({ slug })
     .then(doc => {

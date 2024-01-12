@@ -27,7 +27,7 @@ const mockError = async (fnToMock, apiRequest) =>
 
 describe("Drafts API/Model Tests", () => {
   it("get all drafts - empty", async () => {
-    const res = await chai.request(app).get("/api/draft/get")
+    const res = await chai.request(app).get("/api/drafts")
     expect(res).to.have.status(200)
     expect(res.body.length).to.equal(0)
 
@@ -36,13 +36,10 @@ describe("Drafts API/Model Tests", () => {
   })
 
   it("get all drafts - mongodb error", async () =>
-    await mockError("find", () => chai.request(app).get("/api/draft/get")))
+    await mockError("find", () => chai.request(app).get("/api/drafts")))
 
   it("create draft", async () => {
-    const res = await chai
-      .request(app)
-      .post("/api/draft/create")
-      .send(draftData1)
+    const res = await chai.request(app).post("/api/drafts").send(draftData1)
     expect(res).to.have.status(200)
     draftId = res.body._id
 
@@ -59,12 +56,10 @@ describe("Drafts API/Model Tests", () => {
   })
 
   it("create draft - mongodb error", async () =>
-    await mockError("create", () =>
-      chai.request(app).post("/api/draft/create")
-    ))
+    await mockError("create", () => chai.request(app).post("/api/drafts")))
 
   it("delete draft by id", async () => {
-    const res = await chai.request(app).delete("/api/draft/" + draftId)
+    const res = await chai.request(app).delete("/api/drafts/" + draftId)
     expect(res).to.have.status(200)
 
     const drafts = await DraftsModel.find({})
@@ -73,21 +68,18 @@ describe("Drafts API/Model Tests", () => {
 
   it("delete draft by id - mongodb error", async () =>
     await mockError("deleteOne", () =>
-      chai.request(app).delete("/api/draft/1")
+      chai.request(app).delete("/api/drafts/1")
     ))
 
   it("recreate and update draft", async () => {
-    const res1 = await chai
-      .request(app)
-      .post("/api/draft/create")
-      .send(draftData1)
+    const res1 = await chai.request(app).post("/api/drafts").send(draftData1)
     expect(res1).to.have.status(200)
     draftId = res1.body._id
 
     const res2 = await chai
       .request(app)
-      .post("/api/draft/update")
-      .send({ id: draftId, ...updateData1 })
+      .put("/api/drafts/" + draftId)
+      .send(updateData1)
     expect(res2).to.have.status(200)
 
     const draft = await DraftsModel.findOne({ _id: draftId })
@@ -102,6 +94,9 @@ describe("Drafts API/Model Tests", () => {
 
   it("update draft - mongodb error", async () =>
     await mockError("updateOne", () =>
-      chai.request(app).post("/api/draft/update").send(updateData1)
+      chai
+        .request(app)
+        .put("/api/drafts/" + draftId)
+        .send(updateData1)
     ))
 })

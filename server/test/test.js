@@ -39,7 +39,6 @@ async function closeDBTest() {
 }
 
 before(async () => {
-  process.env.NODE_ENV = "test"
   db = await connectDBTest()
 
   // stub mailjet actions
