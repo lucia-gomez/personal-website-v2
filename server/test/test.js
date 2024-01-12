@@ -5,13 +5,6 @@ const sinon = require("sinon")
 const { mailjet } = require("../index")
 const { MongoMemoryServer } = require("mongodb-memory-server")
 
-const PostsModel = require("../models/postModel")
-const DraftsModel = require("../models/draftModel")
-const {
-  SubscribersModel,
-  SubscribersTestModel,
-} = require("../models/subscriberModel")
-
 const { expect } = chai
 
 chai.use(chaiHttp)
@@ -54,10 +47,6 @@ before(async () => {
 
 after(async () => {
   mailjetStub.restore()
-  await PostsModel.deleteMany({})
-  await DraftsModel.deleteMany({})
-  await SubscribersModel.deleteMany({})
-  await SubscribersTestModel.deleteMany({})
   await closeDBTest()
 })
 
