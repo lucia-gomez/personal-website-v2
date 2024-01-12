@@ -5,8 +5,6 @@ import { marked } from "marked"
 
 require("prismjs/components/prism-bash")
 
-console.log(Prism.languages)
-
 marked.setOptions({
   highlight: function (code, lang) {
     if (Prism.languages[lang]) {

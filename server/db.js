@@ -1,11 +1,22 @@
 const mongoose = require("mongoose")
 
+const getDatbaseName = () => {
+  switch (process.env.NODE_ENV) {
+    case "testBackend":
+      return null
+    case "development":
+      return "personalWebsiteDev"
+    case "test":
+      return "personalWebsiteTest"
+    default:
+      return "personalWebsite"
+  }
+}
+
 const connectDB = async () => {
   try {
-    const database =
-      process.env.NODE_ENV === "development"
-        ? "personalWebsiteDev"
-        : "personalWebsite"
+    const database = getDatbaseName()
+    console.log("Connecting to database:", database)
     let uri = `mongodb+srv://admin:${process.env.REACT_APP_MONGO_PASSWORD}@luciagomez.xykba6v.mongodb.net/${database}?retryWrites=true&w=majority`
 
     await mongoose.connect(uri)
@@ -25,4 +36,5 @@ module.exports = {
   connectDB,
   closeDB,
   getId,
+  getDatbaseName,
 }

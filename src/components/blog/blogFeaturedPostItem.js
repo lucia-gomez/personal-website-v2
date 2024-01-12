@@ -78,6 +78,7 @@ export function BlogFeaturedPostItem({
       className={`${className} animate__animated ${getClassName()}`}
       to={`/blog/${post.slug}/`}
       ref={ref}
+      data-test-id="blog-featured-post-item"
     >
       <BlogGradientBanner post={post} />
       <Body>

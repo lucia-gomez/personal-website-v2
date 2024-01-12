@@ -89,7 +89,7 @@ const Title = styled.h5`
 
 const BlogPostLink = ({ post }) => {
   return (
-    <Wrapper to={`/blog/${post.slug}/`}>
+    <Wrapper to={`/blog/${post.slug}/`} data-test-id="blog-post-item">
       <ImageWrapper>
         <Image image={post.imageUrl || blogPlaceholderImageUrl} />
       </ImageWrapper>

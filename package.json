@@ -29,10 +29,13 @@
   "scripts": {
     "start": "react-scripts start",
     "start-https": "HTTPS=true npm start",
+    "startServer:test": "cd server && npm run start:test",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "analyze": "npm run build && source-map-explorer 'build/static/js/*.js'"
+    "analyze": "npm run build && source-map-explorer 'build/static/js/*.js'",
+    "test": "concurrently \"npm run startServer:test\" \"start-server-and-test http://localhost:3001 && cypress open\"",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "eslintConfig": {
     "extends": [
@@ -54,6 +57,9 @@
   },
   "devDependencies": {
     "@types/react": "17.0.43",
-    "@types/react-dom": "^18.2.7"
+    "@types/react-dom": "^18.2.7",
+    "concurrently": "^8.2.2",
+    "cypress": "^13.6.2",
+    "start-server-and-test": "^2.0.3"
   }
 }

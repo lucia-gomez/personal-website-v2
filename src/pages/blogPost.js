@@ -139,7 +139,7 @@ export default function BlogPostPage() {
             </EditWrapper>
             <HeaderImage post={post} />
             <HeaderContent>
-              <BackWrapper link="/blog" />
+              <BackWrapper link="/blog" data-test-id="blog-back-btn" />
               <Title>{post.title}</Title>
 
               <BlogPostMetadata post={post} />
