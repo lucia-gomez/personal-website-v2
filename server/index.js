@@ -508,8 +508,8 @@ app.get("/api/email/:tableName", (req, res) => {
   } else if (tableName === "subscribersTest") {
     model = SubscribersTestModel
   } else {
-    res.status(400)
-    res.send(JSON.stringify({ error: "Table not found" }))
+    res.status(400).json({ error: "Table not found" }).send()
+    return
   }
 
   model

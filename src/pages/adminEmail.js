@@ -60,7 +60,7 @@ export default function AdminEmail() {
   )
 
   useEffect(() => {
-    fetchSubscribers("subscriberstest", setTestSubscribers)
+    fetchSubscribers("subscribersTest", setTestSubscribers)
     fetchSubscribers("subscribers", setSubscribers)
   }, [fetchSubscribers])
 
@@ -116,7 +116,7 @@ export default function AdminEmail() {
       <SubscriberList
         label={"SubscribersTest: " + testSubscribers?.length}
         data={testSubscribers}
-        refresh={() => fetchSubscribers("subscriberstest", setTestSubscribers)}
+        refresh={() => fetchSubscribers("subscribersTest", setTestSubscribers)}
       />
 
       <Toast show={showToast} onClose={() => setShowToast(false)}>
