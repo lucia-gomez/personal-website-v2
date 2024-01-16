@@ -1,4 +1,4 @@
-describe("Blog", () => {
+describe("Blog Nav", () => {
   beforeEach(() => {
     cy.intercept("GET", "http://localhost:3001/api/posts", req => {
       delete req.headers["if-none-match"]

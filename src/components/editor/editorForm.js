@@ -67,28 +67,36 @@ export default function EditorForm(props) {
   const titleForm = (
     <Form.Group>
       <Form.Label>Title</Form.Label>
-      <Input onChange={e => setTitle(e.target.value)} value={title} />
+      <Input
+        onChange={e => setTitle(e.target.value)}
+        value={title}
+        id="title"
+      />
     </Form.Group>
   )
 
   const slugForm = (
     <Form.Group>
       <Form.Label>Slug</Form.Label>
-      <Input onChange={e => setSlug(e.target.value)} value={slug} />
+      <Input onChange={e => setSlug(e.target.value)} value={slug} id="slug" />
     </Form.Group>
   )
 
   const dateForm = (
     <Form.Group>
       <Form.Label>Date</Form.Label>
-      <Input onChange={e => setDate(e.target.value)} value={date} />
+      <Input onChange={e => setDate(e.target.value)} value={date} id="date" />
     </Form.Group>
   )
 
   const imageUrlForm = (
     <Form.Group>
       <Form.Label>Image</Form.Label>
-      <Input onChange={e => setImageUrl(e.target.value)} value={imageUrl} />
+      <Input
+        onChange={e => setImageUrl(e.target.value)}
+        value={imageUrl}
+        id="image-url"
+      />
     </Form.Group>
   )
 
@@ -99,6 +107,7 @@ export default function EditorForm(props) {
         onChange={e => setSummary(e.target.value)}
         value={summary}
         as="textarea"
+        id="summary"
       />
     </Form.Group>
   )

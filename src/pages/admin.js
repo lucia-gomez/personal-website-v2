@@ -22,10 +22,18 @@ export default function Admin(props) {
     <AdminWrapper>
       <SectionTitle>Admin Dashboard</SectionTitle>
       <Buttons>
-        <ButtonLink to="/admin/blog" sameTab={true}>
+        <ButtonLink
+          to="/admin/blog"
+          sameTab={true}
+          data-test-id="blog-admin-btn"
+        >
           Blog Dashboard
         </ButtonLink>
-        <ButtonLink to="/admin/email" sameTab={true}>
+        <ButtonLink
+          to="/admin/email"
+          sameTab={true}
+          data-test-id="email-admin-btn"
+        >
           Email Dashboard
         </ButtonLink>
       </Buttons>

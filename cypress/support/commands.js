@@ -8,6 +8,7 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 //
+require("./auth-provider-commands/auth0")
 
 Cypress.Commands.add("getScreenWidth", () =>
   cy.window().then(win => win.innerWidth)
@@ -20,6 +21,7 @@ Cypress.Commands.add("createTestBlogPosts", num => {
     }).then(response => {
       expect(response.status).to.eq(200)
     })
+    cy.wait(200)
   }
 })
 
