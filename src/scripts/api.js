@@ -20,8 +20,8 @@ export const PostApi = {
   createPost: payload => {
     const fakeTime = new Date().toLocaleTimeString()
     const dateString =
-      payload.date != null && payload.date.length > 0
-        ? `${payload.date}, ${fakeTime}`
+      payload.dateString != null && payload.dateString.length > 0
+        ? `${payload.dateString}, ${fakeTime}`
         : new Date().toLocaleString()
 
     return Axios.post(getApiUrl() + "/api/posts", {
@@ -38,7 +38,7 @@ export const PostApi = {
     const args = {
       id: payload._id,
       title: payload.title,
-      dateString: payload.date,
+      dateString: payload.dateString,
       imageUrl: payload.imageUrl,
       summary: payload.summary,
       content: payload.content,
@@ -60,6 +60,7 @@ export const DraftApi = {
       content: payload.content,
       slug: payload.slug,
       imageUrl: payload.imageUrl,
+      dateString: payload.dateString,
     }),
   updateDraft: payload =>
     Axios.put(`${getApiUrl()}/api/drafts/${payload._id}`, {
@@ -68,6 +69,7 @@ export const DraftApi = {
       slug: payload.slug,
       imageUrl: payload.imageUrl,
       content: payload.content,
+      dateString: payload.dateString,
     }),
   getDrafts: () => Axios.get(`${getApiUrl()}/api/drafts`),
   deleteDraft: id => Axios.delete(`${getApiUrl()}/api/drafts/${id}`),

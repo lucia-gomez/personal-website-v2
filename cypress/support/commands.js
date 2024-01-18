@@ -14,6 +14,19 @@ Cypress.Commands.add("getScreenWidth", () =>
   cy.window().then(win => win.innerWidth)
 )
 
+Cypress.Commands.add("someShould", (selector, condition, errorMsg) => {
+  cy.get(selector).should($elements => {
+    let conditionMet = false
+    $elements.each((_, element) => {
+      if (condition(element.value)) {
+        conditionMet = true
+        return false
+      }
+    })
+    expect(conditionMet, errorMsg).to.be.true
+  })
+})
+
 Cypress.Commands.add("createTestBlogPosts", num => {
   for (let i = 0; i < num; i++) {
     cy.request("POST", "http://localhost:3001/api/test/posts", {
@@ -21,7 +34,6 @@ Cypress.Commands.add("createTestBlogPosts", num => {
     }).then(response => {
       expect(response.status).to.eq(200)
     })
-    cy.wait(200)
   }
 })
 

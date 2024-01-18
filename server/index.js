@@ -210,6 +210,7 @@ app.post("/api/drafts", (req, res) => {
   const content = req.body.content
   const slug = req.body.slug
   const imageUrl = req.body.imageUrl
+  const dateString = req.body.dateString
   DraftsModel.create({
     _id: getId(),
     title,
@@ -217,6 +218,7 @@ app.post("/api/drafts", (req, res) => {
     content,
     slug,
     imageUrl,
+    dateString,
   })
     .then(result => {
       res.send(result)
@@ -248,9 +250,10 @@ app.put("/api/drafts/:id", (req, res) => {
   const slug = req.body.slug
   const content = req.body.content
   const imageUrl = req.body.imageUrl
+  const dateString = req.body.dateString
   DraftsModel.updateOne(
     { _id: id },
-    { $set: { title, summary, slug, content, imageUrl } }
+    { $set: { title, summary, slug, content, imageUrl, dateString } }
   )
     .then(result => {
       res.send(result)
@@ -323,7 +326,7 @@ if (
     const count = req.body.count
 
     const datetime = new Date().toISOString().slice(0, 19).replace("T", " ")
-    const dateString = new Date().toLocaleString()
+    const dateString = `1/${10 - count}/2024 12:00:00`
     const title = "[Test] Title " + count
     const summary = "This is a test summary"
     const content = "This is test content"

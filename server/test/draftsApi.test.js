@@ -19,6 +19,7 @@ const updateData1 = {
   content: "Updated draft content",
   slug: "updated-draft-title",
   imageUrl: "updated-draft-image.png",
+  dateString: "1/2/2024",
 }
 let draftId
 
@@ -39,7 +40,10 @@ describe("Drafts API/Model Tests", () => {
     await mockError("find", () => chai.request(app).get("/api/drafts")))
 
   it("create draft", async () => {
-    const res = await chai.request(app).post("/api/drafts").send(draftData1)
+    const res = await chai
+      .request(app)
+      .post("/api/drafts")
+      .send({ ...draftData1, dateString: "1/1/2024" })
     expect(res).to.have.status(200)
     draftId = res.body._id
 
@@ -50,6 +54,7 @@ describe("Drafts API/Model Tests", () => {
     expect(draft.content).to.equal(draftData1.content)
     expect(draft.slug).to.equal(draftData1.slug)
     expect(draft.imageUrl).to.equal(draftData1.imageUrl)
+    expect(draft.dateString).to.equal("1/1/2024")
 
     const allDrafts = await DraftsModel.find({})
     expect(allDrafts.length).to.equal(1)
@@ -71,11 +76,25 @@ describe("Drafts API/Model Tests", () => {
       chai.request(app).delete("/api/drafts/1")
     ))
 
-  it("recreate and update draft", async () => {
-    const res1 = await chai.request(app).post("/api/drafts").send(draftData1)
-    expect(res1).to.have.status(200)
-    draftId = res1.body._id
+  it("create draft without fake date", async () => {
+    const res = await chai.request(app).post("/api/drafts").send(draftData1)
+    expect(res).to.have.status(200)
+    draftId = res.body._id
 
+    const draft = await DraftsModel.findOne({ _id: draftId })
+    expect(draft).to.exist
+    expect(draft.title).to.equal(draftData1.title)
+    expect(draft.summary).to.equal(draftData1.summary)
+    expect(draft.content).to.equal(draftData1.content)
+    expect(draft.slug).to.equal(draftData1.slug)
+    expect(draft.imageUrl).to.equal(draftData1.imageUrl)
+    expect(draft.dateString).to.not.exist
+
+    const allDrafts = await DraftsModel.find({})
+    expect(allDrafts.length).to.equal(1)
+  })
+
+  it("update draft", async () => {
     const res2 = await chai
       .request(app)
       .put("/api/drafts/" + draftId)
@@ -90,6 +109,7 @@ describe("Drafts API/Model Tests", () => {
     expect(draft.content).to.equal(updateData1.content)
     expect(draft.slug).to.equal(updateData1.slug)
     expect(draft.imageUrl).to.equal(updateData1.imageUrl)
+    expect(draft.dateString).to.equal(updateData1.dateString)
   })
 
   it("update draft - mongodb error", async () =>

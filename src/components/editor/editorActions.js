@@ -19,6 +19,7 @@ const PublishPostButton = payload => (
     sameTab={true}
     disabled={isButtonValid(payload)}
     key={0}
+    data-test-id="publish-post-btn"
   >
     Publish Post
   </ButtonLinkAsync>
@@ -31,6 +32,7 @@ const PublishDraftButton = payload => (
     sameTab={true}
     disabled={isButtonValid(payload)}
     key={1}
+    data-test-id="publish-draft-btn"
   >
     Publish Draft
   </ButtonLinkAsync>
@@ -50,16 +52,24 @@ const CreateDraftButton = (payload, setOpenDraft) => (
     disabled={isButtonValid(payload)}
     id="editor-create-draft"
     key={2}
+    data-test-id="create-draft-btn"
   >
     Create Draft
   </Button>
 )
 
-const CloseDraftButton = (payload, setOpenDraft) => {
-  const onClick = () =>
+const CloseDraftButton = (payload, setOpenDraft, handleCloseDraft) => {
+  const onClick = () => {
     DraftApi.updateDraft(payload).then(setOpenDraft(undefined))
+    handleCloseDraft()
+  }
   return (
-    <Button onClick={onClick} disabled={isButtonValid(payload)} key={3}>
+    <Button
+      onClick={onClick}
+      disabled={isButtonValid(payload)}
+      key={3}
+      data-test-id="close-draft-btn"
+    >
       Close Draft
     </Button>
   )
@@ -74,6 +84,7 @@ const UpdatePostButton = (payload, closeEditor) => {
       to={`/blog/${payload.slug}/`}
       disabled={isButtonValid(payload)}
       key={4}
+      data-test-id="update-post-btn"
     >
       Update post
     </ButtonLinkAsync>
@@ -82,7 +93,11 @@ const UpdatePostButton = (payload, closeEditor) => {
 
 const ResetLikesButton = payload => {
   return (
-    <Button onClick={() => LikeApi.reset(payload._id)} key={5}>
+    <Button
+      onClick={() => LikeApi.reset(payload._id)}
+      key={5}
+      data-test-id="reset-likes-btn"
+    >
       Reset Likes
     </Button>
   )
@@ -96,7 +111,7 @@ export default function getButtons(payload, isDraft, isNew, actions) {
   if (isDraft) {
     return [
       PublishDraftButton(payload),
-      CloseDraftButton(payload, actions.setOpenDraft),
+      CloseDraftButton(payload, actions.setOpenDraft, actions.handleCloseDraft),
     ]
   } else if (isNew) {
     return [

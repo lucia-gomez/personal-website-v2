@@ -15,9 +15,10 @@ marked.setOptions({
   },
 })
 
-const BlogContent = ({ content, className }) => {
+const BlogContent = props => {
+  const { content } = props
   return (
-    <BlogStyle className={className}>
+    <BlogStyle {...props}>
       <div dangerouslySetInnerHTML={{ __html: marked.parse(content) }} />
     </BlogStyle>
   )

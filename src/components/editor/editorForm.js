@@ -53,7 +53,7 @@ export default function EditorForm(props) {
   const [title, setTitle] = useState(post?.title ?? "")
   const [summary, setSummary] = useState(post?.summary ?? "")
   const [slug, setSlug] = useState(post?.slug ?? "")
-  const [date, setDate] = useState(post?.dateString ?? "")
+  const [dateString, setDate] = useState(post?.dateString ?? "")
   const [imageUrl, setImageUrl] = useState(post?.imageUrl ?? "")
 
   useEffect(() => {
@@ -85,7 +85,11 @@ export default function EditorForm(props) {
   const dateForm = (
     <Form.Group>
       <Form.Label>Date</Form.Label>
-      <Input onChange={e => setDate(e.target.value)} value={date} id="date" />
+      <Input
+        onChange={e => setDate(e.target.value)}
+        value={dateString}
+        id="date"
+      />
     </Form.Group>
   )
 
@@ -135,18 +139,22 @@ export default function EditorForm(props) {
   )
 
   const payload = {
-    title: title,
-    slug: slug,
-    date: date,
-    imageUrl: imageUrl,
-    summary: summary,
-    content: content,
+    title,
+    slug,
+    dateString,
+    imageUrl,
+    summary,
+    content,
     _id: post?._id,
   }
 
   return (
     <div>
-      <FormToggle onClick={() => setExpanded(!isExpanded)} {...{ isExpanded }}>
+      <FormToggle
+        onClick={() => setExpanded(!isExpanded)}
+        {...{ isExpanded }}
+        data-test-id="blog-edit-form-toggle"
+      >
         <p>{isExpanded ? "Hide Form" : "Show Form"}</p>
         <Toggle isOpen={isExpanded} />
       </FormToggle>

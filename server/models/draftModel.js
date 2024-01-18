@@ -8,6 +8,7 @@ const draftsSchema = new mongoose.Schema({
   content: String,
   slug: String,
   imageUrl: String,
+  dateString: String,
 })
 const DraftsModel = mongoose.model("Drafts", draftsSchema, "drafts")
 

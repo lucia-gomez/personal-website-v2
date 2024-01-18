@@ -134,21 +134,24 @@ export default function BlogPostPage() {
       {!loading ? (
         <>
           <Header>
-            <EditWrapper>
+            <EditWrapper data-test-id="blog-post-edit-btn">
               {isAuthenticated ? <EditorPopup post={post} /> : null}
             </EditWrapper>
             <HeaderImage post={post} />
             <HeaderContent>
               <BackWrapper link="/blog" data-test-id="blog-back-btn" />
-              <Title>{post.title}</Title>
+              <Title data-test-id="blog-post-title">{post.title}</Title>
 
-              <BlogPostMetadata post={post} />
+              <BlogPostMetadata post={post} data-test-id="blog-post-metadata" />
             </HeaderContent>
           </Header>
           <ContentWrapper>
             <>
               <Content className="animate__animated animate__fadeIn">
-                <BlogContent content={post.content} />
+                <BlogContent
+                  content={post.content}
+                  data-test-id="blog-post-content"
+                />
                 <BlogPostMetadataLarge post={post} />
                 <BlogNavButtons
                   nextSlug={

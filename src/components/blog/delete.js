@@ -24,7 +24,7 @@ const Delete = props => {
     }
     if (callback !== undefined) callback(postID)
     navigate({
-      pathname: draft ? "/admin" : "/blog",
+      pathname: draft ? "/admin/blog" : "/blog",
       key: Math.random(),
       state: {
         applied: true,
