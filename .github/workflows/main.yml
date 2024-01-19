@@ -18,8 +18,8 @@ jobs:
         uses: cypress-io/github-action@v6
         timeout-minutes: 10
         with:
-          record: p9fx4n
-          build: npm run build
-          start: npm start
+          record: true
         env: 
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_API_URL: ${{ vars.CYPRESS_API_URL }}
+       
