@@ -19,6 +19,8 @@ jobs:
         timeout-minutes: 10
         with:
           record: true
+          build: npm run build
+          start: npm start
         env: 
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_API_URL: ${{ vars.CYPRESS_API_URL }}
