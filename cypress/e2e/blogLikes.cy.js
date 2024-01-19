@@ -1,12 +1,12 @@
 describe("Blog Likes", () => {
   beforeEach(() => {
-    cy.intercept("GET", "http://localhost:3001/api/posts", req => {
+    cy.intercept("GET", Cypress.env("API_URL") + "/api/posts", req => {
       delete req.headers["if-none-match"]
     }).as("allPosts")
-    cy.intercept("PUT", "http://localhost:3001/api/posts/likes").as(
+    cy.intercept("PUT", Cypress.env("API_URL") + "/api/posts/likes").as(
       "likesResponse"
     )
-    cy.visit("http://localhost:3000/blog")
+    cy.visit("blog")
   })
 
   it("like a post", () => {

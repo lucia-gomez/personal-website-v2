@@ -16,7 +16,7 @@ describe("Blog Drafts", () => {
 
   beforeEach(() => {
     cy.restoreLocalStorage()
-    cy.visit("http://localhost:3000/admin/blog")
+    cy.visit("admin/blog")
   })
 
   afterEach(() => {
@@ -81,7 +81,7 @@ describe("Blog Drafts", () => {
       .first()
       .click()
     cy.get('[data-test-id="blog-draft-item"]').should("have.length", 1)
-    cy.url().should("eq", "http://localhost:3000/admin/blog")
+    cy.url().should("eq", Cypress.config().baseUrl + "/admin/blog")
   })
 
   it("Publish a draft", () => {
@@ -92,7 +92,7 @@ describe("Blog Drafts", () => {
     cy.get('[data-test-id="publish-draft-btn"]').click()
 
     // should redirect to blog page
-    cy.url().should("eq", "http://localhost:3000/blog")
+    cy.url().should("eq", Cypress.config().baseUrl + "/blog")
 
     // most recent blog post should be this one
     cy.get('[data-test-id="blog-post-item"]').contains(fields[4][1])

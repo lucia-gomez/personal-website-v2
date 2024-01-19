@@ -29,7 +29,7 @@ Cypress.Commands.add("someShould", (selector, condition, errorMsg) => {
 
 Cypress.Commands.add("createTestBlogPosts", num => {
   for (let i = 0; i < num; i++) {
-    cy.request("POST", "http://localhost:3001/api/test/posts", {
+    cy.request("POST", Cypress.env("API_URL") + "/api/test/posts", {
       count: i,
     }).then(response => {
       expect(response.status).to.eq(200)
@@ -42,7 +42,7 @@ before(() => {
 })
 
 after(() => {
-  cy.request("DELETE", "http://localhost:3001/api/test").then(response => {
+  cy.request("DELETE", Cypress.env("API_URL") + "/api/test").then(response => {
     expect(response.status).to.eq(200)
   })
 })

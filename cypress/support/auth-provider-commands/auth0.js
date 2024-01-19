@@ -1,7 +1,7 @@
 import "cypress-localstorage-commands"
 
 function loginViaAuth0Ui(username, password) {
-  cy.visit("http://localhost:3000/admin")
+  cy.visit("admin")
 
   cy.origin(
     Cypress.env("auth0_domain"),
@@ -12,7 +12,7 @@ function loginViaAuth0Ui(username, password) {
     }
   )
 
-  cy.url().should("equal", "http://localhost:3000/admin")
+  cy.url().should("equal", Cypress.config().baseUrl + "/admin")
 }
 
 Cypress.Commands.add("loginToAuth0", () => {
@@ -29,7 +29,7 @@ Cypress.Commands.add("loginToAuth0", () => {
   cy.session(`auth0-${username}`, () => {
     loginViaAuth0Ui(username, password)
   })
-  cy.visit("http://localhost:3000/admin")
+  cy.visit("admin")
 
   log.snapshot("after")
   log.end()

@@ -11,8 +11,10 @@ module.exports = defineConfig({
     auth0_audience: process.env.REACT_APP_AUTH0_AUDIENCE,
     auth0_client_id: process.env.REACT_APP_AUTH0_CLIENT_ID,
     auth0_client_secret: process.env.REACT_APP_AUTH0_CLIENT_SECRET,
+    API_URL: "http://localhost:3001",
   },
   e2e: {
+    baseUrl: "http://localhost:3000",
     setupNodeEvents(on, config) {
       require("cypress-localstorage-commands/plugin")(on, config)
       return config

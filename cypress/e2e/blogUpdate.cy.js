@@ -16,7 +16,7 @@ describe("Blog post updates", () => {
 
   beforeEach(() => {
     cy.restoreLocalStorage()
-    cy.visit("http://localhost:3000/blog")
+    cy.visit("blog")
   })
 
   afterEach(() => {
@@ -39,9 +39,9 @@ describe("Blog post updates", () => {
     cy.get('[data-test-id="nav-prev"]').click()
     cy.url().should(
       "not.eq",
-      "http://localhost:3000/admin/blog/" + fields[1][1]
+      Cypress.config().baseUrl + "/admin/blog/" + fields[1][1]
     )
-    cy.url().should("not.eq", "http://localhost:3000/404")
+    cy.url().should("not.eq", Cypress.config().baseUrl + "/404")
   })
 
   it("Like and reset post likes", () => {
@@ -72,7 +72,7 @@ describe("Blog post updates", () => {
         cy.get('[data-test-id="blog-featured-post-item"]').first().click()
         cy.get('[data-test-id="blog-post-edit-btn"]').click()
         cy.get('[data-test-id="blog-post-delete-btn"]').click()
-        cy.url().should("eq", "http://localhost:3000/blog")
+        cy.url().should("eq", Cypress.config().baseUrl + "/blog")
         cy.get(".blog-post").should("have.length", initialPosts - 1)
       })
   })
@@ -84,7 +84,7 @@ describe("Blog post updates", () => {
       .then(count => {
         initialPosts = count
         cy.get('[data-test-id="blog-post-delete-btn"]').first().click()
-        cy.url().should("eq", "http://localhost:3000/blog")
+        cy.url().should("eq", Cypress.config().baseUrl + "/blog")
         cy.get(".blog-post").should("have.length", initialPosts - 1)
       })
   })

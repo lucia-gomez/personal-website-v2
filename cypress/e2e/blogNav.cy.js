@@ -1,9 +1,9 @@
 describe("Blog Nav", () => {
   beforeEach(() => {
-    cy.intercept("GET", "http://localhost:3001/api/posts", req => {
+    cy.intercept("GET", Cypress.env("API_URL") + "/api/posts", req => {
       delete req.headers["if-none-match"]
     }).as("allPosts")
-    cy.visit("http://localhost:3000/blog")
+    cy.visit("blog")
   })
 
   it("fetch blog posts", () => {
@@ -47,7 +47,7 @@ describe("Blog Nav", () => {
 
       // back to blog home
       cy.get('[data-test-id="blog-back-btn"]').click()
-      cy.url().should("eq", "http://localhost:3000/blog")
+      cy.url().should("eq", Cypress.config().baseUrl + "/blog")
 
       // 2nd most recent post
       cy.get('[data-test-id="blog-featured-post-item"]').eq(1).click()
@@ -57,7 +57,7 @@ describe("Blog Nav", () => {
 
       // back to blog home
       cy.get('[data-test-id="blog-back-btn"]').click()
-      cy.url().should("eq", "http://localhost:3000/blog")
+      cy.url().should("eq", Cypress.config().baseUrl + "/blog")
 
       // least recent post
       cy.get('[data-test-id="blog-post-item"]').click()
@@ -70,6 +70,6 @@ describe("Blog Nav", () => {
   it("blog post --> subscribe page", () => {
     cy.get('[data-test-id="blog-featured-post-item"]').first().click()
     cy.get('[data-test-id="blog-post-subscribe"]').first().click()
-    cy.url().should("eq", "http://localhost:3000/subscribe")
+    cy.url().should("eq", Cypress.config().baseUrl + "/subscribe")
   })
 })
