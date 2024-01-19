@@ -13,18 +13,18 @@ export const PostPayload = {
 }
 
 export const PostApi = {
-  getAllPosts: () => Axios.get(getApiUrl() + "/api/get"),
-  getPost: slug => Axios.get(getApiUrl() + "/api/get/" + slug),
-  getNextPost: slug => Axios.get(getApiUrl() + "/api/next/" + slug),
-  getPrevPost: slug => Axios.get(getApiUrl() + "/api/prev/" + slug),
+  getAllPosts: () => Axios.get(getApiUrl() + "/api/posts"),
+  getPost: slug => Axios.get(getApiUrl() + "/api/posts/" + slug),
+  getNextPost: slug => Axios.get(getApiUrl() + "/api/posts/next/" + slug),
+  getPrevPost: slug => Axios.get(getApiUrl() + "/api/posts/prev/" + slug),
   createPost: payload => {
     const fakeTime = new Date().toLocaleTimeString()
     const dateString =
-      payload.date != null && payload.date.length > 0
-        ? `${payload.date}, ${fakeTime}`
+      payload.dateString != null && payload.dateString.length > 0
+        ? `${payload.dateString}, ${fakeTime}`
         : new Date().toLocaleString()
 
-    return Axios.post(getApiUrl() + "/api/create", {
+    return Axios.post(getApiUrl() + "/api/posts", {
       datetime: new Date().toISOString().slice(0, 19).replace("T", " "),
       dateString: dateString,
       title: payload.title,
@@ -38,54 +38,56 @@ export const PostApi = {
     const args = {
       id: payload._id,
       title: payload.title,
-      dateString: payload.date,
+      dateString: payload.dateString,
       imageUrl: payload.imageUrl,
       summary: payload.summary,
       content: payload.content,
+      slug: payload.slug,
     }
-    return Axios.post(`${getApiUrl()}/api/update`, args)
+    return Axios.put(`${getApiUrl()}/api/posts/${args.id}`, args)
   },
-  deletePost: id => Axios.delete(`${getApiUrl()}/api/delete/${id}`),
+  deletePost: id => Axios.delete(`${getApiUrl()}/api/posts/${id}`),
 }
 
 export const DraftApi = {
   publishDraft: async payload => {
     await PostApi.createPost(payload)
-    return Axios.delete(`${getApiUrl()}/api/draft/${payload._id}`)
+    return Axios.delete(`${getApiUrl()}/api/drafts/${payload._id}`)
   },
   createDraft: payload =>
-    Axios.post(getApiUrl() + "/api/draft/create", {
+    Axios.post(getApiUrl() + "/api/drafts", {
       title: payload.title,
       summary: payload.summary,
       content: payload.content,
       slug: payload.slug,
       imageUrl: payload.imageUrl,
+      dateString: payload.dateString,
     }),
   updateDraft: payload =>
-    Axios.post(`${getApiUrl()}/api/draft/update`, {
-      id: payload._id,
+    Axios.put(`${getApiUrl()}/api/drafts/${payload._id}`, {
       title: payload.title,
       summary: payload.summary,
       slug: payload.slug,
       imageUrl: payload.imageUrl,
       content: payload.content,
+      dateString: payload.dateString,
     }),
-  getDrafts: () => Axios.get(`${getApiUrl()}/api/draft/get`),
-  deleteDraft: id => Axios.delete(`${getApiUrl()}/api/draft/${id}`),
+  getDrafts: () => Axios.get(`${getApiUrl()}/api/drafts`),
+  deleteDraft: id => Axios.delete(`${getApiUrl()}/api/drafts/${id}`),
 }
 
 export const LikeApi = {
   reset: id => {
-    Axios.post(`${getApiUrl()}/api/likes/reset`, { id })
+    Axios.put(`${getApiUrl()}/api/posts/likes`, { id, mode: 0 })
   },
-  like: id => Axios.post(getApiUrl() + "/api/like", { id }),
-  unlike: id => Axios.post(getApiUrl() + "/api/unlike", { id }),
+  like: id => Axios.put(getApiUrl() + "/api/posts/likes", { id, mode: 1 }),
+  unlike: id => Axios.put(getApiUrl() + "/api/posts/likes", { id, mode: -1 }),
 }
 
 export const EmailApi = {
   confirm: email => Axios.post(`${getApiUrl()}/api/email/confirm`, { email }),
   getSubscribers: tableName =>
-    Axios.get(`${getApiUrl()}/api/email/subscribers/${tableName}`),
+    Axios.get(`${getApiUrl()}/api/email/${tableName}`),
   send: (subject, content) =>
     Axios.post(`${getApiUrl()}/api/email/send`, { subject, content }),
   sendTest: (subject, content) =>

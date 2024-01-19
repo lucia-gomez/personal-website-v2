@@ -35,6 +35,10 @@ const EditorWrapper = styled.div`
 export default function Editor(props) {
   const { actions, isNew, post } = props
   const [editorContent, setEditorContent] = useState()
+  const actionsEditor = {
+    ...actions,
+    handleCloseDraft: () => setEditorContent(""),
+  }
   const autoSaveDebounced = useRef(
     lodash.throttle((payload, newContent) => {
       if (payload == null) {
@@ -59,8 +63,6 @@ export default function Editor(props) {
   useEffect(() => {
     if (post !== undefined) {
       setEditorContent(post.content)
-    } else {
-      setEditorContent("")
     }
   }, [post])
 
@@ -71,12 +73,13 @@ export default function Editor(props) {
 
   return (
     <Grid className={props.className}>
-      <EditorForm content={editorContent} {...props} />
+      <EditorForm content={editorContent} {...props} actions={actionsEditor} />
       <EditorWrapper>
         <MdEditor
           value={editorContent}
           renderHTML={text => marked.parse(text)}
           onChange={onEditorChange}
+          id="editor"
         />
       </EditorWrapper>
     </Grid>

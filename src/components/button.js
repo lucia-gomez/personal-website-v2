@@ -65,6 +65,7 @@ export const ButtonLink = props => (
     disabled={props.disabled}
     className={props.className}
     id={props.id}
+    {...props}
   >
     <ButtonContent>
       {props.disabled ? (
@@ -83,21 +84,8 @@ export const ButtonLink = props => (
 )
 
 export const Button = props => {
-  const handleTouchStart = () => {
-    console.log("start")
-    // setButtonColor("purple")
-  }
-
-  const handleTouchEnd = () => {
-    // setButtonColor("green")
-  }
-
   return (
-    <BootstrapButtonStyled
-      {...props}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-    >
+    <BootstrapButtonStyled {...props}>
       <ButtonContent>
         <p>{props.children}</p>
       </ButtonContent>

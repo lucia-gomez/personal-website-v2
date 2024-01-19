@@ -30,13 +30,16 @@ const DeleteWrapper = styled.div`
 
 const BlogDraftItem = ({ post, handleOpenDraft, handleDeleteDraft }) => {
   return (
-    <Wrapper onClick={() => handleOpenDraft(post)}>
+    <Wrapper
+      onClick={() => handleOpenDraft(post)}
+      data-test-id="blog-draft-item"
+    >
       <Body>
         <Title>{post.title}</Title>
         <p>{post.summary}</p>
       </Body>
-      <DeleteWrapper>
-        <Delete postID={post._id} callback={handleDeleteDraft} draft />
+      <DeleteWrapper data-test-id="blog-draft-item-delete">
+        <Delete postID={post._id} callback={handleDeleteDraft} draft={true} />
       </DeleteWrapper>
     </Wrapper>
   )

@@ -49,7 +49,7 @@ export function BlogPostMetadata({ post }) {
       <Dot />
       <Like count={post != null ? post.likes : "--"} postID={post?._id} />
       <Dot />
-      <Link to="/subscribe" sameTab={true}>
+      <Link to="/subscribe" sameTab={true} data-test-id="blog-post-subscribe">
         <i className="fas fa-envelope" style={{ padding: "5px" }} />
         Subscribe
       </Link>

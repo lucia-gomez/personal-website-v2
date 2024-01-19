@@ -5,8 +5,6 @@ import { marked } from "marked"
 
 require("prismjs/components/prism-bash")
 
-console.log(Prism.languages)
-
 marked.setOptions({
   highlight: function (code, lang) {
     if (Prism.languages[lang]) {
@@ -17,9 +15,10 @@ marked.setOptions({
   },
 })
 
-const BlogContent = ({ content, className }) => {
+const BlogContent = props => {
+  const { content } = props
   return (
-    <BlogStyle className={className}>
+    <BlogStyle {...props}>
       <div dangerouslySetInnerHTML={{ __html: marked.parse(content) }} />
     </BlogStyle>
   )

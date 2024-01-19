@@ -24,7 +24,7 @@ const Delete = props => {
     }
     if (callback !== undefined) callback(postID)
     navigate({
-      pathname: draft ? "/admin" : "/blog",
+      pathname: draft ? "/admin/blog" : "/blog",
       key: Math.random(),
       state: {
         applied: true,
@@ -42,7 +42,13 @@ const Delete = props => {
     }
   }
 
-  return <Icon onClick={handleClick} className={className + " fas fa-trash"} />
+  return (
+    <Icon
+      onClick={handleClick}
+      className={className + " fas fa-trash"}
+      data-test-id="blog-post-delete-btn"
+    />
+  )
 }
 
 export default Delete

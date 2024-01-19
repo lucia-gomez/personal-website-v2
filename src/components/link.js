@@ -15,6 +15,7 @@ export default function Link(props) {
       style={props.style}
       target={props.sameTab ? null : "_blank"}
       rel={props.sameTab ? null : "noopener noreferrer"}
+      {...props}
     >
       {props.children}
     </LinkWrapper>

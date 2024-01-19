@@ -53,7 +53,7 @@ export default function EditorForm(props) {
   const [title, setTitle] = useState(post?.title ?? "")
   const [summary, setSummary] = useState(post?.summary ?? "")
   const [slug, setSlug] = useState(post?.slug ?? "")
-  const [date, setDate] = useState(post?.dateString ?? "")
+  const [dateString, setDate] = useState(post?.dateString ?? "")
   const [imageUrl, setImageUrl] = useState(post?.imageUrl ?? "")
 
   useEffect(() => {
@@ -67,28 +67,40 @@ export default function EditorForm(props) {
   const titleForm = (
     <Form.Group>
       <Form.Label>Title</Form.Label>
-      <Input onChange={e => setTitle(e.target.value)} value={title} />
+      <Input
+        onChange={e => setTitle(e.target.value)}
+        value={title}
+        id="title"
+      />
     </Form.Group>
   )
 
   const slugForm = (
     <Form.Group>
       <Form.Label>Slug</Form.Label>
-      <Input onChange={e => setSlug(e.target.value)} value={slug} />
+      <Input onChange={e => setSlug(e.target.value)} value={slug} id="slug" />
     </Form.Group>
   )
 
   const dateForm = (
     <Form.Group>
       <Form.Label>Date</Form.Label>
-      <Input onChange={e => setDate(e.target.value)} value={date} />
+      <Input
+        onChange={e => setDate(e.target.value)}
+        value={dateString}
+        id="date"
+      />
     </Form.Group>
   )
 
   const imageUrlForm = (
     <Form.Group>
       <Form.Label>Image</Form.Label>
-      <Input onChange={e => setImageUrl(e.target.value)} value={imageUrl} />
+      <Input
+        onChange={e => setImageUrl(e.target.value)}
+        value={imageUrl}
+        id="image-url"
+      />
     </Form.Group>
   )
 
@@ -99,6 +111,7 @@ export default function EditorForm(props) {
         onChange={e => setSummary(e.target.value)}
         value={summary}
         as="textarea"
+        id="summary"
       />
     </Form.Group>
   )
@@ -126,18 +139,22 @@ export default function EditorForm(props) {
   )
 
   const payload = {
-    title: title,
-    slug: slug,
-    date: date,
-    imageUrl: imageUrl,
-    summary: summary,
-    content: content,
+    title,
+    slug,
+    dateString,
+    imageUrl,
+    summary,
+    content,
     _id: post?._id,
   }
 
   return (
     <div>
-      <FormToggle onClick={() => setExpanded(!isExpanded)} {...{ isExpanded }}>
+      <FormToggle
+        onClick={() => setExpanded(!isExpanded)}
+        {...{ isExpanded }}
+        data-test-id="blog-edit-form-toggle"
+      >
         <p>{isExpanded ? "Hide Form" : "Show Form"}</p>
         <Toggle isOpen={isExpanded} />
       </FormToggle>

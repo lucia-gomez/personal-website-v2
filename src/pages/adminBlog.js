@@ -46,6 +46,7 @@ export default function AdminBlog() {
   }
 
   const handleDeleteDraft = id => {
+    setOpenDraft()
     setDrafts(drafts.filter(draft => draft._id !== id))
   }
 

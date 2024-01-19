@@ -38,7 +38,7 @@ const Like = ({ postID, count }) => {
   }
 
   return (
-    <Row onClick={handleClick}>
+    <Row onClick={handleClick} data-test-id="blog-post-like">
       <Heart
         className={
           isLiked

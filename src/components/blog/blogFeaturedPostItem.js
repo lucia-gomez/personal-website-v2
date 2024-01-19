@@ -75,9 +75,10 @@ export function BlogFeaturedPostItem({
 
   return (
     <Wrapper
-      className={`${className} animate__animated ${getClassName()}`}
+      className={`${className} animate__animated ${getClassName()} blog-post`}
       to={`/blog/${post.slug}/`}
       ref={ref}
+      data-test-id="blog-featured-post-item"
     >
       <BlogGradientBanner post={post} />
       <Body>

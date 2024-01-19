@@ -19,20 +19,20 @@ export default function BlogNavButtons(props) {
   const { nextSlug, prevSlug, className } = props
   return (
     <NavButtons className={className}>
-      {prevSlug != null ? (
-        <NavButton to={prevSlug} sameTab={true}>
+      {nextSlug != null ? (
+        <NavButton to={nextSlug} sameTab={true} data-test-id="nav-next">
           <i
             className="fas fa-chevron-left"
             style={{ paddingRight: "3px" }}
           ></i>
-          Previous
+          Next
         </NavButton>
       ) : (
         <div />
       )}
-      {nextSlug != null ? (
-        <NavButton to={nextSlug} sameTab={true}>
-          Next
+      {prevSlug != null ? (
+        <NavButton to={prevSlug} sameTab={true} data-test-id="nav-prev">
+          Previous
           <i
             className="fas fa-chevron-right"
             style={{ paddingLeft: "3px" }}
