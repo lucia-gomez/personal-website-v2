@@ -176,9 +176,10 @@ app.put("/api/posts/:id", (req, res) => {
   const content = req.body.content
   const dateString = req.body.dateString
   const imageUrl = req.body.imageUrl
+  const slug = req.body.slug
   PostsModel.updateOne(
     { _id: id },
-    { $set: { title, summary, content, dateString, imageUrl } }
+    { $set: { title, summary, content, dateString, imageUrl, slug } }
   )
     .then(result => {
       res.send(result)

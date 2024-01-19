@@ -36,6 +36,7 @@ export default function EditorPopup({ post }) {
         onHide={() => setShow(false)}
         dialogClassName="modal-90w"
         animation={false}
+        data-test-id="blog-post-edit-modal"
       >
         <Modal.Header closeButton></Modal.Header>
         <div style={{ padding: "10px" }}>

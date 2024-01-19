@@ -42,6 +42,7 @@ export const PostApi = {
       imageUrl: payload.imageUrl,
       summary: payload.summary,
       content: payload.content,
+      slug: payload.slug,
     }
     return Axios.put(`${getApiUrl()}/api/posts/${args.id}`, args)
   },

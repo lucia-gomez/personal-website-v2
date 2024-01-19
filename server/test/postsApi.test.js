@@ -26,8 +26,9 @@ const updateData1 = {
   content: "Updated content",
   dateString: "1-2-2023",
   imageUrl: "updated-image-url.png",
+  slug: "post1-updated",
 }
-const slugs = [postData1.slug, "post2", "post3"]
+const slugs = [updateData1.slug, "post2", "post3"]
 let postId
 
 describe("Posts API/Model Tests", () => {
@@ -183,6 +184,7 @@ describe("Posts API/Model Tests", () => {
     expect(post.content).to.equal(updateData1.content)
     expect(post.dateString).to.equal(updateData1.dateString)
     expect(post.imageUrl).to.equal(updateData1.imageUrl)
+    expect(post.slug).to.equal(updateData1.slug)
   })
 
   it("get all posts - mongodb error", async () =>
