@@ -29,7 +29,7 @@
   "scripts": {
     "start": "react-scripts start",
     "start-https": "HTTPS=true npm start",
-    "startServer:test": "cd server && npm run start:test",
+    "startServer:test": "cd server && npm install && npm run start:test",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "analyze": "npm run build && source-map-explorer 'build/static/js/*.js'",

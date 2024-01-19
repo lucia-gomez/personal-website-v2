@@ -24,7 +24,6 @@
     "imagekit": "^4.1.4",
     "mongoose": "^8.0.0",
     "node-mailjet": "^3.3.7",
-    "nodemon": "^2.0.10",
     "npm": "^9.6.6"
   },
   "devDependencies": {
@@ -32,6 +31,7 @@
     "chai-http": "^4.4.0",
     "mocha": "^10.2.0",
     "mongodb-memory-server": "^9.1.4",
+    "nodemon": "^2.0.10",
     "nyc": "^15.1.0",
     "sinon": "^17.0.1"
   }
