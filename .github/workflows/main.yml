@@ -21,4 +21,5 @@ jobs:
           record: p9fx4n
           build: npm run build
           start: npm start
-        env: ${{ vars.CYPRESS_API_URL }}
+        env: 
+          CYPRESS_API_URL: ${{ vars.CYPRESS_API_URL }}
