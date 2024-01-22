@@ -20,7 +20,7 @@ jobs:
         with:
           record: true
           build: npm run build
-          start: npm run test
+          start: npm run test:local
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           IMAGEKIT_PRIVATE: ${{ secrets.IMAGEKIT_PRIVATE }}
