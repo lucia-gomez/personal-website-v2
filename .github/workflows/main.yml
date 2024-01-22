@@ -26,3 +26,4 @@ jobs:
           IMAGEKIT_PRIVATE: ${{ secrets.IMAGEKIT_PRIVATE }}
           MJ_APIKEY_PUBLIC: ${{ secrets.MJ_APIKEY_PUBLIC }}
           MJ_APIKEY_PRIVATE: ${{ secrets.MJ_APIKEY_PRIVATE }}
+          REACT_APP_MONGO_PASSWORD: ${{ secrets.REACT_APP_MONGO_PASSWORD }}
