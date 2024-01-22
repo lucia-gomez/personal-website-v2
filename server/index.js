@@ -17,10 +17,12 @@ const {
 
 dotenv.config()
 const app = express()
+console.log("DEBUG", "connecting to DB...")
 if (process.env.NODE_ENV != "testBackend") {
   /* istanbul ignore next */
   connectDB()
 }
+console.log("DEBUG", "connected to DB")
 
 /* istanbul ignore next */
 app.use(cors(), function (req, res, next) {
@@ -42,12 +44,14 @@ app.use(cors(), function (req, res, next) {
 })
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+console.log("DEBUG", "middleware")
 
 const imagekit = new ImageKit({
   publicKey: "public_CJFqG4/4bWXjKN1kfmDaT7UlKC4=",
   privateKey: process.env.IMAGEKIT_PRIVATE,
   urlEndpoint: "https://ik.imagekit.io/5xtlzx2c3y",
 })
+console.log("DEBUG", "imagekit")
 
 app.get("/api/posts", (req, res) => {
   PostsModel.find({})
