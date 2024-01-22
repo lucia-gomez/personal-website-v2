@@ -326,8 +326,10 @@ if (
   process.env.NODE_ENV === "test" &&
   getDatbaseName() === "personalWebsiteTest"
 ) {
+  console.log("DEBUG", "has test endpoints")
   // Create a test post with placeholder data
   app.post("/api/test/posts", (req, res) => {
+    console.log("DEBUG", "creating test posts...")
     const count = req.body.count
 
     const datetime = new Date().toISOString().slice(0, 19).replace("T", " ")
