@@ -14,7 +14,7 @@ const NavButton = styled(Link)`
   margin: 5px;
 `
 
-/* Posts are in reverse chronological order. Previous is newer, next is older */
+/* Posts are in reverse chronological order. Previous is older, next is newer */
 export default function BlogNavButtons(props) {
   const { nextSlug, prevSlug, className } = props
   return (
@@ -25,14 +25,14 @@ export default function BlogNavButtons(props) {
             className="fas fa-chevron-left"
             style={{ paddingRight: "3px" }}
           ></i>
-          Next
+          Newer
         </NavButton>
       ) : (
         <div />
       )}
       {prevSlug != null ? (
         <NavButton to={prevSlug} sameTab={true} data-test-id="nav-prev">
-          Previous
+          Older
           <i
             className="fas fa-chevron-right"
             style={{ paddingLeft: "3px" }}
