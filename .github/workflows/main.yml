@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - "master"
-      - "prod"
 
 jobs:
   cypress-run:
