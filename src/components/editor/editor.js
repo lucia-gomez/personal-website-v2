@@ -24,7 +24,7 @@ const EditorWrapper = styled.div`
   }
 
   .rc-md-editor.full {
-    max-height: none;
+    max-height: 90vh;
   }
 
   a {
