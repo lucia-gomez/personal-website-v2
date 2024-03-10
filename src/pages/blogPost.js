@@ -66,6 +66,7 @@ const HeaderImage = styled(BlogGradientBanner)`
 
   .image {
     background-position-y: center;
+    border-radius: 0px;
   }
 `
 
@@ -91,6 +92,7 @@ const EditWrapper = styled.div`
   position: absolute;
   right: 12px;
   top: 12px;
+  z-index: 10;
 `
 
 const BackWrapper = styled(Back)`

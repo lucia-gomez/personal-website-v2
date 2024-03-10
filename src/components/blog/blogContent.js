@@ -2,6 +2,7 @@ import BlogStyle from "../../style/blogStyle"
 import Prism from "prismjs"
 import React from "react"
 import { marked } from "marked"
+import tokenizer from "../../style/markdownTokenizer"
 
 require("prismjs/components/prism-bash")
 
@@ -14,6 +15,7 @@ marked.setOptions({
     }
   },
 })
+marked.use({ tokenizer })
 
 const BlogContent = props => {
   const { content } = props
