@@ -7,6 +7,9 @@ import EditorForm from "./editorForm"
 import MdEditor from "react-markdown-editor-lite"
 import { marked } from "marked"
 import styled from "styled-components"
+import tokenizer from "../../style/markdownTokenizer"
+
+marked.use({ tokenizer })
 
 const lodash = require("lodash")
 

@@ -71,13 +71,14 @@ const BlogStyle = styled.div`
   video {
     height: 100%;
     max-width: 100% !important;
-    max-height: 70vh;
+    max-height: 50vh;
     border-radius: 5px;
-    margin-right: 20px;
+    margin: 40px auto 8px auto;
     display: block;
 
     @media screen and (max-width: 576px) {
       width: 100%;
+      max-height: unset;
     }
   }
   img + img {
@@ -85,8 +86,16 @@ const BlogStyle = styled.div`
   }
   img + em,
   video + em,
-  em:only-child {
+  video + p > em:only-child,
+  iframe + em,
+  iframe + p > em:only-child,
+  audio + em,
+  audio + p > em:only-child {
     color: ${props => props.theme.medium};
+    display: block;
+    max-width: 90%;
+    text-align: center;
+    margin: 0px auto 20px auto;
   }
   video {
     object-fit: cover;
@@ -94,10 +103,19 @@ const BlogStyle = styled.div`
   h4 {
     padding-top: 24px;
   }
-  iframe {
-    margin-bottom: 24px;
+  p > iframe {
+    margin-bottom: -1rem;
+  }
+  iframe,
+  audio {
+    border-radius: 5px;
+    margin: 40px auto 8px auto;
+    width: 80%;
+    display: block;
+    max-height: 70vh;
     @media screen and (max-width: 576px) {
       width: 100%;
+      max-height: unset;
     }
   }
 `
