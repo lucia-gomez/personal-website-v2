@@ -27,4 +27,5 @@ yarn-error.log*
 
 .vscode
 
-server/backup
+server/backup/__output__
+server/backup/__restore__
