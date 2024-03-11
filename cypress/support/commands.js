@@ -28,7 +28,7 @@ Cypress.Commands.add("someShould", (selector, condition, errorMsg) => {
 })
 
 Cypress.Commands.add("createTestBlogPosts", num => {
-  for (let i = 0; i < num; i++) {
+  for (let i = num - 1; i >= 0; i--) {
     cy.request("POST", Cypress.env("API_URL") + "/api/test/posts", {
       count: i,
     }).then(response => {

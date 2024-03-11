@@ -17,11 +17,11 @@ describe("Blog Nav", () => {
 
   it("navigate to and from blog posts", () => {
     cy.wait("@allPosts").then(interception => {
-      const posts = interception.response.body
+      const posts = interception.response.body.reverse()
 
       const checkPrevBtn = () =>
         cy.get('[data-test-id="nav-prev"]').then($el => {
-          cy.wrap($el).should("include.text", "Previous")
+          cy.wrap($el).should("include.text", "Older")
           cy.wrap($el).should("be.visible")
           cy.getScreenWidth().then(screenWidth => {
             const leftPosition = $el.offset().left
@@ -31,7 +31,7 @@ describe("Blog Nav", () => {
 
       const checkNextBtn = () =>
         cy.get('[data-test-id="nav-next"]').then($el => {
-          cy.wrap($el).should("include.text", "Next")
+          cy.wrap($el).should("include.text", "Newer")
           cy.wrap($el).should("be.visible")
           cy.getScreenWidth().then(screenWidth => {
             const leftPosition = $el.offset().left
