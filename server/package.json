@@ -9,7 +9,8 @@
     "start:test": "NODE_ENV=test npm run start",
     "test": "NODE_ENV=testBackend mocha --recursive --exit",
     "coverage": "nyc --reporter=html npm run test",
-    "copy": "cp -r ./* /Users/luciagomez/Desktop/projects/lucia-gomez-server"
+    "copy": "cp -r ./* /Users/luciagomez/Desktop/projects/lucia-gomez-server",
+    "dbRestore": "cd backup && bash db_restore.sh $TIMESTAMP"
   },
   "author": "",
   "license": "ISC",
