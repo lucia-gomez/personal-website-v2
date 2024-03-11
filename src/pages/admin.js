@@ -1,3 +1,4 @@
+import AdminDashboard from "../components/dashboard/dashboard"
 import { ButtonLink } from "../components/button"
 import React from "react"
 import SectionTitle from "../components/sectionTitle"
@@ -10,10 +11,10 @@ const AdminWrapper = styled.div`
 
 const Buttons = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
   button {
-    margin-top: 12px;
+    margin-right: 12px;
   }
 `
 
@@ -37,6 +38,7 @@ export default function Admin(props) {
           Email Dashboard
         </ButtonLink>
       </Buttons>
+      <AdminDashboard />
     </AdminWrapper>
   )
 }

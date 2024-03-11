@@ -96,8 +96,10 @@ export const EmailApi = {
     Axios.post(`${getApiUrl()}/api/email/subscribe/${emailHash}`),
   unsubscribe: emailHash =>
     Axios.delete(`${getApiUrl()}/api/email/unsubscribe/${emailHash}`),
+  checkDns: () => Axios.post(`${getApiUrl()}/api/email/dns/`),
 }
 
 export const ImageKitApi = {
   getImagesFromPath: path => Axios.post(`${getApiUrl()}/api/image`, { path }),
+  getUsage: () => Axios.get(`${getApiUrl()}/api/imagekit/usage`),
 }
