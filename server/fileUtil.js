@@ -1,26 +1,13 @@
-const { info } = require("console")
 const fs = require("fs")
 const sharp = require("sharp")
 
-const OUTPUT_FILE_PREFIX = "./tmpProcessed."
+const OUTPUT_FILE_PREFIX = "./tmp."
 
 function splitFileNameAndExtension(fileName) {
   const dotIdx = fileName.lastIndexOf(".")
   const name = fileName.substring(0, dotIdx)
   const extension = fileName.substring(dotIdx + 1).toLowerCase()
   return [name, extension]
-}
-
-function writeFileAsync(path, data) {
-  return new Promise((resolve, reject) => {
-    fs.writeFile(path, data, "binary", err => {
-      if (err) {
-        reject(err)
-      } else {
-        resolve()
-      }
-    })
-  })
 }
 
 function getFileSizeAsync(path) {
@@ -35,17 +22,6 @@ function getFileSizeAsync(path) {
   })
 }
 
-async function writeAndGetSize(path, binary) {
-  try {
-    await writeFileAsync(path, binary)
-    const fileSize = await getFileSizeAsync(path)
-    return fileSize
-  } catch (err) {
-    console.error("Error writing tmp file and getting file size:", err)
-    throw err
-  }
-}
-
 async function compressPng(inputPath, outputPath) {
   return sharp(inputPath).webp({ quality: 50 }).toFile(outputPath)
 }
@@ -58,37 +34,37 @@ async function noCompress(inputPath, outputPath) {
   return sharp(inputPath).toFile(outputPath)
 }
 
-function compressedFileName(extension) {
+function compressedFileName(fileType, fileExtension) {
   let name = OUTPUT_FILE_PREFIX
-  switch (extension) {
-    case "png":
+  switch (fileType) {
+    case "image/png":
       name += "webp"
+      break
     default:
-      name += extension
+      name += fileExtension
   }
   return name
 }
 
-async function compressFile(base64Data, inputPath, fileExtension) {
-  const binaryData = Buffer.from(base64Data, "base64")
-  const originalSize = await writeAndGetSize(inputPath, binaryData)
+async function compressFile(originalName, fileExtension, fileType) {
+  const originalSize = await getFileSizeAsync(originalName)
 
   return new Promise((resolve, reject) => {
     let fn
-    switch (fileExtension) {
-      case "png":
+    switch (fileType) {
+      case "image/png":
         fn = compressPng
         break
-      case "jpg":
-      case "jpeg":
+      case "image/jpg":
+      case "image/jpeg":
         fn = compressJpeg
         break
       default:
         fn = noCompress
     }
 
-    const outputPath = compressedFileName(fileExtension)
-    fn(inputPath, outputPath)
+    const outputPath = compressedFileName(fileType, fileExtension)
+    fn(originalName, outputPath)
       .then(info => {
         const res = {
           originalSize,

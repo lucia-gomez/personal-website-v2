@@ -3,8 +3,18 @@ const fs = require("fs")
 const https = require("https")
 const ImageKit = require("imagekit")
 const { compressFile, splitFileNameAndExtension } = require("../fileUtil")
+const multer = require("multer")
+const path = require("path")
 
 const router = express.Router()
+
+const storage = multer.diskStorage({
+  destination: path.join(__dirname, ".."),
+  filename: (req, file, cb) => {
+    cb(null, file.originalname) // Use the original filename
+  },
+})
+const upload = multer({ storage: storage })
 
 const imagekit = new ImageKit({
   publicKey: "public_CJFqG4/4bWXjKN1kfmDaT7UlKC4=",
@@ -32,64 +42,52 @@ router.post("/", (req, res) => {
   })
 })
 
-router.post("/upload", (req, res) => {
-  const [fileName, fileExtension] = splitFileNameAndExtension(req.body.filename)
+router.post("/upload", upload.single("file"), async (req, res) => {
+  const originalName = req.file.originalname
+  const fileType = req.body.fileType
   const imageKitFolder = req.body.imageKitFolder
 
-  fs.readFile(
-    "./corgi.jpeg",
-    { encoding: "base64" },
-    async (err, base64Data) => {
-      if (err) {
-        console.error(err)
-        res
-          .status(500)
-          .send("ImageKit upload error, couldn't read received file: " + err)
-      }
-
-      // create temp file for received data
-      const tmpFilePath = "./tmp." + fileExtension
-      const compressionResult = await compressFile(
-        base64Data,
-        tmpFilePath,
-        fileExtension
-      )
-
-      fs.readFile(compressionResult.outputFileName, (readErr, outputFile) => {
-        if (readErr) {
-          console.error(readErr)
-          res.status(500).send("Error reading compressed file:", readErr)
-        }
-
-        imagekit
-          .upload({
-            file: outputFile,
-            fileName,
-            folder: imageKitFolder,
-            useUniqueFileName: false,
-          })
-          .then(uploadResult => {
-            res
-              .status(200)
-              .send({ imageKitResult: uploadResult, stats: compressionResult })
-          })
-          .catch(uploadErr => {
-            console.error(uploadErr)
-            res.status(500).send("Error uploading to ImageKit:", uploadErr)
-          })
-      })
-      fs.unlink(tmpFilePath, unlinkError => {
-        if (unlinkError) {
-          console.error(unlinkError)
-        }
-      })
-      fs.unlink(compressionResult.outputFileName, unlinkError => {
-        if (unlinkError) {
-          console.error(unlinkError)
-        }
-      })
-    }
+  const [fileName, fileExtension] = splitFileNameAndExtension(originalName)
+  const compressionResult = await compressFile(
+    originalName,
+    fileExtension,
+    fileType
   )
+
+  fs.readFile(compressionResult.outputFileName, (readErr, outputFile) => {
+    if (readErr) {
+      console.error(readErr)
+      res.status(500).send("Error reading compressed file:", readErr)
+    }
+
+    imagekit
+      .upload({
+        file: outputFile,
+        fileName,
+        folder: imageKitFolder,
+        useUniqueFileName: false,
+      })
+      .then(uploadResult => {
+        res
+          .status(200)
+          .send({ imageKitResult: uploadResult, stats: compressionResult })
+      })
+      .catch(uploadErr => {
+        console.error(uploadErr)
+        res.status(500).send("Error uploading to ImageKit:", uploadErr)
+      })
+  })
+
+  fs.unlink(originalName, unlinkError => {
+    if (unlinkError) {
+      console.error(unlinkError)
+    }
+  })
+  fs.unlink(compressionResult.outputFileName, unlinkError => {
+    if (unlinkError) {
+      console.error(unlinkError)
+    }
+  })
 })
 
 /* istanbul ignore next */

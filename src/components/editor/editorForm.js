@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { animated, useSpring } from "@react-spring/web"
 
 import Col from "react-bootstrap/Col"
+import EditorFileUpload from "./editorFileUpload"
 import Form from "react-bootstrap/Form"
 import Input from "../input"
 import Row from "react-bootstrap/Row"
@@ -148,6 +149,30 @@ export default function EditorForm(props) {
     _id: post?._id,
   }
 
+  const onUploadComplete = url => {
+    console.log(url)
+    const textarea = document.getElementById("editor_md")
+    const cursorPosition = textarea.selectionStart
+
+    // insert media url at current cursor position
+    const newText =
+      textarea.value.substring(0, cursorPosition) +
+      url +
+      textarea.value.substring(cursorPosition)
+
+    // Update the textarea value
+    textarea.value = newText
+
+    // Update the cursor position after the pasted text
+    textarea.setSelectionRange(
+      cursorPosition + url.length,
+      cursorPosition + url.length
+    )
+
+    const inputEvent = new Event("input", { bubbles: true })
+    textarea.dispatchEvent(inputEvent)
+  }
+
   return (
     <div>
       <FormToggle
@@ -164,7 +189,10 @@ export default function EditorForm(props) {
           {formMobile}
         </div>
       </Collapsible>
-      <ButtonRow>{getButtons(payload, isDraft, isNew, actions)}</ButtonRow>
+      <ButtonRow>
+        {getButtons(payload, isDraft, isNew, actions)}
+        <EditorFileUpload {...{ onUploadComplete, slug }} />
+      </ButtonRow>
     </div>
   )
 }
