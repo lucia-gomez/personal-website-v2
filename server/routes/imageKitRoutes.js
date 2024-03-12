@@ -48,11 +48,14 @@ router.post("/upload", upload.single("file"), async (req, res) => {
   const imageKitFolder = req.body.imageKitFolder
 
   const [fileName, fileExtension] = splitFileNameAndExtension(originalName)
+  console.log(originalName, fileName, fileExtension, fileType)
+
   const compressionResult = await compressFile(
     originalName,
     fileExtension,
     fileType
   )
+  console.log("compressed", compressionResult)
 
   fs.readFile(compressionResult.outputFileName, (readErr, outputFile) => {
     if (readErr) {
@@ -76,17 +79,18 @@ router.post("/upload", upload.single("file"), async (req, res) => {
         console.error(uploadErr)
         res.status(500).send("Error uploading to ImageKit:", uploadErr)
       })
-  })
-
-  fs.unlink(originalName, unlinkError => {
-    if (unlinkError) {
-      console.error(unlinkError)
-    }
-  })
-  fs.unlink(compressionResult.outputFileName, unlinkError => {
-    if (unlinkError) {
-      console.error(unlinkError)
-    }
+      .finally(() => {
+        fs.unlink(originalName, unlinkError => {
+          if (unlinkError) {
+            console.error(unlinkError)
+          }
+        })
+        fs.unlink(compressionResult.outputFileName, unlinkError => {
+          if (unlinkError) {
+            console.error(unlinkError)
+          }
+        })
+      })
   })
 })
 

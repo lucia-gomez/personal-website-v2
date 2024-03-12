@@ -1,5 +1,9 @@
+const ffmpeg = require("fluent-ffmpeg")
+const ffmpegPath = require("ffmpeg-static")
 const fs = require("fs")
 const sharp = require("sharp")
+
+ffmpeg.setFfmpegPath(ffmpegPath)
 
 const OUTPUT_FILE_PREFIX = "./tmp."
 
@@ -30,6 +34,30 @@ async function compressJpeg(inputPath, outputPath) {
   return sharp(inputPath).jpeg({ quality: 50 }).toFile(outputPath)
 }
 
+async function compressVideo(inputPath, outputPath) {
+  console.log("compressing video")
+  return new Promise((resolve, reject) =>
+    ffmpeg()
+      .input(inputPath)
+      .videoCodec("libx264")
+      .videoBitrate("2000k")
+      .audioBitrate("128k")
+      .fps(24)
+      .format("mp4")
+      .outputOptions("-movflags", "faststart") // Enable MOOV atom optimization
+      .output(outputPath)
+      .on("end", () => {
+        console.log("Compression complete")
+        resolve()
+      })
+      .on("error", err => {
+        console.error("Error during compression:", err)
+        reject()
+      })
+      .run()
+  )
+}
+
 async function noCompress(inputPath, outputPath) {
   return sharp(inputPath).toFile(outputPath)
 }
@@ -40,6 +68,9 @@ function compressedFileName(fileType, fileExtension) {
     case "image/png":
       name += "webp"
       break
+    case "video/quicktime":
+      name += "mp4"
+      break
     default:
       name += fileExtension
   }
@@ -48,24 +79,27 @@ function compressedFileName(fileType, fileExtension) {
 
 async function compressFile(originalName, fileExtension, fileType) {
   const originalSize = await getFileSizeAsync(originalName)
+  let fn
+  switch (fileType) {
+    case "image/png":
+      fn = compressPng
+      break
+    case "image/jpg":
+    case "image/jpeg":
+      fn = compressJpeg
+      break
+    case "video/quicktime":
+      fn = compressVideo
+      break
+    default:
+      fn = noCompress
+  }
+  const outputPath = compressedFileName(fileType, fileExtension)
 
   return new Promise((resolve, reject) => {
-    let fn
-    switch (fileType) {
-      case "image/png":
-        fn = compressPng
-        break
-      case "image/jpg":
-      case "image/jpeg":
-        fn = compressJpeg
-        break
-      default:
-        fn = noCompress
-    }
-
-    const outputPath = compressedFileName(fileType, fileExtension)
     fn(originalName, outputPath)
       .then(info => {
+        // console.log(info)
         const res = {
           originalSize,
           compressedSize: info?.size,
