@@ -101,5 +101,6 @@ export const EmailApi = {
 
 export const ImageKitApi = {
   getImagesFromPath: path => Axios.post(`${getApiUrl()}/api/image`, { path }),
-  getUsage: () => Axios.get(`${getApiUrl()}/api/imagekit/usage`),
+  getUsage: () => Axios.get(`${getApiUrl()}/api/image/usage`),
+  upload: formData => Axios.post(`${getApiUrl()}/api/image/upload`, formData),
 }
