@@ -19,6 +19,8 @@ import ProtectedRoute from "./components/layout/protectedRoute"
 import RisoWoodles from "./pages/projects/risoWoodles"
 import ScrollToTop from "./ScrollToTop"
 import Shaders1 from "./pages/projects/shaders1"
+import Shaders31 from "./pages/projects/shaders3-1"
+import Shaders32 from "./pages/projects/shaders3-2"
 import SubscribePage from "./pages/subscribe"
 import ThreeDObjectPage from "./pages/projects/3dModel"
 import ThreeJsObjectPage from "./pages/projects/3dModel"
@@ -80,6 +82,14 @@ export default function App() {
             <Route path="/toad-ar" element={<ToadARPage />}></Route>
             <Route path="/project/djello" element={<DJello />}></Route>
             <Route path="/project/shaders/week1" element={<Shaders1 />}></Route>
+            <Route
+              path="/project/shaders/week3-1"
+              element={<Shaders31 />}
+            ></Route>
+            <Route
+              path="/project/shaders/week3-2"
+              element={<Shaders32 />}
+            ></Route>
             <Route
               path="/art/series/collagescape"
               element={<Collagescape />}
