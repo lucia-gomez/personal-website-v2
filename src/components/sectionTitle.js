@@ -8,5 +8,9 @@ const Title = styled.h2`
 `
 
 export default function SectionTitle(props) {
-  return <Title className={props.className}>{props.children}</Title>
+  return (
+    <Title className={props.className} style={props.style}>
+      {props.children}
+    </Title>
+  )
 }

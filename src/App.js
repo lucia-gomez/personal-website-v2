@@ -21,6 +21,7 @@ import ScrollToTop from "./ScrollToTop"
 import Shaders1 from "./pages/projects/shaders1"
 import Shaders31 from "./pages/projects/shaders3-1"
 import Shaders32 from "./pages/projects/shaders3-2"
+import Shaders4 from "./pages/projects/shaders4"
 import SubscribePage from "./pages/subscribe"
 import ThreeDObjectPage from "./pages/projects/3dModel"
 import ThreeJsObjectPage from "./pages/projects/3dModel"
@@ -90,6 +91,7 @@ export default function App() {
               path="/project/shaders/week3-2"
               element={<Shaders32 />}
             ></Route>
+            <Route path="/project/shaders/week4" element={<Shaders4 />}></Route>
             <Route
               path="/art/series/collagescape"
               element={<Collagescape />}
