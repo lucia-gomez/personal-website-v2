@@ -92,7 +92,7 @@ export default function About() {
       <div className="animate__animated animate__fadeIn">
         <Subsection title="About Me">
           <p>
-            I'm a first year graduate student at NYU Tisch's{" "}
+            I'm a first year graduate student and Web Developer at NYU Tisch's{" "}
             <Link href="https://itp.nyu.edu/itp/">
               Interactive Telecommunications Program
             </Link>
@@ -100,12 +100,9 @@ export default function About() {
             on
           </p>
           <ul>
-            <li>Augmented reality</li>
             <li>Physical computing</li>
             <li>Interactive web experiences</li>
-            <li>Digital art</li>
-            <li>Zines</li>
-            <li>Combinations of all of the above</li>
+            <li>Jello ?!</li>
           </ul>
           ...Or whatever shiny, new technology captures my interest tomorrow.
           Before grad school, I studied Computer Science and Linguistics at
