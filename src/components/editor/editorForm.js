@@ -150,7 +150,6 @@ export default function EditorForm(props) {
   }
 
   const onUploadComplete = url => {
-    console.log(url)
     const textarea = document.getElementById("editor_md")
     const cursorPosition = textarea.selectionStart
 
