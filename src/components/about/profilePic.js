@@ -13,8 +13,8 @@ const Wrapper = styled.div`
   position: relative;
   border: 1px solid ${props => props.theme.accent};
   border-radius: 300px;
-  height: 20vw;
-  width: 20vw;
+  height: 15vw;
+  width: 15vw;
   max-height: 300px;
   max-width: 300px;
   @media only screen and (max-width: 850px) {

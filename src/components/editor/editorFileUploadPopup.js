@@ -3,7 +3,6 @@ import styled, { css } from "styled-components"
 import { Button } from "../button"
 import Input from "../input"
 import Spinner from "../spinner"
-import { formatBytes } from "../../scripts/util"
 import { hexToRGB } from "../../style/theme"
 import { useState } from "react"
 
@@ -37,12 +36,9 @@ const UploadButton = styled(Button)`
 
 const lastImageKitFolderKey = "imagekit-upload-path"
 
-export default function EditorFileUploadPopup({
-  onStartUpload,
-  loading,
-  uploadResult,
-}) {
+export default function EditorFileUploadPopup({ onStartUpload, loading }) {
   const [file, setFile] = useState()
+
   const [imageKitFolder, setImageKitFolder] = useState(
     window.localStorage.getItem(lastImageKitFolderKey) || "/website/blog"
   )
@@ -83,16 +79,6 @@ export default function EditorFileUploadPopup({
           </UploadButton>
         )}
       </div>
-
-      {/* results */}
-      {uploadResult && (
-        <div>
-          <p>Original: {formatBytes(uploadResult.data.stats?.originalSize)}</p>
-          <p>
-            Compressed: {formatBytes(uploadResult.data.stats?.compressedSize)}
-          </p>
-        </div>
-      )}
     </UploadWrapper>
   )
 }

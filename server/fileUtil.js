@@ -98,11 +98,11 @@ async function compressFile(originalName, fileExtension, fileType) {
 
   return new Promise((resolve, reject) => {
     fn(originalName, outputPath)
-      .then(info => {
+      .then(async info => {
         // console.log(info)
         const res = {
           originalSize,
-          compressedSize: info?.size,
+          compressedSize: info?.size || (await getFileSizeAsync(outputPath)),
           outputFileName: outputPath,
         }
         resolve(res)

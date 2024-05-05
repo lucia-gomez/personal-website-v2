@@ -15,9 +15,113 @@ const category = {
 
 const projects = [
   {
+    title: "DJELLO 2.0",
+    date: "March-May 2024",
+    tools: [
+      "Autodesk Fusion 360",
+      "Arduino",
+      "Adobe Illustrator",
+      "Bantam Tools",
+    ],
+    image: "djello2.jpg?updatedAt=1714847828448",
+    text: (
+      <p>
+        Made in collaboration with{" "}
+        <Link to="https://www.solidwiggles.com/">Solid Wiggles</Link>, DJELLO
+        2.0 is a musical, interactive serving platter for jello. Designed and
+        fabricated a custom circuit board to encapsulate my{" "}
+        <Link to="/project/djello">previous DJELLO project</Link>. Set in a 3D
+        resin printed enclosure.
+      </p>
+    ),
+    link: "",
+    // extra: ExternalIconButton("/project/djello", true),
+    categories: [category["Physical Computing"]],
+  },
+  {
+    title: "VJELLO",
+    date: "April 2024",
+    tools: [
+      "MadMapper",
+      "Arduino",
+      "Adobe After Effects",
+      "Adobe Illustrator",
+      "Ableton Live",
+      "MIDI",
+    ],
+    image: "vjello?updatedAt=1714848645641",
+    text: (
+      <p>
+        Interactive projection mapping onto large jello hemispheres. Users touch
+        the gelatinous interface to generate squishy visual effects and sounds.
+      </p>
+    ),
+    link: "",
+    // extra: ExternalIconButton("/project/djello", true),
+    categories: [category["Physical Computing"], category.Installation],
+  },
+  {
+    title: "One Sharpie to Rule Them All",
+    date: "March-May 2024",
+    tools: ["Autodesk Fusion 360", "Arduino", "Programmable Air"],
+    image: "sharpie.jpeg?updatedAt=1714849661944",
+    text: (
+      <p>
+        An absurdly large Sharpie, ~2ft long. Pushing the colored arcade buttons
+        will extend/retract three colors of real Sharpies via pneumatic pumps.
+        Made in collaboration with Isabel Wu
+      </p>
+    ),
+    link: "",
+    // extra: ExternalIconButton("/project/djello", true),
+    categories: [category["Physical Computing"]],
+  },
+  {
+    title: "Kaleidoscope Shader",
+    date: "March-May 2024",
+    tools: ["p5.js", "GLSL"],
+    image: "kaleidoscope.png?updatedAt=1714875194264",
+    text: (
+      <p>
+        A trippy kaleidoscope camera filter. The user's camera feed is applied
+        onto radial surface geometry and run processed with a custom shader to
+        add a glassy feel
+      </p>
+    ),
+    link: "https://github.com/lucia-gomez/shaders/tree/main/week2",
+    extra: ExternalIconButton(
+      "https://lucia-gomez.github.io/shaders/week2/",
+      true
+    ),
+    categories: [category["Digital Art"], category.Web],
+  },
+  {
+    title: "Mosaic Reflections",
+    date: "February 2024",
+    tools: ["MadMapper", "Photoshop"],
+    image: "seaGlass.jpg?updatedAt=1714873646916",
+    text: (
+      <p>
+        Projection mapping a beach scene onto a sea glass mosaic. The video is
+        mapped to individual pieces of sea glass, giving the illusion that each
+        piece is a small, glowing screen
+      </p>
+    ),
+    link: "",
+    // extra: ExternalIconButton("/project/djello", true),
+    categories: [category.Installation],
+  },
+  {
     title: "DJELLO",
     date: "October-December 2023",
-    tools: ["Arduino", "MIDI", "C++", "Ableton Live", "Illustrator", "Womp 3D"],
+    tools: [
+      "Arduino",
+      "MIDI",
+      "C++",
+      "Ableton Live",
+      "Adobe Illustrator",
+      "Womp 3D",
+    ],
     image: "djello.png?updatedAt=1703728680851",
     text: (
       <p>

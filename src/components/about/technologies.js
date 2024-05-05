@@ -74,7 +74,14 @@ export default function TechnologiesSection() {
     "After Effects",
     "Figma",
   ])
-  const hosting = Item(["Heroku", "Netlify", "GitHub", "AWS", "Squarespace"])
+  const hosting = Item([
+    "Heroku",
+    "Netlify",
+    "GitHub",
+    "AWS",
+    "Squarespace",
+    "Google Apps Script",
+  ])
 
   const tabs = {
     Creative: creative,

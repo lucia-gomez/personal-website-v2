@@ -121,15 +121,20 @@ export default function ExperienceSection() {
     "https://itp.nyu.edu/itp/",
     "Sept 2023 - present",
     [
-      "Graduate Assistant",
+      "Web Developer",
       [
-        "Graduate teaching assistant for an NYU IMA class, ReCode",
-        "Helping undergraduate students learn about HTML/CSS, vanilla Javascript, and APIs",
+        "Launched a room reservation system for the NYU Media Commons",
+        "Working with React, Google Apps Script, Google Calendar + Sheets APIs",
       ],
       "Coding Lab Mentor",
       [
         "Holding weekly office hours to provide programming advice",
         "Working as a general resource for my peers with all levels of programming experience",
+      ],
+      "Graduate Assistant",
+      [
+        "Graduate teaching assistant for an NYU IMA class, ReCode",
+        "Helping undergraduate students learn about HTML/CSS, vanilla Javascript, and APIs",
       ],
     ]
   )
