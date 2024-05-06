@@ -8,7 +8,7 @@ export default function AdminDashboard() {
     <>
       <DashboardContentBlog />
       <DashboardContentPortfolio />
-      <DashboardContentImageKit />
+      {/* <DashboardContentImageKit /> */}
       <DashboardContentMailjet />
     </>
   )
