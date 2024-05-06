@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { animated, useSpring } from "@react-spring/web"
 
 import Col from "react-bootstrap/Col"
-import EditorFileUpload from "./editorFileUpload"
+// import EditorFileUpload from "./editorFileUpload"
 import Form from "react-bootstrap/Form"
 import Input from "../input"
 import Row from "react-bootstrap/Row"
@@ -190,7 +190,7 @@ export default function EditorForm(props) {
       </Collapsible>
       <ButtonRow>
         {getButtons(payload, isDraft, isNew, actions)}
-        <EditorFileUpload {...{ onUploadComplete, slug }} />
+        {/* <EditorFileUpload {...{ onUploadComplete, slug }} /> */}
       </ButtonRow>
     </div>
   )

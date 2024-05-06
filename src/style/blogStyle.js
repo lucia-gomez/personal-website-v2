@@ -118,6 +118,39 @@ const BlogStyle = styled.div`
       max-height: unset;
     }
   }
+
+  table img {
+    /* width: 100%; */
+    max-width: unset;
+    height: auto;
+    /* margin: auto; */
+  }
+
+  td {
+    padding: 4px;
+    /* width: 50%; */
+  }
+
+  /* This media query changes the layout when the screen width is less than 600px */
+  @media (max-width: 800px) {
+    table {
+      display: block;
+    }
+
+    tr {
+      display: block;
+    }
+
+    td {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+
+    image {
+      width: 100%;
+    }
+  }
 `
 
 export default BlogStyle
