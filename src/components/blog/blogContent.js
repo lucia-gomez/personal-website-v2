@@ -5,6 +5,9 @@ import { marked } from "marked"
 import tokenizer from "../../style/markdownTokenizer"
 
 require("prismjs/components/prism-bash")
+require("prismjs/components/prism-c")
+require("prismjs/components/prism-cpp")
+require("prismjs/components/prism-arduino")
 
 marked.setOptions({
   highlight: function (code, lang) {
