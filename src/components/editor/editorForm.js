@@ -149,28 +149,28 @@ export default function EditorForm(props) {
     _id: post?._id,
   }
 
-  const onUploadComplete = url => {
-    const textarea = document.getElementById("editor_md")
-    const cursorPosition = textarea.selectionStart
+  // const onUploadComplete = url => {
+  //   const textarea = document.getElementById("editor_md")
+  //   const cursorPosition = textarea.selectionStart
 
-    // insert media url at current cursor position
-    const newText =
-      textarea.value.substring(0, cursorPosition) +
-      url +
-      textarea.value.substring(cursorPosition)
+  //   // insert media url at current cursor position
+  //   const newText =
+  //     textarea.value.substring(0, cursorPosition) +
+  //     url +
+  //     textarea.value.substring(cursorPosition)
 
-    // Update the textarea value
-    textarea.value = newText
+  //   // Update the textarea value
+  //   textarea.value = newText
 
-    // Update the cursor position after the pasted text
-    textarea.setSelectionRange(
-      cursorPosition + url.length,
-      cursorPosition + url.length
-    )
+  //   // Update the cursor position after the pasted text
+  //   textarea.setSelectionRange(
+  //     cursorPosition + url.length,
+  //     cursorPosition + url.length
+  //   )
 
-    const inputEvent = new Event("input", { bubbles: true })
-    textarea.dispatchEvent(inputEvent)
-  }
+  //   const inputEvent = new Event("input", { bubbles: true })
+  //   textarea.dispatchEvent(inputEvent)
+  // }
 
   return (
     <div>
