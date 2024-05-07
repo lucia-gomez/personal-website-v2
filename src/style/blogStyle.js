@@ -90,7 +90,9 @@ const BlogStyle = styled.div`
   iframe + em,
   iframe + p > em:only-child,
   audio + em,
-  audio + p > em:only-child {
+  audio + p > em:only-child,
+  table + em,
+  table + p > em:only-child {
     color: ${props => props.theme.medium};
     display: block;
     max-width: 90%;
@@ -123,7 +125,7 @@ const BlogStyle = styled.div`
     /* width: 100%; */
     max-width: unset;
     height: auto;
-    /* margin: auto; */
+    margin: auto;
   }
 
   td {
