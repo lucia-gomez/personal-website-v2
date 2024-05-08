@@ -153,6 +153,17 @@ const BlogStyle = styled.div`
       width: 100%;
     }
   }
+
+  img.bom {
+    max-height: unset;
+    max-width: 80% !important;
+
+    @media screen and (max-width: 876px) {
+      width: 100%;
+      max-width: unset !important;
+      max-height: unset;
+    }
+  }
 `
 
 export default BlogStyle
