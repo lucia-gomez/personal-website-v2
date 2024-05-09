@@ -25,17 +25,11 @@ function scrollToElementWithOffset(element, offset) {
 
 export default function ScrollWithLink() {
   const { pathname, hash } = useLocation()
-  const isInitialMount = useRef(true)
   const previousPathname = useRef()
 
   useEffect(() => {
     // if navigated to a new page and url includes a hash anchor, scroll to it
     if (hash.length > 0 && pathname !== previousPathname.current) {
-      if (isInitialMount.current) {
-        isInitialMount.current = false
-        return
-      }
-
       const scroller = () =>
         scrollToElementWithOffset(
           document.getElementById(hash.substring(1)),
