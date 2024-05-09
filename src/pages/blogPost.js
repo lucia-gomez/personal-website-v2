@@ -3,7 +3,7 @@ import {
   BlogPostMetadataLarge,
 } from "../components/blog/blogPostMetadata"
 import { Navigate, useLocation, useParams } from "react-router-dom"
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import Back from "../components/blog/back"
 import BlogContent from "../components/blog/blogContent"
@@ -109,17 +109,7 @@ export default function BlogPostPage() {
   const [prevPostSlug, setPrevPostSlug] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  const isInitialMount = useRef(true)
-
   useEffect(() => {
-    if (!isInitialMount.current) {
-      if (location.hash.length > 0) {
-        return
-      }
-    } else {
-      isInitialMount.current = false
-    }
-
     setLoading(true)
     PostApi.getPost(slug)
       .then(res => {
