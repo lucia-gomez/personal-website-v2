@@ -83,7 +83,7 @@ export default function ArchivePage() {
         {featuredProjects.map((fp, idx) => (
           <FeaturedProject project={fp} key={idx} index={idx} />
         ))}
-        <SectionTitle>Project Archive</SectionTitle>
+        <SectionTitle id="archive">Project Archive</SectionTitle>
         <p>
           I've been documenting my projects for ~10 years. Some are good, some
           are not so good, but they're all here. Use the filters to help sift
@@ -95,8 +95,8 @@ export default function ArchivePage() {
       </div>
       <CardDeck id="card-deck">
         {results.length === 0 && <NoResults>No results</NoResults>}
-        {results.map(project => (
-          <PortfolioArchiveCard project={project} />
+        {results.map((project, idx) => (
+          <PortfolioArchiveCard project={project} key={idx} />
         ))}
       </CardDeck>
     </Grid>

@@ -105,6 +105,18 @@ const BlogStyle = styled.div`
   h4 {
     padding-top: 24px;
   }
+  h4 a {
+    color: ${props => props.theme.text};
+  }
+  h4 a:hover {
+    color: ${props => props.theme.acccentHover};
+    cursor: pointer;
+    :after {
+      display: inline-block;
+      padding-left: 4px;
+      content: "#";
+    }
+  }
   p > iframe {
     margin-bottom: -1rem;
   }
