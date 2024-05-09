@@ -90,7 +90,7 @@ const Title = styled.h5`
 const BlogPostLink = ({ post }) => {
   return (
     <Wrapper
-      to={`/blog/${post.slug}/`}
+      to={`/blog/${post.slug}`}
       data-test-id="blog-post-item"
       className="blog-post"
     >

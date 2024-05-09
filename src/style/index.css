@@ -1,6 +1,7 @@
 html {
   scrollbar-gutter: stable;
   overflow-y: overlay;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -16,6 +17,7 @@ body {
   font-style: normal;
   word-spacing: 1px;
   position: relative;
+  scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar {
@@ -34,6 +36,15 @@ h3 {
   font-family: "neue-haas-grotesk-text", sans-serif;
   font-weight: 700;
   font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  scroll-margin-top: 60px;
 }
 
 .animate__fadeIn {

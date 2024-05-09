@@ -17,7 +17,7 @@ import LandingPage from "./pages/landing"
 import Layout from "./components/layout/layout"
 import ProtectedRoute from "./components/layout/protectedRoute"
 import RisoWoodles from "./pages/projects/risoWoodles"
-import ScrollToTop from "./ScrollToTop"
+import ScrollWithLink from "./ScrollWithLink"
 import Shaders1 from "./pages/projects/shaders1"
 import Shaders31 from "./pages/projects/shaders3-1"
 import Shaders32 from "./pages/projects/shaders3-2"
@@ -36,7 +36,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Auth0ProviderWithHistory>
-        <ScrollToTop />
+        <ScrollWithLink />
         <Layout>
           <Routes>
             <Route path="*" element={<Error404 />} />
