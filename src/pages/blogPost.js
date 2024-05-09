@@ -2,7 +2,7 @@ import {
   BlogPostMetadata,
   BlogPostMetadataLarge,
 } from "../components/blog/blogPostMetadata"
-import { Navigate, useLocation, useParams } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 import React, { useEffect, useState } from "react"
 
 import Back from "../components/blog/back"
@@ -103,7 +103,6 @@ const BackWrapper = styled(Back)`
 export default function BlogPostPage() {
   const { isAuthenticated } = useAuth0()
   const { slug } = useParams()
-  const location = useLocation()
   const [post, setPost] = useState(null)
   const [nextPostSlug, setNextPostSlug] = useState(null)
   const [prevPostSlug, setPrevPostSlug] = useState(null)
@@ -125,7 +124,7 @@ export default function BlogPostPage() {
     PostApi.getPrevPost(slug).then(res => {
       setPrevPostSlug(res.data || null)
     })
-  }, [slug, location.key, location.hash])
+  }, [slug])
 
   if (post === null && !loading) {
     return <Navigate to="/404" />
