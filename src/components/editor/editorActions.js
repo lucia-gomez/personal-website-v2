@@ -77,7 +77,10 @@ const CloseDraftButton = (payload, setOpenDraft, handleCloseDraft) => {
 
 const UpdatePostButton = (payload, closeEditor) => {
   const onClick = async () =>
-    await PostApi.updatePost(payload).then(closeEditor)
+    await PostApi.updatePost(payload).then(() => {
+      closeEditor()
+      window.location.reload()
+    })
   return (
     <ButtonLinkAsync
       onClick={onClick}
