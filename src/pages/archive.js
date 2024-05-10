@@ -43,9 +43,9 @@ const NoResults = styled.p`
 `
 
 const featuredProjects = featuredProjectsFinder([
+  "VJELLO",
   "DJELLO",
   "Sign Search",
-  "Lights, Camera, Magnets",
 ])
 
 export default function ArchivePage() {

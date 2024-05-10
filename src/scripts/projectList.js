@@ -34,8 +34,10 @@ const projects = [
         resin printed enclosure.
       </p>
     ),
-    link: "",
-    // extra: ExternalIconButton("/project/djello", true),
+    link: "https://github.com/lucia-gomez/djelloPcb",
+    extra: ExternalIconButton(
+      "https://www.lucia-gomez.dev/blog/djello-2-electric-boogaloo"
+    ),
     categories: [category["Physical Computing"]],
   },
   {
@@ -52,13 +54,24 @@ const projects = [
     image: "vjello?updatedAt=1714848645641",
     text: (
       <p>
-        Interactive projection mapping onto large jello hemispheres. Users touch
-        the gelatinous interface to generate squishy visual effects and sounds.
+        Audiovisual interactive installation with projection mapping onto large
+        Jello hemispheres. Users touch the gelatinous interface to generate
+        bouncy visual effects and sounds that complement the materiality
       </p>
     ),
-    link: "",
-    // extra: ExternalIconButton("/project/djello", true),
+    link: "https://github.com/lucia-gomez/vjello",
+    extra: ExternalIconButton(
+      "https://www.lucia-gomez.dev/blog/expanding-my-jello-empire-vjello"
+    ),
     categories: [category["Physical Computing"], category.Installation],
+    featuredHasAudio: true,
+    featuredImageDesktop:
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/vjelloFeatured.mp4?updatedAt=1715384448014",
+    featuredImageMobile:
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/vjelloFeatured.mp4?updatedAt=1715384448014",
+    featuredLink:
+      "https://www.lucia-gomez.dev/blog/expanding-my-jello-empire-vjello",
+    featuredSameTab: true,
   },
   {
     title: "One Sharpie to Rule Them All",
@@ -72,8 +85,10 @@ const projects = [
         Made in collaboration with Isabel Wu
       </p>
     ),
-    link: "",
-    // extra: ExternalIconButton("/project/djello", true),
+    link: "https://github.com/lucia-gomez/one-sharpie-to-rule-them-all",
+    extra: ExternalIconButton(
+      "https://www.lucia-gomez.dev/blog/one-sharpie-to-rule-them-all"
+    ),
     categories: [category["Physical Computing"]],
   },
   {
