@@ -1,12 +1,15 @@
+import "react-loading-skeleton/dist/skeleton.css"
+
 import React, { useState } from "react"
 import { ThemeProvider, createGlobalStyle } from "styled-components"
+import { hexToRGB, themes } from "../../style/theme.js"
 
 import BackgroundSketch from "./backgroundSketch.js"
 import CustomNav from "./nav.js"
 import Footer from "./footer.js"
+import { SkeletonTheme } from "react-loading-skeleton"
 import SubscribeButtonPinned from "./subscribeButtonPinned.js"
 import styled from "styled-components"
-import { themes } from "../../style/theme.js"
 import { useLocation } from "react-router-dom"
 import usePageTracking from "../../scripts/usePageTracking.js"
 
@@ -70,18 +73,23 @@ export default function Layout(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle theme={theme} />
-      <CustomNav />
-      {!hideSubscribeButton() && <SubscribeButtonPinned />}
-      <main>
-        {children}
-        {showSketchBg() && (
-          <SketchWrapper>
-            <BackgroundSketch />
-          </SketchWrapper>
-        )}
-      </main>
-      {pathname !== "/" && <Footer />}
+      <SkeletonTheme
+        baseColor={hexToRGB(theme.medium, 0.03)}
+        highlightColor={hexToRGB(theme.medium, 0.01)}
+      >
+        <GlobalStyle theme={theme} />
+        <CustomNav />
+        {!hideSubscribeButton() && <SubscribeButtonPinned />}
+        <main>
+          {children}
+          {showSketchBg() && (
+            <SketchWrapper>
+              <BackgroundSketch />
+            </SketchWrapper>
+          )}
+        </main>
+        {pathname !== "/" && <Footer />}
+      </SkeletonTheme>
     </ThemeProvider>
   )
 }

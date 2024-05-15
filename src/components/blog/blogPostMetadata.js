@@ -2,6 +2,7 @@ import { FaCalendarDay } from "react-icons/fa"
 import Like from "./like"
 import Link from "../link"
 import ProfilePic from "../about/profilePic"
+import Skeleton from "react-loading-skeleton"
 import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
 
@@ -36,23 +37,41 @@ const Dot = styled.div`
 export function BlogPostMetadata({ post }) {
   return (
     <Row>
-      <ProfilePicBlog />
-      <div>
-        <p>Lucia Gomez</p>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <FaCalendarDay size="14px" />
-          <p style={{ marginLeft: "4px" }}>
-            {post.dateString.substring(0, post.dateString.indexOf(","))}
-          </p>
+      {post ? (
+        <ProfilePicBlog />
+      ) : (
+        <div>
+          <Skeleton circle={true} width="50px" height="50px" />
         </div>
-      </div>
-      <Dot />
-      <Like count={post != null ? post.likes : "--"} postID={post?._id} />
-      <Dot />
-      <Link to="/subscribe" sameTab={true} data-test-id="blog-post-subscribe">
-        <i className="fas fa-envelope" style={{ padding: "5px" }} />
-        Subscribe
-      </Link>
+      )}
+      {post ? (
+        <>
+          <div>
+            <p>Lucia Gomez</p>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <FaCalendarDay size="14px" />
+              <p style={{ marginLeft: "4px" }}>
+                {post.dateString.substring(0, post.dateString.indexOf(","))}
+              </p>
+            </div>
+          </div>
+          <Dot />
+          <Like count={post != null ? post.likes : "--"} postID={post?._id} />
+          <Dot />
+          <Link
+            to="/subscribe"
+            sameTab={true}
+            data-test-id="blog-post-subscribe"
+          >
+            <i className="fas fa-envelope" style={{ padding: "5px" }} />
+            Subscribe
+          </Link>
+        </>
+      ) : (
+        <div style={{ flex: 1, marginLeft: 20 }}>
+          <Skeleton width="50%" count={2} />
+        </div>
+      )}
     </Row>
   )
 }

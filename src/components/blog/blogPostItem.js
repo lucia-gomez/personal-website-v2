@@ -1,6 +1,7 @@
 import BlogPostItemMetadata from "./blogPostItemMetadata"
 import { Link } from "react-router-dom"
 import React from "react"
+import Skeleton from "react-loading-skeleton"
 import { blogPlaceholderImageUrl } from "../../scripts/util"
 import styled from "styled-components"
 
@@ -90,17 +91,21 @@ const Title = styled.h5`
 const BlogPostLink = ({ post }) => {
   return (
     <Wrapper
-      to={`/blog/${post.slug}`}
+      to={post ? `/blog/${post.slug}` : undefined}
       data-test-id="blog-post-item"
       className="blog-post"
     >
-      <ImageWrapper>
-        <Image image={post.imageUrl || blogPlaceholderImageUrl} />
-      </ImageWrapper>
+      {post ? (
+        <ImageWrapper>
+          <Image image={post?.imageUrl || blogPlaceholderImageUrl} />
+        </ImageWrapper>
+      ) : (
+        <Skeleton width="100%" height="100%" enableAnimation={false} />
+      )}
       <Body>
-        <BlogPostItemMetadata post={post} />
-        <Title>{post.title}</Title>
-        <p>{post.summary}</p>
+        {post && <BlogPostItemMetadata post={post} />}
+        {post ? <Title>{post.title}</Title> : <Skeleton />}
+        <p>{post?.summary || <Skeleton count={2} />}</p>
       </Body>
     </Wrapper>
   )

@@ -8,10 +8,10 @@ import React, { useEffect, useState } from "react"
 import Back from "../components/blog/back"
 import BlogContent from "../components/blog/blogContent"
 import BlogGradientBanner from "../components/blog/blogGradientBanner"
-import BlogLoading from "../components/blog/blogLoading"
 import BlogNavButtons from "../components/blog/blogNavButtons"
 import EditorPopup from "../components/editor/editorPopup"
 import { PostApi } from "../scripts/api"
+import Skeleton from "react-loading-skeleton"
 import { hexToRGB } from "../style/theme"
 import styled from "styled-components"
 import { useAuth0 } from "@auth0/auth0-react"
@@ -132,43 +132,42 @@ export default function BlogPostPage() {
 
   return (
     <BlogWrapper>
-      {!loading ? (
+      <Header>
+        <EditWrapper data-test-id="blog-post-edit-btn">
+          {isAuthenticated ? <EditorPopup post={post} /> : null}
+        </EditWrapper>
+        <HeaderImage post={post} />
+        <HeaderContent>
+          <BackWrapper link="/blog" data-test-id="blog-back-btn" />
+          <Title data-test-id="blog-post-title">
+            {post?.title || <Skeleton />}
+          </Title>
+          <BlogPostMetadata post={post} data-test-id="blog-post-metadata" />
+        </HeaderContent>
+      </Header>
+      <ContentWrapper>
         <>
-          <Header>
-            <EditWrapper data-test-id="blog-post-edit-btn">
-              {isAuthenticated ? <EditorPopup post={post} /> : null}
-            </EditWrapper>
-            <HeaderImage post={post} />
-            <HeaderContent>
-              <BackWrapper link="/blog" data-test-id="blog-back-btn" />
-              <Title data-test-id="blog-post-title">{post.title}</Title>
-
-              <BlogPostMetadata post={post} data-test-id="blog-post-metadata" />
-            </HeaderContent>
-          </Header>
-          <ContentWrapper>
-            <>
-              <Content className="animate__animated animate__fadeIn">
-                <BlogContent
-                  content={post.content}
-                  data-test-id="blog-post-content"
-                />
-                <BlogPostMetadataLarge post={post} />
-                <BlogNavButtons
-                  nextSlug={
-                    nextPostSlug != null ? `/blog/${nextPostSlug.slug}/` : null
-                  }
-                  prevSlug={
-                    prevPostSlug != null ? `/blog/${prevPostSlug.slug}/` : null
-                  }
-                />
-              </Content>
-            </>
-          </ContentWrapper>
+          <Content className="animate__animated animate__fadeIn">
+            {post ? (
+              <BlogContent
+                content={post.content}
+                data-test-id="blog-post-content"
+              />
+            ) : (
+              <Skeleton count={10} />
+            )}
+            {post && <BlogPostMetadataLarge post={post} />}
+            <BlogNavButtons
+              nextSlug={
+                nextPostSlug != null ? `/blog/${nextPostSlug.slug}/` : null
+              }
+              prevSlug={
+                prevPostSlug != null ? `/blog/${prevPostSlug.slug}/` : null
+              }
+            />
+          </Content>
         </>
-      ) : (
-        <BlogLoading />
-      )}
+      </ContentWrapper>
     </BlogWrapper>
   )
 }

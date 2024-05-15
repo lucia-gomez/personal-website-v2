@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react"
 
 import BlogFeaturedSection from "../components/blog/blogFeaturedSection"
-import BlogLoading from "../components/blog/blogLoading"
 import BlogPostLink from "../components/blog/blogPostItem"
 import BlogSearchBar from "../components/blog/blogSearchBar"
 import { PostApi } from "../scripts/api"
@@ -63,26 +62,31 @@ export default function BlogHomePage() {
   }
 
   const postsToShow = useCallback(() => {
+    if (loading) {
+      const numPlaceholderRows = Math.floor((window.innerHeight * 0.5) / 150)
+      const numPlaceholderColumns = Math.floor((window.innerWidth * 0.8) / 400)
+      return Array.from(Array(numPlaceholderRows * numPlaceholderColumns))
+    }
+
     if (isSearch) {
       return searchResults
     } else {
       return posts.slice(3)
     }
-  }, [isSearch, posts, searchResults])
+  }, [isSearch, loading, posts, searchResults])
 
   return (
     <>
       <TopSection>
-        {loading && <BlogLoading />}
-        {posts.length > 0 && <BlogFeaturedSection posts={posts} />}
-        {!loading && <BlogSearchBar searchPosts={searchPosts} />}
+        <BlogFeaturedSection {...{ loading, posts }} />
+        <BlogSearchBar {...{ loading, searchPosts }} />
       </TopSection>
       {!loading && searchResults.length === 0 ? (
         <p style={{ padding: "20px 0px 100px 16px" }}>No posts found</p>
       ) : (
         <Posts>
           {postsToShow().map((post, idx) => (
-            <BlogPostLink post={post} key={idx} />
+            <BlogPostLink {...{ post, loading }} key={idx} />
           ))}
         </Posts>
       )}

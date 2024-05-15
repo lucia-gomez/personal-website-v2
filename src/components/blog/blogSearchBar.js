@@ -1,4 +1,5 @@
 import SearchBar from "../searchBar"
+import Skeleton from "react-loading-skeleton"
 import styled from "styled-components"
 import { useInView } from "react-intersection-observer"
 
@@ -9,10 +10,7 @@ const Wrapper = styled.div`
   &.hidden {
     visibility: hidden;
   }
-`
 
-const Search = styled(SearchBar)`
-  padding: 4px;
   width: 25%;
 
   @media screen and (max-width: 870px) {
@@ -24,7 +22,11 @@ const Search = styled(SearchBar)`
   }
 `
 
-export default function BlogSearchBar({ searchPosts }) {
+const Search = styled(SearchBar)`
+  padding: 4px;
+`
+
+export default function BlogSearchBar({ searchPosts, loading = false }) {
   const { ref, inView } = useInView({
     triggerOnce: true,
     rootMargin: "-200px 0px",
@@ -37,7 +39,11 @@ export default function BlogSearchBar({ searchPosts }) {
 
   return (
     <Wrapper className={`animate__animated ${getClassName()}`} ref={ref}>
-      <Search callback={searchPosts} placeholder="Ex: React, 3D" />
+      {loading ? (
+        <Skeleton />
+      ) : (
+        <Search callback={searchPosts} placeholder="Ex: React, 3D" />
+      )}
     </Wrapper>
   )
 }

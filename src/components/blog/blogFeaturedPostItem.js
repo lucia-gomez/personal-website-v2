@@ -1,6 +1,7 @@
 import BlogGradientBanner from "./blogGradientBanner"
 import BlogPostItemMetadata from "./blogPostItemMetadata"
 import { Link } from "react-router-dom"
+import Skeleton from "react-loading-skeleton"
 import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
 import { useInView } from "react-intersection-observer"
@@ -76,17 +77,17 @@ export function BlogFeaturedPostItem({
   return (
     <Wrapper
       className={`${className} animate__animated ${getClassName()} blog-post`}
-      to={`/blog/${post.slug}`}
+      to={post ? `/blog/${post.slug}` : undefined}
       ref={ref}
       data-test-id="blog-featured-post-item"
     >
       <BlogGradientBanner post={post} />
       <Body>
         <Text>
-          <h1>{post.title}</h1>
-          <p>{post.summary}</p>
+          <h1>{post?.title || <Skeleton />}</h1>
+          <p>{post?.summary || <Skeleton count={3} />}</p>
         </Text>
-        <Metadata post={post} />
+        {post && <Metadata post={post} />}
       </Body>
       {children}
     </Wrapper>

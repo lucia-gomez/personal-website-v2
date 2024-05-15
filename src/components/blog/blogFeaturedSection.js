@@ -29,17 +29,21 @@ const SecondaryWrapper = styled.div`
   }
 `
 
-export default function BlogFeaturedSection({ posts }) {
+export default function BlogFeaturedSection({ loading, posts }) {
+  const showFirst = loading || posts.length > 0
+  const showSecond = loading || posts.length > 1
+  const showThird = loading || posts.length > 2
+
   return (
     <Wrapper>
-      {posts.length > 0 && (
-        <BlogFeaturedPostItem post={posts[0]}>
-          <BlogBadge>Latest</BlogBadge>
+      {showFirst && (
+        <BlogFeaturedPostItem post={posts[0] ?? null}>
+          {posts[0] && <BlogBadge>Latest</BlogBadge>}
         </BlogFeaturedPostItem>
       )}
       <SecondaryWrapper>
-        {posts.length > 1 && <SecondaryBlogFeaturedPostItem post={posts[1]} />}
-        {posts.length > 2 && <SecondaryBlogFeaturedPostItem post={posts[2]} />}
+        {showSecond && <SecondaryBlogFeaturedPostItem post={posts[1]} />}
+        {showThird && <SecondaryBlogFeaturedPostItem post={posts[2]} />}
       </SecondaryWrapper>
     </Wrapper>
   )

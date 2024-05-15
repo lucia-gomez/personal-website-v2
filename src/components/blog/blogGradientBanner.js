@@ -1,3 +1,4 @@
+import Skeleton from "react-loading-skeleton"
 import { blogPlaceholderImageUrl } from "../../scripts/util"
 import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
@@ -25,6 +26,15 @@ const Gradient = styled.div.attrs(_ => ({
       transparent 100%
     );
   }
+`
+
+const SkeletonWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
 `
 
 const ImageWrapper = styled.div.attrs(_ => ({
@@ -68,10 +78,18 @@ const Image = styled.div.attrs(_ => ({
 `
 
 export default function BlogGradientBanner({ post, className }) {
+  if (post == null) {
+    return (
+      <SkeletonWrapper>
+        <Skeleton width="100%" height="100%" enableAnimation={false} />
+      </SkeletonWrapper>
+    )
+  }
+
   return (
     <Gradient className={className}>
       <ImageWrapper>
-        <Image image={post.imageUrl || blogPlaceholderImageUrl} />
+        <Image image={post?.imageUrl || blogPlaceholderImageUrl} />
       </ImageWrapper>
     </Gradient>
   )
