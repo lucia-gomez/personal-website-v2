@@ -48,7 +48,7 @@ export default function FeaturedProjectActionButton(props) {
       idx={index}
       className={className}
     >
-      <i className="material-icons">launch</i>
+      <i className="fas fa-external-link-alt"></i>
     </RoundActionButton>
   )
 }

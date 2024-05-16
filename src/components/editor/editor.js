@@ -7,11 +7,10 @@ import EditorForm from "./editorForm"
 import MdEditor from "react-markdown-editor-lite"
 import { marked } from "marked"
 import styled from "styled-components"
+import throttle from "lodash/throttle"
 import tokenizer from "../../style/markdownTokenizer"
 
 marked.use({ tokenizer })
-
-const lodash = require("lodash")
 
 const Grid = styled.div`
   display: grid;
@@ -43,7 +42,7 @@ export default function Editor(props) {
     handleCloseDraft: () => setEditorContent(""),
   }
   const autoSaveDebounced = useRef(
-    lodash.throttle((payload, newContent) => {
+    throttle((payload, newContent) => {
       if (payload == null) {
         const btn = document.getElementById("editor-create-draft")
         if (btn != null && !btn.disabled) {

@@ -25,7 +25,7 @@ export default function ToadARPage() {
     <Wrapper>
       <SectionTitle>Toad AR Effect</SectionTitle>
       <Text>
-        Thanks for reading <i>Let's Normalize Screaming Like Toad</i>. To get
+        Thanks for reading <em>Let's Normalize Screaming Like Toad</em>. To get
         the full experience, try out the AR effect in Instagram. You'll need a
         physical copy of the zine for this
       </Text>

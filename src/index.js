@@ -1,13 +1,13 @@
 import "./style/index.css"
+import "./style/animate.css"
 
 import App from "./App"
 import React from "react"
 import { createRoot } from "react-dom/client"
-
-const _ = require("lodash")
+import debounce from "lodash/debounce"
 
 function updateDocumentHeight() {
-  const debounceResize = _.debounce(() => {
+  const debounceResize = debounce(() => {
     document.documentElement.style.setProperty(
       "--doc-height",
       `${window.innerHeight}px`

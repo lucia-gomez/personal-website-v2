@@ -1,14 +1,13 @@
 import React, { useRef, useState } from "react"
 
 import Input from "./input"
-
-const _ = require("lodash")
+import debounce from "lodash/debounce"
 
 const SearchBar = ({ callback, placeholder, className }) => {
   const [isFocused, setFocused] = useState(false)
   const [isHovered, setHovered] = useState(false)
   const debouncedCallback = useRef(
-    _.debounce(arg => {
+    debounce(arg => {
       callback(arg)
     }, 200)
   ).current

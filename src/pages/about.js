@@ -55,11 +55,6 @@ const ProfileIconRow = styled.div`
   p {
     margin-bottom: 0px;
   }
-
-  .material-icons {
-    color: var(--color-text);
-    margin-right: 5px;
-  }
 `
 
 function ProfileInfo(icon, text) {

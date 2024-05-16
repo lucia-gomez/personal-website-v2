@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components"
 
 import { hexToRGB } from "./theme"
+import { useEffect } from "react"
 
 const ul = css`
   padding-left: 0px;
@@ -45,7 +46,7 @@ const blockquote = css`
   }
 `
 
-const BlogStyle = styled.div`
+const BlogStyleWrapper = styled.div`
   padding-bottom: 20px;
   ul {
     ${ul}
@@ -178,5 +179,24 @@ const BlogStyle = styled.div`
   }
 `
 
-export default BlogStyle
+export default function BlogStyle(props) {
+  useEffect(() => {
+    if (props.syntaxHighlight !== true) {
+      return
+    }
+
+    const link = document.createElement("link")
+    link.rel = "stylesheet"
+    link.href =
+      "https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.5.0/prism-material-dark.min.css"
+    document.head.appendChild(link)
+
+    // Cleanup function to remove the link when the component is unmounted
+    return () => {
+      document.head.removeChild(link)
+    }
+  }, [props.syntaxHighlight])
+
+  return <BlogStyleWrapper>{props.children}</BlogStyleWrapper>
+}
 export { ul, li, a, blockquote }

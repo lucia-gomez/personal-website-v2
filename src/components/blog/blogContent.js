@@ -1,6 +1,7 @@
+import React, { useMemo } from "react"
+
 import BlogStyle from "../../style/blogStyle"
 import Prism from "prismjs"
-import React from "react"
 import { marked } from "marked"
 import tokenizer from "../../style/markdownTokenizer"
 
@@ -38,9 +39,12 @@ marked.use({ tokenizer })
 
 const BlogContent = props => {
   const { content } = props
+
+  const parsedHtml = useMemo(() => marked.parse(content), [content])
+
   return (
-    <BlogStyle {...props}>
-      <div dangerouslySetInnerHTML={{ __html: marked.parse(content) }} />
+    <BlogStyle syntaxHighlight={parsedHtml.includes("<pre>")} {...props}>
+      <div dangerouslySetInnerHTML={{ __html: parsedHtml }} />
     </BlogStyle>
   )
 }

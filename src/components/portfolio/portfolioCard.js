@@ -78,7 +78,6 @@ const Body = styled.div`
 
 const Title = styled.h4`
   margin: 0;
-  padding-bottom: 12px;
 `
 
 const Date = styled.div`
@@ -104,6 +103,8 @@ const ToolChip = styled.p`
 
 const ButtonRow = styled.div`
   display: flex;
+  align-items: center;
+  padding-bottom: 12px;
 
   button {
     margin: 0px 8px 8px 0px;

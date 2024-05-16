@@ -1,11 +1,7 @@
 import { IconButtonLink } from "../iconButton"
 import styled from "styled-components"
 
-const GitLink = styled(IconButtonLink)`
-  margin-bottom: 0.5rem;
-  margin-top: -2px;
-  font-size: 20px;
-`
+const GitLink = styled(IconButtonLink)``
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,9 +11,7 @@ const Wrapper = styled.div`
 export default function PortfolioCardButtons({ git, extra, className }) {
   const githubIcon = git ? (
     <GitLink href={git ?? ""}>
-      <div className="material-icons">
-        <i className="fa fa-github"></i>
-      </div>
+      <i className="fa fa-github"></i>
     </GitLink>
   ) : null
 

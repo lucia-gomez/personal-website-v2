@@ -18,6 +18,7 @@ body {
   word-spacing: 1px;
   position: relative;
   scroll-behavior: smooth;
+  line-height: 1.5;
 }
 
 ::-webkit-scrollbar {
@@ -32,29 +33,31 @@ body {
 
 h1,
 h2,
+h3,
+h4,
+h5,
+h6 {
+  scroll-margin-top: 60px;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+h1,
+h2,
 h3 {
   font-family: "neue-haas-grotesk-text", sans-serif;
   font-weight: 700;
   font-style: normal;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  scroll-margin-top: 60px;
-}
-
-.animate__fadeIn {
-  animation-fill-mode: backwards;
-  -webkit-animation-fill-mode: backwards;
-}
-
-.animate__zoomIn {
-  animation-fill-mode: backwards;
-  -webkit-animation-fill-mode: backwards;
+i {
+  font-weight: normal;
+  font-style: normal;
+  font-size: 22px;
+  line-height: 1;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
 }
 
 /* ReactBootstrap modal animation override */
@@ -73,7 +76,7 @@ h6 {
 /* prismjs theme override */
 code[class*="language-"],
 pre[class*="language-"] {
-  background: unset;
+  background: unset !important;
 }
 
 .custom-html-style {

@@ -21,16 +21,10 @@ export const IconButtonLink = styled(Link)`
   display: inline;
 `
 
-const ExternalWrapper = styled(IconButtonLink)`
-  i {
-    font-size: 26px;
-  }
-`
-
 export default function ExternalIconButton(link, sameTab = false) {
   return (
-    <ExternalWrapper href={link ?? ""} key={link} sameTab={sameTab}>
-      <i className="material-icons">launch</i>
-    </ExternalWrapper>
+    <IconButtonLink href={link ?? ""} key={link} sameTab={sameTab}>
+      <i className="fas fa-external-link-alt" />
+    </IconButtonLink>
   )
 }
