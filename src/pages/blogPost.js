@@ -47,6 +47,8 @@ const Header = styled.div`
   height: fit-content;
   margin-bottom: 20px;
   text-shadow: 0 0 20px ${props => props.theme.bg};
+  display: flex;
+  flex-direction: row;
 
   @media screen and (min-width: 576px) {
     min-height: 310px;
@@ -71,14 +73,15 @@ const HeaderImage = styled(BlogGradientBanner)`
 `
 
 const HeaderContent = styled.div`
-  width: 50%;
-  padding: 20px;
-  position: absolute;
-  bottom: 0;
+  align-self: flex-end;
+  margin: 0px auto;
+  width: 70%;
+  padding: 20px 0px;
 
   @media screen and (max-width: 576px) {
     width: 100%;
     position: relative;
+    padding: 20px;
   }
 `
 
