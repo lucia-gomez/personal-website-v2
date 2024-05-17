@@ -57,11 +57,11 @@ app.use("/api/email", subscribeRoutes)
 const imageKitRoutes = require("./routes/imageKitRoutes")
 app.use("/api/image", imageKitRoutes)
 
-app.use(express.static(path.join(__dirname, "build")))
-app.get("*", (req, res) => {
-  console.log("here")
-  res.sendFile(path.join(__dirname, "build", "index.html"))
-})
+// app.use(express.static(path.join(__dirname, "build")))
+// app.get("*", (req, res) => {
+//   console.log("here")
+//   res.sendFile(path.join(__dirname, "build", "index.html"))
+// })
 
 const PORT = 3001
 app.listen(process.env.PORT || PORT, () => {
