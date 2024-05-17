@@ -4,6 +4,7 @@ const webpack = require("webpack")
 // const BundleAnalyzerPlugin =
 //   require("webpack-bundle-analyzer").BundleAnalyzerPlugin
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const CopyWebpackPlugin = require("copy-webpack-plugin")
 
 dotenv.config()
 
@@ -53,6 +54,17 @@ module.exports = {
     // new BundleAnalyzerPlugin(),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "public",
+          to: "",
+          globOptions: {
+            ignore: ["**/index.html"],
+          },
+        },
+      ],
     }),
   ],
   optimization: {
