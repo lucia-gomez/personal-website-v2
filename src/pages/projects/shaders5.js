@@ -1,3 +1,4 @@
+import React from "react"
 import SectionTitle from "../../components/sectionTitle"
 import styled from "styled-components"
 

@@ -1,6 +1,7 @@
 import BlogGradientBanner from "./blogGradientBanner"
 import BlogPostItemMetadata from "./blogPostItemMetadata"
 import { Link } from "react-router-dom"
+import React from "react"
 import Skeleton from "react-loading-skeleton"
 import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"

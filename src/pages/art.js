@@ -1,10 +1,10 @@
 import { Link as LinkRouter, useNavigate, useParams } from "react-router-dom"
+import React, { useEffect, useMemo, useState } from "react"
 import artList, {
   getArtBySlug,
   getNextArtSlug,
   getPreviousArtSlug,
 } from "../scripts/artList"
-import { useEffect, useMemo, useState } from "react"
 
 import ArtItem from "../components/art/artItem"
 import ArtModal from "../components/art/artModal"

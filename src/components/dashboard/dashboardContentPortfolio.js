@@ -1,7 +1,8 @@
+import React, { useState } from "react"
+
 import { DashboardCardBigNumber } from "./dashboardCard"
 import DashboardCardRow from "./dashboardCardRow"
 import projects from "../../scripts/projectList"
-import { useState } from "react"
 
 export default function DashboardContentPortfolio() {
   const [currentYear] = useState(new Date().getFullYear())

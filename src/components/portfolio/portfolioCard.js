@@ -1,5 +1,6 @@
-import { FaCalendarDay } from "react-icons/fa"
+import { FaCalendarDay } from "react-icons/fa/index.esm.js"
 import PortfolioCardButtons from "./portfolioCardButtons"
+import React from "react"
 import styled from "styled-components"
 
 const Wrapper = styled.div`

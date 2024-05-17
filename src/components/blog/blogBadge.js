@@ -1,3 +1,4 @@
+import React from "react"
 import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
 

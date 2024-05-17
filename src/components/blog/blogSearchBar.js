@@ -1,3 +1,4 @@
+import React from "react"
 import SearchBar from "../searchBar"
 import Skeleton from "react-loading-skeleton"
 import styled from "styled-components"

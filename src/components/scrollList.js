@@ -1,6 +1,6 @@
+import React, { useMemo, useRef, useState } from "react"
 import { animated, useTransition } from "@react-spring/web"
 import styled, { css } from "styled-components"
-import { useMemo, useRef, useState } from "react"
 
 import { hexToRGB } from "../style/theme"
 import { useInView } from "react-intersection-observer"

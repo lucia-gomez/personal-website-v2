@@ -1,3 +1,4 @@
+import React from "react"
 import SubscribeForm from "../components/email/subscribeForm"
 import styled from "styled-components"
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import DashboardCardPercentage from "./dashboardCardPercentage"
 import { ImageKitApi } from "../../scripts/api"

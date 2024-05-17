@@ -1,3 +1,4 @@
+import React from "react"
 import { RoundButton } from "../button"
 
 export default function SubscribeButtonPinned() {

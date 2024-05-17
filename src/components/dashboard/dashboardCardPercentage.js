@@ -1,5 +1,6 @@
 import { CardStyle } from "./dashboardCard"
 import DashboardPercentageArc from "./dashboardPercentageArc"
+import React from "react"
 import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
 

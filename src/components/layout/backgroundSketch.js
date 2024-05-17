@@ -1,4 +1,5 @@
 import InteractiveDrawing from "../interactiveDrawing"
+import React from "react"
 import styled from "styled-components"
 
 const DrawingWrapper = styled.div`

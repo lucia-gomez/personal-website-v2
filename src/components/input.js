@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components"
 
 import Form from "react-bootstrap/Form"
+import React from "react"
 import { hexToRGB } from "../style/theme"
 
 const placeholderStyle = css`

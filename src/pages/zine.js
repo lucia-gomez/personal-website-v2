@@ -1,10 +1,10 @@
 import { Navigate, useParams } from "react-router-dom"
+import React, { useEffect, useRef, useState } from "react"
 import {
   getNextZineSlug,
   getPreviousZineSlug,
   getZineBySlug,
 } from "../scripts/zineList"
-import { useEffect, useRef, useState } from "react"
 
 import Back from "../components/blog/back"
 import BlogLoading from "../components/blog/blogLoading"

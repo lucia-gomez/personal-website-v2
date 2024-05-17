@@ -1,5 +1,6 @@
 import FeaturedVideo from "./featuredProjectVideo"
 import FeaturedVideoCaption from "./featuredProjectCaption"
+import React from "react"
 import styled from "styled-components"
 import { useInView } from "react-intersection-observer"
 import { useRef } from "react"

@@ -1,8 +1,8 @@
 import "swiper/css"
 import "swiper/css/pagination"
 
+import React, { useEffect, useRef } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { useEffect, useRef } from "react"
 
 import { Pagination } from "swiper"
 import styled from "styled-components"

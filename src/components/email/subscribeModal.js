@@ -1,5 +1,6 @@
 import Modal from "react-bootstrap/Modal"
 import ModalWrapper from "../modalPopup"
+import React from "react"
 import SubscribeForm from "./subscribeForm"
 
 export default function SubscribeModal({ isShowing, handleClose }) {

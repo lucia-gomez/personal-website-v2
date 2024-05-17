@@ -1,3 +1,4 @@
+import React from "react"
 import { profilePicUrl } from "../../scripts/util"
 import styled from "styled-components"
 

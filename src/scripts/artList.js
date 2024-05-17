@@ -1,6 +1,7 @@
 import BallonDogModel from "../components/art/models/balloonDogModel"
 import { HeartFaceEmojiModel } from "../components/art/models/heartFaceEmoji"
 import Link from "../components/link"
+import React from "react"
 import ReverseLavaLampModel from "../components/art/models/reverseLavaLampModel"
 import RingpopModel from "../components/art/models/ringpopModel"
 

@@ -1,3 +1,4 @@
+import React from "react"
 import Spinner from "../spinner"
 import styled from "styled-components"
 
@@ -12,7 +13,7 @@ const LoadingWrapper = styled.div`
 export default function BlogLoading(props) {
   return (
     <LoadingWrapper className={props.className}>
-      <Spinner />
+      {/* <Spinner /> */}
     </LoadingWrapper>
   )
 }

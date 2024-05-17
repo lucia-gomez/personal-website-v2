@@ -1,19 +1,25 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import React, { Suspense, lazy } from "react"
 
-import About from "./pages/about"
-import ArchivePage from "./pages/archive"
+// import About from "./pages/about"
+// import ArchivePage from "./pages/archive"
 import Auth0ProviderWithHistory from "./components/layout/auth0-provider-with-history"
-import BlogHomePage from "./pages/blog"
+// import BlogHomePage from "./pages/blog"
 import BlogLoading from "./components/blog/blogLoading"
-import BlogPostPage from "./pages/blogPost"
+// import BlogPostPage from "./pages/blogPost"
 import Error404 from "./pages/404"
 import LandingPage from "./pages/landing"
 import Layout from "./components/layout/layout"
 import ProtectedRoute from "./components/layout/protectedRoute"
 import ScrollWithLink from "./ScrollWithLink"
-import WordpressRedirect from "./pages/wordpress"
-import ZinePage from "./pages/zine"
+
+// import WordpressRedirect from "./pages/wordpress"
+// import ZinePage from "./pages/zine"
+
+const About = lazy(() => import("./pages/about"))
+const ArchivePage = lazy(() => import("./pages/archive"))
+const BlogHomePage = lazy(() => import("./pages/blog"))
+const BlogPostPage = lazy(() => import("./pages/blogPost"))
 
 const Admin = lazy(() => import("./pages/admin"))
 const AdminBlog = lazy(() => import("./pages/adminBlog"))
@@ -30,13 +36,16 @@ const ThreeDObjectPage = lazy(() => import("./pages/projects/3dModel"))
 const ThreeJsObjectPage = lazy(() => import("./pages/projects/3dModel"))
 const ToadARPage = lazy(() => import("./pages/projects/toadAR"))
 const DJello = lazy(() => import("./pages/projects/djello"))
+const ZinePage = lazy(() => import("./pages/zine"))
 
-const Shaders1 = lazy(() => import("./pages/projects/shaders1"))
-const Shaders31 = lazy(() => import("./pages/projects/shaders3-1"))
+// const Shaders1 = lazy(() => import("./pages/projects/shaders1"))
+// const Shaders31 = lazy(() => import("./pages/projects/shaders3-1"))
 const Shaders32 = lazy(() => import("./pages/projects/shaders3-2"))
 const Shaders4 = lazy(() => import("./pages/projects/shaders4"))
 const Shaders5 = lazy(() => import("./pages/projects/shaders5"))
 const Shaders6 = lazy(() => import("./pages/projects/shaders6"))
+
+const WordpressRedirect = lazy(() => import("./pages/wordpress"))
 
 export default function App() {
   return (
@@ -103,14 +112,14 @@ export default function App() {
               ></Route>
               <Route path="/toad-ar" element={<ToadARPage />}></Route>
               <Route path="/project/djello" element={<DJello />}></Route>
-              <Route
+              {/* <Route
                 path="/project/shaders/week1"
                 element={<Shaders1 />}
-              ></Route>
-              <Route
+              ></Route> */}
+              {/* <Route
                 path="/project/shaders/week3-1"
                 element={<Shaders31 />}
-              ></Route>
+              ></Route> */}
               <Route
                 path="/project/shaders/week3-2"
                 element={<Shaders32 />}

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import styled, { css } from "styled-components"
 
-import { FaInstagram } from "react-icons/fa"
+import { FaInstagram } from "react-icons/fa/index.esm.js"
 import React from "react"
 
 const buttonStyle = css`

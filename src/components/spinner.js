@@ -1,3 +1,4 @@
+import React from "react"
 import SpinnerBootstrap from "react-bootstrap/Spinner"
 
 export default function Spinner() {

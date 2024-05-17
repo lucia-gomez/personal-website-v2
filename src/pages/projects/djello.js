@@ -1,7 +1,8 @@
+import React, { useMemo } from "react"
+
 import SectionTitle from "../../components/sectionTitle"
 import { featuredProjects } from "../../scripts/projectList"
 import styled from "styled-components"
-import { useMemo } from "react"
 
 const Wrapper = styled.div`
   padding: 56px 20px 50px 20px;

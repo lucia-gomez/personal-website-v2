@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react"
 
+import React from "react"
+
 export default function InteractiveDrawing() {
   const canvasRef = useRef()
   const p5Instance = useRef()

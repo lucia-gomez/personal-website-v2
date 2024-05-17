@@ -1,6 +1,7 @@
+import React, { useState } from "react"
+
 import { Button } from "../button"
 import SubscribeModal from "./subscribeModal"
-import { useState } from "react"
 
 export default function SubscribeButton(props) {
   const [showModal, setShowModal] = useState(false)

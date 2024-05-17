@@ -1,3 +1,4 @@
+import React from "react"
 import Skeleton from "react-loading-skeleton"
 import { blogPlaceholderImageUrl } from "../../scripts/util"
 import { hexToRGB } from "../../style/theme"

@@ -1,18 +1,23 @@
 import { Canvas, useLoader } from "@react-three/fiber"
 import { Navigate, useParams } from "react-router-dom"
 import { OrbitControls, Stage } from "@react-three/drei"
-import { useEffect, useState } from "react"
+import React, { lazy, useEffect, useState } from "react"
 
 import Back from "../../components/blog/back"
 import BlogLoading from "../../components/blog/blogLoading"
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
-import React from "react"
+// import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import SectionTitle from "../../components/sectionTitle"
 import { Suspense } from "react"
 import { getArtBySlug } from "../../scripts/artList"
 import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
 import { useGLTF } from "@react-three/drei"
+
+const GLTFLoader = lazy(() =>
+  import("three/examples/jsm/loaders/GLTFLoader").then(module => ({
+    default: module.GLTFLoader,
+  }))
+)
 
 function ThreeJsMesh({ meshSrc }) {
   const gltf = useLoader(GLTFLoader, meshSrc)

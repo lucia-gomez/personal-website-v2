@@ -1,6 +1,7 @@
 import Delete from "./delete"
-import { FaCalendarDay } from "react-icons/fa"
+import { FaCalendarDay } from "react-icons/fa/index.esm.js"
 import Like from "./like"
+import React from "react"
 import styled from "styled-components"
 import { useAuth0 } from "@auth0/auth0-react"
 

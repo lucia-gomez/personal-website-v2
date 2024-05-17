@@ -1,4 +1,4 @@
-import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa"
+import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa/index.esm.js"
 import { Link, useLocation } from "react-router-dom"
 
 import { Button } from "../button"

@@ -1,4 +1,5 @@
 import { Toast as BootstrapToast } from "react-bootstrap"
+import React from "react"
 import { hexToRGB } from "../style/theme"
 import styled from "styled-components"
 

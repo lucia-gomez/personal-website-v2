@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components"
 
+import React from "react"
 import { hexToRGB } from "./theme"
 import { useEffect } from "react"
 

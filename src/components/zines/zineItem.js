@@ -1,5 +1,6 @@
 import ArtItem from "../art/artItem"
 import { Link } from "react-router-dom"
+import React from "react"
 import styled from "styled-components"
 
 const LinkWrapper = styled(Link)`

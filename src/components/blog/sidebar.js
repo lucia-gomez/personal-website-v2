@@ -1,6 +1,7 @@
 import Like from "./like"
 import Link from "../link"
 import ProfilePic from "../about/profilePic"
+import React from "react"
 import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
 

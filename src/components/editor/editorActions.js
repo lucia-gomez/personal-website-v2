@@ -2,6 +2,7 @@ import { Button, ButtonLinkAsync } from "../button"
 import { DraftApi, LikeApi, PostApi } from "../../scripts/api"
 
 import Delete from "../blog/delete"
+import React from "react"
 
 const isButtonValid = payload => {
   const isValid = x => x !== undefined && x.length > 0

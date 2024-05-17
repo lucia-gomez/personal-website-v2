@@ -1,5 +1,7 @@
 import styled, { css } from "styled-components"
 
+import React from "react"
+
 const Wrapper = styled.div`
   width: 100%;
   color: ${props => props.theme.text};
