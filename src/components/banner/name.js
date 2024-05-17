@@ -47,7 +47,7 @@ export default function Name() {
   return (
     <Wrapper>
       <Title className="animate__animated animate__fadeInDown">
-        Lucia Gomez
+        Test Branch
       </Title>
       <JobTitle className="animate__animated animate__fadeInUp">
         Creative Technologist
