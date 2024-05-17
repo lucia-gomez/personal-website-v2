@@ -1,8 +1,8 @@
 const path = require("path")
 const dotenv = require("dotenv")
 const webpack = require("webpack")
-const BundleAnalyzerPlugin =
-  require("webpack-bundle-analyzer").BundleAnalyzerPlugin
+// const BundleAnalyzerPlugin =
+//   require("webpack-bundle-analyzer").BundleAnalyzerPlugin
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 dotenv.config()
@@ -50,7 +50,7 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env": JSON.stringify(process.env), // Define environment variables
     }),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
