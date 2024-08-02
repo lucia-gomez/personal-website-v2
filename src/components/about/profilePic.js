@@ -15,8 +15,8 @@ const Wrapper = styled.div`
   border-radius: 300px;
   height: 15vw;
   width: 15vw;
-  max-height: 300px;
-  max-width: 300px;
+  max-height: 200px;
+  max-width: 200px;
   @media only screen and (max-width: 850px) {
     height: 40vw;
     width: 40vw;

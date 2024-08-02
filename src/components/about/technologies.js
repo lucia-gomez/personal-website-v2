@@ -45,11 +45,14 @@ export default function TechnologiesSection() {
     "Bootstrap",
     "Sass",
     "Materialize",
+    "Material UI",
   ])
-  const frameworks = Item(["React", "React Native", "Flutter"])
+  const frameworks = Item(["React", "React Native", "Next.js", "Flutter"])
   const backend = Item([
     "Express",
     "Flask",
+    "Firestore",
+    "Supabase",
     "MongoDB",
     "MySQL",
     "PostgreSQL",
@@ -62,12 +65,16 @@ export default function TechnologiesSection() {
     "OCaml",
     "Dart",
     "PHP",
-    "Arduino",
+    "C++/Arduino",
   ])
   const graphics = Item(["threeJS", "p5.js", "D3", "WebGL"])
   const creative = Item([
+    "Particle",
+    "Arduino",
     "Spark AR",
     "Blender",
+    "Fusion 360",
+    "Unreal Engine",
     "Womp 3D",
     "Max/MSP/Jitter",
     "Photoshop",
@@ -81,6 +88,7 @@ export default function TechnologiesSection() {
     "AWS",
     "Squarespace",
     "Google Apps Script",
+    "Google Cloud Platform",
   ])
 
   const tabs = {

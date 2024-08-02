@@ -73,7 +73,7 @@ export default function ExperienceSection() {
   )
 
   const meta = ExperienceItem(
-    "Software Engineer",
+    "Senior Software Engineer",
     "Meta",
     "https://www.metacareers.com/",
     "Aug 2021 - Aug 2023, June - Aug 2020, June - Aug 2019",
@@ -124,7 +124,7 @@ export default function ExperienceSection() {
       "Web Developer",
       [
         "Launched a room reservation system for the NYU Media Commons",
-        "Working with React, Google Apps Script, Google Calendar + Sheets APIs",
+        "Working with React, Material UI, Next.js, Firestore, Google App Engine, Google Calendar + Gmail APIs",
       ],
       "Coding Lab Mentor",
       [
@@ -139,7 +139,22 @@ export default function ExperienceSection() {
     ]
   )
 
+  const deeplocal = ExperienceItem(
+    "Creative Technology Intern",
+    "Deeplocal",
+    "https://www.deeplocal.com/",
+    "May - Aug 2024",
+    [
+      "Earned 224.7M+ in reach for White Claw brand via bespoke, high-tech coolers for sweepstakes and ad campaign",
+      "Owned full-stack web app, motion graphics, custom firmware, and Twilio API integration for White Claw coolers",
+      "Developed communication protocol between web app, Raspberry Pi, and Particle microcontrollers",
+      "Gauged feasibility of client asks via rapid prototyping product design: CAD, 3D printing, custom electronics",
+      "Brainstormed digital and physical interactive experiences to pitch to clients",
+    ]
+  )
+
   const tabs = {
+    Deeplocal: deeplocal,
     NYU: nyu,
     Meta: meta,
     "Juni Learning": juni,

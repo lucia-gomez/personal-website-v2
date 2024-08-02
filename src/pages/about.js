@@ -87,23 +87,23 @@ export default function About() {
       <div className="animate__animated animate__fadeIn">
         <Subsection title="About Me">
           <p>
-            I'm a first year graduate student and Web Developer at NYU Tisch's{" "}
+            I'm a second year graduate student and Web Developer at NYU Tisch's{" "}
             <Link href="https://itp.nyu.edu/itp/">
               Interactive Telecommunications Program
             </Link>
-            . My background is in software engineering but right now I'm focused
-            on
+            . My background is in software engineering but I'm transitioning
+            into more of a Creative Technologist role. I'm currently focused on
           </p>
           <ul>
             <li>Physical computing</li>
             <li>Interactive web experiences</li>
             <li>Jello ?!</li>
           </ul>
-          ...Or whatever shiny, new technology captures my interest tomorrow.
-          Before grad school, I studied Computer Science and Linguistics at
-          Cornell University, and was a Senior Software Engineer at Meta working
-          on AR glasses. I enjoy making use of my background in Linguistics;
-          I've always been interested in machine translation of American Sign
+          ...Or whatever crazy sh*t captures my interest tomorrow. Before grad
+          school, I studied Computer Science and Linguistics at Cornell
+          University, and was a Senior Software Engineer at Meta working on AR
+          glasses. I enjoy making use of my background in Linguistics; I've
+          always been interested combinations of emerging tech + American Sign
           Language.
           <br></br>
           <br></br>I have at least one ABBA song stuck in my head at any given
