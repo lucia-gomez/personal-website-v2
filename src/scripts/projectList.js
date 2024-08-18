@@ -15,6 +15,55 @@ const category = {
 
 const projects = [
   {
+    title: "White Claw's Claw™️ Cooler",
+    date: "May-August 2024",
+    tools: [
+      "Raspberry Pi",
+      "Particle",
+      "React",
+      "Express",
+      "Websocket",
+      "Google Cloud Platform",
+      "Supabase",
+      "Twilio",
+    ],
+    image: "clawCooler.jpg?updatedAt=1724004918710",
+    text: (
+      <p>
+        Summer internship project at{" "}
+        <Link to="https://www.deeplocal.com/">Deeplocal</Link> for the popular{" "}
+        <Link to="https://www.whiteclaw.com/">White Claw hard seltzer</Link>{" "}
+        brand. The Claw™️ Cooler is a high-tech, interactive cooler with Low
+        Claw Detection to text you a DoorDash code for more White Claw when its
+        running low. I developed the firmware, screen UI + motion graphics,
+        texting service, LED animations, and integration between all of these
+        components
+      </p>
+    ),
+    extra: ExternalIconButton("https://www.deeplocal.com/white-claw-cooler"),
+    categories: [category["Physical Computing"], category.Web],
+  },
+  {
+    title: "Slack Pager",
+    date: "July 2024",
+    tools: [
+      "Slackbot",
+      "Micropython",
+      "Raspberry Pi Pico",
+      "Autodesk Fusion 360",
+    ],
+    image: "slackPager.gif?updatedAt=1724006573543",
+    categories: [category["Physical Computing"]],
+    text: (
+      <p>
+        Rapid prototype to display Slack DMs in an old-school pager form factor.
+        The pager's LCD screen scrolls through incoming messages at a comically
+        slow pace, mixing modern and retro communication technology. Pressing
+        the pager's button dismisses the currently displayed text.
+      </p>
+    ),
+  },
+  {
     title: "DJELLO 2.0",
     date: "March-May 2024",
     tools: [
@@ -31,7 +80,7 @@ const projects = [
         2.0 is a musical, interactive serving platter for jello. Designed and
         fabricated a custom circuit board to encapsulate my{" "}
         <Link to="/project/djello">previous DJELLO project</Link>. Set in a 3D
-        resin printed enclosure.
+        resin printed enclosure
       </p>
     ),
     link: "https://github.com/lucia-gomez/djelloPcb",
@@ -90,6 +139,7 @@ const projects = [
       "https://www.lucia-gomez.dev/blog/one-sharpie-to-rule-them-all"
     ),
     categories: [category["Physical Computing"]],
+    centerImage: true,
   },
   {
     title: "Kaleidoscope Shader",
