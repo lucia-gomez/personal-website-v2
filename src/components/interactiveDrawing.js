@@ -68,7 +68,7 @@ function sketch(p5, parent) {
   let offsetX, offsetY
 
   p5.preload = () => {
-    img = p5.loadImage("aurora.jpg")
+    img = p5.loadImage("dots.jpg")
   }
 
   p5.setup = () => {
@@ -98,7 +98,7 @@ function sketch(p5, parent) {
     p5.noSmooth()
 
     // Initialize the cells array with color and position
-    for (let y = 0; y < img.height; y += 3 * pixelation) {
+    for (let y = 0; y < img.height * 0.75; y += 3 * pixelation) {
       for (let x = 0; x < img.width; x += 3 * pixelation) {
         let color = img.get(x + pixelation / 2, y + pixelation / 2)
         cells.push({ x, y, color, originalX: x, originalY: y })

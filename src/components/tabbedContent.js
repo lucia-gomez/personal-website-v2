@@ -64,7 +64,7 @@ const TabLink = styled(Nav.Link)`
   }
 
   &.nav-link.active {
-    color: ${props => props.theme.accent};
+    color: ${props => props.theme.text};
     background-color: ${props => hexToRGB(props.theme.medium, 0.5)};
   }
 `
