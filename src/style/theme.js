@@ -5,13 +5,13 @@ export const colors = {
 
 export const themes = {
   default: {
-    bg: "#101119",
-    medium: "#707793",
+    bg: "#070509",
+    medium: "#a1748c",
     text: colors.white,
     textInv: colors.black,
-    accent: "#1cbb80",
-    accentHover: "#6474E5",
-    accentLight: "#054a3a",
+    accent: "#d43d6b",
+    accentHover: "#dba42e",
+    accentLight: "#872040",
   },
 }
 

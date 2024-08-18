@@ -4,7 +4,7 @@ const Wrapper = styled.div`
   margin: 20px;
   animation-duration: 500ms;
   --webkit-animation-duration: 500ms;
-  filter: contrast(1.5);
+  filter: contrast(1.25);
 
   &.hidden {
     visibility: hidden;
@@ -34,8 +34,8 @@ const Wrapper = styled.div`
     left: 0;
     background: linear-gradient(
       ${props => (props.idx % 2 === 0 ? "to left bottom" : "to right bottom")},
-      ${props => props.theme.accentHover} 40%,
-      ${props => props.theme.accent} 90%
+      ${props => props.theme.accent} 40%,
+      ${props => props.theme.accentHover} 90%
     );
     opacity: 0.5;
     max-width: 70vw;

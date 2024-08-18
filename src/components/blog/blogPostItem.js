@@ -59,9 +59,8 @@ const ImageWrapper = styled.div`
     left: 0;
     background: linear-gradient(
       to left bottom,
-      ${props => props.theme.accentHover},
-      #0886ea,
-      ${props => props.theme.accent}
+      ${props => props.theme.accent},
+      ${props => props.theme.accentHover}
     );
     opacity: 0.5;
     filter: contrast(1.5);

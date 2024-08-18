@@ -63,8 +63,10 @@ export function BlogPostMetadata({ post }) {
             sameTab={true}
             data-test-id="blog-post-subscribe"
           >
-            <i className="fas fa-envelope" style={{ padding: "5px" }} />
-            Subscribe
+            <div style={{ display: "flex", alignItems: "flex-end" }}>
+              <i className="fas fa-envelope" style={{ paddingRight: "5px" }} />
+              Subscribe
+            </div>
           </Link>
         </>
       ) : (

@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   margin: 20px 20px 5px 20px;
   padding: 16px;
-  background-color: ${props => hexToRGB(props.theme.medium, 0.2)};
+  background-color: ${props => hexToRGB(props.theme.medium, 0.15)};
   border-radius: 5px;
 
   p {
