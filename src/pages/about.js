@@ -103,8 +103,8 @@ export default function About() {
           school, I studied Computer Science and Linguistics at Cornell
           University, and was a Senior Software Engineer at Meta working on AR
           glasses. I enjoy making use of my background in Linguistics; I've
-          always been interested combinations of emerging tech + American Sign
-          Language.
+          always been interested in combinations of emerging tech + American
+          Sign Language.
           <br></br>
           <br></br>I have at least one ABBA song stuck in my head at any given
           time.
