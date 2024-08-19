@@ -1,4 +1,3 @@
-import { FaGithub } from "react-icons/fa"
 import { NavLink } from "react-router-dom"
 import SectionTitle from "../../components/sectionTitle"
 import { loadShadersWeek3Part1 } from "./shaders"
@@ -46,7 +45,10 @@ export default function Shaders31() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaGithub size="36" />
+          <ion-icon
+            name="logo-github"
+            style={{ fontSize: 36, marginBottom: -8 }}
+          ></ion-icon>
         </NavLink>
       </Row>
 

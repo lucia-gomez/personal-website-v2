@@ -108,6 +108,15 @@ const projects = [
         bouncy visual effects and sounds that complement the materiality
       </p>
     ),
+    featuredText: (
+      <p>
+        An audiovisual interactive installation with projection mapping onto
+        large Jello hemispheres. Users touch the gelatinous interface to
+        generate bouncy visual effects and sounds that complement the
+        materiality. In this demo, users experimented with the duration of their
+        touch + combinations of color and sound
+      </p>
+    ),
     link: "https://github.com/lucia-gomez/vjello",
     extra: ExternalIconButton(
       "https://www.lucia-gomez.dev/blog/expanding-my-jello-empire-vjello"

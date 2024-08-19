@@ -1,4 +1,3 @@
-import { FaCalendarDay } from "react-icons/fa"
 import PortfolioCardButtons from "./portfolioCardButtons"
 import styled from "styled-components"
 
@@ -29,13 +28,14 @@ const ImageWrapper = styled.div`
   width: 100%;
   height: 100%;
   border-radius: 5px;
+  border: 1px solid ${props => props.theme.accent};
   position: relative;
 
   ::after {
     content: "";
     width: 100%;
     height: 100%;
-    border-radius: 5px;
+    border-radius: 4px;
     position: absolute;
     top: 0;
     left: 0;
@@ -57,7 +57,7 @@ const Image = styled.div`
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
-  border-radius: 5px;
+  border-radius: 4px;
 `
 
 const Body = styled.div`
@@ -125,7 +125,7 @@ export default function PortfolioArchiveCard({ project }) {
       <Body>
         <div>
           <Date>
-            <FaCalendarDay size="14px" />
+            <ion-icon name="today" style={{ fontSize: 16 }}></ion-icon>
             <p>{project.date}</p>
           </Date>
           <ButtonRow>

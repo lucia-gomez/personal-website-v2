@@ -3,9 +3,7 @@ import { DraftApi, PostApi } from "../../scripts/api"
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
 
-const Icon = styled.i.attrs(_ => ({
-  className: "delete",
-}))`
+const Icon = styled.div`
   color: ${props => props.theme.accent};
   :hover {
     color: ${props => props.theme.accentHover};
@@ -45,9 +43,14 @@ const Delete = props => {
   return (
     <Icon
       onClick={handleClick}
-      className={className + " fas fa-trash"}
+      className={className}
       data-test-id="blog-post-delete-btn"
-    />
+    >
+      <ion-icon
+        name="trash"
+        style={{ fontSize: 20, marginBottom: -4, paddingLeft: 8 }}
+      ></ion-icon>
+    </Icon>
   )
 }
 

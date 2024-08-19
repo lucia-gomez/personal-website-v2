@@ -1,4 +1,3 @@
-import { FaCalendarDay } from "react-icons/fa"
 import Like from "./like"
 import Link from "../link"
 import ProfilePic from "../about/profilePic"
@@ -49,7 +48,7 @@ export function BlogPostMetadata({ post }) {
           <div>
             <p>Lucia Gomez</p>
             <div style={{ display: "flex", alignItems: "center" }}>
-              <FaCalendarDay size="14px" />
+              <ion-icon name="today" style={{ fontSize: 14 }}></ion-icon>
               <p style={{ marginLeft: "4px" }}>
                 {post.dateString.substring(0, post.dateString.indexOf(","))}
               </p>
@@ -64,7 +63,10 @@ export function BlogPostMetadata({ post }) {
             data-test-id="blog-post-subscribe"
           >
             <div style={{ display: "flex", alignItems: "flex-end" }}>
-              <i className="fas fa-envelope" style={{ paddingRight: "5px" }} />
+              <ion-icon
+                name="mail"
+                style={{ fontSize: 20, paddingRight: 4, marginBottom: 2 }}
+              ></ion-icon>
               Subscribe
             </div>
           </Link>

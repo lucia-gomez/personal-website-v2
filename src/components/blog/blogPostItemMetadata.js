@@ -1,5 +1,4 @@
 import Delete from "./delete"
-import { FaCalendarDay } from "react-icons/fa"
 import Like from "./like"
 import styled from "styled-components"
 import { useAuth0 } from "@auth0/auth0-react"
@@ -34,7 +33,10 @@ export default function BlogPostItemMetadata({ post, className }) {
   return (
     <Wrapper className={className}>
       <div style={{ display: "flex", alignItems: "center" }}>
-        <FaCalendarDay size="14px" />
+        <ion-icon
+          name="today"
+          style={{ fontSize: 14, marginTop: -1 }}
+        ></ion-icon>
         <p style={{ marginRight: "12px" }}>
           {date.substring(0, date.indexOf(","))}
         </p>

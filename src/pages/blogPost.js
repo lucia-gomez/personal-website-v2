@@ -94,7 +94,7 @@ const Title = styled.h1`
 const EditWrapper = styled.div`
   position: absolute;
   right: 12px;
-  top: 12px;
+  top: 24px;
   z-index: 10;
 `
 

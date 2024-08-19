@@ -10,7 +10,10 @@ const BackButton = styled(Link)`
 const Back = ({ className, link, ...props }) => {
   return (
     <BackButton to={link} sameTab={true} className={className} {...props}>
-      <i className="fas fa-chevron-left" style={{ paddingRight: "3px" }} />
+      <ion-icon
+        name="chevron-back"
+        style={{ fontSize: 24, marginBottom: -6 }}
+      ></ion-icon>
       Back
     </BackButton>
   )

@@ -7,7 +7,7 @@ export default function SubscribeButtonPinned() {
       sameTab={true}
       className="animate__animated animate__bounceIn"
     >
-      <i className="fas fa-envelope" />
+      <ion-icon name="mail" style={{ marginTop: 6, fontSize: 40 }} />
     </RoundButton>
   )
 }

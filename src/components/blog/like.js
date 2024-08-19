@@ -9,14 +9,12 @@ const Row = styled.div`
   align-items: center;
   width: fit-content;
   cursor: pointer;
-  font-size: 18px;
 `
 
-const Heart = styled.i`
+const Heart = styled.div`
   color: ${props => props.theme.accent};
   padding-right: 4px;
   transition: color 150ms;
-  font-size: 16px;
 
   :hover {
     color: ${props => props.theme.accentHover};
@@ -37,15 +35,16 @@ const Like = ({ postID, count }) => {
     setLiked(!isLiked)
   }
 
+  const getIcon = () => (isLiked ? "heart" : "heart-outline")
+
   return (
     <Row onClick={handleClick} data-test-id="blog-post-like">
-      <Heart
-        className={
-          isLiked
-            ? "fas fa-heart animate__animated animate__heartBeat"
-            : "far fa-heart"
-        }
-      />
+      <Heart className={isLiked ? "animate__animated animate__heartBeat" : ""}>
+        <ion-icon
+          name={getIcon()}
+          style={{ fontSize: 20, marginBottom: -5 }}
+        ></ion-icon>
+      </Heart>
       <p style={{ margin: 0 }}>{isLiked ? count + 1 : count}</p>
     </Row>
   )
