@@ -639,25 +639,6 @@ const projects = [
     categories: [category.Web, category["Data Visualization"]],
   },
   {
-    title: "CliqueBite UI",
-    date: "Sept-Dec 2020",
-    tools: ["Figma"],
-    image: "cliquebite.png",
-    extra: ExternalIconButton(
-      "https://www.figma.com/proto/pEJBpCmDtQ7fQg1QBUJFZs/CliqueBite?node-id=170%3A2&scaling=scale-down"
-    ),
-    text: (
-      <p>
-        Prototype for a social media app that encourages college students to
-        achieve their eating habit goals. Followed the user-centered design
-        process, as a group project for Cornell's INFO 3450: Human-Computer
-        Interaction.
-      </p>
-    ),
-    tags: ["UI/UX", "UX", "prototyping"],
-    categories: [category.Other],
-  },
-  {
     title: "Welcome Preemie",
     date: "Aug-Oct 2020",
     tools: ["Squarespace", "CSS"],
