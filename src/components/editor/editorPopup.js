@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 
+import { Button } from "../button"
 import Editor from "./editor"
-import { IconButton } from "../iconButton"
 import Modal from "react-bootstrap/Modal"
 import ModalWrapper from "../modalPopup"
 import styled from "styled-components"
@@ -19,18 +19,17 @@ const EditorModal = styled(ModalWrapper)`
   }
 `
 
-const EditButton = styled(IconButton)`
-  padding-top: 16px;
+const EditButton = styled(Button)`
+  padding-top: 8px;
 `
 
 export default function EditorPopup({ post }) {
   const [show, setShow] = useState(false)
   return (
     <>
-      <EditButton
-        className={"fas fa-pencil-alt"}
-        onClick={() => setShow(true)}
-      />
+      <EditButton onClick={() => setShow(true)}>
+        <ion-icon name="pencil" style={{ fontSize: 24 }}></ion-icon>
+      </EditButton>
       <EditorModal
         show={show}
         onHide={() => setShow(false)}

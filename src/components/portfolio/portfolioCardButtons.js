@@ -11,14 +11,14 @@ const Wrapper = styled.div`
 export default function PortfolioCardButtons({ git, extra, className }) {
   const githubIcon = git ? (
     <GitLink href={git ?? ""}>
-      <i className="fa fa-github"></i>
+      <ion-icon name="logo-github" style={{ fontSize: 24 }}></ion-icon>
     </GitLink>
   ) : null
 
   return (
     <Wrapper className={className}>
-      {extra}
       {githubIcon}
+      {extra}
     </Wrapper>
   )
 }

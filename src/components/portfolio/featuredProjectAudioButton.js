@@ -6,11 +6,7 @@ import styled from "styled-components"
 const AudioButton = styled(RoundActionButton)`
   width: 50px;
   height: 50px;
-  bottom: calc(80% - 75px);
-
-  i {
-    font-size: 28px;
-  }
+  bottom: calc(77% - 75px);
 `
 
 export default function FeaturedProjectAudioButton(props) {
@@ -26,7 +22,7 @@ export default function FeaturedProjectAudioButton(props) {
     toggleMuted(prev => !prev)
   }, [videoRef])
 
-  const getIcon = () => (!muted ? "fa-volume-mute" : "fa-volume-up")
+  const getIcon = () => (!muted ? "volume-mute" : "volume-high")
 
   return (
     <AudioButton
@@ -36,7 +32,10 @@ export default function FeaturedProjectAudioButton(props) {
         setVideoAudio()
       }}
     >
-      <i className={`fas ${getIcon()}`}></i>
+      <ion-icon
+        name={getIcon()}
+        style={{ fontSize: 32, marginLeft: "-3px", marginTop: "2px" }}
+      ></ion-icon>
     </AudioButton>
   )
 }

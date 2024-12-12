@@ -76,7 +76,7 @@ function sketch(p5, parent) {
 
     let heightScale = 2,
       widthScale = 2
-    dotSize = 3
+    dotSize = 2
     offsetX = 100
     offsetY = 50
     if (p5.windowWidth < 450) {

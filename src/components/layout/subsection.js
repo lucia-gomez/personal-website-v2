@@ -38,11 +38,11 @@ const Title = styled.h3`
   margin: 0;
 `
 
-export const Toggle = styled.i.attrs(_ => ({
-  className: "fas fa-chevron-down",
-}))`
+export const Toggle = styled.div`
+  ion-icon {
+    font-size: 24px;
+  }
   font-style: normal;
-  font-size: 22px;
   opacity: 0.5;
   transition: opacity 200ms, transform 100ms;
   margin-left: 8px;
@@ -91,7 +91,11 @@ const Subsection = props => {
         collapsible={collapsible}
       >
         <Title>{props.title}</Title>
-        {collapsible && <Toggle isOpen={isOpen} />}
+        {collapsible && (
+          <Toggle isOpen={isOpen}>
+            <ion-icon name="chevron-down"></ion-icon>
+          </Toggle>
+        )}
       </Row>
       <Collapsible style={contentAnimatedStyle}>
         <div ref={ref} style={{ paddingTop: "8px" }}>

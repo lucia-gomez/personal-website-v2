@@ -17,10 +17,11 @@ const Advanced = styled.div`
     color: ${props => props.theme.accentHover};
   }
 
-  i {
+  ion-icon {
     margin-left: 4px;
     transform: rotateZ(${props => (props.isExpanded ? "0" : "-90deg")});
     transition: transform 100ms;
+    font-size: 20px;
   }
 `
 
@@ -37,7 +38,7 @@ export default function PortfolioFiltersSection(props) {
     <div style={{ paddingBottom: 30 }}>
       <Advanced onClick={() => setExpanded(!isExpanded)} {...{ isExpanded }}>
         {isExpanded ? "Hide Filters" : "Show Filters"}
-        <i className={"fas fa-chevron-down"}></i>
+        <ion-icon name="chevron-down"></ion-icon>
       </Advanced>
       <animated.div style={{ ...collapseAnimatedStyle, overflow: "hidden" }}>
         <div ref={ref}>

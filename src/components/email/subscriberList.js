@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from "react"
 
-import { IconButton } from "../iconButton"
+import { Button } from "../button"
 import Pagination from "react-bootstrap/Pagination"
 import Subsection from "../layout/subsection"
 import Table from "react-bootstrap/Table"
@@ -135,7 +135,12 @@ export default function SubscriberList(props) {
                 <b>ID</b>
               </th>
               <th>
-                <IconButton className="fas fa-rotate-right" onClick={refresh} />
+                <Button onClick={refresh}>
+                  <ion-icon
+                    name="refresh"
+                    style={{ fontSize: 20, marginBottom: -4 }}
+                  ></ion-icon>
+                </Button>
               </th>
             </tr>
           </thead>

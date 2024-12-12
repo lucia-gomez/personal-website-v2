@@ -16,11 +16,16 @@ const li = css`
   }
 
   :not(ol)::before {
-    font-family: "FontAwesome";
-    content: "\f054";
-    color: ${props => props.theme.accent};
+    content: "";
     position: absolute;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    width: 10px;
+    height: 10px;
+    top: 12px;
     left: 0px;
+    transform: translateY(-50%) rotate(-45deg);
+    border-color: ${props => props.theme.accent};
   }
 `
 

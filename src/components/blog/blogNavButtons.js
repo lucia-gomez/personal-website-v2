@@ -21,10 +21,7 @@ export default function BlogNavButtons(props) {
     <NavButtons className={className}>
       {nextSlug != null ? (
         <NavButton to={nextSlug} sameTab={true} data-test-id="nav-next">
-          <i
-            className="fas fa-chevron-left"
-            style={{ paddingRight: "3px" }}
-          ></i>
+          <ion-icon name="chevron-back" style={{ fontSize: 24 }}></ion-icon>
           Newer
         </NavButton>
       ) : (
@@ -33,10 +30,7 @@ export default function BlogNavButtons(props) {
       {prevSlug != null ? (
         <NavButton to={prevSlug} sameTab={true} data-test-id="nav-prev">
           Older
-          <i
-            className="fas fa-chevron-right"
-            style={{ paddingLeft: "3px" }}
-          ></i>
+          <ion-icon name="chevron-forward" style={{ fontSize: 24 }}></ion-icon>
         </NavButton>
       ) : (
         <div />

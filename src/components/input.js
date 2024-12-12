@@ -13,7 +13,7 @@ const Wrapper = styled(Form.Control).attrs(_ => ({
   background-color: ${props => props.theme.bg};
   color: ${props => props.theme.text};
   border-radius: 8px;
-  border: 2px solid
+  border: 1px solid
     ${props => (props.isActive ? props.theme.accentHover : props.theme.accent)};
   padding: 5px 10px 5px 10px;
   ${props => (props.$hasIcon ? "padding-left: 28px;" : "")}
@@ -52,7 +52,7 @@ const Wrapper = styled(Form.Control).attrs(_ => ({
   }
 `
 
-const Icon = styled.i`
+const Icon = styled.div`
   position: absolute;
   top: 11px;
   left: 8px;
@@ -64,7 +64,12 @@ export default function Input(props) {
   const { isActive, iconClassName, width, ...otherProps } = props
   return (
     <div style={{ position: "relative" }}>
-      <Icon isActive={props.isActive} className={iconClassName} />
+      <Icon isActive={props.isActive}>
+        <ion-icon
+          name={iconClassName}
+          style={{ fontSize: 20, marginTop: -2 }}
+        ></ion-icon>
+      </Icon>
       <Wrapper
         {...otherProps}
         $hasIcon={iconClassName != null}

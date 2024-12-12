@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom"
 import styled, { css } from "styled-components"
 
-import { FaInstagram } from "react-icons/fa"
 import React from "react"
 
 const buttonStyle = css`
@@ -13,13 +12,13 @@ const buttonStyle = css`
 
   .disabled,
   :disabled {
-    background-color: ${props => props.theme.accentLight};
+    background-color: ${props => props.theme.medium};
     border: none;
     color: ${props => props.theme.text};
 
     :hover,
     :focus {
-      background-color: ${props => props.theme.accentLight};
+      background-color: ${props => props.theme.medium};
     }
   }
 
@@ -119,11 +118,10 @@ export const InstagramButton = props => {
   return (
     <ButtonLink to={props.to}>
       <Row>
-        <FaInstagram
-          size="20px"
-          className="tool-icon"
-          style={{ marginRight: 5 }}
-        />
+        <ion-icon
+          name="logo-instagram"
+          style={{ fontSize: 20, marginRight: 5 }}
+        ></ion-icon>
         {props.children}
       </Row>
     </ButtonLink>
@@ -153,9 +151,8 @@ const RoundButtonStyle = styled(ButtonLink)`
   animation-delay: 1s;
   --webkit-animation-delay: 1s;
 
-  i {
+  ion-icon {
     color: ${props => props.theme.text};
-    font-size: 30px;
   }
 `
 

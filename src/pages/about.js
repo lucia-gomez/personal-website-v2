@@ -33,8 +33,8 @@ const ProfileWrapper = styled.div`
 const ProfileIconsWrapper = styled.div`
   padding-top: 20px;
 
-  i {
-    font-size: 22px;
+  ion-icon {
+    font-size: 24px;
     text-align: center;
     width: 35px;
   }
@@ -48,7 +48,7 @@ const ProfileIconRow = styled.div`
 
   height: 35px;
   margin: auto;
-  width: 175px;
+  width: 145px;
   max-height: 300px;
   max-width: 300px;
 
@@ -60,7 +60,7 @@ const ProfileIconRow = styled.div`
 function ProfileInfo(icon, text) {
   return (
     <ProfileIconRow>
-      <i className={icon}></i>
+      <ion-icon name={icon}></ion-icon>
       <p>{text}</p>
     </ProfileIconRow>
   )
@@ -73,15 +73,15 @@ export default function About() {
         <ProfilePic />
         <ProfileIconsWrapper>
           {ProfileInfo(
-            "fab fa-github",
+            "logo-github",
             <Link href="https://github.com/lucia-gomez">lucia-gomez</Link>
           )}
           {ProfileInfo(
-            "fab fa-instagram",
+            "logo-instagram",
             <Link href="https://www.instagram.com/lugoo.dev/">lugoo.dev</Link>
           )}
-          {ProfileInfo("fas fa-graduation-cap", "NYU ITP")}
-          {ProfileInfo("fas fa-map-marker-alt", "Brooklyn, NY")}
+          {ProfileInfo("school", "NYU ITP")}
+          {ProfileInfo("location", "Brooklyn, NY")}
         </ProfileIconsWrapper>
       </ProfileWrapper>
       <div className="animate__animated animate__fadeIn">

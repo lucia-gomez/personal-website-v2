@@ -108,6 +108,15 @@ const projects = [
         bouncy visual effects and sounds that complement the materiality
       </p>
     ),
+    featuredText: (
+      <p>
+        An audiovisual interactive installation with projection mapping onto
+        large Jello hemispheres. Users touch the gelatinous interface to
+        generate bouncy visual effects and sounds that complement the
+        materiality. In this demo, users experimented with the duration of their
+        touch + combinations of color and sound
+      </p>
+    ),
     link: "https://github.com/lucia-gomez/vjello",
     extra: ExternalIconButton(
       "https://www.lucia-gomez.dev/blog/expanding-my-jello-empire-vjello"
@@ -628,25 +637,6 @@ const projects = [
       </p>
     ),
     categories: [category.Web, category["Data Visualization"]],
-  },
-  {
-    title: "CliqueBite UI",
-    date: "Sept-Dec 2020",
-    tools: ["Figma"],
-    image: "cliquebite.png",
-    extra: ExternalIconButton(
-      "https://www.figma.com/proto/pEJBpCmDtQ7fQg1QBUJFZs/CliqueBite?node-id=170%3A2&scaling=scale-down"
-    ),
-    text: (
-      <p>
-        Prototype for a social media app that encourages college students to
-        achieve their eating habit goals. Followed the user-centered design
-        process, as a group project for Cornell's INFO 3450: Human-Computer
-        Interaction.
-      </p>
-    ),
-    tags: ["UI/UX", "UX", "prototyping"],
-    categories: [category.Other],
   },
   {
     title: "Welcome Preemie",
