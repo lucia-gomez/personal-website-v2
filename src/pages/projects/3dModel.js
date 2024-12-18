@@ -44,6 +44,9 @@ const Date = styled.p`
 
 const Media = styled.div`
   padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   img,
   video {
@@ -51,11 +54,16 @@ const Media = styled.div`
     width: 100%;
     max-width: 1500px;
     margin: 10px 0px;
+
+    @media screen and (min-width: 876px) {
+      width: 80%;
+    }
   }
 
   p {
     margin-top: 10px;
     margin-bottom: 0px;
+    align-self: flex-start;
   }
 `
 

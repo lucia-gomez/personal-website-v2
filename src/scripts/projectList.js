@@ -142,9 +142,7 @@ const projects = [
     ),
     categories: [category["Physical Computing"], category.Installation],
     featuredHasAudio: true,
-    featuredImageDesktop:
-      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/vjelloFeatured.mp4?updatedAt=1715384448014",
-    featuredImageMobile:
+    featuredImage:
       "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/vjelloFeatured.mp4?updatedAt=1715384448014",
     featuredLink:
       "https://www.lucia-gomez.dev/blog/expanding-my-jello-empire-vjello",
@@ -192,7 +190,7 @@ const projects = [
     title: "Mosaic Reflections",
     date: "February 2024",
     tools: ["MadMapper", "Photoshop"],
-    image: "seaGlass.jpg?updatedAt=1714873646916",
+    image: "seaGlass.jpg?updatedAt=1734556703213",
     text: (
       <p>
         Projection mapping a beach scene onto a sea glass mosaic. The video is
@@ -229,10 +227,8 @@ const projects = [
     extra: ExternalIconButton("/project/djello", true),
     categories: [category.Installation, category["Physical Computing"]],
     featuredHasAudio: true,
-    featuredImageDesktop:
+    featuredImage:
       "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/djelloDemoDesktop.mp4?updatedAt=1703728553307",
-    featuredImageMobile:
-      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/djelloDemoDesktop.mp4?updatedAt=1703705620588",
     featuredLink: "/project/djello",
     featuredSameTab: true,
   },
@@ -258,9 +254,7 @@ const projects = [
       true
     ),
     categories: [category.Installation, category["Physical Computing"]],
-    featuredImageDesktop:
-      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/lightsCameraMagnetsDesktop.mp4?updatedAt=1703727689339",
-    featuredImageMobile:
+    featuredImage:
       "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/lightsCameraMagnetsDesktop.mp4?updatedAt=1703727689339",
     featuredLink: "https://www.lucia-gomez.dev/blog/lights-camera-magnets/",
     featuredSameTab: true,
@@ -357,10 +351,8 @@ const projects = [
     link: "https://github.com/lucia-gomez/threadbare",
     extra: ExternalIconButton("https://lucia-gomez.github.io/threadbare"),
     categories: [category.Web, category["Digital Art"]],
-    featuredImageDesktop:
+    featuredImage:
       "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/threadbareDemoDesktop.mov?updatedAt=1687584735438",
-    featuredImageMobile:
-      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/threadbareDemoMobile.mov?updatedAt=1687588033093",
     featuredText: (
       <p>
         A geometric drawing tool made with p5.js, inspired by a pair of worn-out
@@ -395,7 +387,7 @@ const projects = [
     title: "Friendly Takeover",
     date: "April 2023",
     tools: ["Javascript", "HTML/CSS"],
-    image: "friendlyTakeover.gif",
+    image: "friendlyTakeover.gif?updatedAt=1734559961029",
     text: (
       <p>
         An interactive digital collage of nature taking over a city, with
@@ -429,10 +421,8 @@ const projects = [
     date: "January 2023",
     tools: ["Spark AR", "Javascript", "Photoshop"],
     image: "inARWeTrust.gif",
-    featuredImageDesktop:
+    featuredImage:
       "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/inARWeTrustDemoDesktop.mp4",
-    featuredImageMobile:
-      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/inARWeTrustDemoMobile.mp4",
     featuredText: <p>An interactive Spark AR effect for a poster on my wall</p>,
     text: (
       <p>
@@ -451,10 +441,6 @@ const projects = [
     date: "April 2022",
     tools: ["WebGL", "GLSL", "HTML/CSS"],
     image: "lavaLamp.png",
-    featuredImageDesktop:
-      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/lavaLampDemoDesktop.mov",
-    featuredImageMobile:
-      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/lavaLampDemoMobile.mov",
     text: (
       <p>
         I woke up one day and wanted to play with WebGL, so I made a lava lamp
@@ -470,9 +456,7 @@ const projects = [
     date: "May 2020, March 2022",
     tools: ["Javascript", "React"],
     image: "signSearch.png",
-    featuredImageDesktop:
-      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/signSearchDemoDesktop.gif?updatedAt=1734542157343",
-    featuredImageMobile:
+    featuredImage:
       "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/signSearchDemoDesktop.gif?updatedAt=1734542157343",
     featuredText: (
       <p>

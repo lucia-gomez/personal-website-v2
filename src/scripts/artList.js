@@ -73,12 +73,12 @@ const artList = [
           media: [
             {
               type: "img",
-              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/waffleWide.png?updatedAt=1693629974292",
+              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/waffleWide.png?updatedAt=1734558839106",
               alt: "3d model of a round belgian waffle emoji",
             },
             {
-              type: "video",
-              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/waffle.mp4?updatedAt=1693629978693",
+              type: "img",
+              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/waffle.gif",
             },
           ],
         },
@@ -115,11 +115,6 @@ const artList = [
               src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/ringpop_CCmnWetsL.png?updatedAt=1693795681536",
             },
             {
-              type: "text",
-              value:
-                "I created the candy's shape with a Womp cube-based curve, which smoothly interpolates a surface between points. Changing the density and rotation settings for this curve resulted in some trippy effects!",
-            },
-            {
               type: "img",
               src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/ringpopBars1.png?updatedAt=1693795681717",
             },
@@ -128,12 +123,12 @@ const artList = [
               src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/ringpopBars2.png?updatedAt=1693795681481",
             },
             {
-              type: "video",
-              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/ringpopDensity.mp4?updatedAt=1693798894491",
+              type: "img",
+              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/ringpopDensity.gif",
             },
             {
-              type: "video",
-              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/ringpopTwist.mp4?updatedAt=1693798894943",
+              type: "img",
+              src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/3d/ringpopTwist.gif",
             },
           ],
         },
