@@ -111,7 +111,8 @@ const BlogStyleWrapper = styled.div`
   h4 {
     padding-top: 24px;
   }
-  h4 a {
+  h4 a,
+  h5 a {
     color: ${props => props.theme.text};
   }
   h4 a:hover {
