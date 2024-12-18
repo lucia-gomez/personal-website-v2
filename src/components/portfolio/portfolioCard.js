@@ -44,7 +44,7 @@ const ImageWrapper = styled.div`
       ${props => props.theme.accent} 20%,
       ${props => props.theme.accentHover}
     );
-    opacity: 0.5;
+    opacity: 0.4;
     filter: contrast(1.5);
   }
 `

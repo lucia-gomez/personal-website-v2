@@ -15,6 +15,25 @@ const category = {
 
 const projects = [
   {
+    title: "Guess Whose Data?",
+    date: "December 2024",
+    tools: ["Photoshop", "p5.js", "Risograph"],
+    image: "fullBoards.png",
+    text: (
+      <p>
+        Experimental data visualization zine in the form of Guess Who game
+        boards. Each board represents one person's digital footprint, with
+        screenshots of personal data displayed on game cards. Can you guess
+        someone's identity from their data? Is this how algorithms understand
+        us?
+      </p>
+    ),
+    extra: ExternalIconButton(
+      "https://www.lucia-gomez.dev/blog/print-and-code#4-tech-zine"
+    ),
+    categories: [category["Data Visualization"]],
+  },
+  {
     title: "White Claw's Claw™️ Cooler",
     date: "May-August 2024",
     tools: [
