@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 const Wrapper = styled.div`
   margin: 20px;
@@ -42,12 +42,12 @@ const Wrapper = styled.div`
     max-height: 70vh;
 
     @media screen and (max-width: 576px) {
-      height: calc(100% - 6px);
+      height: ${props => (props.isGif ? "100%" : "calc(100% - 6px)")};
     }
   }
 `
 
-const Video = styled.video`
+const mediaStyle = css`
   max-height: 60vh;
   max-width: 70vw;
   border-radius: 5px;
@@ -66,6 +66,14 @@ const Video = styled.video`
   }
 `
 
+const Video = styled.video`
+  ${mediaStyle}
+`
+
+const Gif = styled.img`
+  ${mediaStyle}
+`
+
 export default function FeaturedVideo(props) {
   const { project, index, scrollRef, inView, videoRef } = props
 
@@ -74,34 +82,64 @@ export default function FeaturedVideo(props) {
     return index % 2 === 0 ? "animate__fadeInRight" : "animate__fadeInLeft"
   }
 
+  let isGif = false
+  let mobile = (
+    <Video
+      src={project.featuredImageMobile}
+      idx={index}
+      ref={videoRef}
+      className="d-lg-none d-md-block"
+      autoPlay
+      playsInline
+      loop
+      muted
+    />
+  )
+  if (project.featuredImageMobile.includes(".gif")) {
+    isGif = true
+    mobile = (
+      <Gif
+        src={project.featuredImageMobile}
+        idx={index}
+        ref={videoRef}
+        className="d-lg-none d-md-block"
+      />
+    )
+  }
+
+  let desktop = (
+    <Video
+      src={project.featuredImageDesktop}
+      idx={index}
+      ref={videoRef}
+      className="d-none d-lg-block"
+      autoPlay
+      playsInline
+      loop
+      muted
+    />
+  )
+  if (project.featuredImageDesktop.includes(".gif")) {
+    isGif = true
+    desktop = (
+      <Gif
+        src={project.featuredImageDesktop}
+        idx={index}
+        ref={videoRef}
+        className="d-none d-lg-block"
+      />
+    )
+  }
+
   return (
     <Wrapper
       className={`animate__animated ${getClassName()}`}
       ref={scrollRef}
       idx={index}
+      isGif={isGif}
     >
-      {/* mobile/tablet */}
-      <Video
-        src={project.featuredImageMobile}
-        idx={index}
-        ref={videoRef}
-        className="d-lg-none d-md-block"
-        autoPlay
-        playsInline
-        loop
-        muted
-      />
-      {/* desktop */}
-      <Video
-        src={project.featuredImageDesktop}
-        idx={index}
-        ref={videoRef}
-        className="d-none d-lg-block"
-        autoPlay
-        playsInline
-        loop
-        muted
-      />
+      {mobile}
+      {desktop}
     </Wrapper>
   )
 }

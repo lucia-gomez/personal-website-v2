@@ -471,10 +471,9 @@ const projects = [
     tools: ["Javascript", "React"],
     image: "signSearch.png",
     featuredImageDesktop:
-      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/signSearchDemoDesktop.mov",
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/signSearchDemoDesktop.gif?updatedAt=1734542157343",
     featuredImageMobile:
-      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/signSearchDemoDesktop.mov",
-    // "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/signSearchDemoMobile.mov",
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/signSearchDemoDesktop.gif?updatedAt=1734542157343",
     featuredText: (
       <p>
         A Chrome extension for providing a convenient way to look up words in
