@@ -90,18 +90,12 @@ export default function FeaturedVideo(props) {
       isVideo={project.featuredImage.includes(".mp4")}
     >
       {project.featuredImage.includes(".gif") ? (
-        <Gif
-          src={project.featuredImage}
-          idx={index}
-          ref={videoRef}
-          className="d-none d-lg-block"
-        />
+        <Gif src={project.featuredImage} idx={index} ref={videoRef} />
       ) : (
         <Video
           src={project.featuredImage}
           idx={index}
           ref={videoRef}
-          className="d-none d-lg-block"
           autoPlay
           playsInline
           loop
