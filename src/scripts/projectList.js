@@ -15,6 +15,34 @@ const category = {
 
 const projects = [
   {
+    title: "Crystal Clear",
+    date: "November-December 2024",
+    tools: [
+      "Adobe Premiere",
+      "TouchDesigner",
+      "Python",
+      "Arduino",
+      "Autodesk Fusion 360",
+    ],
+    image: "crystalClear.png?updatedAt=1735179181991",
+    text: (
+      <p>
+        I've taken 1 second of video every day since Jan. 1st, 2020, and I put
+        all of those memories into a real-life crystal ball. Crystal Clear is a
+        magical way of exploring my personal memory archive by controlling time
+        through a touchless interface.
+      </p>
+    ),
+    extra: ExternalIconButton(
+      "https://www.lucia-gomez.dev/blog/crystal-clear-one-second-a-day"
+    ),
+    link: "https://github.com/lucia-gomez/crystal-clear",
+    categories: [
+      category["Data Visualization"],
+      category["Physical Computing"],
+    ],
+  },
+  {
     title: "Guess Whose Data?",
     date: "December 2024",
     tools: ["Photoshop", "p5.js", "Risograph"],
