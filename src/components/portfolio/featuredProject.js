@@ -37,14 +37,8 @@ const CaptionWrapper = styled.div`
     color: ${props => props.theme.medium};
   }
 
-  h3 {
-    margin-top: 8px;
-  }
-
-  @media (max-width: 768px) {
-    h2 {
-      font-size: 32px;
-    }
+  h4 {
+    margin-top: 12px;
   }
 `
 
@@ -79,7 +73,7 @@ export function FeaturedProject(props) {
         )}
       </FeaturedWrapper>
       <CaptionWrapper>
-        <h3>{project.title}</h3>
+        <h4>{project.title}</h4>
         {project.featuredText ?? project.text}
       </CaptionWrapper>
       {project.featuredButtonText && (
