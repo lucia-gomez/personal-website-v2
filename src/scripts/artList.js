@@ -6,6 +6,26 @@ import RingpopModel from "../components/art/models/ringpopModel"
 
 const artList = [
   {
+    sectionName: "Motion Graphics",
+    description: "",
+    items: [
+      {
+        title: "Jello Loader #1",
+        date: "February 2025",
+        slug: "jello-loader-1",
+        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/jelloLoader1.gif?updatedAt=1742172844944",
+        alt: "jello loader #1",
+      },
+      {
+        title: "Jello Loader #2",
+        date: "February 2025",
+        slug: "jello-loader-2",
+        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/jelloLoader2.gif?updatedAt=1742172854780",
+        alt: "jello loader #2",
+      },
+    ],
+  },
+  {
     sectionName: "3D",
     description:
       "3D objects I've modeled. Click to interact with the objects in 3D",
@@ -314,69 +334,69 @@ const artList = [
       },
     ],
   },
-  {
-    sectionName: "Digital Drawing",
-    description: "Getting practice with a drawing tablet. Click to enlarge",
-    items: [
-      {
-        title: "Fruit Rainbow",
-        date: "June 2023",
-        slug: "fruit-rainbow",
-        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/fruitRainbow.gif",
-        alt: "fruit rainbow gif",
-      },
-      {
-        title: "Seedy",
-        date: "June 2023",
-        slug: "seedy",
-        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/seedless.png",
-        alt: "strawberry seeds drawing",
-      },
-      {
-        title: "Succulents",
-        date: "January 2023",
-        slug: "succlents",
-        src: " https://ik.imagekit.io/5xtlzx2c3y/website/art/succulents.jpeg",
-        alt: "succulents drawing",
-      },
-      {
-        title: "Sushi",
-        date: "December 2022",
-        slug: "sushi",
-        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/sushi.png",
-        alt: "sushi drawing",
-      },
-      {
-        title: "Self Portrait",
-        date: "December 2022",
-        slug: "self-portrait",
-        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/portrait.png",
-        alt: "self portrait",
-        description: "A cartoon-y self portrait, bags under my eyes and all",
-      },
-    ],
-  },
-  {
-    sectionName: "Other",
-    items: [
-      {
-        title: "Drawing of Mt. Rainier",
-        date: "April 2023",
-        slug: "mt-rainier",
-        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/drawingMtRainier.jpg",
-        alt: "drawing of Mt. Rainier",
-        description: "Ballpoint pen",
-      },
-      {
-        title: "Sweet Dreams",
-        date: "March 2023",
-        slug: "sweet-dreams",
-        src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/collageSweetDreams.jpg",
-        alt: "collage sweet dreams",
-        description: "A dreamscape collage",
-      },
-    ],
-  },
+  // {
+  //   sectionName: "Digital Drawing",
+  //   description: "Getting practice with a drawing tablet. Click to enlarge",
+  //   items: [
+  //     {
+  //       title: "Fruit Rainbow",
+  //       date: "June 2023",
+  //       slug: "fruit-rainbow",
+  //       src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/fruitRainbow.gif",
+  //       alt: "fruit rainbow gif",
+  //     },
+  //     {
+  //       title: "Seedy",
+  //       date: "June 2023",
+  //       slug: "seedy",
+  //       src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/seedless.png",
+  //       alt: "strawberry seeds drawing",
+  //     },
+  //     {
+  //       title: "Succulents",
+  //       date: "January 2023",
+  //       slug: "succlents",
+  //       src: " https://ik.imagekit.io/5xtlzx2c3y/website/art/succulents.jpeg",
+  //       alt: "succulents drawing",
+  //     },
+  //     {
+  //       title: "Sushi",
+  //       date: "December 2022",
+  //       slug: "sushi",
+  //       src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/sushi.png",
+  //       alt: "sushi drawing",
+  //     },
+  //     {
+  //       title: "Self Portrait",
+  //       date: "December 2022",
+  //       slug: "self-portrait",
+  //       src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/portrait.png",
+  //       alt: "self portrait",
+  //       description: "A cartoon-y self portrait, bags under my eyes and all",
+  //     },
+  //   ],
+  // },
+  // {
+  //   sectionName: "Other",
+  //   items: [
+  //     {
+  //       title: "Drawing of Mt. Rainier",
+  //       date: "April 2023",
+  //       slug: "mt-rainier",
+  //       src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/drawingMtRainier.jpg",
+  //       alt: "drawing of Mt. Rainier",
+  //       description: "Ballpoint pen",
+  //     },
+  //     {
+  //       title: "Sweet Dreams",
+  //       date: "March 2023",
+  //       slug: "sweet-dreams",
+  //       src: "https://ik.imagekit.io/5xtlzx2c3y/website/art/collageSweetDreams.jpg",
+  //       alt: "collage sweet dreams",
+  //       description: "A dreamscape collage",
+  //     },
+  //   ],
+  // },
 ]
 export default artList
 

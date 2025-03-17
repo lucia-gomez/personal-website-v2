@@ -1,17 +1,17 @@
 export const colors = {
   white: "#f7f0ff",
-  black: "#18062e",
+  black: "#000000",
 }
 
 export const themes = {
   default: {
-    bg: "#070509",
-    medium: "#a1748c",
+    bg: "#141414",
+    medium: "#7e7e7e",
     text: colors.white,
     textInv: colors.black,
-    accent: "#d43d6b",
-    accentHover: "#dba42e",
-    accentLight: "#872040",
+    accent: "#9e84f5",
+    accentHover: "#7852f7",
+    accentLight: "#cec0fc",
   },
 }
 

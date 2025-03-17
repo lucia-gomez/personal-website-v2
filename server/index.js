@@ -54,8 +54,8 @@ app.use("/api/email", mailjetRoutes)
 app.use("/api/email", subscribeRoutes)
 
 /************* IMAGEKIT.IO *************/
-const imageKitRoutes = require("./routes/imageKitRoutes")
-app.use("/api/image", imageKitRoutes)
+// const imageKitRoutes = require("./routes/imageKitRoutes")
+// app.use("/api/image", imageKitRoutes)
 
 const PORT = 3001
 app.listen(process.env.PORT || PORT, () => {

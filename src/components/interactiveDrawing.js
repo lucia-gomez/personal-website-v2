@@ -68,7 +68,7 @@ function sketch(p5, parent) {
   let offsetX, offsetY
 
   p5.preload = () => {
-    img = p5.loadImage("dots.jpg")
+    img = p5.loadImage("dots2.jpg")
   }
 
   p5.setup = () => {

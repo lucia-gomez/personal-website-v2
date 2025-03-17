@@ -8,13 +8,13 @@ const path = require("path")
 
 const router = express.Router()
 
-const storage = multer.diskStorage({
-  destination: path.join(__dirname, ".."),
-  filename: (req, file, cb) => {
-    cb(null, file.originalname) // Use the original filename
-  },
-})
-const upload = multer({ storage: storage })
+// const storage = multer.diskStorage({
+//   destination: path.join(__dirname, ".."),
+//   filename: (req, file, cb) => {
+//     cb(null, file.originalname) // Use the original filename
+//   },
+// })
+// const upload = multer({ storage: storage })
 
 const imagekit = new ImageKit({
   publicKey: "public_CJFqG4/4bWXjKN1kfmDaT7UlKC4=",

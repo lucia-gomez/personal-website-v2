@@ -87,24 +87,27 @@ export default function About() {
       <div className="animate__animated animate__fadeIn">
         <Subsection title="About Me">
           <p>
-            I'm a second year graduate student and Web Developer at NYU Tisch's{" "}
+            Former Senior Software Engineer at Meta Reality Labs, current
+            Master's student at NYU Tisch's{" "}
             <Link href="https://itp.nyu.edu/itp/">
               Interactive Telecommunications Program
-            </Link>
-            . My background is in software engineering but I'm transitioning
-            into more of a Creative Technologist role. I'm currently focused on
+            </Link>{" "}
+            (graduating May 2025). My background is in Computer Science and Web
+            Development but I'm transitioning into more of a Creative
+            Technologist role. I'm currently focused on
           </p>
           <ul>
-            <li>Physical computing</li>
-            <li>Interactive web experiences</li>
+            <li>Interactive digital + physical installations</li>
+            <li>Creative coding</li>
+            <li>Paint plotters</li>
             <li>Jello ?!</li>
           </ul>
-          ...Or whatever crazy sh*t captures my interest tomorrow. Before grad
-          school, I studied Computer Science and Linguistics at Cornell
-          University, and was a Senior Software Engineer at Meta working on AR
-          glasses. I enjoy making use of my background in Linguistics; I've
-          always been interested combinations of emerging tech + American Sign
-          Language.
+          ... Or wherever the wind takes me.
+          <br></br>
+          <br></br>I studied Computer Science and Linguistics at Cornell
+          University. I enjoy making use of my background in Linguistics; my ITP
+          thesis is an installation that represents American Sign Language as a
+          machine-made watercolor painting.
           <br></br>
           <br></br>I have at least one ABBA song stuck in my head at any given
           time.
@@ -118,7 +121,7 @@ export default function About() {
             </Link>{" "}
             in Scratch, and nothing I've made since can ever compete with that.
             More recently, I've gained hands-on experience with several creative
-            tools and technologies to bring my ideas to life
+            tools and technologies to bring my ideas to life.
           </p>
           <TechnologiesSection />
         </Subsection>

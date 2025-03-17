@@ -58,8 +58,7 @@ const ImageWrapper = styled.div.attrs(_ => ({
       ${props => props.theme.accent},
       ${props => props.theme.accentHover}
     );
-    opacity: 0.5;
-    filter: contrast(1.5);
+    opacity: 0.4;
   }
 `
 
@@ -73,7 +72,7 @@ const Image = styled.div.attrs(_ => ({
   width: 100%;
   height: 100%;
   border-radius: 5px;
-  filter: contrast(1.5) grayscale(1);
+  filter: contrast(1.2) grayscale(1);
 `
 
 export default function BlogGradientBanner({ post, className }) {
