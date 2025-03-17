@@ -57,7 +57,7 @@ export function FeaturedProject(props) {
   const videoRef = useRef()
 
   return (
-    <div>
+    <div style={{ marginBottom: 20 }}>
       <FeaturedWrapper idx={index}>
         {project.featuredImage.includes(".gif") ? (
           <img
