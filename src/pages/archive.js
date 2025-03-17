@@ -79,6 +79,7 @@ export default function ArchivePage() {
   return (
     <Grid>
       <div>
+        <SectionTitle>Featured Work</SectionTitle>
         <FeaturedProjectGrid>
           {featuredProjects.map((fp, idx) => (
             <FeaturedProject project={fp} key={idx} index={idx} />
