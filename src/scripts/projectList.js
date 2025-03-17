@@ -4,12 +4,14 @@ import React from "react"
 
 const category = {
   All: -1,
+  "Physical Computing": 1,
+  Installation: 2,
   Web: 0,
-  "AR/VR": 1,
-  "Data Visualization": 2,
-  "Digital Art": 3,
-  "Physical Computing": 4,
-  Installation: 5,
+  Client: 3,
+  "Data Visualization": 4,
+  Jello: 5,
+  "AR/VR": 6,
+  "Digital Art": 7,
   Other: 99,
 }
 
@@ -24,13 +26,13 @@ const projects = [
       "Arduino",
       "Autodesk Fusion 360",
     ],
-    image: "crystalClear.png?updatedAt=1735179181991",
+    image: "crystalClear.png?updatedAt=1742161902122",
     text: (
       <p>
         I've taken 1 second of video every day since Jan. 1st, 2020, and I put
         all of those memories into a real-life crystal ball. Crystal Clear is a
         magical way of exploring my personal memory archive by controlling time
-        through a touchless interface.
+        through a touchless interface
       </p>
     ),
     extra: ExternalIconButton(
@@ -40,7 +42,115 @@ const projects = [
     categories: [
       category["Data Visualization"],
       category["Physical Computing"],
+      category.Installation,
     ],
+    featuredImage:
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/crystalClear.gif?updatedAt=1742169963785",
+    featuredText: (
+      <p>
+        Beginning on January 1st, 2020, I've recorded 1 second of video every
+        day. Crystal Clear is a magical artifact for exploring this intimate
+        dataset in the form of a crystal ball. Using a touchless interface, the
+        audience is encouraged to flip through time and replay moments from the
+        memory archive. Exhibited at{" "}
+        <Link to="https://www.culturehub.org/re-fest-2025">
+          CultureHub ReFest 2025.
+        </Link>
+      </p>
+    ),
+    featuredButtonText: "Learn More",
+    featuredLink:
+      "https://www.lucia-gomez.dev/blog/crystal-clear-one-second-a-day",
+  },
+  {
+    title: "NYU Media Commons Booking Tool",
+    date: "March-December 2024",
+    tools: [
+      "React",
+      "Next.js",
+      "Material UI",
+      "Google App Engine",
+      "Firestore",
+    ],
+    image: "mediaCommonsBookingTool.png?updatedAt=1742162811473",
+    text: (
+      <p>
+        Launched a room reservation system for the{" "}
+        <Link to="https://sites.google.com/nyu.edu/370jmediacommons/370j-media-commons?authuser=1">
+          NYU Media Commons.
+        </Link>{" "}
+        Features Google Calendar, Google Sheets, and Gmail integration to
+        facilitate the multi-step booking process between students, departmental
+        liaisons, and administrative staff
+      </p>
+    ),
+    categories: [category.Web, category.Client],
+    link: "https://github.com/ITPNYU/booking-app",
+    extra: ExternalIconButton(
+      "https://sites.google.com/nyu.edu/370jmediacommons/reservations/booking-tool?pli=1&authuser=1"
+    ),
+  },
+  {
+    title: "3DJELLO",
+    date: "October-December 2024",
+    tools: [
+      "Autodesk Fusion 360",
+      "Arduino",
+      "Ableton Live",
+      "Adobe Illustrator",
+      "MadMapper",
+      "CNC Milling",
+    ],
+    image: "3djello.png?updatedAt=1742172230390",
+    text: (
+      <p>
+        3DJELLO is a human-scale kinetic sculpture that functions as an
+        immersive musical instrument. A user steps inside the sculpture and is
+        surrounded by glowing, rainbow Jello domes. Touching one will cause a
+        gelatinous sound to play and motors to jiggle the Jello and its
+        neighbors.
+      </p>
+    ),
+    categories: [
+      category.Jello,
+      category.Installation,
+      category["Physical Computing"],
+    ],
+    link: "https://github.com/lucia-gomez/3djello",
+  },
+  {
+    title: "Gentleman Brawlers Joy-O-Meter",
+    date: "August-December 2024",
+    tools: ["FastLED", "ESP32", "C++", "p5.js"],
+    image: "cassette.png?updatedAt=1742165647841",
+    text: (
+      <p>
+        Animated LED sculpture for an immersive concert experience held by{" "}
+        <Link to="https://www.truthandmagic.com/">Gentleman Brawlers.</Link> As
+        the audience enjoys a playful pre-concert experience, the
+        cassette-shaped Joy-O-Meter measures the room's collective joy. I was
+        responsible for all of the software, electronics, and power supplies
+      </p>
+    ),
+    link: "https://github.com/ITPNYU/RWCCDS-2024-CLL",
+    categories: [
+      category.Client,
+      category.Installation,
+      category["Physical Computing"],
+    ],
+    featuredImage:
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/cassette.gif?updatedAt=1742169258918",
+    featuredText: (
+      <p>
+        Animated LED sculpture for an immersive concert experience held by{" "}
+        <Link to="https://www.truthandmagic.com/">Gentleman Brawlers.</Link> As
+        the audience enjoys a playful pre-concert experience, the
+        cassette-shaped Joy-O-Meter measures the room's collective joy until it
+        unlocks the live concert.
+      </p>
+    ),
+    featuredButtonText: "Learn More",
+    featuredLink: "https://www.truthandmagic.com/",
   },
   {
     title: "Guess Whose Data?",
@@ -62,7 +172,7 @@ const projects = [
     categories: [category["Data Visualization"]],
   },
   {
-    title: "White Claw's Claw™️ Cooler",
+    title: "White Claw's Claw™ Cooler",
     date: "May-August 2024",
     tools: [
       "Raspberry Pi",
@@ -80,15 +190,15 @@ const projects = [
         Summer internship project at{" "}
         <Link to="https://www.deeplocal.com/">Deeplocal</Link> for the popular{" "}
         <Link to="https://www.whiteclaw.com/">White Claw hard seltzer</Link>{" "}
-        brand. The Claw™️ Cooler is a high-tech, interactive cooler with Low
-        Claw Detection to text you a DoorDash code for more White Claw when its
+        brand. The Claw™ Cooler is a high-tech, interactive cooler with Low Claw
+        Detection to text you a DoorDash code for more White Claw when its
         running low. I developed the firmware, screen UI + motion graphics,
         texting service, LED animations, and integration between all of these
         components
       </p>
     ),
     extra: ExternalIconButton("https://www.deeplocal.com/white-claw-cooler"),
-    categories: [category["Physical Computing"], category.Web],
+    categories: [category["Physical Computing"], category.Web, category.Client],
   },
   {
     title: "Slack Pager",
@@ -100,13 +210,13 @@ const projects = [
       "Autodesk Fusion 360",
     ],
     image: "slackPager.gif?updatedAt=1724006573543",
-    categories: [category["Physical Computing"]],
+    categories: [category["Physical Computing"], category.Client],
     text: (
       <p>
         Rapid prototype to display Slack DMs in an old-school pager form factor.
         The pager's LCD screen scrolls through incoming messages at a comically
         slow pace, mixing modern and retro communication technology. Pressing
-        the pager's button dismisses the currently displayed text.
+        the pager's button dismisses the currently displayed text
       </p>
     ),
   },
@@ -134,7 +244,7 @@ const projects = [
     extra: ExternalIconButton(
       "https://www.lucia-gomez.dev/blog/djello-2-electric-boogaloo"
     ),
-    categories: [category["Physical Computing"]],
+    categories: [category["Physical Computing"], category.Jello],
   },
   {
     title: "VJELLO",
@@ -168,7 +278,11 @@ const projects = [
     extra: ExternalIconButton(
       "https://www.lucia-gomez.dev/blog/expanding-my-jello-empire-vjello"
     ),
-    categories: [category["Physical Computing"], category.Installation],
+    categories: [
+      category["Physical Computing"],
+      category.Installation,
+      category.Jello,
+    ],
     featuredHasAudio: true,
     featuredImage:
       "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/vjelloFeatured.mp4?updatedAt=1715384448014",
@@ -253,7 +367,7 @@ const projects = [
     ),
     link: "https://github.com/lucia-gomez/djello",
     extra: ExternalIconButton("/project/djello", true),
-    categories: [category.Installation, category["Physical Computing"]],
+    categories: [category["Physical Computing"], category.Jello],
     featuredHasAudio: true,
     featuredImage:
       "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/djelloDemoDesktop.mp4?updatedAt=1703728553307",
@@ -485,21 +599,18 @@ const projects = [
     tools: ["Javascript", "React"],
     image: "signSearch.png",
     featuredImage:
-      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/signSearchDemoDesktop.gif?updatedAt=1734542157343",
+      "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/signSearchDemoDesktop.gif?updatedAt=1742163588836",
     featuredText: (
       <p>
-        A Chrome extension for providing a convenient way to look up words in
-        American Sign Language. Highlight a word on a page or enter a search
-        directly into the extension to see multiple ways of signing the word.
-        Results are queried from multiple online ASL dictionaries.
-        <br />
-        <br />
-        Currently at ~800 daily users!
+        A Google Chrome extension for providing a convenient way to look up
+        words in American Sign Language. Highlight a word on a page or use the
+        search bar to see multiple ways of signing the word. Results are queried
+        from several popular online ASL dictionaries. Currently at ~1000 users!
       </p>
     ),
+    featuredButtonText: "Google Chrome Store",
     featuredLink:
       "https://chrome.google.com/webstore/detail/sign-search/gniinlnnpjdbeleojkghgdccpapkapma",
-    featuredSameTab: false,
     link: "https://github.com/lucia-gomez/Sign-Search",
     text: (
       <p>
@@ -580,10 +691,10 @@ const projects = [
     link: "https://github.com/lucia-gomez/how-many-hollaback-girls",
     text: (
       <p>
-        One day, on my walk to campus, I accidentally listened to{" "}
-        <i>Hollaback Girl</i> on repeat. For the rest of the day, I measured
-        time in units of Hollaback Girls, because why not? This time converter
-        made things easier.
+        One day, on my walk to campus, I accidentally listened to Hollaback Girl
+        on repeat. For the rest of the day, I measured time in units of
+        Hollaback Girls, because why not? This time converter made things
+        easier.
       </p>
     ),
     extra: ExternalIconButton("http://howmanyhollabackgirls.com"),
@@ -668,21 +779,21 @@ const projects = [
     ),
     categories: [category.Web, category["Data Visualization"]],
   },
-  {
-    title: "Welcome Preemie",
-    date: "Aug-Oct 2020",
-    tools: ["Squarespace", "CSS"],
-    image: "welcomePreemie.png",
-    text: (
-      <p>
-        Redesigned a client's e-commerce website using Squarespace, and added
-        additional features to increase community engagement. Volunteer project
-        with <Link href="http://levareorg.com/">Levare</Link>.
-      </p>
-    ),
-    extra: ExternalIconButton("http://welcomepreemie.com"),
-    categories: [category.Web],
-  },
+  // {
+  //   title: "Welcome Preemie",
+  //   date: "Aug-Oct 2020",
+  //   tools: ["Squarespace", "CSS"],
+  //   image: "welcomePreemie.png",
+  //   text: (
+  //     <p>
+  //       Redesigned a client's e-commerce website using Squarespace, and added
+  //       additional features to increase community engagement. Volunteer project
+  //       with <Link href="http://levareorg.com/">Levare</Link>.
+  //     </p>
+  //   ),
+  //   extra: ExternalIconButton("http://welcomepreemie.com"),
+  //   categories: [category.Web],
+  // },
   {
     title: "Subreddit Recommender",
     date: "March-May 2020",

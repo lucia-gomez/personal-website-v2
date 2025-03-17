@@ -1,5 +1,6 @@
 import PortfolioCardButtons from "./portfolioCardButtons"
 import styled from "styled-components"
+import { ToolChip } from "../toolChip"
 
 const Wrapper = styled.div`
   display: grid;
@@ -28,7 +29,6 @@ const ImageWrapper = styled.div`
   width: 100%;
   height: 100%;
   border-radius: 5px;
-  border: 1px solid ${props => props.theme.accent};
   position: relative;
 
   ::after {
@@ -39,13 +39,7 @@ const ImageWrapper = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    background: linear-gradient(
-      to left bottom,
-      ${props => props.theme.accent} 20%,
-      ${props => props.theme.accentHover}
-    );
     opacity: 0.4;
-    filter: contrast(1.5);
   }
 `
 
@@ -88,16 +82,6 @@ const Date = styled.div`
     margin: 0px;
     margin-left: 4px;
   }
-`
-
-const ToolChip = styled.p`
-  border-radius: 5px;
-  border: 1px solid ${props => props.theme.medium};
-  color: ${props => props.theme.medium};
-  padding: 0px 4px;
-  margin: 0px 4px 0px 0px;
-  font-size: 0.8rem;
-  display: inline-block;
 `
 
 const ButtonRow = styled.div`

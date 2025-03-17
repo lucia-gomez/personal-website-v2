@@ -153,7 +153,20 @@ export default function ExperienceSection() {
     ]
   )
 
+  const sygma = ExperienceItem(
+    "UX Engineering Intern",
+    "Sygma",
+    "https://www.sygmahq.com/",
+    "Jan 2025 - present",
+    [
+      "Full-stack web development at a startup, building program management tools to accelerate hardware development with AI",
+      "Integrated custom Gantt chart UI to visualize hardware development lifecycle",
+      "Tech stack: Apollo, Next.js, React, Typescript, GraphQL, Django, Strawberry",
+    ]
+  )
+
   const tabs = {
+    Sygma: sygma,
     Deeplocal: deeplocal,
     NYU: nyu,
     Meta: meta,

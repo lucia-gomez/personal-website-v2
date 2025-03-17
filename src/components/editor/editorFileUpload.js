@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 import { Button } from "../button"
 import EditorFileUploadPopup from "./editorFileUploadPopup"
-import { ImageKitApi } from "../../scripts/api"
+// import { ImageKitApi } from "../../scripts/api"
 import ModalWrapper from "../modalPopup"
 import Toast from "../toast"
 import { formatBytes } from "../../scripts/util"
@@ -60,18 +60,18 @@ export default function EditorFileUpload({ onUploadComplete }) {
       formData.append("fileType", file.type)
       formData.append("imageKitFolder", imageKitFolder)
 
-      ImageKitApi.upload(formData)
-        .then(res => {
-          console.log(res)
-          setUploadResult(res)
-          setLoading(false)
-          setShowModal(false)
-          onUploadComplete(insertMedia(file, res) + " ")
-        })
-        .catch(err => {
-          console.error(err)
-          setLoading(false)
-        })
+      // ImageKitApi.upload(formData)
+      //   .then(res => {
+      //     console.log(res)
+      //     setUploadResult(res)
+      //     setLoading(false)
+      //     setShowModal(false)
+      //     onUploadComplete(insertMedia(file, res) + " ")
+      //   })
+      //   .catch(err => {
+      //     console.error(err)
+      //     setLoading(false)
+      //   })
     }
   }
 

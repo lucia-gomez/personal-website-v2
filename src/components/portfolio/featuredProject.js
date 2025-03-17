@@ -1,59 +1,92 @@
-import FeaturedVideo from "./featuredProjectVideo"
-import FeaturedVideoCaption from "./featuredProjectCaption"
 import styled from "styled-components"
-import { useInView } from "react-intersection-observer"
 import { useRef } from "react"
+import { ButtonLink } from "../button"
 
-const FeaturedWrapper = styled.div`
-  max-height: 70vh;
-  position: relative;
-  border-radius: 5px;
-  margin-bottom: 25svh;
-  display: flex;
-  flex-direction: row;
-  justify-content: ${props =>
-    props.idx % 2 === 0 ? "flex-end" : "flex-start"};
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 40px;
+  align-items: start;
+  margin-bottom: 40px;
 
-  @media screen and (max-width: 850px) {
-    max-height: 80svh;
-    max-width: 80vw;
-    margin-bottom: 400px;
-    margin-top: 150px;
-    justify-content: flex-start;
-  }
-
-  @media screen and (max-width: 576px) {
-    width: 100%;
-    height: auto;
-    margin-bottom: 300px;
-    margin-top: 100px;
-    max-height: 75svh;
-    max-width: unset;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
   }
 `
 
-export default function FeaturedProject(props) {
-  const { index } = props
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    rootMargin: `${window.innerWidth > 800 ? -400 : 0}px 0px`,
-  })
+const FeaturedWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16/9;
+
+  img,
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+`
+
+const CaptionWrapper = styled.div`
+  p {
+    color: ${props => props.theme.medium};
+  }
+
+  h3 {
+    margin-top: 8px;
+  }
+
+  @media (max-width: 768px) {
+    h2 {
+      font-size: 32px;
+    }
+  }
+`
+
+export function FeaturedProjectGrid({ children }) {
+  return <Grid>{children}</Grid>
+}
+
+export function FeaturedProject(props) {
+  const { index, project } = props
   const videoRef = useRef()
 
   return (
-    <FeaturedWrapper idx={index}>
-      <FeaturedVideoCaption
-        {...props}
-        videoRef={videoRef}
-        scrollRef={ref}
-        inView={inView}
-      />
-      <FeaturedVideo
-        {...props}
-        videoRef={videoRef}
-        scrollRef={ref}
-        inView={inView}
-      />
-    </FeaturedWrapper>
+    <div>
+      <FeaturedWrapper idx={index}>
+        {project.featuredImage.includes(".gif") ? (
+          <img
+            src={project.featuredImage}
+            idx={index}
+            ref={videoRef}
+            alt={project.description}
+          />
+        ) : (
+          <video
+            src={project.featuredImage}
+            idx={index}
+            ref={videoRef}
+            autoPlay
+            playsInline
+            loop
+            muted
+          />
+        )}
+      </FeaturedWrapper>
+      <CaptionWrapper>
+        <h3>{project.title}</h3>
+        {project.featuredText ?? project.text}
+      </CaptionWrapper>
+      {project.featuredButtonText && (
+        <ButtonLink to={project.featuredLink}>
+          {project.featuredButtonText}
+        </ButtonLink>
+      )}
+    </div>
   )
 }

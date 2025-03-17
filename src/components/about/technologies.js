@@ -1,98 +1,79 @@
-import { li, ul } from "../../style/blogStyle"
-
-import React from "react"
-import TabbedContent from "../tabbedContent"
-import styled from "styled-components"
-
-const BulletPoints = styled.ul`
-  ${ul}
-  @media screen and (max-width: 576px) {
-    display: grid;
-    grid-template-columns: auto auto;
-    height: unset;
-    column-gap: 40px;
-    justify-content: start;
-  }
-
-  height: 90px;
-  display: flex;
-  flex-direction: column;
-  align-content: flex-start;
-  flex-wrap: wrap;
-  column-gap: 40px;
-`
-const Bullet = styled.li`
-  ${li}
-  width: fit-content;
-  margin: 0;
-`
-
-const Item = (bullets, description = null) => (
-  <>
-    {description && <p>{description}</p>}
-    <BulletPoints>
-      {bullets.map((bullet, idx) => (
-        <Bullet key={idx}>{bullet}</Bullet>
-      ))}
-    </BulletPoints>
-  </>
-)
+import React, { useState } from "react"
+import { FilterChip, FilterRow } from "../filters"
+import { ToolChip } from "../toolChip"
 
 export default function TechnologiesSection() {
-  const frontend = Item([
+  const [active, setActive] = useState(null)
+
+  const frontend = [
     "HTML/CSS",
     "Styled Components",
+    "Chakra UI",
     "Bootstrap",
-    "Sass",
     "Materialize",
     "Material UI",
-  ])
-  const frameworks = Item(["React", "React Native", "Next.js", "Flutter"])
-  const backend = Item([
+  ]
+  const frameworks = ["React", "React Native", "Next.js", "Flutter"]
+  const backend = [
     "Express",
-    "Flask",
+    "Node.js",
+    "GraphQL",
+    "Django",
     "Firestore",
     "Supabase",
     "MongoDB",
     "MySQL",
-    "PostgreSQL",
-    "Postman",
-  ])
-  const langs = Item([
+  ]
+  const langs = [
     "Javascript",
     "Java",
     "Python",
     "OCaml",
-    "Dart",
     "PHP",
     "C++/Arduino",
-  ])
-  const graphics = Item(["threeJS", "p5.js", "D3", "WebGL"])
-  const creative = Item([
-    "Particle",
+    "Bash",
+  ]
+  const graphics = ["threeJS", "p5.js", "D3", "WebGL", "Risograph Printing"]
+  const creative = [
     "Arduino",
+    "Particle",
+    "TouchDesigner",
+    "Max/MSP/Jitter",
+    "MIDI",
+    "Axidraw",
+    "LED Animation",
+    "Raspberry Pi",
     "Spark AR",
     "Blender",
-    "Fusion 360",
-    "Unreal Engine",
     "Womp 3D",
-    "Max/MSP/Jitter",
-    "Photoshop",
-    "After Effects",
-    "Figma",
-  ])
-  const hosting = Item([
+    "Lottie",
+    "Adobe Photoshop",
+    "Adobe Illustrator",
+    "Adobe Premiere",
+    "Adobe After Effects",
+  ]
+  const proto = [
+    "Autodesk Fusion 360",
+    "3D Printing",
+    "Circuit Prototyping and Debugging",
+    "Printed Circuit Boards",
+    "Soldering",
+    "Laser Cutting",
+    "CNC Milling",
+  ]
+  const hosting = [
     "Heroku",
     "Netlify",
     "GitHub",
     "AWS",
-    "Squarespace",
-    "Google Apps Script",
     "Google Cloud Platform",
-  ])
+    "Google Apps Script",
+    "Squarespace",
+  ]
 
   const tabs = {
-    Creative: creative,
+    "Creative Technology": creative,
+    "Rapid Prototyping": proto,
     Graphics: graphics,
     Frontend: frontend,
     "UI Frameworks": frameworks,
@@ -101,5 +82,36 @@ export default function TechnologiesSection() {
     Hosting: hosting,
   }
 
-  return <TabbedContent {...{ tabs }} horizontal />
+  return (
+    <>
+      <FilterRow style={{ marginBottom: 8 }}>
+        <FilterChip
+          active={active == null ? "true" : "false"}
+          onClick={() => setActive(null)}
+          idx={"all"}
+        >
+          All
+        </FilterChip>
+        {Object.keys(tabs).map(tab => (
+          <FilterChip
+            active={active === tab ? "true" : "false"}
+            onClick={() => setActive(tab)}
+            idx={tab}
+            key={tab}
+          >
+            {tab}
+          </FilterChip>
+        ))}
+      </FilterRow>
+      <div>
+        {Object.entries(tabs).map(([tab, tools]) =>
+          tools.map(tool => (
+            <ToolChip active={active === tab ? "true" : "false"} key={tool}>
+              {tool}
+            </ToolChip>
+          ))
+        )}
+      </div>
+    </>
+  )
 }

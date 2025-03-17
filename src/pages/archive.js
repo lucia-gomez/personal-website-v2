@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react"
 
-import FeaturedProject from "../components/portfolio/featuredProject"
+import {
+  FeaturedProject,
+  FeaturedProjectGrid,
+} from "../components/portfolio/featuredProject"
 import PortfolioArchiveCard from "../components/portfolio/portfolioCard"
 import PortfolioFiltersSection from "../components/portfolio/portfolioFiltersSection"
 import ScrollList from "../components/scrollList"
@@ -21,15 +24,11 @@ const Grid = styled.div`
     height: 100%;
   }
 
-  @media screen and (max-width: 870px) {
-    padding-top: 0;
-  }
-
   @media screen and (max-width: 576px) {
     h1,
     h2,
     h3 {
-      font-size: 40px;
+      font-size: 28px;
     }
   }
 `
@@ -43,8 +42,8 @@ const NoResults = styled.p`
 `
 
 const featuredProjects = featuredProjectsFinder([
-  "VJELLO",
-  "DJELLO",
+  "Gentleman Brawlers Joy-O-Meter",
+  "Crystal Clear",
   "Sign Search",
 ])
 
@@ -80,15 +79,12 @@ export default function ArchivePage() {
   return (
     <Grid>
       <div>
-        {featuredProjects.map((fp, idx) => (
-          <FeaturedProject project={fp} key={idx} index={idx} />
-        ))}
+        <FeaturedProjectGrid>
+          {featuredProjects.map((fp, idx) => (
+            <FeaturedProject project={fp} key={idx} index={idx} />
+          ))}
+        </FeaturedProjectGrid>
         <SectionTitle id="archive">Project Archive</SectionTitle>
-        <p>
-          I've been documenting my projects for ~10 years. Some are good, some
-          are not so good, but they're all here. Use the filters to help sift
-          through the chaos
-        </p>
         <PortfolioFiltersSection
           {...{ activeFilter, setActiveFilter, searchProjects }}
         />
