@@ -8,7 +8,6 @@ export default function TechnologiesSection() {
   const frontend = [
     "HTML/CSS",
     "Styled Components",
-    "Chakra UI",
     "Bootstrap",
     "Materialize",
     "Material UI",
@@ -24,28 +23,17 @@ export default function TechnologiesSection() {
     "MongoDB",
     "MySQL",
   ]
-  const langs = [
-    "Javascript",
-    "Java",
-    "Python",
-    "OCaml",
-    "PHP",
-    "C++/Arduino",
-    "Bash",
-  ]
+  const langs = ["Javascript", "Java", "Python", "OCaml", "C++/Arduino"]
   const graphics = ["threeJS", "p5.js", "D3", "WebGL", "Risograph Printing"]
   const creative = [
     "Arduino",
     "Particle",
     "TouchDesigner",
     "Max/MSP/Jitter",
-    "MIDI",
     "Axidraw",
-    "LED Animation",
     "Raspberry Pi",
     "Spark AR",
     "Blender",
-    "Womp 3D",
     "Lottie",
     "Adobe Photoshop",
     "Adobe Illustrator",
