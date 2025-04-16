@@ -35,7 +35,7 @@ const Wrapper = styled.div`
       ${props => props.theme.accent} 40%,
       ${props => props.theme.accentHover} 90%
     );
-    opacity: 0.5;
+    opacity: 0.25;
     filter: contrast(1.5);
   }
 `
@@ -43,8 +43,7 @@ const Wrapper = styled.div`
 const Photo = styled.img`
   border-radius: 300px;
   width: 100%;
-  filter: contrast(1.5);
-  mix-blend-mode: luminosity;
+  filter: contrast(1.2);
   margin: auto;
   background: white;
 `
