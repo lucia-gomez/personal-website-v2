@@ -5,7 +5,7 @@ export function getApiUrl() {
 }
 
 export const profilePicUrl =
-  "https://ik.imagekit.io/5xtlzx2c3y/website/profilePhoto.png?updatedAt=1734540694273"
+  "https://ik.imagekit.io/5xtlzx2c3y/website/profilePhoto.png?updatedAt=1744817606556"
 export const blogPlaceholderImageUrl =
   "https://ik.imagekit.io/5xtlzx2c3y/website/blog/placeholder.jpeg"
 
