@@ -1,6 +1,9 @@
+import Link from "../link"
 import PortfolioCardButtons from "./portfolioCardButtons"
 import styled from "styled-components"
 import { ToolChip } from "../toolChip"
+import { INLINES } from "@contentful/rich-text-types"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 const Wrapper = styled.div`
   display: grid;
@@ -94,15 +97,20 @@ const ButtonRow = styled.div`
   }
 `
 
+const richTextRenderOptions = {
+  renderNode: {
+    [INLINES.HYPERLINK]: ({ data }, children) => (
+      <Link to={data.url}>{children}</Link>
+    ),
+  },
+}
+
 export default function PortfolioArchiveCard({ project }) {
   return (
     <Wrapper>
       <ImageWrapper>
         <Image
-          image={
-            "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/" +
-            project.image
-          }
+          image={project.fields.image.fields.file.url}
           centerImage={project.centerImage != null ? project.centerImage : true}
         />
       </ImageWrapper>
@@ -110,16 +118,23 @@ export default function PortfolioArchiveCard({ project }) {
         <div>
           <Date>
             <ion-icon name="today" style={{ fontSize: 16 }}></ion-icon>
-            <p>{project.date}</p>
+            <p>{project.fields.date}</p>
           </Date>
           <ButtonRow>
-            <Title>{project.title}</Title>
-            <PortfolioCardButtons git={project.link} extra={project.extra} />
+            <Title>{project.fields.title}</Title>
+            <PortfolioCardButtons
+              git={project.fields.sourceFiles}
+              extra={project.fields.projectLink}
+            />
           </ButtonRow>
-          {project.text}
+          {project.fields.description &&
+            documentToReactComponents(
+              project.fields.description,
+              richTextRenderOptions
+            )}
         </div>
         <div>
-          {project.tools.map((tool, idx) => (
+          {project.fields.tools.map((tool, idx) => (
             <ToolChip key={idx}>{tool}</ToolChip>
           ))}
         </div>

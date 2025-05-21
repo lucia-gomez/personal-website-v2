@@ -1,4 +1,4 @@
-import { IconButtonLink } from "../iconButton"
+import ExternalIconButton, { IconButtonLink } from "../iconButton"
 import styled from "styled-components"
 
 const GitLink = styled(IconButtonLink)``
@@ -15,10 +15,12 @@ export default function PortfolioCardButtons({ git, extra, className }) {
     </GitLink>
   ) : null
 
+  const extraIcon = extra ? ExternalIconButton(extra) : null
+
   return (
     <Wrapper className={className}>
       {githubIcon}
-      {extra}
+      {extraIcon}
     </Wrapper>
   )
 }

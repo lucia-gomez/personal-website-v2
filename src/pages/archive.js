@@ -10,7 +10,7 @@ import ScrollList from "../components/scrollList"
 import SectionTitle from "../components/sectionTitle"
 import { featuredProjects as featuredProjectsFinder } from "../scripts/projectList"
 import filterProject from "../scripts/searchPortfolio"
-import projects from "../scripts/projectList"
+import projects from "../contentful/personalProject.json"
 import styled from "styled-components"
 
 const Grid = styled.div`
@@ -50,7 +50,7 @@ const featuredProjects = featuredProjectsFinder([
 export default function ArchivePage() {
   const [results, setResults] = useState(projects)
   const [searchKeywords, setSearchKeywords] = useState([])
-  const [activeFilter, setActiveFilter] = useState(-1) // all
+  const [activeFilter, setActiveFilter] = useState("All")
 
   const searchProjects = keywords => {
     setSearchKeywords(keywords)
@@ -59,12 +59,11 @@ export default function ArchivePage() {
   useEffect(() => {
     // filter by selected category
     let filtered = projects
-    if (activeFilter !== -1) {
+    if (activeFilter !== "All") {
       filtered = filtered.filter(project =>
-        project.categories.includes(activeFilter)
+        project.fields.categories.includes(activeFilter)
       )
     }
-
     // filter by search keywords
     if (searchKeywords.length === 0) {
       setResults(filtered)

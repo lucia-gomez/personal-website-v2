@@ -29,3 +29,5 @@ yarn-error.log*
 
 server/backup/__output__
 server/backup/__restore__
+
+src/contentful/*.json
