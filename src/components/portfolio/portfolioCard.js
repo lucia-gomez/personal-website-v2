@@ -1,9 +1,8 @@
-import Link from "../link"
 import PortfolioCardButtons from "./portfolioCardButtons"
 import styled from "styled-components"
 import { ToolChip } from "../toolChip"
-import { INLINES } from "@contentful/rich-text-types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import { richTextRenderOptions } from "../../contentful/util"
 
 const Wrapper = styled.div`
   display: grid;
@@ -96,14 +95,6 @@ const ButtonRow = styled.div`
     margin: 0px 8px 8px 0px;
   }
 `
-
-const richTextRenderOptions = {
-  renderNode: {
-    [INLINES.HYPERLINK]: ({ data }, children) => (
-      <Link to={data.url}>{children}</Link>
-    ),
-  },
-}
 
 export default function PortfolioArchiveCard({ project }) {
   return (

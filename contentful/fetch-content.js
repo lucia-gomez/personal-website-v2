@@ -11,25 +11,29 @@ const client = contentful.createClient({
   environment: "master",
 })
 
-const CONTENT_TYPES = ["personalProject"]
+const CONTENT_TYPES = {
+  about: "aboutPageContent",
+  portfolio: "portfolioPageContent",
+}
 
-async function fetchContentType(contentType) {
+async function fetchPageContentType(filename, contentType) {
   const data = await client.getEntries({
     content_type: contentType,
-    include: 2,
-    order: "-fields.orderDate",
+    include: 3,
   })
-  const fileName = `./src/contentful/${contentType}.json`
-  fs.writeFileSync(fileName, JSON.stringify(data.items, null, 2))
+  const fileName = `./src/contentful/${filename}.json`
+  fs.writeFileSync(fileName, JSON.stringify(data.items[0], null, 2))
   console.log(
     `Saved ${data.items.length} entries of ${contentType} to ${fileName}`
   )
 }
 
 async function fetchAll() {
-  for (const type of CONTENT_TYPES) {
-    await fetchContentType(type)
-  }
+  await Promise.all(
+    Object.entries(CONTENT_TYPES).map(([filename, contentType]) =>
+      fetchPageContentType(filename, contentType)
+    )
+  )
 }
 
 fetchAll().catch(console.error)

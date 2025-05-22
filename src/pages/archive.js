@@ -8,10 +8,10 @@ import PortfolioArchiveCard from "../components/portfolio/portfolioCard"
 import PortfolioFiltersSection from "../components/portfolio/portfolioFiltersSection"
 import ScrollList from "../components/scrollList"
 import SectionTitle from "../components/sectionTitle"
-import { featuredProjects as featuredProjectsFinder } from "../scripts/projectList"
 import filterProject from "../scripts/searchPortfolio"
-import projects from "../contentful/personalProject.json"
+import portfolio from "../contentful/portfolio.json"
 import styled from "styled-components"
+import useContentfulPreview from "../contentful/useContentfulPreview"
 
 const Grid = styled.div`
   padding: 95px 10px 50px 20px;
@@ -41,16 +41,11 @@ const NoResults = styled.p`
   color: ${props => props.theme.medium};
 `
 
-const featuredProjects = featuredProjectsFinder([
-  "Gentleman Brawlers Joy-O-Meter",
-  "Crystal Clear",
-  "Sign Search",
-])
-
 export default function ArchivePage() {
-  const [results, setResults] = useState(projects)
+  const [results, setResults] = useState(portfolio.fields.projects)
   const [searchKeywords, setSearchKeywords] = useState([])
   const [activeFilter, setActiveFilter] = useState("All")
+  const previewProject = useContentfulPreview()
 
   const searchProjects = keywords => {
     setSearchKeywords(keywords)
@@ -58,7 +53,7 @@ export default function ArchivePage() {
 
   useEffect(() => {
     // filter by selected category
-    let filtered = projects
+    let filtered = portfolio.fields.projects
     if (activeFilter !== "All") {
       filtered = filtered.filter(project =>
         project.fields.categories.includes(activeFilter)
@@ -80,7 +75,7 @@ export default function ArchivePage() {
       <div>
         <SectionTitle>Featured Work</SectionTitle>
         <FeaturedProjectGrid>
-          {featuredProjects.map((fp, idx) => (
+          {portfolio.fields.featuredProjects.map((fp, idx) => (
             <FeaturedProject project={fp} key={idx} index={idx} />
           ))}
         </FeaturedProjectGrid>
@@ -91,6 +86,7 @@ export default function ArchivePage() {
       </div>
       <CardDeck id="card-deck">
         {results.length === 0 && <NoResults>No results</NoResults>}
+        {previewProject && <PortfolioArchiveCard project={previewProject} />}
         {results.map((project, idx) => (
           <PortfolioArchiveCard project={project} key={idx} />
         ))}

@@ -1,11 +1,13 @@
 import { FilterChip, FilterRow } from "../filters"
 
 import React from "react"
-import projects from "../../contentful/personalProject.json"
+import portfolio from "../../contentful/portfolio.json"
 
 const categories = [
   "All",
-  ...new Set(projects.map(project => project.fields.categories).flat()),
+  ...new Set(
+    portfolio.fields.projects.map(project => project.fields.categories).flat()
+  ),
 ].sort((a, b) => a.localeCompare(b))
 
 export default function PortfolioFiltersSection(props) {

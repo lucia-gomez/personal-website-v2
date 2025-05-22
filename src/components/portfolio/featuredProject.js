@@ -1,6 +1,8 @@
 import styled from "styled-components"
 import { useRef } from "react"
 import { ButtonLink } from "../button"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import { richTextRenderOptions } from "../../contentful/util"
 
 const Grid = styled.div`
   display: grid;
@@ -50,19 +52,21 @@ export function FeaturedProject(props) {
   const { index, project } = props
   const videoRef = useRef()
 
+  const mediaUrl = project.fields.media.fields.file.url
+
   return (
     <div style={{ marginBottom: 20 }}>
       <FeaturedWrapper idx={index}>
-        {project.featuredImage.includes(".gif") ? (
+        {mediaUrl.includes(".gif") ? (
           <img
-            src={project.featuredImage}
+            src={mediaUrl}
             idx={index}
             ref={videoRef}
-            alt={project.description}
+            alt={project.fields.description}
           />
         ) : (
           <video
-            src={project.featuredImage}
+            src={mediaUrl}
             idx={index}
             ref={videoRef}
             autoPlay
@@ -73,14 +77,16 @@ export function FeaturedProject(props) {
         )}
       </FeaturedWrapper>
       <CaptionWrapper>
-        <h4>{project.title}</h4>
-        {project.featuredText ?? project.text}
+        <h4>{project.fields.title}</h4>
+        {project.fields.description &&
+          documentToReactComponents(
+            project.fields.description,
+            richTextRenderOptions
+          )}
       </CaptionWrapper>
-      {project.featuredButtonText && (
-        <ButtonLink to={project.featuredLink}>
-          {project.featuredButtonText}
-        </ButtonLink>
-      )}
+      <ButtonLink to={project.fields.actionButtonUrl}>
+        {project.fields.actionButtonText}
+      </ButtonLink>
     </div>
   )
 }

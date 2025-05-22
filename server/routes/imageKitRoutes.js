@@ -21,7 +21,6 @@ const imagekit = new ImageKit({
   privateKey: process.env.IMAGEKIT_PRIVATE,
   urlEndpoint: "https://ik.imagekit.io/5xtlzx2c3y",
 })
-console.log("DEBUG", "imagekit")
 
 /* istanbul ignore next */
 router.get("/auth", (req, res) => {
