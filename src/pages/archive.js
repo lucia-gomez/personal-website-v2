@@ -37,7 +37,7 @@ const CardDeck = styled(ScrollList)`
   overflow: hidden;
 `
 
-const NoResults = styled.p`
+const Gray = styled.p`
   color: ${props => props.theme.medium};
 `
 
@@ -79,13 +79,18 @@ export default function ArchivePage() {
             <FeaturedProject project={fp} key={idx} index={idx} />
           ))}
         </FeaturedProjectGrid>
-        <SectionTitle id="archive">Project Archive</SectionTitle>
+        <SectionTitle id="archive" style={{ marginBottom: 8 }}>
+          Project Archive
+        </SectionTitle>
+        <Gray>
+          Everything I've ever made, all at once. Here there be dragons.
+        </Gray>
         <PortfolioFiltersSection
           {...{ activeFilter, setActiveFilter, searchProjects }}
         />
       </div>
       <CardDeck id="card-deck">
-        {results.length === 0 && <NoResults>No results</NoResults>}
+        {results.length === 0 && <Gray>No results</Gray>}
         {previewProject && <PortfolioArchiveCard project={previewProject} />}
         {results.map((project, idx) => (
           <PortfolioArchiveCard project={project} key={idx} />

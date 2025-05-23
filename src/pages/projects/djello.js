@@ -1,7 +1,7 @@
 import SectionTitle from "../../components/sectionTitle"
-import { featuredProjects } from "../../scripts/projectList"
 import styled from "styled-components"
 import { useMemo } from "react"
+import portfolio from "../../contentful/portfolio.json"
 
 const Wrapper = styled.div`
   padding: 56px 20px 50px 20px;
@@ -97,14 +97,18 @@ const DoubleTextRow = styled(Row)`
 `
 
 export default function DJello() {
-  const project = useMemo(() => featuredProjects(["DJELLO"])[0], [])
+  const project = useMemo(
+    () =>
+      portfolio.fields.projects.find(proj => proj.fields.title === "DJELLO"),
+    []
+  )
 
   return (
     <Wrapper>
       <div style={{ marginBottom: "5svh" }}>
         <SectionTitle>DJELLO</SectionTitle>
-        <Metadata>{project.date}</Metadata>
-        <Metadata>Made with: {project.tools.sort().join(", ")}</Metadata>
+        <Metadata>{project.fields.date}</Metadata>
+        <Metadata>Made with: {project.fields.tools.sort().join(", ")}</Metadata>
       </div>
 
       <Row>

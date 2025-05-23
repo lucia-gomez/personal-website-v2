@@ -102,7 +102,11 @@ export default function PortfolioArchiveCard({ project }) {
       <ImageWrapper>
         <Image
           image={project.fields.image.fields.file.url}
-          centerImage={project.centerImage != null ? project.centerImage : true}
+          centerImage={
+            project.fields.centerImage != null
+              ? project.fields.centerImage
+              : true
+          }
         />
       </ImageWrapper>
       <Body>
