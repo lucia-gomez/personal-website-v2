@@ -42,10 +42,12 @@ const Gray = styled.p`
 `
 
 export default function ArchivePage() {
-  const [results, setResults] = useState(portfolio.fields.projects)
+  const previewProject = useContentfulPreview()
+  const content = previewProject ?? portfolio
+
+  const [results, setResults] = useState(content.fields.projects)
   const [searchKeywords, setSearchKeywords] = useState([])
   const [activeFilter, setActiveFilter] = useState("All")
-  const previewProject = useContentfulPreview()
 
   const searchProjects = keywords => {
     setSearchKeywords(keywords)
@@ -53,7 +55,7 @@ export default function ArchivePage() {
 
   useEffect(() => {
     // filter by selected category
-    let filtered = portfolio.fields.projects
+    let filtered = content.fields.projects
     if (activeFilter !== "All") {
       filtered = filtered.filter(project =>
         project.fields.categories.includes(activeFilter)
@@ -68,14 +70,14 @@ export default function ArchivePage() {
       )
       setResults(filtered)
     }
-  }, [activeFilter, searchKeywords])
+  }, [activeFilter, searchKeywords, content.fields.projects])
 
   return (
     <Grid>
       <div>
-        <SectionTitle>Featured Work</SectionTitle>
+        {/* <SectionTitle>Featured Work</SectionTitle> */}
         <FeaturedProjectGrid>
-          {portfolio.fields.featuredProjects.map((fp, idx) => (
+          {content.fields.featuredProjects.map((fp, idx) => (
             <FeaturedProject project={fp} key={idx} index={idx} />
           ))}
         </FeaturedProjectGrid>
@@ -91,7 +93,6 @@ export default function ArchivePage() {
       </div>
       <CardDeck id="card-deck">
         {results.length === 0 && <Gray>No results</Gray>}
-        {previewProject && <PortfolioArchiveCard project={previewProject} />}
         {results.map((project, idx) => (
           <PortfolioArchiveCard project={project} key={idx} />
         ))}
