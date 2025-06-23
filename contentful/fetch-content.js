@@ -2,8 +2,8 @@ const fs = require("fs")
 const contentful = require("contentful")
 require("dotenv").config()
 
-const SPACE_ID = process.env.REACT_APP_CONTENTFUL_SPACE_ID
-const ACCESS_TOKEN = process.env.REACT_APP_CONTENTFUL_DELIVERY_TOKEN
+const SPACE_ID = process.env.CONTENTFUL_SPACE_ID
+const ACCESS_TOKEN = process.env.CONTENTFUL_DELIVERY_TOKEN
 
 const client = contentful.createClient({
   space: SPACE_ID,
