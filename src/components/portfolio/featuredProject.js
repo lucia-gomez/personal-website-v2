@@ -4,6 +4,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { richTextRenderOptions } from "../../contentful/util"
 import { ToolChip } from "../toolChip"
 import { ButtonLink } from "../button"
+import useCheckMobileScreen from "../../hooks/useCheckMobileScreen"
 
 const Grid = styled.div`
   display: grid;
@@ -16,6 +17,7 @@ const Grid = styled.div`
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     grid-gap: 12px;
+    padding: 8px;
   }
 
   h1 {
@@ -28,6 +30,10 @@ const MediaGrid = styled.div`
   display: grid;
   grid-template-rows: 3fr 1fr;
   grid-gap: 12px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 20px;
+  }
 `
 
 const Row = styled.div`
@@ -59,12 +65,17 @@ const MediaPreview = styled.div`
   justify-content: center;
   aspect-ratio: 16/9;
   border: ${props => (props.selected ? `4px ${props.theme.accent} solid` : "")};
+  cursor: pointer;
 
   img,
   video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    height: 99%;
   }
 `
 
@@ -127,12 +138,63 @@ export function FeaturedProject(props) {
   )
 
   const videoRef = useRef()
+  const isMobile = useCheckMobileScreen()
 
   const isClient =
     project.fields.project.sys.contentType.sys.id.includes("client")
 
+  const mediaGrid = (
+    <MediaGrid>
+      <FeaturedWrapper idx={index}>
+        {!selectedMediaUrl.includes(".mp4") ? (
+          <img
+            src={selectedMediaUrl}
+            idx={index}
+            ref={videoRef}
+            alt={project.fields.description}
+          />
+        ) : (
+          <video
+            src={selectedMediaUrl}
+            idx={index}
+            ref={videoRef}
+            autoPlay
+            playsInline
+            loop
+          />
+        )}
+      </FeaturedWrapper>
+      <Row>
+        {project.fields.media.map((media, idx) => (
+          <div key={idx}>
+            <MediaPreview
+              selected={idx === selected}
+              onClick={() => setSelected(idx)}
+            >
+              {!media.fields.file.url.includes(".mp4") ? (
+                <img
+                  src={media.fields.file.url}
+                  idx={index}
+                  ref={videoRef}
+                  alt="test"
+                />
+              ) : (
+                <video
+                  src={media.fields.file.url}
+                  idx={idx}
+                  ref={videoRef}
+                  muted
+                />
+              )}
+            </MediaPreview>
+          </div>
+        ))}
+      </Row>
+    </MediaGrid>
+  )
+
   return (
-    <Grid>
+    <Grid key={project.fields.title}>
       <CaptionWrapper>
         <h1>{project.fields.title}</h1>
         <Chips>
@@ -142,6 +204,7 @@ export function FeaturedProject(props) {
             </ToolChip>
           ))}
         </Chips>
+        {isMobile && mediaGrid}
         {project.fields.description &&
           documentToReactComponents(
             project.fields.description,
@@ -170,52 +233,7 @@ export function FeaturedProject(props) {
           </Roles>
         )}
       </CaptionWrapper>
-      <MediaGrid>
-        <FeaturedWrapper idx={index}>
-          {!selectedMediaUrl.includes(".mp4") ? (
-            <img
-              src={selectedMediaUrl}
-              idx={index}
-              ref={videoRef}
-              alt={project.fields.description}
-            />
-          ) : (
-            <video
-              src={selectedMediaUrl}
-              idx={index}
-              ref={videoRef}
-              autoPlay
-              playsInline
-              loop
-            />
-          )}
-        </FeaturedWrapper>
-        <Row>
-          {project.fields.media.map((media, idx) => (
-            <MediaPreview
-              key={idx}
-              selected={idx === selected}
-              onClick={() => setSelected(idx)}
-            >
-              {!media.fields.file.url.includes(".mp4") ? (
-                <img
-                  src={media.fields.file.url}
-                  idx={index}
-                  ref={videoRef}
-                  alt="test"
-                />
-              ) : (
-                <video
-                  src={media.fields.file.url}
-                  idx={idx}
-                  ref={videoRef}
-                  muted
-                />
-              )}
-            </MediaPreview>
-          ))}
-        </Row>
-      </MediaGrid>
+      {!isMobile && mediaGrid}
     </Grid>
   )
 }

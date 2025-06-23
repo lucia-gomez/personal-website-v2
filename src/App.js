@@ -41,105 +41,81 @@ const Shaders6 = lazy(() => import("./pages/projects/shaders6"))
 export default function App() {
   return (
     <BrowserRouter>
-      <Auth0ProviderWithHistory>
-        <ScrollWithLink />
-        <Layout>
-          <Suspense fallback={<BlogLoading />}>
-            <Routes>
-              <Route path="*" element={<Error404 />} />
-              <Route exact path="/" element={<LandingPage />}></Route>
-              <Route exact path="/about-me" element={<About />}></Route>
-              <Route path="/portfolio" element={<ArchivePage />}></Route>
-              <Route exact path="/blog" element={<BlogHomePage />}></Route>
-              <Route
-                exact
-                path="/blog/:slug"
-                element={<BlogPostPage />}
-              ></Route>
-              <Route
-                element={<ProtectedRoute element={Admin} />}
-                exact
-                path="/admin"
-              />
-              <Route
-                element={<ProtectedRoute element={AdminBlog} />}
-                exact
-                path="/admin/blog"
-              />
-              <Route
-                element={<ProtectedRoute element={AdminEmail} />}
-                exact
-                path="/admin/email"
-              />
-              <Route exact path="/art" element={<ArtPage />}></Route>
-              <Route exact path="/art/zine/:slug" element={<ZinePage />} />
-              <Route
-                exact
-                path="/art/3d/:slug"
-                element={<ThreeDObjectPage />}
-              />
-              <Route path="/art/waffle" element={<ThreeJsObjectPage />}></Route>
-              <Route path="/art/:slug" element={<ArtPage />}></Route>
-              <Route
-                path="/art/series/riso-woodles"
-                element={<RisoWoodles />}
-              ></Route>
-              <Route
-                path="/art/series/riso-woodles/:id"
-                element={<RisoWoodles />}
-              ></Route>
-              <Route
-                path="/confirmation/:emailHash"
-                element={<ConfirmationPage />}
-              ></Route>
-              <Route
-                exact
-                path="/subscribe"
-                element={<SubscribePage />}
-              ></Route>
-              <Route
-                path="/unsubscribe/:emailHash"
-                element={<UnsubscribePage />}
-              ></Route>
-              <Route path="/toad-ar" element={<ToadARPage />}></Route>
-              <Route path="/project/djello" element={<DJello />}></Route>
-              <Route
-                path="/project/shaders/week1"
-                element={<Shaders1 />}
-              ></Route>
-              <Route
-                path="/project/shaders/week3-1"
-                element={<Shaders31 />}
-              ></Route>
-              <Route
-                path="/project/shaders/week3-2"
-                element={<Shaders32 />}
-              ></Route>
-              <Route
-                path="/project/shaders/week4"
-                element={<Shaders4 />}
-              ></Route>
-              <Route
-                path="/project/shaders/week5"
-                element={<Shaders5 />}
-              ></Route>
-              <Route
-                path="/project/shaders/week6"
-                element={<Shaders6 />}
-              ></Route>
-              <Route
-                path="/art/series/collagescape"
-                element={<Collagescape />}
-              ></Route>
-              <Route
-                path="/art/series/collagescape/:id"
-                element={<Collagescape />}
-              ></Route>
-              <Route path="/classBlog" element={<WordpressRedirect />}></Route>
-            </Routes>
-          </Suspense>
-        </Layout>
-      </Auth0ProviderWithHistory>
+      {/* <Auth0ProviderWithHistory> */}
+      <ScrollWithLink />
+      <Layout>
+        <Suspense fallback={<BlogLoading />}>
+          <Routes>
+            <Route path="*" element={<Error404 />} />
+            <Route exact path="/" element={<LandingPage />}></Route>
+            <Route exact path="/about-me" element={<About />}></Route>
+            <Route path="/portfolio" element={<ArchivePage />}></Route>
+            <Route exact path="/blog" element={<BlogHomePage />}></Route>
+            <Route exact path="/blog/:slug" element={<BlogPostPage />}></Route>
+            <Route
+              element={<ProtectedRoute element={Admin} />}
+              exact
+              path="/admin"
+            />
+            <Route
+              element={<ProtectedRoute element={AdminBlog} />}
+              exact
+              path="/admin/blog"
+            />
+            <Route
+              element={<ProtectedRoute element={AdminEmail} />}
+              exact
+              path="/admin/email"
+            />
+            <Route exact path="/art" element={<ArtPage />}></Route>
+            <Route exact path="/art/zine/:slug" element={<ZinePage />} />
+            <Route exact path="/art/3d/:slug" element={<ThreeDObjectPage />} />
+            <Route path="/art/waffle" element={<ThreeJsObjectPage />}></Route>
+            <Route path="/art/:slug" element={<ArtPage />}></Route>
+            <Route
+              path="/art/series/riso-woodles"
+              element={<RisoWoodles />}
+            ></Route>
+            <Route
+              path="/art/series/riso-woodles/:id"
+              element={<RisoWoodles />}
+            ></Route>
+            <Route
+              path="/confirmation/:emailHash"
+              element={<ConfirmationPage />}
+            ></Route>
+            <Route exact path="/subscribe" element={<SubscribePage />}></Route>
+            <Route
+              path="/unsubscribe/:emailHash"
+              element={<UnsubscribePage />}
+            ></Route>
+            <Route path="/toad-ar" element={<ToadARPage />}></Route>
+            <Route path="/project/djello" element={<DJello />}></Route>
+            <Route path="/project/shaders/week1" element={<Shaders1 />}></Route>
+            <Route
+              path="/project/shaders/week3-1"
+              element={<Shaders31 />}
+            ></Route>
+            <Route
+              path="/project/shaders/week3-2"
+              element={<Shaders32 />}
+            ></Route>
+            <Route path="/project/shaders/week4" element={<Shaders4 />}></Route>
+            <Route path="/project/shaders/week5" element={<Shaders5 />}></Route>
+            <Route path="/project/shaders/week6" element={<Shaders6 />}></Route>
+            <Route
+              path="/art/series/collagescape"
+              element={<Collagescape />}
+            ></Route>
+            <Route
+              path="/art/series/collagescape/:id"
+              element={<Collagescape />}
+            ></Route>
+            <Route path="/classBlog" element={<WordpressRedirect />}></Route>
+          </Routes>
+        </Suspense>
+      </Layout>
+      {/* </Auth0ProviderWithHistory> */}
     </BrowserRouter>
   )
 }

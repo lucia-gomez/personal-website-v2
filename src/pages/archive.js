@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 import {
   FeaturedProject,
@@ -75,12 +75,23 @@ export default function ArchivePage() {
   return (
     <Grid>
       <div>
-        {/* <SectionTitle>Featured Work</SectionTitle> */}
         <FeaturedProjectGrid>
           {content.fields.featuredProjects.map((fp, idx) => (
             <FeaturedProject project={fp} key={idx} index={idx} />
           ))}
         </FeaturedProjectGrid>
+        <SectionTitle id="client" style={{ marginBottom: 8 }}>
+          Client Work
+        </SectionTitle>
+        <CardDeck id="client-card-deck">
+          {content.fields.clientProjects.map((clientProj, idx) => (
+            <PortfolioArchiveCard
+              project={clientProj}
+              isClient={true}
+              key={idx}
+            />
+          ))}
+        </CardDeck>
         <SectionTitle id="archive" style={{ marginBottom: 8 }}>
           Project Archive
         </SectionTitle>

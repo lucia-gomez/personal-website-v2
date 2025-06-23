@@ -62,10 +62,6 @@ const Body = styled.div`
   display: grid;
   grid-template-rows: 1fr auto auto;
 
-  p {
-    color: ${props => props.theme.medium};
-  }
-
   @media screen and (max-width: 576px) {
     padding: 12px 4px;
   }
@@ -75,7 +71,7 @@ const Title = styled.h4`
   margin: 0;
 `
 
-const Date = styled.div`
+const Metadata = styled.div`
   display: flex;
   align-items: center;
   color: ${props => props.theme.medium};
@@ -96,7 +92,7 @@ const ButtonRow = styled.div`
   }
 `
 
-export default function PortfolioArchiveCard({ project }) {
+export default function PortfolioArchiveCard({ project, isClient = false }) {
   return (
     <Wrapper>
       <ImageWrapper>
@@ -111,10 +107,13 @@ export default function PortfolioArchiveCard({ project }) {
       </ImageWrapper>
       <Body>
         <div>
-          <Date>
-            <ion-icon name="today" style={{ fontSize: 16 }}></ion-icon>
-            <p>{project.fields.date}</p>
-          </Date>
+          <Metadata>
+            <ion-icon
+              name={isClient ? "person" : "today"}
+              style={{ fontSize: 16 }}
+            ></ion-icon>
+            <p>{isClient ? project.fields.clientName : project.fields.date}</p>
+          </Metadata>
           <ButtonRow>
             <Title>{project.fields.title}</Title>
             <PortfolioCardButtons
@@ -129,6 +128,10 @@ export default function PortfolioArchiveCard({ project }) {
             )}
         </div>
         <div>
+          {isClient &&
+            project.fields.role?.map((tool, idx) => (
+              <ToolChip key={idx}>{tool}</ToolChip>
+            ))}
           {project.fields.tools.map((tool, idx) => (
             <ToolChip key={idx}>{tool}</ToolChip>
           ))}
