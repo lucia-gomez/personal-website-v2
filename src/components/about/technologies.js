@@ -1,73 +1,23 @@
 import React, { useState } from "react"
 import { FilterChip, FilterRow } from "../filters"
 import { ToolChip } from "../toolChip"
+import aboutPage from "../../contentful/about.json"
+import useContentfulPreview from "../../contentful/useContentfulPreview"
 
 export default function TechnologiesSection() {
   const [active, setActive] = useState(null)
-
-  const frontend = [
-    "HTML/CSS",
-    "Styled Components",
-    "Bootstrap",
-    "Materialize",
-    "Material UI",
-  ]
-  const frameworks = ["React", "React Native", "Next.js", "Flutter"]
-  const backend = [
-    "Express",
-    "Node.js",
-    "GraphQL",
-    "Django",
-    "Firestore",
-    "Supabase",
-    "MongoDB",
-    "MySQL",
-  ]
-  const langs = ["Javascript", "Java", "Python", "OCaml", "C++/Arduino"]
-  const graphics = ["threeJS", "p5.js", "D3", "WebGL", "Risograph Printing"]
-  const creative = [
-    "Arduino",
-    "Particle",
-    "TouchDesigner",
-    "Max/MSP/Jitter",
-    "Axidraw",
-    "Raspberry Pi",
-    "Spark AR",
-    "Blender",
-    "Lottie",
-    "Adobe Photoshop",
-    "Adobe Illustrator",
-    "Adobe Premiere",
-    "Adobe After Effects",
-  ]
-  const proto = [
-    "Autodesk Fusion 360",
-    "3D Printing",
-    "Circuit Prototyping and Debugging",
-    "Printed Circuit Boards",
-    "Soldering",
-    "Laser Cutting",
-    "CNC Milling",
-  ]
-  const hosting = [
-    "Heroku",
-    "Netlify",
-    "GitHub",
-    "AWS",
-    "Google Cloud Platform",
-    "Google Apps Script",
-    "Squarespace",
-  ]
+  const preview = useContentfulPreview()
+  const content = preview ?? aboutPage
 
   const tabs = {
-    "Creative Technology": creative,
-    "Rapid Prototyping": proto,
-    Graphics: graphics,
-    Frontend: frontend,
-    "UI Frameworks": frameworks,
-    Backend: backend,
-    Languages: langs,
-    Hosting: hosting,
+    "Creative Technology": content.fields.creativeTechTools,
+    "Rapid Prototyping": content.fields.rapidPrototypingTools,
+    Graphics: content.fields.graphicsTools,
+    Frontend: content.fields.frontendTools,
+    "UI Frameworks": content.fields.uiFrameworks,
+    Backend: content.fields.backendTools,
+    Languages: content.fields.languages,
+    Hosting: content.fields.hosting,
   }
 
   return (

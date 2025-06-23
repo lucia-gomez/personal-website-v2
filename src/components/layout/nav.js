@@ -69,8 +69,8 @@ const CustomNav = () => {
   const sections = [
     { name: "Home", link: "/" },
     { name: "About", link: "/about-me" },
-    { name: "Portfolio", link: "/portfolio" },
-    { name: "Art", link: "/art" },
+    { name: "Work", link: "/portfolio" },
+    // { name: "Art", link: "/art" },
     { name: "Blog", link: "/blog" },
     ...(isAuthenticated ? [{ name: "Admin", link: "/admin" }] : []),
     {

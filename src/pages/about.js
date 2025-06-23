@@ -5,6 +5,10 @@ import React from "react"
 import Subsection from "../components/layout/subsection"
 import TechnologiesSection from "../components/about/technologies"
 import styled from "styled-components"
+import aboutPage from "../contentful/about.json"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import { richTextRenderOptions } from "../contentful/util"
+import useContentfulPreview from "../contentful/useContentfulPreview"
 
 const AboutWrapper = styled.div`
   padding: 56px 20px 50px 20px;
@@ -67,6 +71,9 @@ function ProfileInfo(icon, text) {
 }
 
 export default function About() {
+  const preview = useContentfulPreview()
+  const content = preview ?? aboutPage
+
   return (
     <AboutWrapper>
       <ProfileWrapper>
@@ -86,43 +93,18 @@ export default function About() {
       </ProfileWrapper>
       <div className="animate__animated animate__fadeIn">
         <Subsection title="About Me">
-          <p>
-            Former Senior Software Engineer at Meta Reality Labs, current
-            Master's student at NYU Tisch's{" "}
-            <Link href="https://itp.nyu.edu/itp/">
-              Interactive Telecommunications Program
-            </Link>{" "}
-            (graduating May 2025). My background is in Computer Science and Web
-            Development but I'm transitioning into more of a Creative
-            Technologist role. I'm currently focused on
-          </p>
-          <ul>
-            <li>Interactive digital + physical installations</li>
-            <li>Creative coding</li>
-            <li>Paint plotters</li>
-            <li>Jello ?!</li>
-          </ul>
-          ... Or wherever the wind takes me.
-          <br></br>
-          <br></br>I studied Computer Science and Linguistics at Cornell
-          University. I enjoy making use of my background in Linguistics; my ITP
-          thesis is an installation that represents American Sign Language as a
-          machine-made watercolor painting.
-          <br></br>
-          <br></br>I have at least one ABBA song stuck in my head at any given
-          time.
+          {content.fields.aboutText &&
+            documentToReactComponents(
+              content.fields.aboutText,
+              richTextRenderOptions
+            )}
         </Subsection>
         <Subsection title="Tools & Technologies" openByDefault={false}>
-          <p>
-            I fell in love with programming and creative technology when I was
-            10 years old. My humble nerd beginnings include an{" "}
-            <Link href="https://scratch.mit.edu/projects/1554944/">
-              animated Star Trek fanfiction
-            </Link>{" "}
-            in Scratch, and nothing I've made since can ever compete with that.
-            More recently, I've gained hands-on experience with several creative
-            tools and technologies to bring my ideas to life.
-          </p>
+          {content.fields.toolsTechnologiesText &&
+            documentToReactComponents(
+              content.fields.toolsTechnologiesText,
+              richTextRenderOptions
+            )}
           <TechnologiesSection />
         </Subsection>
         <Subsection title="Experience" openByDefault={false}>

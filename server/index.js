@@ -6,12 +6,10 @@ const { connectDB } = require("./db")
 
 dotenv.config()
 const app = express()
-console.log("DEBUG", "connecting to DB...")
 if (process.env.NODE_ENV != "testBackend") {
   /* istanbul ignore next */
   connectDB()
 }
-console.log("DEBUG", "connected to DB")
 
 /* istanbul ignore next */
 app.use(cors(), function (req, res, next) {
@@ -33,7 +31,6 @@ app.use(cors(), function (req, res, next) {
 })
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-console.log("DEBUG", "middleware")
 
 /************* POSTS *************/
 const postRoutes = require("./routes/postRoutes")
@@ -52,6 +49,10 @@ const { mailjetRoutes } = require("./routes/mailjetRoutes")
 const subscribeRoutes = require("./routes/subscribeRoutes")
 app.use("/api/email", mailjetRoutes)
 app.use("/api/email", subscribeRoutes)
+
+/************* CONTENTFUL *************/
+const contentfulRoutes = require("./routes/contentfulRoutes")
+app.use("/api/content", contentfulRoutes)
 
 /************* IMAGEKIT.IO *************/
 // const imageKitRoutes = require("./routes/imageKitRoutes")

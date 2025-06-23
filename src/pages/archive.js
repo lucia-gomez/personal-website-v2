@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 import {
   FeaturedProject,
@@ -8,10 +8,10 @@ import PortfolioArchiveCard from "../components/portfolio/portfolioCard"
 import PortfolioFiltersSection from "../components/portfolio/portfolioFiltersSection"
 import ScrollList from "../components/scrollList"
 import SectionTitle from "../components/sectionTitle"
-import { featuredProjects as featuredProjectsFinder } from "../scripts/projectList"
 import filterProject from "../scripts/searchPortfolio"
-import projects from "../scripts/projectList"
+import portfolio from "../contentful/portfolio.json"
 import styled from "styled-components"
+import useContentfulPreview from "../contentful/useContentfulPreview"
 
 const Grid = styled.div`
   padding: 95px 10px 50px 20px;
@@ -37,20 +37,17 @@ const CardDeck = styled(ScrollList)`
   overflow: hidden;
 `
 
-const NoResults = styled.p`
+const Gray = styled.p`
   color: ${props => props.theme.medium};
 `
 
-const featuredProjects = featuredProjectsFinder([
-  "Gentleman Brawlers Joy-O-Meter",
-  "Crystal Clear",
-  "Sign Search",
-])
-
 export default function ArchivePage() {
-  const [results, setResults] = useState(projects)
+  const previewProject = useContentfulPreview()
+  const content = previewProject ?? portfolio
+
+  const [results, setResults] = useState(content.fields.projects)
   const [searchKeywords, setSearchKeywords] = useState([])
-  const [activeFilter, setActiveFilter] = useState(-1) // all
+  const [activeFilter, setActiveFilter] = useState("All")
 
   const searchProjects = keywords => {
     setSearchKeywords(keywords)
@@ -58,13 +55,12 @@ export default function ArchivePage() {
 
   useEffect(() => {
     // filter by selected category
-    let filtered = projects
-    if (activeFilter !== -1) {
+    let filtered = content.fields.projects
+    if (activeFilter !== "All") {
       filtered = filtered.filter(project =>
-        project.categories.includes(activeFilter)
+        project.fields.categories.includes(activeFilter)
       )
     }
-
     // filter by search keywords
     if (searchKeywords.length === 0) {
       setResults(filtered)
@@ -74,24 +70,40 @@ export default function ArchivePage() {
       )
       setResults(filtered)
     }
-  }, [activeFilter, searchKeywords])
+  }, [activeFilter, searchKeywords, content.fields.projects])
 
   return (
     <Grid>
       <div>
-        <SectionTitle>Featured Work</SectionTitle>
         <FeaturedProjectGrid>
-          {featuredProjects.map((fp, idx) => (
+          {content.fields.featuredProjects.map((fp, idx) => (
             <FeaturedProject project={fp} key={idx} index={idx} />
           ))}
         </FeaturedProjectGrid>
-        <SectionTitle id="archive">Project Archive</SectionTitle>
+        <SectionTitle id="client" style={{ marginBottom: 8 }}>
+          Client Work
+        </SectionTitle>
+        <CardDeck id="client-card-deck">
+          {content.fields.clientProjects.map((clientProj, idx) => (
+            <PortfolioArchiveCard
+              project={clientProj}
+              isClient={true}
+              key={idx}
+            />
+          ))}
+        </CardDeck>
+        <SectionTitle id="archive" style={{ marginBottom: 8 }}>
+          Project Archive
+        </SectionTitle>
+        <Gray>
+          Everything I've ever made, all at once. Here there be dragons.
+        </Gray>
         <PortfolioFiltersSection
           {...{ activeFilter, setActiveFilter, searchProjects }}
         />
       </div>
       <CardDeck id="card-deck">
-        {results.length === 0 && <NoResults>No results</NoResults>}
+        {results.length === 0 && <Gray>No results</Gray>}
         {results.map((project, idx) => (
           <PortfolioArchiveCard project={project} key={idx} />
         ))}

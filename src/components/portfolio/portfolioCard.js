@@ -1,6 +1,8 @@
 import PortfolioCardButtons from "./portfolioCardButtons"
 import styled from "styled-components"
 import { ToolChip } from "../toolChip"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import { richTextRenderOptions } from "../../contentful/util"
 
 const Wrapper = styled.div`
   display: grid;
@@ -60,10 +62,6 @@ const Body = styled.div`
   display: grid;
   grid-template-rows: 1fr auto auto;
 
-  p {
-    color: ${props => props.theme.medium};
-  }
-
   @media screen and (max-width: 576px) {
     padding: 12px 4px;
   }
@@ -73,7 +71,7 @@ const Title = styled.h4`
   margin: 0;
 `
 
-const Date = styled.div`
+const Metadata = styled.div`
   display: flex;
   align-items: center;
   color: ${props => props.theme.medium};
@@ -94,32 +92,47 @@ const ButtonRow = styled.div`
   }
 `
 
-export default function PortfolioArchiveCard({ project }) {
+export default function PortfolioArchiveCard({ project, isClient = false }) {
   return (
     <Wrapper>
       <ImageWrapper>
         <Image
-          image={
-            "https://ik.imagekit.io/5xtlzx2c3y/website/portfolio/" +
-            project.image
+          image={project.fields.image.fields.file.url}
+          centerImage={
+            project.fields.centerImage != null
+              ? project.fields.centerImage
+              : true
           }
-          centerImage={project.centerImage != null ? project.centerImage : true}
         />
       </ImageWrapper>
       <Body>
         <div>
-          <Date>
-            <ion-icon name="today" style={{ fontSize: 16 }}></ion-icon>
-            <p>{project.date}</p>
-          </Date>
+          <Metadata>
+            <ion-icon
+              name={isClient ? "person" : "today"}
+              style={{ fontSize: 16 }}
+            ></ion-icon>
+            <p>{isClient ? project.fields.clientName : project.fields.date}</p>
+          </Metadata>
           <ButtonRow>
-            <Title>{project.title}</Title>
-            <PortfolioCardButtons git={project.link} extra={project.extra} />
+            <Title>{project.fields.title}</Title>
+            <PortfolioCardButtons
+              git={project.fields.sourceFiles}
+              extra={project.fields.projectLink}
+            />
           </ButtonRow>
-          {project.text}
+          {project.fields.description &&
+            documentToReactComponents(
+              project.fields.description,
+              richTextRenderOptions
+            )}
         </div>
         <div>
-          {project.tools.map((tool, idx) => (
+          {isClient &&
+            project.fields.role?.map((tool, idx) => (
+              <ToolChip key={idx}>{tool}</ToolChip>
+            ))}
+          {project.fields.tools.map((tool, idx) => (
             <ToolChip key={idx}>{tool}</ToolChip>
           ))}
         </div>

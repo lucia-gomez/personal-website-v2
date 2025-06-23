@@ -104,3 +104,8 @@ export const ImageKitApi = {
   getUsage: () => Axios.get(`${getApiUrl()}/api/image/usage`),
   upload: formData => Axios.post(`${getApiUrl()}/api/image/upload`, formData),
 }
+
+export const ContentfulApi = {
+  getPreview: entryId =>
+    Axios.get(`${getApiUrl()}/api/content/preview?entryId=${entryId}`),
+}
