@@ -30,14 +30,12 @@ const Wrapper = styled.div`
 const ImageWrapper = styled.div`
   width: 100%;
   height: 100%;
-  border-radius: 5px;
   position: relative;
 
   ::after {
     content: "";
     width: 100%;
     height: 100%;
-    border-radius: 4px;
     position: absolute;
     top: 0;
     left: 0;
@@ -53,7 +51,6 @@ const Image = styled.div`
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
-  border-radius: 4px;
 `
 
 const Body = styled.div`

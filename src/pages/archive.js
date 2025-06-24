@@ -35,6 +35,7 @@ const Grid = styled.div`
 
 const CardDeck = styled(ScrollList)`
   overflow: hidden;
+  padding-bottom: 8vh;
 `
 
 const Gray = styled.p`
