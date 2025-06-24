@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom"
 import { Button } from "../button"
 import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
-import React from "react"
 import { hexToRGB } from "../../style/theme"
 import styled from "styled-components"
 import { useAuth0 } from "@auth0/auth0-react"
@@ -81,6 +80,10 @@ const CustomNav = () => {
   ]
 
   const icons = [
+    {
+      icon: "mail-outline",
+      link: "mailto:lucia.dev42@gmail.com",
+    },
     {
       icon: "logo-instagram",
       link: "https://www.instagram.com/lugoo.dev",

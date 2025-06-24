@@ -5,6 +5,7 @@ import { richTextRenderOptions } from "../../contentful/util"
 import { ToolChip } from "../toolChip"
 import { ButtonLink } from "../button"
 import useCheckMobileScreen from "../../hooks/useCheckMobileScreen"
+import { HeaderLink } from "../sectionTitle"
 
 const Grid = styled.div`
   display: grid;
@@ -125,10 +126,6 @@ const Roles = styled.div`
   }
 `
 
-export function FeaturedProjectGrid({ children }) {
-  return <div>{children}</div>
-}
-
 export function FeaturedProject(props) {
   const { index, project } = props
   const [selected, setSelected] = useState(0)
@@ -193,10 +190,16 @@ export function FeaturedProject(props) {
     </MediaGrid>
   )
 
+  const id = project.fields.title.split(" ").join("-")
+
   return (
     <Grid key={project.fields.title}>
       <CaptionWrapper>
-        <h1>{project.fields.title}</h1>
+        <h1 id={id}>
+          <HeaderLink to={`#${id}`} sameTab={true}>
+            {project.fields.title}
+          </HeaderLink>
+        </h1>
         <Chips>
           {project.fields.tags?.map(tag => (
             <ToolChip active="true" key={tag}>

@@ -26,10 +26,10 @@ export default function ActionButtons() {
         About
       </ButtonLink>
       <ButtonLink to="/portfolio" sameTab={true}>
-        Projects
+        Work
       </ButtonLink>
-      <ButtonLink to="/subscribe" sameTab={true}>
-        Subscribe
+      <ButtonLink to="mailto:lucia.dev42@gmail.com" sameTab={true}>
+        Contact
       </ButtonLink>
     </Wrapper>
   )
