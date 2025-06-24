@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react"
 
-import {
-  FeaturedProject,
-  FeaturedProjectGrid,
-} from "../components/portfolio/featuredProject"
+import { FeaturedProject } from "../components/portfolio/featuredProject"
 import PortfolioArchiveCard from "../components/portfolio/portfolioCard"
 import PortfolioFiltersSection from "../components/portfolio/portfolioFiltersSection"
 import ScrollList from "../components/scrollList"
@@ -35,7 +32,6 @@ const Grid = styled.div`
 
 const CardDeck = styled(ScrollList)`
   overflow: hidden;
-  padding-bottom: 8vh;
 `
 
 const Gray = styled.p`
@@ -76,11 +72,11 @@ export default function ArchivePage() {
   return (
     <Grid>
       <div>
-        <FeaturedProjectGrid>
+        <div>
           {content.fields.featuredProjects.map((fp, idx) => (
             <FeaturedProject project={fp} key={idx} index={idx} />
           ))}
-        </FeaturedProjectGrid>
+        </div>
         <SectionTitle id="client" style={{ marginBottom: 8 }}>
           Client Work
         </SectionTitle>
@@ -103,7 +99,7 @@ export default function ArchivePage() {
           {...{ activeFilter, setActiveFilter, searchProjects }}
         />
       </div>
-      <CardDeck id="card-deck">
+      <CardDeck id="card-deck" key={results.map(r => r.id).join(",")}>
         {results.length === 0 && <Gray>No results</Gray>}
         {results.map((project, idx) => (
           <PortfolioArchiveCard project={project} key={idx} />

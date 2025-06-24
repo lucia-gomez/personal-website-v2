@@ -1,5 +1,4 @@
 import Link from "./link"
-import React from "react"
 import styled from "styled-components"
 
 const Title = styled.h2`
@@ -8,7 +7,7 @@ const Title = styled.h2`
   font-size: 48px;
 `
 
-const HeaderLink = styled(Link)`
+export const HeaderLink = styled(Link)`
   color: ${props => props.theme.text};
 
   :hover:after {
@@ -28,7 +27,6 @@ export default function SectionTitle(props) {
       ) : (
         props.children
       )}
-      {/* {props.children} */}
     </Title>
   )
 }
